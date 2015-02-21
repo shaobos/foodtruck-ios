@@ -12,7 +12,9 @@ class DropdownViewController: DropdownMenuController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        super.
+        
+        println("GridView Loaded!")
+
 
         // Do any additional setup after loading the view.
     }
@@ -22,7 +24,10 @@ class DropdownViewController: DropdownMenuController {
         // Dispose of any resources that can be recreated.
     }
     
+    func customizeMenu() {
+        println("customizeMenu!")
     
+    }
 
     /*
     // MARK: - Navigation

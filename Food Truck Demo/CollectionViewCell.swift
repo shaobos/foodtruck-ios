@@ -6,8 +6,9 @@
 //  Copyright (c) 2015 Shaobo Sun. All rights reserved.
 //
 
-import Cocoa
-
 class CollectionViewCell: UICollectionViewCell {
+    
+    
+    @IBOutlet weak var imageView: UIImageView!
 
 }

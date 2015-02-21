@@ -52,6 +52,8 @@ CAShapeLayer *closedMenuShape;
 }
 
 - (IBAction) menuButtonAction: (UIButton *) sender {
+    
+    NSLog(@"%s", "menuButtonAction!!!");
     [self toggleMenu];
 }
 

@@ -8,23 +8,20 @@
 
 import UIKit
 
-class ViewController: UIViewController{
+class ViewController: DropdownMenuController {
 
     @IBOutlet weak var ContainerView: UIView!
     @IBOutlet var containerViewController: ContainerViewController!
     
-    
     override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
         return true
     }
-    //var containerViewController: ContainerViewController
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         println("prepareForSgue")
         if (segue.identifier == "embedSegue") {
             println("embedSegue")
             containerViewController = segue.destinationViewController as ContainerViewController
-            
         }
     }
     
@@ -35,10 +32,28 @@ class ViewController: UIViewController{
         println("View controller loaded")
         
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        println("view did appear")
+
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func menuButtonAction(sender: UIButton!) {
+        println("i fucked up")
+        super.menuButtonAction(sender)
+        
+    }
+    
+    func customizeMenu() {
+        
+       // for (button: Button in self.buttons) {
+            
+       // }
     }
 
     @IBAction func ButtonPressed(sender: AnyObject) {

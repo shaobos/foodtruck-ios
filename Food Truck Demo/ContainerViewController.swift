@@ -17,8 +17,6 @@ class ContainerViewController: UIViewController {
     var tableViewSegue: String = "tableViewSegue"
     var currentSegueIdentifier: String = ""
     
-//    var transitionInProgress: Boolean
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.transitionInProgress = false
@@ -39,6 +37,7 @@ class ContainerViewController: UIViewController {
         return true
     }
     
+    // prepareForSegue goes before viewDidLoad()
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         println("ContainerViewController -> prepareForSegue")
         if (segue.identifier == "tableViewSegue") {
@@ -60,23 +59,12 @@ class ContainerViewController: UIViewController {
                 var destView:UIView = (segue.destinationViewController as UIViewController).view
                 println("found destView")
                 destView.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight
-                destView.frame =  CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)
+                destView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)
                 self.view.addSubview(destView)
                 segue.destinationViewController.didMoveToParentViewController(self)
             
             }
         } else if (segue.identifier == "mapViewSegue") {
-//            if (self.childViewControllers.count <= 1) {
-//                println("no map child view controller was loaded before. loading..")
-//                self.addChildViewController(segue.destinationViewController as UIViewController)
-//                var destView:UIView = (segue.destinationViewController as UIViewController).view
-//                println("found map destView")
-//                destView.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight
-//                destView.frame =  CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)
-//                self.view.addSubview(destView)
-//                segue.destinationViewController.didMoveToParentViewController(self)
-//                
-//            }
             println("Going to swap table view controller with map view controller")
             self.swapFromViewController(self.childViewControllers[0] as UIViewController, to: self.mapViewController)
         } else {
