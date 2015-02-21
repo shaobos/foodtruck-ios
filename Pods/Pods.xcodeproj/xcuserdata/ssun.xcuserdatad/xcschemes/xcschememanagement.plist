@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>Pods-DropdownMenu.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-Food Truck Demo-DropdownMenu.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-Food Truck Demo.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-Food Truck DemoTests-DropdownMenu.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-Food Truck DemoTests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>0052FEC6149C30E6D98AE403</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>23A0513ABDB778299FADD6F8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>894F917DB0D4B94A739DB193</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A52797B4E5EDBD4D2C173A15</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B19DC8C349294361FDBDCC52</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FD4BD3B65FB1E0A50146D384</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>
