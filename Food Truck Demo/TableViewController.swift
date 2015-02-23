@@ -10,11 +10,16 @@ import UIKit
 
 class TableViewController: UIViewController, UITableViewDelegate {
 
+    
+    @IBOutlet weak var theTableView: UITableView!
+    var cellContent:[String] = []
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        var webService = WebService()
-        
-
+        var webService = Trucks()
+        cellContent = webService.getTruckNames()
+        println(cellContent)
         // Do any additional setup after loading the view.
     }
 
@@ -22,11 +27,10 @@ class TableViewController: UIViewController, UITableViewDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    var cellContent = ["Rob", "Kristen", "Tommy", "Shaobo"]
 
     
+    // dynamically define how many rows
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // define how many rows
         return cellContent.count
     }
     
@@ -38,4 +42,20 @@ class TableViewController: UIViewController, UITableViewDelegate {
         
         return cell
     }
+    
+    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
+        return true
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        performSegueWithIdentifier("ToTruckDetailSegue", sender: nil)
+        
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        var indexPath: NSIndexPath = self.theTableView.indexPathForSelectedRow()!//indexPathForSelectedRow
+        var destViewController : TruckDetailsViewController = segue.destinationViewController as TruckDetailsViewController
+        destViewController.setPrevViewController(self)
+    }
+
 }

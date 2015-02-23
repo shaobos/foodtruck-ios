@@ -19,13 +19,14 @@ class TrucksCollectionViewController: UICollectionViewController, UICollectionVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var webService = WebService()
-        webService.getTruckList {
+        var webService = Trucks()
+        webService.fetchTrucksInfoFromRemote {
             loadedImages in
             println("load image...")
             self.images = loadedImages
             // this is important, needs to reload it!
             self.collectionView?.reloadData()
+            
         }
     }
     

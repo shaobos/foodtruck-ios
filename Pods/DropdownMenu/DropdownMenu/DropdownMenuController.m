@@ -94,6 +94,8 @@ CAShapeLayer *closedMenuShape;
                      completion:^(BOOL finished){
                      }];
     [UIView commitAnimations];
+    
+    
 
 }
 

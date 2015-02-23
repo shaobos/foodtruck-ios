@@ -1,21 +1,30 @@
 //
-//  DropdownViewController.swift
-//  Food Truck Demo
+//  TruckPageViewController.swift
+//  foodtruck-ios
 //
-//  Created by Shaobo Sun on 2/11/15.
+//  Created by Shaobo Sun on 2/22/15.
 //  Copyright (c) 2015 Shaobo Sun. All rights reserved.
 //
 
 import UIKit
 
-class DropdownViewController: DropdownMenuController {
+class TruckDetailsViewController: UIViewController {
 
+    @IBOutlet weak var truckName: UILabel!
+    
+    var prevViewController: UIViewController?
+    
+    func setTitle() {
+        
+    }
+    
+    func setPrevViewController(prev: UIViewController) {
+        self.prevViewController = prev
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        println("GridView Loaded!")
-
-
+        println("who is my previous controller \(self.prevViewController)")
         // Do any additional setup after loading the view.
     }
 
@@ -24,11 +33,6 @@ class DropdownViewController: DropdownMenuController {
         // Dispose of any resources that can be recreated.
     }
     
-    func customizeMenu() {
-        println("customizeMenu!")
-    
-    }
-
     /*
     // MARK: - Navigation
 

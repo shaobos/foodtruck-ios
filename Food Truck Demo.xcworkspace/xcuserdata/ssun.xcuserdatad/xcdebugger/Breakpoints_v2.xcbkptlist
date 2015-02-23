@@ -9,13 +9,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Food Truck Demo/WebService.swift"
-            timestampString = "446190055.857594"
+            filePath = "Food Truck Demo/Trucks.swift"
+            timestampString = "446363596.322399"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "14"
-            endingLineNumber = "14"
-            landmarkName = "WebService"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "Trucks"
             landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,13 +25,75 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Food Truck Demo/WebService.swift"
-            timestampString = "446251312.57238"
+            filePath = "Food Truck Demo/Trucks.swift"
+            timestampString = "446363596.322399"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "17"
-            endingLineNumber = "17"
-            landmarkName = "getTruckList(_:)"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "fetchTrucksInfoFromRemote(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Food Truck Demo/TableViewController.swift"
+            timestampString = "446363489.072301"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "11"
+            endingLineNumber = "11"
+            landmarkName = "TableViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "foodtruck_ios.TableViewController.__deallocating_deinit"
+                  moduleName = "foodtruck-ios"
+                  urlString = "file:///Users/ssun/ssun_workspace/ios/Food%20Truck%20Demo/Food%20Truck%20Demo/TableViewController.swift"
+                  timestampString = "446363489.090845"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "11"
+                  endingLineNumber = "11"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "@objc foodtruck_ios.TableViewController.__ivar_destroyer"
+                  moduleName = "foodtruck-ios"
+                  urlString = "file:///Users/ssun/ssun_workspace/ios/Food%20Truck%20Demo/Food%20Truck%20Demo/TableViewController.swift"
+                  timestampString = "446363489.091119"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "11"
+                  endingLineNumber = "11"
+                  offsetFromSymbolStart = "15">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Food Truck Demo/TableViewController.swift"
+            timestampString = "446370304.012297"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
