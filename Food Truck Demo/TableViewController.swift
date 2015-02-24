@@ -54,7 +54,7 @@ class TableViewController: UIViewController, UITableViewDelegate {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         var indexPath: NSIndexPath = self.theTableView.indexPathForSelectedRow()!//indexPathForSelectedRow
-        var destViewController : TruckDetailsViewController = segue.destinationViewController as TruckDetailsViewController
+        var destViewController : ScheduleDetailsViewController = segue.destinationViewController as ScheduleDetailsViewController
         destViewController.setPrevViewController(self)
     }
 

@@ -8,14 +8,22 @@
 
 import UIKit
 
-class TruckDetailsViewController: UIViewController {
+class ScheduleDetailsViewController: UIViewController {
 
-    @IBOutlet weak var truckName: UILabel!
+    @IBOutlet weak var theTitle: UILabel!
     
+    
+    var inputLabel:String = ""
+    @IBOutlet weak var anotherLabel: UILabel!
+    @IBAction func backButton(sender: UIBarButtonItem) {
+        
+        
+        
+    }
     var prevViewController: UIViewController?
     
-    func setTitle() {
-        
+    func setTitle(inputTitle : String) {
+        inputLabel = inputTitle
     }
     
     func setPrevViewController(prev: UIViewController) {
@@ -26,6 +34,7 @@ class TruckDetailsViewController: UIViewController {
         super.viewDidLoad()
         println("who is my previous controller \(self.prevViewController)")
         // Do any additional setup after loading the view.
+        theTitle.text = inputLabel
     }
 
     override func didReceiveMemoryWarning() {
