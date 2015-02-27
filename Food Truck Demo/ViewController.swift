@@ -17,7 +17,6 @@ class ViewController: DropdownMenuController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        println("prepareForSgue")
         if (segue.identifier == "embedSegue") {
             containerViewController = segue.destinationViewController as ContainerViewController
         }

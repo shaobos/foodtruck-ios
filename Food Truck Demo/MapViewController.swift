@@ -63,8 +63,11 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         var destViewController: ScheduleDetailsViewController = segue.destinationViewController as ScheduleDetailsViewController
-        destViewController.setPrevViewController(self)
+
+        println("Going to set prev VC to map!")
         destViewController.setTitle("hey")
+        destViewController.setPrevViewController("Map!")
+
         
         
     }

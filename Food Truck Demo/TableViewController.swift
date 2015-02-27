@@ -18,7 +18,12 @@ class TableViewController: UIViewController, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         var webService = Trucks()
-        cellContent = webService.getTruckNames()
+        if (TheTrucks.trucks.count > 0) {
+            
+        } else {
+            cellContent = webService.getTruckNames()
+
+        }
         println(cellContent)
         // Do any additional setup after loading the view.
     }
@@ -55,7 +60,7 @@ class TableViewController: UIViewController, UITableViewDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         var indexPath: NSIndexPath = self.theTableView.indexPathForSelectedRow()!//indexPathForSelectedRow
         var destViewController : ScheduleDetailsViewController = segue.destinationViewController as ScheduleDetailsViewController
-        destViewController.setPrevViewController(self)
+        destViewController.setPrevViewController("Table!")
     }
 
 }

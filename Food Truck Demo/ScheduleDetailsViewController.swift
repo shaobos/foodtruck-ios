@@ -12,27 +12,36 @@ class ScheduleDetailsViewController: UIViewController {
 
     @IBOutlet weak var theTitle: UILabel!
     
+    var prevViewController: UIViewController?
+    var previousViewControllerName:String = ""
+    var scheduleToTableSegueID : String = "ScheduleToTableSegue"
+    var scheduleToMapSegueID : String = "ScheduleToMapSegue"
     
     var inputLabel:String = ""
+    
+    
+    
     @IBOutlet weak var anotherLabel: UILabel!
     @IBAction func backButton(sender: UIBarButtonItem) {
+
         
-        
+        performSegueWithIdentifier("ScheduleToMainSegue", sender: nil)
+
         
     }
-    var prevViewController: UIViewController?
     
     func setTitle(inputTitle : String) {
         inputLabel = inputTitle
     }
     
-    func setPrevViewController(prev: UIViewController) {
-        self.prevViewController = prev
+    func setPrevViewController(prev: String) {
+        self.previousViewControllerName = prev
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        println("who is my previous controller \(self.prevViewController)")
+        println("who is my previous controller \(self.previousViewControllerName)")
+
         // Do any additional setup after loading the view.
         theTitle.text = inputLabel
     }
@@ -42,14 +51,4 @@ class ScheduleDetailsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
