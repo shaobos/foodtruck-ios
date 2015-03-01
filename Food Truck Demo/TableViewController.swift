@@ -9,23 +9,33 @@
 import UIKit
 
 class TableViewController: UIViewController, UITableViewDelegate {
-
-    
     @IBOutlet weak var theTableView: UITableView!
     var cellContent:[String] = []
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        var webService = Trucks()
-        if (TheTrucks.trucks.count > 0) {
-            
-        } else {
-            cellContent = webService.getTruckNames()
+        println("supposed to load truck list")
+        
+        
+        // TODO: better to intialize data fetch in main view controller
+        var trucks = Trucks()
+        var imageFetcher = ImageFetcher()
+        var scheduleFetcher = ScheduleFetcher()
 
+        scheduleFetcher.fetchTrucksInfoFromRemote() {
+            println("Schedules are ready")
+            self.cellContent = scheduleFetcher.getSchedulesName()
+            self.theTableView.reloadData()
         }
-        println(cellContent)
-        // Do any additional setup after loading the view.
+        
+        trucks.fetchTrucksInfoFromRemote {
+            loadedImages in
+            self.theTableView.reloadData()
+            imageFetcher.fetchImages {
+                println("imageFetch is done")
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,8 +52,10 @@ class TableViewController: UIViewController, UITableViewDelegate {
     // define the content of each individual cell
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "Cell")
-        cell.textLabel?.text = cellContent[indexPath.row]
+//        let cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "Cell")
+        let cell = TableCellCustomView()
+        
+     //   cell = cellContent[indexPath.row]
         
         return cell
     }
@@ -62,5 +74,8 @@ class TableViewController: UIViewController, UITableViewDelegate {
         var destViewController : ScheduleDetailsViewController = segue.destinationViewController as ScheduleDetailsViewController
         destViewController.setPrevViewController("Table!")
     }
+    
+    
+    
 
 }

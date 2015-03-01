@@ -26,13 +26,15 @@ class Trucks {
     
     var truckPhotos = [UIImage]()
     var results:NSArray = []
-    
-    
     let baseUrl = "http://130.211.191.208/"
     
     
     func getTruckNames() -> [String] {
         var ret = [String]()
+        if (TheTrucks.trucks.count == 0) {
+            println("????? what are you talking about? there is no fucking truck!!!")
+        }
+        
         for truckInfo in TheTrucks.trucks {
             ret.insert(truckInfo["name"]!, atIndex: 0)
         }
@@ -52,17 +54,15 @@ class Trucks {
             } else {
                 
                 let jsonResults = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSArray
-                //results  = jsonResults
                 for responseObject in jsonResults {
+//                    println(responseObject)
                     if let jsonResult = responseObject as? Dictionary<String, String> {
-                        println(jsonResult)
                         TheTrucks.trucks.insert(jsonResult, atIndex: 0)
 //                        var image:UIImage = self.fetchImage(jsonResult)
 //                        self.truckPhotos.insert(image, atIndex: 0)
                     }
                 }
                 
-                //completionHandler(images: image!)
                 dispatch_async(dispatch_get_main_queue(), {
                     completionHandler(images: self.truckPhotos)
                 })
@@ -72,21 +72,7 @@ class Trucks {
         task.resume()
     }
 
-    func fetchImage(jsonResult:[String: String]) -> UIImage {
-        //println(jsonResultAsDict)
-        // TODO: find a URL resovler library in swift
-        let imageUrl = baseUrl + (jsonResult["img"]! as String)
-        let url = NSURL(string: imageUrl);
-        let imageData = NSData(contentsOfURL: url!)!
-        
-        let image = UIImage(data: imageData)
-        if (image == nil) {
-            println(imageUrl + " is nil!!")
-       
-        }
-        
-        return image!
-    }
+
     
     func setCoreData() {
         

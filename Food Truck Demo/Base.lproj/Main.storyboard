@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -43,64 +44,91 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HDm-HW-uVY">
                                         <rect key="frame" x="0.0" y="8" width="171" height="30"/>
-                                        <state key="normal" title="Button">
+                                        <state key="normal" title="Schedules">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bIx-xg-yG9">
-                                <rect key="frame" x="0.0" y="21" width="375" height="44"/>
+                            <pickerView hidden="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hAe-hH-OtK">
+                                <rect key="frame" x="0.0" y="446" width="375" height="162"/>
+                                <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="vXZ-lx-hvc" id="cOG-9v-gHf"/>
+                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="cqc-oY-RKG"/>
+                                </connections>
+                            </pickerView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ttz-3o-tnN">
+                                <rect key="frame" x="0.0" y="15" width="375" height="44"/>
                                 <items>
-                                    <navigationItem title="Title" id="gM5-Ts-w3Y">
-                                        <barButtonItem key="leftBarButtonItem" style="plain" id="02K-sY-Koq">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="GXE-je-bOM">
-                                                <rect key="frame" x="16" y="19" width="46" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="Menu">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="menuButtonAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="CJn-HX-Bek"/>
-                                                </connections>
-                                            </button>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" style="plain" id="wYj-YG-MrN">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="eQD-XD-fIt">
-                                                <rect key="frame" x="234" y="10" width="100" height="48"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="Map/List">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="ButtonPressed:" destination="vXZ-lx-hvc" eventType="touchDown" id="dKb-sZ-3hc"/>
-                                                </connections>
-                                            </button>
-                                        </barButtonItem>
-                                    </navigationItem>
+                                    <barButtonItem style="plain" id="RlO-Sd-jbE">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="jbj-sM-azF">
+                                            <rect key="frame" x="16" y="7" width="50" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Menu">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="menuButtonAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="dNe-eT-6qL"/>
+                                            </connections>
+                                        </button>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="jdC-6i-6ip"/>
+                                    <barButtonItem title="Date" id="U2H-pR-yWy">
+                                        <connections>
+                                            <action selector="dateButtonAction:" destination="vXZ-lx-hvc" id="omA-Sl-2aC"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="bQL-J2-gVj"/>
+                                    <barButtonItem title="Category" id="CrK-wm-DFF">
+                                        <connections>
+                                            <action selector="categoryButtonAction:" destination="vXZ-lx-hvc" id="VAa-7I-g5h"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="A4m-hz-hEj"/>
+                                    <barButtonItem style="plain" id="wYj-YG-MrN">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="eQD-XD-fIt">
+                                            <rect key="frame" x="299" y="-2" width="61" height="48"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Map/List">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="ButtonPressed:" destination="vXZ-lx-hvc" eventType="touchDown" id="dKb-sZ-3hc"/>
+                                            </connections>
+                                        </button>
+                                    </barButtonItem>
                                 </items>
-                            </navigationBar>
+                            </toolbar>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c5R-0i-6qz">
-                                <rect key="frame" x="0.0" y="65" width="375" height="595"/>
+                                <rect key="frame" x="0.0" y="72" width="375" height="595"/>
                                 <connections>
                                     <segue destination="ccm-6F-9BE" kind="embed" identifier="embedSegue" id="k3v-ml-8LA"/>
                                 </connections>
                             </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="hAe-hH-OtK" secondAttribute="bottom" id="YSE-Sd-Flz"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="hAe-hH-OtK" secondAttribute="trailing" id="yWZ-V5-jF3"/>
+                            <constraint firstItem="hAe-hH-OtK" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="z3q-47-1rt"/>
+                        </constraints>
                     </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="container" destination="c5R-0i-6qz" id="1kx-W8-AIq"/>
                         <outlet property="menu" destination="Gtu-Js-hdy" id="7FP-UL-7Q0"/>
-                        <outlet property="menuButton" destination="GXE-je-bOM" id="JWl-Nv-e0C"/>
-                        <outlet property="menubar" destination="bIx-xg-yG9" id="p8N-wO-mJa"/>
+                        <outlet property="menuButton" destination="jbj-sM-azF" id="yXv-NC-m67"/>
+                        <outlet property="menubar" destination="Ttz-3o-tnN" id="YRc-PW-FTr"/>
+                        <outlet property="picker" destination="hAe-hH-OtK" id="OFJ-XO-SWa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="237.5" y="-942.5"/>
+            <point key="canvasLocation" x="349.5" y="-1104.5"/>
         </scene>
         <!--Container View Controller-->
         <scene sceneID="zQw-PS-ROh">
@@ -295,7 +323,7 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FAz-wF-GNi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-161" y="-1036"/>
+            <point key="canvasLocation" x="-165" y="-1384"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="RcX-TL-Tiv">
@@ -309,16 +337,50 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="theTableView" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="JdM-to-yJT">
-                                <rect key="frame" x="0.0" y="8" width="600" height="600"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="theTableView" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="114" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="JdM-to-yJT">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="ri8-XL-Kmx">
+                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="TableCellCustomView" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="114" id="ri8-XL-Kmx" customClass="TableCellCustomView" customModule="foodtruck_ios" customModuleProvider="target">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ri8-XL-Kmx" id="0x2-OU-2B4">
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Truck NAme" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UBq-W8-Wl6">
+                                                    <rect key="frame" x="101" y="-6" width="211" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="63k-o3-ziX">
+                                                    <rect key="frame" x="8" y="-6" width="85" height="112"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uot-tQ-I6m">
+                                                    <rect key="frame" x="101" y="73" width="84" height="26"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Oq-tW-sMb">
+                                                    <rect key="frame" x="101" y="27" width="211" height="45"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KlB-ib-cn3">
+                                                    <rect key="frame" x="213" y="74" width="73" height="24"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="address" destination="8Oq-tW-sMb" id="ze9-E0-AC0"/>
+                                            <outlet property="endTime" destination="KlB-ib-cn3" id="PSu-i1-qZ7"/>
+                                            <outlet property="startTime" destination="uot-tQ-I6m" id="5kz-3v-aQA"/>
+                                            <outlet property="truckImage" destination="63k-o3-ziX" id="pso-Zh-gVW"/>
+                                            <outlet property="truckName" destination="UBq-W8-Wl6" id="RGV-OJ-Mex"/>
                                             <segue destination="lCP-YS-t5w" kind="show" identifier="ToTruckDetailSegue" id="FC0-ZV-W23"/>
                                         </connections>
                                     </tableViewCell>
@@ -338,10 +400,10 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xd7-ER-WSR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-77" y="55"/>
+            <point key="canvasLocation" x="235" y="-257"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Nq2-hj-Joj"/>
+        <segue reference="FC0-ZV-W23"/>
     </inferredMetricsTieBreakers>
 </document>

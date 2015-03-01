@@ -10,24 +10,13 @@
 class TrucksCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     private let reuseIdentifier = "TruckCell"
-    private var images = [UIImage]()
     
     func photoForIndexPath(indexPath: NSIndexPath) -> UIImage {
-        return images[indexPath.row]
+        return Images.truckImages[indexPath.row]
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        var webService = Trucks()
-        webService.fetchTrucksInfoFromRemote {
-            loadedImages in
-            println("load image...")
-            self.images = loadedImages
-            // this is important, needs to reload it!
-            self.collectionView?.reloadData()
-            
-        }
     }
     
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -36,7 +25,7 @@ class TrucksCollectionViewController: UICollectionViewController, UICollectionVi
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         println("DEBUG: return the number of cells!!")
-        return images.count
+        return Images.truckImages.count
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {

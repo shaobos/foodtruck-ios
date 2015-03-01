@@ -35,6 +35,8 @@ CAShapeLayer *closedMenuShape;
 -(void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
+    
+
     // Set the current view controller to the one embedded (in the storyboard).
     self.currentViewController = self.childViewControllers.firstObject;
     
@@ -70,6 +72,9 @@ CAShapeLayer *closedMenuShape;
 }
 
 - (void) showMenu {
+    
+    NSLog(@"%s", "show menu!!!");
+
     self.menu.hidden = NO;
     
     [closedMenuShape removeFromSuperlayer];
