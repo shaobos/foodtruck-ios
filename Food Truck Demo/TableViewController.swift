@@ -11,29 +11,25 @@ import UIKit
 class TableViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var theTableView: UITableView!
     var cellContent:[[String: AnyObject]] = []
-
+    var scheduleFetcher = ScheduleFetcher()
+    var trucks = Trucks()
+    var imageFetcher = ImageFetcher()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        println("supposed to load truck list")
-        
-        
         // TODO: better to intialize data fetch in main view controller
-        var trucks = Trucks()
-        var imageFetcher = ImageFetcher()
-        var scheduleFetcher = ScheduleFetcher()
 
-        scheduleFetcher.fetchTrucksInfoFromRemote() {
-            println("Schedules are ready")
-            self.cellContent = scheduleFetcher.getSchedules()
-            self.theTableView.reloadData()
-        }
-        
+
         trucks.fetchTrucksInfoFromRemote {
             loadedImages in
-            self.theTableView.reloadData()
-            imageFetcher.fetchImages {
-                println("imageFetch is done")
+            self.scheduleFetcher.fetchTrucksInfoFromRemote() {
+                println("Schedules are ready")
+                self.cellContent = self.scheduleFetcher.getSchedules()
+                self.theTableView.reloadData()
+                self.imageFetcher.fetchImages {
+                    println("imageFetch is done")
+                    self.theTableView.reloadData()
+                }
             }
         }
     }
@@ -60,7 +56,12 @@ class TableViewController: UIViewController, UITableViewDelegate {
         customCell.address.text = schedule["short_address"] as? String
         customCell.startTime.text = schedule["start_time"] as? String
         customCell.endTime.text = schedule["end_time"] as? String
-
+        var truckId:String? = schedule["truck_id"] as? String
+        
+        if let theImage: Image = Images.truckImages[truckId!] {
+            customCell.imageView?.image =  theImage.image
+            
+        }
         
         return customCell
     }

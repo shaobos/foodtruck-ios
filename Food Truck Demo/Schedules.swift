@@ -32,3 +32,4 @@
 struct Schedules {
     static var schedules = [[String: AnyObject]]()
 }
+

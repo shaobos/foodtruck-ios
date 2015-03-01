@@ -12,7 +12,8 @@ class TrucksCollectionViewController: UICollectionViewController, UICollectionVi
     private let reuseIdentifier = "TruckCell"
     
     func photoForIndexPath(indexPath: NSIndexPath) -> UIImage {
-        return Images.truckImages[indexPath.row]
+        var theImage : Image = Array(Images.truckImages.values)[indexPath.row]
+        return theImage.image
     }
     
     override func viewDidLoad() {

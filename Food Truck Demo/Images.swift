@@ -10,12 +10,17 @@ import UIKit
 
 struct Images {
     
-    static var truckImages = [UIImage]()
+    static var truckImages = [String:Image]()
     
 }
 
 struct Image {
-    var imagePath : String = ""
+//    var imagePath : String = ""
     var image : UIImage
-    var truckId: String = ""
+    //var truckId: String = ""
+    
+    init(image : UIImage) {
+        //self.truckId = truckId
+        self.image = image
+    }
 }

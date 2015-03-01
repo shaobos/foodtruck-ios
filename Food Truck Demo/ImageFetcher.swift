@@ -10,6 +10,13 @@
 
 class ImageFetcher {
     
+    func fetchImageByTruckId(truckId : String?) -> UIImage? {
+        
+        
+        // TODO: show a default picture if possible
+        return nil
+    }
+    
     // always check sum first, download if it doesn't match
     // check if image exists in file system, load if it's available
     func fetchImages(completeHandler: () -> Void) {
@@ -25,14 +32,15 @@ class ImageFetcher {
         
             for truckInfo in TheTrucks.trucks {
                 var imageUrl = WebService.baseUrl + truckInfo["img"]!
-                if  let image : UIImage = self.loadImage(truckInfo["name"]!) {
-                    Images.truckImages.insert(image, atIndex: 0)
-                } else {
-                    let image : UIImage = self.fetchImage(imageUrl)
-                    self.storeImage(truckInfo["name"]!, image: image)
-                    Images.truckImages.insert(image, atIndex: 0)
-
+                var image:UIImage? = self.loadImage(truckInfo["name"]!)
+                
+                if (image == nil) {
+                    image = self.fetchImage(imageUrl)
+                    self.storeImage(truckInfo["name"]!, image: image!)
                 }
+                
+                var newImage: Image = Image(image: image!)
+                Images.truckImages[truckInfo["id"]!] = newImage
             }
             completeHandler()
         }

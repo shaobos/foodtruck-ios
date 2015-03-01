@@ -26,16 +26,12 @@ class ScheduleFetcher {
     }
     
     func fetchTrucksInfoFromRemote(completionHandler: () -> ())  {
-        
         let startDate = "02/14"
         let endDate = "02/28"
-        
         let urlPath = WebService.baseUrl + "scripts/get_trucks_schedule.php?start_date=\(startDate)&end_date=\(endDate)"
         
-        println(urlPath)
         let url = NSURL(string: urlPath)
         let session = NSURLSession.sharedSession()
-        
         let task = session.dataTaskWithURL(url!, completionHandler: {
             data, response, error -> Void in
             
