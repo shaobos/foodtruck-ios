@@ -17,5 +17,5 @@ struct Images {
 struct Image {
     var imagePath : String = ""
     var image : UIImage
-    
+    var truckId: String = ""
 }

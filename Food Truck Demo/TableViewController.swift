@@ -10,7 +10,7 @@ import UIKit
 
 class TableViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var theTableView: UITableView!
-    var cellContent:[String] = []
+    var cellContent:[[String: AnyObject]] = []
 
     
     override func viewDidLoad() {
@@ -25,7 +25,7 @@ class TableViewController: UIViewController, UITableViewDelegate {
 
         scheduleFetcher.fetchTrucksInfoFromRemote() {
             println("Schedules are ready")
-            self.cellContent = scheduleFetcher.getSchedulesName()
+            self.cellContent = scheduleFetcher.getSchedules()
             self.theTableView.reloadData()
         }
         
@@ -44,6 +44,7 @@ class TableViewController: UIViewController, UITableViewDelegate {
     }
 
     
+    
     // dynamically define how many rows
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cellContent.count
@@ -51,13 +52,17 @@ class TableViewController: UIViewController, UITableViewDelegate {
     
     // define the content of each individual cell
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        var customCell : TableCellCustomView = tableView.dequeueReusableCellWithIdentifier("TableCellCustomView") as TableCellCustomView
+
+        var schedule = cellContent[indexPath.row] as [String: AnyObject]
+        customCell.truckName.text = schedule["name"] as? String
+
+        customCell.address.text = schedule["short_address"] as? String
+        customCell.startTime.text = schedule["start_time"] as? String
+        customCell.endTime.text = schedule["end_time"] as? String
+
         
-//        let cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "Cell")
-        let cell = TableCellCustomView()
-        
-     //   cell = cellContent[indexPath.row]
-        
-        return cell
+        return customCell
     }
     
     override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
@@ -74,8 +79,4 @@ class TableViewController: UIViewController, UITableViewDelegate {
         var destViewController : ScheduleDetailsViewController = segue.destinationViewController as ScheduleDetailsViewController
         destViewController.setPrevViewController("Table!")
     }
-    
-    
-    
-
 }

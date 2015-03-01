@@ -8,6 +8,10 @@
 
 class ScheduleFetcher {
     
+    func getSchedules() -> [[String: AnyObject]] {
+
+        return Schedules.schedules
+    }
     
     func getSchedulesName() -> [String] {
         var ret = [String]()
@@ -17,7 +21,6 @@ class ScheduleFetcher {
                 ret.insert(scheduleName as String, atIndex: 0)
             }
         }
-        
         
         return ret
     }
@@ -39,14 +42,14 @@ class ScheduleFetcher {
             if (error != nil) {
                 println(error)
             } else {
-                
-                
+
                 let jsonResults = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSArray
                 for responseObject in jsonResults {
                     
+                    // Attention: needs to be AnyObject here as value cannot be assumed to be String
                     if let jsonResult = responseObject as? [String: AnyObject] {
                        // println(jsonResult)
-                        println("inserting schedule \(jsonResult)")
+//                        println("inserting schedule \(jsonResult)")
                         Schedules.schedules.insert(jsonResult, atIndex: 0)
                     } else {
                         println()

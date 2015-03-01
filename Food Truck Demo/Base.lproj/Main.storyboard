@@ -59,8 +59,14 @@
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="cqc-oY-RKG"/>
                                 </connections>
                             </pickerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c5R-0i-6qz">
+                                <rect key="frame" x="0.0" y="72" width="375" height="595"/>
+                                <connections>
+                                    <segue destination="ccm-6F-9BE" kind="embed" identifier="embedSegue" id="k3v-ml-8LA"/>
+                                </connections>
+                            </containerView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ttz-3o-tnN">
-                                <rect key="frame" x="0.0" y="15" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <items>
                                     <barButtonItem style="plain" id="RlO-Sd-jbE">
                                         <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="jbj-sM-azF">
@@ -101,12 +107,6 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c5R-0i-6qz">
-                                <rect key="frame" x="0.0" y="72" width="375" height="595"/>
-                                <connections>
-                                    <segue destination="ccm-6F-9BE" kind="embed" identifier="embedSegue" id="k3v-ml-8LA"/>
-                                </connections>
-                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -128,7 +128,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="349.5" y="-1104.5"/>
+            <point key="canvasLocation" x="533.5" y="-1605.5"/>
         </scene>
         <!--Container View Controller-->
         <scene sceneID="zQw-PS-ROh">
@@ -160,7 +160,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5rX-yC-uvf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-551.5" y="-116.5"/>
+            <point key="canvasLocation" x="-227.5" y="-306.5"/>
         </scene>
         <!--About View Controller-->
         <scene sceneID="1DS-9f-A36">
@@ -323,7 +323,7 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FAz-wF-GNi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-165" y="-1384"/>
+            <point key="canvasLocation" x="-139" y="-1568"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="RcX-TL-Tiv">
@@ -341,7 +341,7 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="TableCellCustomView" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="114" id="ri8-XL-Kmx" customClass="TableCellCustomView" customModule="foodtruck_ios" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="TableCellCustomView" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TableCellCustomView" rowHeight="114" id="ri8-XL-Kmx" customClass="TableCellCustomView" customModule="foodtruck_ios" customModuleProvider="target">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ri8-XL-Kmx" id="0x2-OU-2B4">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -378,7 +378,7 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                                         <connections>
                                             <outlet property="address" destination="8Oq-tW-sMb" id="ze9-E0-AC0"/>
                                             <outlet property="endTime" destination="KlB-ib-cn3" id="PSu-i1-qZ7"/>
-                                            <outlet property="startTime" destination="uot-tQ-I6m" id="5kz-3v-aQA"/>
+                                            <outlet property="startTime" destination="uot-tQ-I6m" id="oTT-r5-meo"/>
                                             <outlet property="truckImage" destination="63k-o3-ziX" id="pso-Zh-gVW"/>
                                             <outlet property="truckName" destination="UBq-W8-Wl6" id="RGV-OJ-Mex"/>
                                             <segue destination="lCP-YS-t5w" kind="show" identifier="ToTruckDetailSegue" id="FC0-ZV-W23"/>

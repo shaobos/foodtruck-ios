@@ -11,9 +11,10 @@ import UIKit
 
 class TableCellCustomView: UITableViewCell {
 
-    @IBOutlet weak var truckName: UILabel!
-    @IBOutlet weak var address: UILabel!
-    @IBOutlet weak var truckImage: UIImageView!
-    @IBOutlet weak var startTime: UILabel!
-    @IBOutlet weak var endTime: UILabel!
+    @IBOutlet  var truckName: UILabel!
+    @IBOutlet  var address: UILabel!
+    @IBOutlet  var truckImage: UIImageView!
+    @IBOutlet  var startTime: UILabel!
+    @IBOutlet  var endTime: UILabel!
+    
 }
