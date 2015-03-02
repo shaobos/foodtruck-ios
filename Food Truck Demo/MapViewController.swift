@@ -33,9 +33,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        
+
         // Do any additional setup after loading the view, typically from a nib.
         // 37.424436, -122.070587
         
@@ -50,14 +48,10 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         
         
         var annotation = MKPointAnnotation()
-        
         annotation.coordinate = newCoordinate
         annotation.title = "hey"
         annotation.subtitle = "it's good"
-        
         mapView.addAnnotation(annotation)
-        
-        
     }
     
 
@@ -94,7 +88,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         pinAnnotationView.leftCalloutAccessoryView = deleteButton
         
         return pinAnnotationView
-        
     }
     
 
@@ -110,11 +103,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         annotation.coordinate = location
         annotation.title = title
         annotation.subtitle = subtitle
-        
-        println("going to add annotation")
-        
         mapView.addAnnotation(annotation)
-        
     }
 
     

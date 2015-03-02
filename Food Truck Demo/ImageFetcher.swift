@@ -33,16 +33,17 @@ class ImageFetcher {
             for truckInfo in TheTrucks.trucks {
                 var imageUrl = WebService.baseUrl + truckInfo["img"]!
                 var image:UIImage? = self.loadImage(truckInfo["name"]!)
-                
                 if (image == nil) {
                     image = self.fetchImage(imageUrl)
                     self.storeImage(truckInfo["name"]!, image: image!)
                 }
-                
                 var newImage: Image = Image(image: image!)
                 Images.truckImages[truckInfo["id"]!] = newImage
             }
-            completeHandler()
+            dispatch_sync(dispatch_get_main_queue(), {
+                completeHandler()
+
+            });
         }
     }
     

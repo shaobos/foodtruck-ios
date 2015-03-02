@@ -17,4 +17,7 @@ class TableCellCustomView: UITableViewCell {
     @IBOutlet  var startTime: UILabel!
     @IBOutlet  var endTime: UILabel!
     
+    @IBOutlet weak var date: UILabel!
+    @IBOutlet weak var city: UILabel!
+    
 }

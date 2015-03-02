@@ -29,6 +29,8 @@ class TableViewController: UIViewController, UITableViewDelegate {
                 self.imageFetcher.fetchImages {
                     println("imageFetch is done")
                     self.theTableView.reloadData()
+                    println("refreshed table view")
+
                 }
             }
         }
@@ -53,15 +55,20 @@ class TableViewController: UIViewController, UITableViewDelegate {
         var schedule = cellContent[indexPath.row] as [String: AnyObject]
         customCell.truckName.text = schedule["name"] as? String
 
-        customCell.address.text = schedule["short_address"] as? String
+//        customCell.address.text = schedule["short_address"] as? String
         customCell.startTime.text = schedule["start_time"] as? String
         customCell.endTime.text = schedule["end_time"] as? String
+        customCell.city.text = schedule["address"] as? String
+        customCell.date.text = schedule["date"] as? String
+
+
         var truckId:String? = schedule["truck_id"] as? String
         
         if let theImage: Image = Images.truckImages[truckId!] {
-            customCell.imageView?.image =  theImage.image
             
+            customCell.truckImage?.image =  theImage.image
         }
+        
         
         return customCell
     }
