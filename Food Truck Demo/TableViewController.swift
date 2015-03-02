@@ -10,7 +10,7 @@ import UIKit
 
 class TableViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var theTableView: UITableView!
-    var cellContent:[[String: AnyObject]] = []
+    var cellContent:[String: [String: AnyObject]] = [:]
     var scheduleFetcher = ScheduleFetcher()
     var trucks = Trucks()
     var imageFetcher = ImageFetcher()
@@ -50,7 +50,7 @@ class TableViewController: UIViewController, UITableViewDelegate {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var customCell : TableCellCustomView = tableView.dequeueReusableCellWithIdentifier("TableCellCustomView") as TableCellCustomView
 
-        var schedule = cellContent[indexPath.row] as [String: AnyObject]
+        var schedule = Array(cellContent.values)[indexPath.row] as [String: AnyObject]
         customCell.truckName.text = schedule["name"] as? String
 
 //        customCell.address.text = schedule["short_address"] as? String
@@ -59,11 +59,9 @@ class TableViewController: UIViewController, UITableViewDelegate {
         customCell.city.text = schedule["address"] as? String
         customCell.date.text = schedule["date"] as? String
 
-
-        var truckId:String? = schedule["truck_id"] as? String
         
+        var truckId:String? = schedule["truck_id"] as? String
         if let theImage: Image = Images.truckImages[truckId!] {
-            
             customCell.truckImage?.image =  theImage.image
         }
         

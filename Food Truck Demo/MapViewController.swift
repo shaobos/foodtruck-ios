@@ -16,9 +16,14 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     var scheduleFetcher = ScheduleFetcher()
     var trucks = Trucks()
     var imageFetcher = ImageFetcher()
-    var schedules:[[String: AnyObject]] = []
-
     
+    
+    // TODO: a dirty solution to pass around schedule id
+    var currentScheduleId : String = ""
+    
+//    var schedules:[String: [String: AnyObject]]    
+    @IBOutlet weak var mapView: MKMapView!
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -44,55 +49,57 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             loadedImages in
             self.scheduleFetcher.fetchTrucksInfoFromRemote() {
                 println("Schedules are ready")
-                self.schedules = self.scheduleFetcher.getSchedules()
+//                self.schedules =
                 
                 
                 // TODO: should be able to decide the region more intelligently
+                // TODO: refactor the craps here
                 var latitute:CLLocationDegrees = 37.393315
                 var longitute:CLLocationDegrees = -122.061475
                 self.setRegion(latitute, longitute: longitute)
-                for schedule in self.schedules {
-                    println(schedule)
-                    println(schedule["lat"])
-    
+                var schedules = self.scheduleFetcher.getSchedules()
+                for scheduleId in schedules.keys {
+                    
+                    var schedule:[String: AnyObject] = schedules[scheduleId]!
+                    
+                    println("scheduleId is \(scheduleId)")
+
                     var lat:CLLocationDegrees = (schedule["lat"] as NSString).doubleValue
                     var lon:CLLocationDegrees = (schedule["lng"] as NSString).doubleValue
                     var newCoordinate :CLLocationCoordinate2D = CLLocationCoordinate2DMake(lat, lon)
-
-                    self.addAnnotation(newCoordinate, title: schedule["name"] as String, subtitle: schedule["date"] as String)
-                    
-
+                    var annotation = FoodTruckMapAnnotation()
+                    annotation.coordinate = newCoordinate
+                    annotation.title = schedule["name"] as String
+                    annotation.subtitle = schedule["date"] as String
+                    annotation.truckId = schedule["truck_id"] as String
+                    annotation.scheduleId = scheduleId
+                    println("1. \(annotation.scheduleId)")
+                    self.mapView.addAnnotation(annotation)
                 }
             }
         }
-
-
-        
-        
-        
     }
 
+    /* 
+        tell schedule detail view what should be prepared for dinner today
+    */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         var destViewController: ScheduleDetailsViewController = segue.destinationViewController as ScheduleDetailsViewController
-        println("Going to set prev VC to map!")
-        destViewController.setTitle("hey")
         destViewController.setPrevViewController("Map!")
+        println("3. \(self.currentScheduleId)")
+
+        destViewController.setScheduleId(self.currentScheduleId)
     }
-    
-    func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!) {
-        //performSegueWithIdentifier("MapToDetailSegue", sender: nil)
-    }
-    
-    @IBOutlet weak var mapView: MKMapView!
-    
-    
     
     /*
-      customize annotation view
+        customize annotation view
     
-      By this point, all data should be available in memory so we can read directly
+        By this point, all data should be available in memory so we can read directly
     */
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+        
+        var foodTruckAnnotation = annotation as FoodTruckMapAnnotation
+        
         let pinAnnotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "myPin")
         
         pinAnnotationView.pinColor = .Purple
@@ -100,34 +107,36 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         pinAnnotationView.canShowCallout = true
         pinAnnotationView.animatesDrop = true
         
-        let deleteButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton
+        let deleteButton:UIButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton
         deleteButton.frame.size.width = 44
         deleteButton.frame.size.height = 44
-        deleteButton.backgroundColor = UIColor.redColor()
+        var scheduleId: String  = foodTruckAnnotation.truckId
         
-        //            deleteButton.titleLabel?.text = "Click me"
+        if let theImage: Image = Images.truckImages[scheduleId] {
+            println("image retrieved: \(theImage.image)")
+            deleteButton.setBackgroundImage(theImage.image, forState: UIControlState.Normal)
+        }
         
         pinAnnotationView.leftCalloutAccessoryView = deleteButton
-        
         return pinAnnotationView
     }
-    
 
-    
+    /*
+        this function customizes what happens when button in left callout accessory view is clicked..
+    */
     func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
         println("hello")
-    }
-    
-    func addAnnotation(location: CLLocationCoordinate2D, #title:String, #subtitle: String) {
-        // set annotation
-        var annotation = MKPointAnnotation()
         
         
-        annotation.coordinate = location
-        annotation.title = title
-        annotation.subtitle = subtitle
-    
-        mapView.addAnnotation(annotation)
+        var foodTruckAnnotation = view.annotation as FoodTruckMapAnnotation
+        self.currentScheduleId = foodTruckAnnotation.scheduleId
+        println("2. \(self.currentScheduleId)")
+        
+        performSegueWithIdentifier("MapToDetailSegue", sender: nil)
+        // this is the last stop where we can still access annotation
+  
+
+        
     }
 
     func setRegion(latitute:CLLocationDegrees, longitute:CLLocationDegrees) {

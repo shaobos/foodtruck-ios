@@ -19,6 +19,7 @@
 		86C961F41AA1B00600061880 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C961F31AA1B00600061880 /* Images.swift */; };
 		86C962261AA262EB00061880 /* ScheduleFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C962251AA262EB00061880 /* ScheduleFetcher.swift */; };
 		86C962291AA2A8F300061880 /* TableCellCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C962281AA2A8F300061880 /* TableCellCustomView.swift */; };
+		86C9622C1AA3EFAA00061880 /* FoodTruckMapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C9622B1AA3EFAA00061880 /* FoodTruckMapAnnotation.swift */; };
 		86CD22141A9324E60029C2C0 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CD22131A9324E60029C2C0 /* AboutViewController.swift */; };
 		86EC6ED81A86C3A000940D9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EC6ED71A86C3A000940D9F /* AppDelegate.swift */; };
 		86EC6EDA1A86C3A000940D9F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EC6ED91A86C3A000940D9F /* ViewController.swift */; };
@@ -48,6 +49,7 @@
 		86C961F31AA1B00600061880 /* Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		86C962251AA262EB00061880 /* ScheduleFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleFetcher.swift; sourceTree = "<group>"; };
 		86C962281AA2A8F300061880 /* TableCellCustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableCellCustomView.swift; sourceTree = "<group>"; };
+		86C9622B1AA3EFAA00061880 /* FoodTruckMapAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodTruckMapAnnotation.swift; sourceTree = "<group>"; };
 		86CD22131A9324E60029C2C0 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		86EC6ED21A86C3A000940D9F /* foodtruck-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "foodtruck-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		86EC6ED61A86C3A000940D9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 				86EC6ED91A86C3A000940D9F /* ViewController.swift */,
 				86C961F11AA1AD9800061880 /* WebService.swift */,
 				8604D8BB1A9AF725004898BE /* WebServices */,
+				86C9622B1AA3EFAA00061880 /* FoodTruckMapAnnotation.swift */,
 			);
 			path = "Food Truck Demo";
 			sourceTree = "<group>";
@@ -313,6 +316,7 @@
 				86C961F41AA1B00600061880 /* Images.swift in Sources */,
 				8608F36E1A95A5C3003CEE72 /* Trucks.swift in Sources */,
 				86EC6F061A884BA900940D9F /* EmptySegue.swift in Sources */,
+				86C9622C1AA3EFAA00061880 /* FoodTruckMapAnnotation.swift in Sources */,
 				8608F3721A97151C003CEE72 /* CollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

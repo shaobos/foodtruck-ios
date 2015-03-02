@@ -16,24 +16,19 @@ class ScheduleDetailsViewController: UIViewController {
     var previousViewControllerName:String = ""
     var scheduleToTableSegueID : String = "ScheduleToTableSegue"
     var scheduleToMapSegueID : String = "ScheduleToMapSegue"
-    
+    var scheduleId:String = ""
     var inputLabel:String = ""
-    
-    
-    
+
     @IBOutlet weak var anotherLabel: UILabel!
     @IBAction func backButton(sender: UIBarButtonItem) {
-
-        
         performSegueWithIdentifier("ScheduleToMainSegue", sender: nil)
-
-        
     }
     
-    func setTitle(inputTitle : String) {
-        inputLabel = inputTitle
+    // truck id can be used for retrieving schedule info
+    func setScheduleId(scheduleId: String) {
+        println("setting schedule id here")
+        self.scheduleId = scheduleId
     }
-    
     func setPrevViewController(prev: String) {
         self.previousViewControllerName = prev
     }
@@ -44,7 +39,10 @@ class ScheduleDetailsViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         theTitle.text = inputLabel
+        println("schedule id is \(self.scheduleId)")
+
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -9,7 +9,7 @@
 
 /*
 
-{
+scheduleId : {
     "lng": "-122.3940893",
     "end_time": "14:00:00",
     "street_lng": null,
@@ -26,10 +26,12 @@
     "type": "truck"
 }
 
+scheduleId consists of truckId + date + start time for now
 
 */
 
 struct Schedules {
-    static var schedules = [[String: AnyObject]]()
+    static var schedules = [String: [String: AnyObject]]()
+
 }
 

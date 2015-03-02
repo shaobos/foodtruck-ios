@@ -8,21 +8,26 @@
 
 class ScheduleFetcher {
     
-    func getSchedules() -> [[String: AnyObject]] {
+    func getSchedules() -> [String: [String: AnyObject]] {
 
         return Schedules.schedules
     }
     
-    func getSchedulesName() -> [String] {
-        var ret = [String]()
-        for scheduleInfo in Schedules.schedules {
-            
-            if let scheduleName = scheduleInfo["name"] {
-                ret.insert(scheduleName as String, atIndex: 0)
-            }
-        }
+//    func getSchedulesName() -> [String] {
+//        var ret = [String]()
+//        for scheduleInfo in Schedules.schedules {
+//            if let scheduleName = scheduleInfo["name"] {
+//                ret.insert(scheduleName as String, atIndex: 0)
+//            }
+//        }
+//        
+//        return ret
+//    }
+    
+    func composeScheduleId (jsonResult: [String: AnyObject]) -> String{
         
-        return ret
+        var scheduleId:String = (jsonResult["truck_id"] as String) + (jsonResult["date"] as String) + (jsonResult["start_time"] as String)
+        return scheduleId
     }
     
     func fetchTrucksInfoFromRemote(completionHandler: () -> ())  {
@@ -43,7 +48,8 @@ class ScheduleFetcher {
                 for responseObject in jsonResults {
                     // Attention: needs to be AnyObject here as value cannot be assumed to be String
                     if let jsonResult = responseObject as? [String: AnyObject] {
-                        Schedules.schedules.insert(jsonResult, atIndex: 0)
+                        var scheduleId = self.composeScheduleId(jsonResult)
+                        Schedules.schedules[scheduleId] = jsonResult
                     } 
                 }
                 
