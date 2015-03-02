@@ -26,7 +26,7 @@ class ScheduleFetcher {
     }
     
     func fetchTrucksInfoFromRemote(completionHandler: () -> ())  {
-        let startDate = "02/14"
+        let startDate = "02/21"
         let endDate = "02/28"
         let urlPath = WebService.baseUrl + "scripts/get_trucks_schedule.php?start_date=\(startDate)&end_date=\(endDate)"
         
@@ -41,15 +41,10 @@ class ScheduleFetcher {
 
                 let jsonResults = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSArray
                 for responseObject in jsonResults {
-                    
                     // Attention: needs to be AnyObject here as value cannot be assumed to be String
                     if let jsonResult = responseObject as? [String: AnyObject] {
-                       // println(jsonResult)
-//                        println("inserting schedule \(jsonResult)")
                         Schedules.schedules.insert(jsonResult, atIndex: 0)
-                    } else {
-                        println()
-                    }
+                    } 
                 }
                 
                 dispatch_async(dispatch_get_main_queue(), {

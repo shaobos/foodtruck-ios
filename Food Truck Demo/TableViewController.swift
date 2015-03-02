@@ -18,8 +18,6 @@ class TableViewController: UIViewController, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // TODO: better to intialize data fetch in main view controller
-
-
         trucks.fetchTrucksInfoFromRemote {
             loadedImages in
             self.scheduleFetcher.fetchTrucksInfoFromRemote() {
