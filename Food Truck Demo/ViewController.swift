@@ -53,7 +53,7 @@ class ViewController: DropdownMenuController {
     }
     
     
-    var colors = ["Red","Yellow","Green","Blue"]
+    var colors = ["3/1","3/2","3/3","3/4"]
 
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {

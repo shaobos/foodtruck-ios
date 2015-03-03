@@ -51,36 +51,41 @@ class TableViewController: UIViewController, UITableViewDelegate {
         var customCell : TableCellCustomView = tableView.dequeueReusableCellWithIdentifier("TableCellCustomView") as TableCellCustomView
 
         var schedule = Array(cellContent.values)[indexPath.row] as [String: AnyObject]
-        customCell.truckName.text = schedule["name"] as? String
-
-//        customCell.address.text = schedule["short_address"] as? String
+        
+             customCell.truckName.text = schedule["name"] as? String
         customCell.startTime.text = schedule["start_time"] as? String
         customCell.endTime.text = schedule["end_time"] as? String
         customCell.city.text = schedule["address"] as? String
         customCell.date.text = schedule["date"] as? String
 
-        
         var truckId:String? = schedule["truck_id"] as? String
         if let theImage: Image = Images.truckImages[truckId!] {
             customCell.truckImage?.image =  theImage.image
         }
-        
-        
         return customCell
     }
-    
-    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
-        return true
-    }
-    
+//    
+//    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
+//        return true
+//    }
+//    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.currentScheduleId = Array(cellContent.keys)[indexPath.row] as String
+        println("1. \(self.currentScheduleId)")
+
         performSegueWithIdentifier("ToTruckDetailSegue", sender: nil)
-        
+
     }
+    
+    // TODO: duplicate code in Map view
+    // TODO: empty checking upon using
+    var currentScheduleId : String = ""
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         var indexPath: NSIndexPath = self.theTableView.indexPathForSelectedRow()!//indexPathForSelectedRow
         var destViewController : ScheduleDetailsViewController = segue.destinationViewController as ScheduleDetailsViewController
+        println("2. \(self.currentScheduleId)")
         destViewController.setPrevViewController("Table!")
+        destViewController.setScheduleId(self.currentScheduleId)
     }
 }

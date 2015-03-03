@@ -20,7 +20,8 @@ class ImageFetcher {
     // always check sum first, download if it doesn't match
     // check if image exists in file system, load if it's available
     func fetchImages(completeHandler: () -> Void) {
-        // TODO: add update local feature herefeature here
+        // TODO: add update local feature here
+        // TODO: handle if fetching is in transition
         if (Images.truckImages.count > 0) {
             println("use local photos for now")
             completeHandler()
