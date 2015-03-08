@@ -18,6 +18,7 @@ class TableViewController: UIViewController, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // TODO: better to intialize data fetch in main view controller
+        
         trucks.fetchTrucksInfoFromRemote {
             loadedImages in
             self.scheduleFetcher.fetchTrucksInfoFromRemote() {
@@ -50,9 +51,10 @@ class TableViewController: UIViewController, UITableViewDelegate {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var customCell : TableCellCustomView = tableView.dequeueReusableCellWithIdentifier("TableCellCustomView") as TableCellCustomView
 
+
         var schedule = Array(cellContent.values)[indexPath.row] as [String: AnyObject]
         
-             customCell.truckName.text = schedule["name"] as? String
+        customCell.truckName.text = schedule["name"] as? String
         customCell.startTime.text = schedule["start_time"] as? String
         customCell.endTime.text = schedule["end_time"] as? String
         customCell.city.text = schedule["address"] as? String

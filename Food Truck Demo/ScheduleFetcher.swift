@@ -8,32 +8,24 @@
 
 class ScheduleFetcher {
     
+    let lengthOfSchedules:Int = 6 // days
+    
     func getSchedules() -> [String: [String: AnyObject]] {
-
         return Schedules.schedules
     }
     
-//    func getSchedulesName() -> [String] {
-//        var ret = [String]()
-//        for scheduleInfo in Schedules.schedules {
-//            if let scheduleName = scheduleInfo["name"] {
-//                ret.insert(scheduleName as String, atIndex: 0)
-//            }
-//        }
-//        
-//        return ret
-//    }
-    
-    func composeScheduleId (jsonResult: [String: AnyObject]) -> String{
+    func composeScheduleId (jsonResult: [String: AnyObject]) -> String {
         
         var scheduleId:String = (jsonResult["truck_id"] as String) + (jsonResult["date"] as String) + (jsonResult["start_time"] as String)
         return scheduleId
     }
     
     func fetchTrucksInfoFromRemote(completionHandler: () -> ())  {
-        let startDate = "02/21"
-        let endDate = "02/28"
+        let startDate = getStartDate()
+        let endDate = getEndDate()
         let urlPath = WebService.baseUrl + "scripts/get_trucks_schedule.php?start_date=\(startDate)&end_date=\(endDate)"
+        
+        println("DEBUG: \(urlPath)")
         
         let url = NSURL(string: urlPath)
         let session = NSURLSession.sharedSession()
@@ -60,6 +52,49 @@ class ScheduleFetcher {
             
         })
         task.resume()
+    }
+    
+    
+    func getStartDate() -> String {
+        var today = NSDate()
+        let formatter  = NSDateFormatter()
+        formatter.dateFormat = "MM/dd"
+        return formatter.stringFromDate(today)
+    }
+    
+    func getEndDate() -> String {
+        var today = NSDate()
+        let formatter  = NSDateFormatter()
+        formatter.dateFormat = "MM/dd"
+        let tomorrow = NSCalendar.currentCalendar().dateByAddingUnit(
+            .CalendarUnitDay,
+            value: lengthOfSchedules,
+            toDate: today,
+            options: NSCalendarOptions(0))
+        
+        return formatter.stringFromDate(tomorrow!)
+    }
+    
+    func getScheduleDates () -> [String] {
+        var today = NSDate()
+        let formatter  = NSDateFormatter()
+        formatter.dateFormat = "MM/dd"
+        var dates = [String]()
+
+
+        // this can definitely be more efficient
+        for i in 0...lengthOfSchedules {
+            let currentDate = NSCalendar.currentCalendar().dateByAddingUnit(
+                .CalendarUnitDay,
+                value: i,
+                toDate: today,
+                options: NSCalendarOptions(0))
+            var currentDateInString = formatter.stringFromDate(currentDate!)
+            println(currentDateInString)
+            dates.insert(currentDateInString, atIndex: dates.endIndex)
+        }
+        
+        return dates
     }
     
     

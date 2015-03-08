@@ -9,9 +9,10 @@
 import UIKit
 
 class ViewController: DropdownMenuController {
-
-    @IBOutlet var containerViewController: ContainerViewController!
     
+    var scheduleFetcher = ScheduleFetcher()
+    var dates = [String]()
+    @IBOutlet var containerViewController: ContainerViewController!
     @IBOutlet weak var picker: UIPickerView!
     
     @IBAction func dateButtonAction(sender: AnyObject) {
@@ -21,7 +22,6 @@ class ViewController: DropdownMenuController {
     }
     
     @IBAction func categoryButtonAction(sender: AnyObject) {
-        
         picker.hidden = !picker.hidden
     }
     
@@ -37,7 +37,7 @@ class ViewController: DropdownMenuController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        println(super.menuButton)
+        dates = scheduleFetcher.getScheduleDates()
     }
 
     // needs to override showMenu to add bringSubviewToFront
@@ -51,26 +51,24 @@ class ViewController: DropdownMenuController {
         println("Button pressed. Swapping child view..")
         containerViewController.swapViewControllers()
     }
-    
-    
-    var colors = ["3/1","3/2","3/3","3/4"]
 
-    
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
     }
     
-    
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return colors.count
+        return dates.count
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
-        return colors[row]
+        return dates[row]
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        println("this guy selected \(colors[row])")
+        println("this guy selected \(dates[row])")
+        Schedules.getSchedulesWithFilter()
+        containerViewController.
+        // find current child view and update the data
     }
     
 }

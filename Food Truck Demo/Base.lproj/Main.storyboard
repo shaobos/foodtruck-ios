@@ -27,9 +27,6 @@
                                             <color key="titleColor" red="0.60000002379999995" green="0.40000000600000002" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
-                                        <connections>
-                                            <segue destination="wag-Lw-Jkd" kind="show" id="r7m-1J-W0S"/>
-                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WbV-Kr-eqd">
                                         <rect key="frame" x="0.0" y="41" width="171" height="37"/>
@@ -128,7 +125,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="707.5" y="-1598.5"/>
+            <point key="canvasLocation" x="1.5" y="-1836.5"/>
         </scene>
         <!--Container View Controller-->
         <scene sceneID="zQw-PS-ROh">
@@ -160,7 +157,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5rX-yC-uvf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-121.5" y="-554.5"/>
+            <point key="canvasLocation" x="-1201.5" y="-600.5"/>
         </scene>
         <!--About View Controller-->
         <scene sceneID="1DS-9f-A36">
@@ -198,7 +195,7 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QYQ-BP-7I4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-442.5" y="242.5"/>
+            <point key="canvasLocation" x="327.5" y="-1089.5"/>
         </scene>
         <!--Trucks Collection View Controller-->
         <scene sceneID="vGh-5f-UsG">
@@ -243,7 +240,7 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jbU-6y-CCc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-617" y="-859"/>
+            <point key="canvasLocation" x="689" y="-1749"/>
         </scene>
         <!--Schedule Details View Controller-->
         <scene sceneID="8KU-J0-cqs">
@@ -322,7 +319,7 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gOV-yt-7pW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="717" y="-592"/>
+            <point key="canvasLocation" x="-785" y="-1598"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="pq4-s2-3Nd">
@@ -359,7 +356,7 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FAz-wF-GNi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-139" y="-1568"/>
+            <point key="canvasLocation" x="-1323" y="-1836"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="RcX-TL-Tiv">
@@ -447,10 +444,10 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xd7-ER-WSR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="319" y="17"/>
+            <point key="canvasLocation" x="-5" y="-551"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Vsm-S8-iel"/>
+        <segue reference="Nq2-hj-Joj"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -23,8 +23,6 @@ class ContainerViewController: UIViewController {
         self.currentSegueIdentifier = self.tableViewSegue // table goes first!
         self.performSegueWithIdentifier(self.currentSegueIdentifier, sender: nil)
         println("I'm loaded, I am container view controller")
-        
-
         // Do any additional setup after loading the view.
     }
 
@@ -76,15 +74,11 @@ class ContainerViewController: UIViewController {
         to.view.frame =  CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)
         from.willMoveToParentViewController(nil)
         self.addChildViewController(to)
-        //from.removeFromParentViewController()
         
-        
-        println("Going to transitionFromViewController: " + from.description)
+        //println("Going to transitionFromViewController: " + from.description)
         self.transitionFromViewController(from, toViewController: to, duration: 1.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: {
             (finished:Bool) -> Void in
             println("transitionFromViewController")
-            //from.removeFromParentViewController()
-            
             to.didMoveToParentViewController(self)
             self.transitionInProgress = false
         })
@@ -100,12 +94,9 @@ class ContainerViewController: UIViewController {
         }
 
         self.transitionInProgress = true
-        println("**Before ----> swapViewControllers " +  currentSegueIdentifier)
-
+        //println("**Before ----> swapViewControllers " +  currentSegueIdentifier)
         self.currentSegueIdentifier = self.currentSegueIdentifier == self.tableViewSegue ? self.mapViewSegue : self.tableViewSegue
-        
-        println("**After ----> swapViewControllers " +  currentSegueIdentifier)
-
+        //println("**After ----> swapViewControllers " +  currentSegueIdentifier)
         if (self.currentSegueIdentifier == self.mapViewSegue && self.mapViewController != nil) {
             from = self.tableViewController
             to = self.mapViewController
@@ -122,6 +113,8 @@ class ContainerViewController: UIViewController {
         
         self.performSegueWithIdentifier(self.currentSegueIdentifier, sender: nil)
     }
+    
+
     
     /*
     // MARK: - Navigation
