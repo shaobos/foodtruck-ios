@@ -10,7 +10,7 @@
 		8604D8AE1A994AB4004898BE /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8604D8AC1A994AB4004898BE /* CoreDataModel.xcdatamodeld */; };
 		8604D8B01A99A691004898BE /* ImageFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8604D8AF1A99A691004898BE /* ImageFetcher.swift */; };
 		8604D8BD1A9AF7E8004898BE /* Schedules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8604D8BC1A9AF7E8004898BE /* Schedules.swift */; };
-		8604D8BF1A9AFE1F004898BE /* ScheduleDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8604D8BE1A9AFE1F004898BE /* ScheduleDetailsViewController.swift */; };
+		8604D8BF1A9AFE1F004898BE /* TruckDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8604D8BE1A9AFE1F004898BE /* TruckDetailsViewController.swift */; };
 		8604D8C11A9C2F8A004898BE /* TestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8604D8C01A9C2F8A004898BE /* TestView.xib */; };
 		8608F36E1A95A5C3003CEE72 /* Trucks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8608F36D1A95A5C3003CEE72 /* Trucks.swift */; };
 		8608F3701A9708D8003CEE72 /* TrucksCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8608F36F1A9708D8003CEE72 /* TrucksCollectionViewController.swift */; };
@@ -39,7 +39,7 @@
 		8604D8AD1A994AB4004898BE /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		8604D8AF1A99A691004898BE /* ImageFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageFetcher.swift; sourceTree = "<group>"; };
 		8604D8BC1A9AF7E8004898BE /* Schedules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Schedules.swift; sourceTree = "<group>"; };
-		8604D8BE1A9AFE1F004898BE /* ScheduleDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleDetailsViewController.swift; sourceTree = "<group>"; };
+		8604D8BE1A9AFE1F004898BE /* TruckDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TruckDetailsViewController.swift; sourceTree = "<group>"; };
 		8604D8C01A9C2F8A004898BE /* TestView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestView.xib; sourceTree = "<group>"; };
 		8608F36D1A95A5C3003CEE72 /* Trucks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trucks.swift; sourceTree = "<group>"; };
 		8608F36F1A9708D8003CEE72 /* TrucksCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrucksCollectionViewController.swift; sourceTree = "<group>"; };
@@ -142,7 +142,7 @@
 				86EC6EDB1A86C3A000940D9F /* Main.storyboard */,
 				86EC6EFD1A872FE900940D9F /* MapViewController.swift */,
 				86C962271AA286EF00061880 /* Model */,
-				8604D8BE1A9AFE1F004898BE /* ScheduleDetailsViewController.swift */,
+				8604D8BE1A9AFE1F004898BE /* TruckDetailsViewController.swift */,
 				86C962251AA262EB00061880 /* ScheduleFetcher.swift */,
 				8604D8BC1A9AF7E8004898BE /* Schedules.swift */,
 				86EC6ED51A86C3A000940D9F /* Supporting Files */,
@@ -311,7 +311,7 @@
 				86EC6F021A8815DC00940D9F /* TableViewController.swift in Sources */,
 				8604D8B01A99A691004898BE /* ImageFetcher.swift in Sources */,
 				86EC6EFE1A872FE900940D9F /* MapViewController.swift in Sources */,
-				8604D8BF1A9AFE1F004898BE /* ScheduleDetailsViewController.swift in Sources */,
+				8604D8BF1A9AFE1F004898BE /* TruckDetailsViewController.swift in Sources */,
 				8604D8BD1A9AF7E8004898BE /* Schedules.swift in Sources */,
 				86C961F41AA1B00600061880 /* Images.swift in Sources */,
 				8608F36E1A95A5C3003CEE72 /* Trucks.swift in Sources */,

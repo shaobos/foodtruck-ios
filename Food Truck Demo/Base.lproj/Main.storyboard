@@ -27,6 +27,9 @@
                                             <color key="titleColor" red="0.60000002379999995" green="0.40000000600000002" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="aboutButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="SxA-qO-cD7"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WbV-Kr-eqd">
                                         <rect key="frame" x="0.0" y="41" width="171" height="37"/>
@@ -36,7 +39,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="efK-9j-c3j" kind="show" id="gKK-V6-h18"/>
+                                            <action selector="trucksButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="mav-Wi-0Fa"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HDm-HW-uVY">
@@ -44,6 +47,10 @@
                                         <state key="normal" title="Schedules">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="scheduleViewController:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="t3U-uL-w4o"/>
+                                            <action selector="schedulesButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="djd-Bw-UF5"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -125,7 +132,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1.5" y="-1836.5"/>
+            <point key="canvasLocation" x="-264.5" y="-1126.5"/>
         </scene>
         <!--Container View Controller-->
         <scene sceneID="zQw-PS-ROh">
@@ -153,11 +160,13 @@
                     <connections>
                         <segue destination="2QD-SR-EH0" kind="custom" identifier="mapViewSegue" customClass="EmptySegue" customModule="foodtruck_ios" customModuleProvider="target" id="Oe2-jk-MZi"/>
                         <segue destination="1mV-At-hd7" kind="custom" identifier="tableViewSegue" customClass="EmptySegue" customModule="foodtruck_ios" customModuleProvider="target" id="F8S-av-vUA"/>
+                        <segue destination="wag-Lw-Jkd" kind="custom" identifier="aboutViewSegue" customClass="EmptySegue" customModule="foodtruck_ios" customModuleProvider="target" id="3Kw-2h-Kf6"/>
+                        <segue destination="efK-9j-c3j" kind="custom" identifier="trucksViewSegue" customClass="EmptySegue" customModule="foodtruck_ios" customModuleProvider="target" id="lNr-Vc-BPy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5rX-yC-uvf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1201.5" y="-600.5"/>
+            <point key="canvasLocation" x="355.5" y="-1126.5"/>
         </scene>
         <!--About View Controller-->
         <scene sceneID="1DS-9f-A36">
@@ -171,14 +180,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q56-nH-uw2">
-                                <rect key="frame" x="-7" y="28" width="375" height="44"/>
-                                <items>
-                                    <navigationItem title="Title" id="riM-PT-f4E"/>
-                                </items>
-                            </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="15" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lso-e2-WTH">
-                                <rect key="frame" x="42" y="72" width="259" height="359"/>
+                                <rect key="frame" x="38" y="20" width="259" height="359"/>
                                 <string key="text">What is BiteMap?
 BiteMap is a Food Truck Map that allows you to plan your next bite. We know you love food trucks.
 
@@ -195,7 +198,7 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QYQ-BP-7I4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="327.5" y="-1089.5"/>
+            <point key="canvasLocation" x="-733.5" y="72.5"/>
         </scene>
         <!--Trucks Collection View Controller-->
         <scene sceneID="vGh-5f-UsG">
@@ -240,12 +243,12 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jbU-6y-CCc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="689" y="-1749"/>
+            <point key="canvasLocation" x="-258" y="5"/>
         </scene>
-        <!--Schedule Details View Controller-->
+        <!--Truck Details View Controller-->
         <scene sceneID="8KU-J0-cqs">
             <objects>
-                <viewController storyboardIdentifier="Schedule Page" id="lCP-YS-t5w" customClass="ScheduleDetailsViewController" customModule="foodtruck_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Truck Details View" id="lCP-YS-t5w" customClass="TruckDetailsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="uMr-Yg-fNn"/>
                         <viewControllerLayoutGuide type="bottom" id="h4R-JP-VTH"/>
@@ -319,7 +322,7 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gOV-yt-7pW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-785" y="-1598"/>
+            <point key="canvasLocation" x="-923" y="-1110"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="pq4-s2-3Nd">
@@ -356,7 +359,7 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FAz-wF-GNi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1323" y="-1836"/>
+            <point key="canvasLocation" x="-1202" y="-10"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="RcX-TL-Tiv">
@@ -444,7 +447,7 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xd7-ER-WSR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5" y="-551"/>
+            <point key="canvasLocation" x="-1659" y="-141"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

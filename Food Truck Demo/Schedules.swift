@@ -25,7 +25,7 @@ scheduleId : {
     "type": "truck"
 }
 
-scheduleId consists of truckId + date + start time for now
+scheduleId consists of truckId + date + start time + address for now
 
 */
 

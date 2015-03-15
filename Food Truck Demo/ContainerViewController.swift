@@ -12,9 +12,16 @@ class ContainerViewController: UIViewController {
 
     @IBOutlet weak var mapViewController: UIViewController!
     @IBOutlet weak var tableViewController: UIViewController!
+    @IBOutlet weak var aboutViewController: UIViewController!
+    @IBOutlet weak var trucksViewController: UIViewController!
+
+
     var transitionInProgress: Bool = false
     var mapViewSegue: String = "mapViewSegue"
     var tableViewSegue: String = "tableViewSegue"
+    var aboutViewSegue: String = "aboutViewSegue"
+    var trucksViewSegue: String = "trucksViewSegue"
+    var currentController: UIViewController?
     var currentSegueIdentifier: String = ""
     
     override func viewDidLoad() {
@@ -35,9 +42,7 @@ class ContainerViewController: UIViewController {
         return true
     }
     
-    // prepareForSegue goes before viewDidLoad()
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        println("ContainerViewController -> prepareForSegue")
+    func initializeControllers(segue: UIStoryboardSegue) {
         if (segue.identifier == "tableViewSegue") {
             self.tableViewController = segue.destinationViewController as UIViewController
         }
@@ -45,26 +50,46 @@ class ContainerViewController: UIViewController {
         if (segue.identifier == "mapViewSegue") {
             self.mapViewController = segue.destinationViewController as UIViewController
         }
-        println(segue.identifier! + " is the current segue")
-        println("loaded table/map view controller")
-        if (segue.identifier == "tableViewSegue") {
-
+        
+        if (segue.identifier == self.aboutViewSegue) {
+            self.aboutViewController = segue.destinationViewController as UIViewController
+        }
+        
+        if (segue.identifier == trucksViewSegue) {
+            self.trucksViewController = segue.destinationViewController as UIViewController
+        }
+    }
+    
+    func initializeViewDrawing(segue: UIStoryboardSegue) {
+        println("no child view controller was loaded before. loading..")
+        
+        var defaultViewController:UIViewController = segue.destinationViewController as UIViewController
+        currentController = defaultViewController
+        self.addChildViewController(defaultViewController)
+        var destView:UIView = defaultViewController.view
+        destView.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight
+        destView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)
+        self.view.addSubview(destView)
+        defaultViewController.didMoveToParentViewController(self)
+    }
+    
+    // prepareForSegue goes before viewDidLoad()
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        initializeControllers(segue)
+        // tableView is set to the default view in viewDidLoad() so all init code go here
+        if (segue.identifier == tableViewSegue) {
             if (self.childViewControllers.count > 0) {
-                self.swapFromViewController(self.childViewControllers[0] as UIViewController, to: self.tableViewController)
+                self.swapFromViewController(currentController!, to: tableViewController)
             } else {
-                println("no child view controller was loaded before. loading..")
-                self.addChildViewController(segue.destinationViewController as UIViewController)
-                var destView:UIView = (segue.destinationViewController as UIViewController).view
-                println("found destView")
-                destView.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight
-                destView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)
-                self.view.addSubview(destView)
-                segue.destinationViewController.didMoveToParentViewController(self)
-            
+                initializeViewDrawing(segue)
             }
-        } else if (segue.identifier == "mapViewSegue") {
-            println("Going to swap table view controller with map view controller")
-            self.swapFromViewController(self.childViewControllers[0] as UIViewController, to: self.mapViewController)
+        } else if (segue.identifier == mapViewSegue) {
+            self.swapFromViewController(currentController!, to:mapViewController)
+        } else if (segue.identifier == aboutViewSegue) {
+            self.swapFromViewController(currentController!, to: aboutViewController)
+        } else if (segue.identifier == trucksViewSegue) {
+            self.swapFromViewController(currentController!, to: trucksViewController)
         } else {
             println("Unknown segue detected")
         }
@@ -74,43 +99,42 @@ class ContainerViewController: UIViewController {
         to.view.frame =  CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)
         from.willMoveToParentViewController(nil)
         self.addChildViewController(to)
-        
-        //println("Going to transitionFromViewController: " + from.description)
+        currentController = to
+
         self.transitionFromViewController(from, toViewController: to, duration: 1.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: {
             (finished:Bool) -> Void in
-            println("transitionFromViewController")
             to.didMoveToParentViewController(self)
             self.transitionInProgress = false
         })
     }
-
+    
+    func switchToController(targetSegue:String) {
+        self.performSegueWithIdentifier(targetSegue, sender: nil)
+    }
+    
+    // should only be accessible in shedule view
     func swapViewControllers() {
         var from:UIViewController
         var to:UIViewController
-        
         
         if (self.transitionInProgress) {
             return;
         }
 
         self.transitionInProgress = true
-        //println("**Before ----> swapViewControllers " +  currentSegueIdentifier)
         self.currentSegueIdentifier = self.currentSegueIdentifier == self.tableViewSegue ? self.mapViewSegue : self.tableViewSegue
-        //println("**After ----> swapViewControllers " +  currentSegueIdentifier)
+        
         if (self.currentSegueIdentifier == self.mapViewSegue && self.mapViewController != nil) {
             from = self.tableViewController
             to = self.mapViewController
             self.swapFromViewController(from, to: to)
-            return
-
         } else if (self.currentSegueIdentifier == self.tableViewSegue && self.tableViewController != nil)   {
             from = mapViewController
             to = tableViewController
             self.swapFromViewController(from, to: to)
-
-            return
+        } else {
+            println("Cannot perform segue changes")
         }
-        
         self.performSegueWithIdentifier(self.currentSegueIdentifier, sender: nil)
     }
     

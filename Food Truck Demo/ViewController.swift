@@ -14,7 +14,15 @@ class ViewController: DropdownMenuController {
     var dates = [String]()
     @IBOutlet var containerViewController: ContainerViewController!
     @IBOutlet weak var picker: UIPickerView!
-    
+    @IBAction func aboutButtonPressed(sender: AnyObject) {
+        containerViewController.switchToController("aboutViewSegue")
+    }
+    @IBAction func trucksButtonPressed(sender: AnyObject) {
+        containerViewController.switchToController("trucksViewSegue")
+    }
+    @IBAction func schedulesButtonPressed(sender: AnyObject) {
+        containerViewController.switchToController("tableViewSegue")
+    }
     @IBAction func dateButtonAction(sender: AnyObject) {
         
         picker.hidden = !picker.hidden
@@ -67,7 +75,7 @@ class ViewController: DropdownMenuController {
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         println("this guy selected \(dates[row])")
         Schedules.getSchedulesWithFilter()
-        containerViewController.
+//        containerViewController.
         // find current child view and update the data
     }
     

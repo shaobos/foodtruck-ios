@@ -15,10 +15,7 @@ struct Images {
 }
 
 struct Image {
-//    var imagePath : String = ""
     var image : UIImage
-    //var truckId: String = ""
-    
     init(image : UIImage) {
         //self.truckId = truckId
         self.image = image

@@ -125,18 +125,13 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         this function customizes what happens when button in left callout accessory view is clicked..
     */
     func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
-        println("hello")
-        
-        
+
         var foodTruckAnnotation = view.annotation as FoodTruckMapAnnotation
         self.currentScheduleId = foodTruckAnnotation.scheduleId
         println("2. \(self.currentScheduleId)")
         
         performSegueWithIdentifier("MapToDetailSegue", sender: nil)
         // this is the last stop where we can still access annotation
-  
-
-        
     }
 
     func setRegion(latitute:CLLocationDegrees, longitute:CLLocationDegrees) {

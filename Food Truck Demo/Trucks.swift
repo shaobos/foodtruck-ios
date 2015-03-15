@@ -58,8 +58,7 @@ class Trucks {
 //                    println(responseObject)
                     if let jsonResult = responseObject as? Dictionary<String, String> {
                         TheTrucks.trucks.insert(jsonResult, atIndex: 0)
-//                        var image:UIImage = self.fetchImage(jsonResult)
-//                        self.truckPhotos.insert(image, atIndex: 0)
+
                     }
                 }
                 
