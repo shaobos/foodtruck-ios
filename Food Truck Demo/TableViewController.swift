@@ -47,8 +47,6 @@ class TableViewController: UIViewController, UITableViewDelegate {
     // define the content of each individual cell
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var customCell : TableCellCustomView = tableView.dequeueReusableCellWithIdentifier("TableCellCustomView") as TableCellCustomView
-
-
         var schedule = Array(cellContent.values)[indexPath.row] as [String: AnyObject]
         
         customCell.truckName.text = schedule["name"] as? String

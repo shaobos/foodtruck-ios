@@ -7,6 +7,22 @@
 //
 
 
+/*
+
+
+{
+    category = Asian;
+    category_detail = "Asian Fusion";
+    id = 136;
+    img = "trucks/3_Brothers_Kitchen/logo.jpg";
+    name = "3 Brothers Kitchen";
+    url = "http://www.3brotherskitchen.com";
+}
+
+
+*/
+
+
 import UIKit
 import CoreData
 
@@ -17,17 +33,13 @@ struct TruckInfo {
 }
 
 struct TheTrucks {
-    
-    static var trucks = [Dictionary<String, String>]()
+    static var trucks = [String: [String: String]]()
 }
 
-
 class Trucks {
-    
     var truckPhotos = [UIImage]()
     var results:NSArray = []
     let baseUrl = "http://130.211.191.208/"
-    
     
     func getTruckNames() -> [String] {
         var ret = [String]()
@@ -35,7 +47,7 @@ class Trucks {
             println("????? what are you talking about? there is no fucking truck!!!")
         }
         
-        for truckInfo in TheTrucks.trucks {
+        for truckInfo in TheTrucks.trucks.values {
             ret.insert(truckInfo["name"]!, atIndex: 0)
         }
         
@@ -54,11 +66,13 @@ class Trucks {
             } else {
                 
                 let jsonResults = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSArray
+                
+                
                 for responseObject in jsonResults {
-//                    println(responseObject)
+                    println(responseObject)
                     if let jsonResult = responseObject as? Dictionary<String, String> {
-                        TheTrucks.trucks.insert(jsonResult, atIndex: 0)
-
+                        var id = jsonResult["id"]!
+                        TheTrucks.trucks[id] = jsonResult
                     }
                 }
                 
@@ -70,14 +84,4 @@ class Trucks {
         })
         task.resume()
     }
-
-
-    
-    func setCoreData() {
-        
-        // var appDel:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-        // var context : NSManagedObjectContext = appDel.managedObjectContext!
-        // var trucksCoreData = NSEntityDescription.insertNewObjectForEntityForName("Trucks", inManagedObjectContext: context) as NSManagedObject
-    }
-
 }

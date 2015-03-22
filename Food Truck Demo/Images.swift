@@ -9,9 +9,7 @@
 import UIKit
 
 struct Images {
-    
     static var truckImages = [String:Image]()
-    
 }
 
 struct Image {

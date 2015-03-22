@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Shaobo Sun. All rights reserved.
 //
 
-class TruckDetailsScrollViewController : ScheduleAwareViewController {
+class TruckDetailsScrollViewController : TruckAwareViewController {
     
     
     @IBOutlet weak var theTitle: UILabel!
@@ -39,23 +39,25 @@ class TruckDetailsScrollViewController : ScheduleAwareViewController {
         
         // Do any additional setup after loading the view.
         theTitle.text = inputLabel
-        println("schedule id is \(self.scheduleId)")
         renderView()
     }
     
     func renderView() {
         // TODO: nil checking
-        var schedule:[String: AnyObject] = Schedules.schedules[self.scheduleId]!
-        theTitle.text = schedule["name"] as? String
-        startTime.text = schedule["start_time"] as? String
-        endTime.text = schedule["end_time"] as? String
-        address.text = schedule["address"] as? String
-        date.text = schedule["date"] as? String
-        
-        var truckId:String? = schedule["truck_id"] as? String
-        if let theImage: Image = Images.truckImages[truckId!] {
-            image?.image =  theImage.image
+        //var truckId = Schedules.getTruckIdByScheduleId(self.scheduleId)
+        if let truck = TheTrucks.trucks[self.truckId!] {
+            theTitle.text = truck["name"]
+            if let theImage: Image = Images.truckImages[self.truckId!] {
+                image?.image =  theImage.image
+            }
         }
+        
+//        startTime.text = schedule["start_time"] as? String
+//        endTime.text = schedule["end_time"] as? String
+//        address.text = schedule["address"] as? String
+//        date.text = schedule["date"] as? String
+//        
+
     }
     
     override func didReceiveMemoryWarning() {

@@ -10,7 +10,6 @@ import UIKit
 import MapKit
 import CoreLocation
 
-
 class MapViewController: ScheduleAwareViewController, MKMapViewDelegate {
 
     var scheduleFetcher = ScheduleFetcher()
@@ -73,9 +72,9 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate {
     */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         var destViewController: TruckDetailsScrollViewController = segue.destinationViewController as TruckDetailsScrollViewController
-        destViewController.setPrevViewController("Map!")
-        println("3. \(self.currentScheduleId)")
-        destViewController.setScheduleId(self.currentScheduleId)
+        //destViewController.setPrevViewController("Map!")
+        var truckId = Schedules.getTruckIdByScheduleId(self.scheduleId)
+        destViewController.setTruckId(truckId!)
     }
     
     
@@ -118,8 +117,6 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate {
 
         var foodTruckAnnotation = view.annotation as FoodTruckMapAnnotation
         self.currentScheduleId = foodTruckAnnotation.scheduleId
-//        println("2. \(self.currentScheduleId)")
-        
         performSegueWithIdentifier("MapToDetailSegue", sender: nil)
         // this is the last stop where we can still access annotation
     }

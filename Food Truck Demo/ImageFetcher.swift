@@ -31,7 +31,7 @@ class ImageFetcher {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
             println("Okie dokie, time to fetch images")
         
-            for truckInfo in TheTrucks.trucks {
+            for truckInfo in TheTrucks.trucks.values {
                 var imageUrl = WebService.baseUrl + truckInfo["img"]!
                 var image:UIImage? = self.loadImage(truckInfo["name"]!)
                 if (image == nil) {

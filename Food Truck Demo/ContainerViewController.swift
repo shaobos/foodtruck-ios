@@ -43,15 +43,15 @@ class ContainerViewController: UIViewController {
     }
     
     func initializeControllers(segue: UIStoryboardSegue) {
-        if (segue.identifier == "tableViewSegue") {
+        if (segue.identifier == tableViewSegue) {
             self.tableViewController = segue.destinationViewController as UIViewController
         }
         
-        if (segue.identifier == "mapViewSegue") {
+        if (segue.identifier == mapViewSegue) {
             self.mapViewController = segue.destinationViewController as UIViewController
         }
         
-        if (segue.identifier == self.aboutViewSegue) {
+        if (segue.identifier == aboutViewSegue) {
             self.aboutViewController = segue.destinationViewController as UIViewController
         }
         
@@ -89,6 +89,7 @@ class ContainerViewController: UIViewController {
         } else if (segue.identifier == aboutViewSegue) {
             self.swapFromViewController(currentController!, to: aboutViewController)
         } else if (segue.identifier == trucksViewSegue) {
+            println("going to swap")
             self.swapFromViewController(currentController!, to: trucksViewController)
         } else {
             println("Unknown segue detected")
@@ -112,6 +113,7 @@ class ContainerViewController: UIViewController {
         self.performSegueWithIdentifier(targetSegue, sender: nil)
     }
     
+    // this function is only used to switch between schedule table view and single schedule map view
     // should only be accessible in shedule view
     func swapViewControllers() {
         var from:UIViewController

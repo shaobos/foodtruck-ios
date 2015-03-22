@@ -43,5 +43,14 @@ struct Schedules {
         
         return schedules
     }
+    
+    static func getTruckIdByScheduleId(scheduleId: String) -> String? {
+        var truckId:String?
+        if let schedule = schedules[scheduleId] {
+            truckId = schedule["truck_id"] as? String
+        }
+        
+        return truckId
+    }
 }
 

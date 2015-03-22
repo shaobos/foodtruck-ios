@@ -75,8 +75,6 @@ class ViewController: DropdownMenuController {
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         println("this guy selected \(dates[row])")
         Schedules.getSchedulesWithFilter()
-//        containerViewController.
-        // find current child view and update the data
     }
     
 }
