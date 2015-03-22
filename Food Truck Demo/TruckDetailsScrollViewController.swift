@@ -1,40 +1,34 @@
 //
-//  TruckPageViewController.swift
+//  TruckDetailsViewControllerWithScroll.swift
 //  foodtruck-ios
 //
-//  Created by Shaobo Sun on 2/22/15.
+//  Created by Shaobo Sun on 3/22/15.
 //  Copyright (c) 2015 Shaobo Sun. All rights reserved.
 //
 
-import UIKit
-
-class ScheduleDetailsViewController: UIViewController {
-
+class TruckDetailsScrollViewController : ScheduleAwareViewController {
+    
+    
     @IBOutlet weak var theTitle: UILabel!
     
     @IBOutlet weak var image: UIImageView!
-    @IBOutlet weak var date: UILabel!
-    @IBOutlet weak var address: UILabel!
-    @IBOutlet weak var startTime: UILabel!
-    @IBOutlet weak var endTime: UILabel!
     
+    @IBOutlet weak var date: UILabel!
+    
+    @IBOutlet weak var endTime: UILabel!
+    @IBOutlet weak var startTime: UILabel!
+    @IBOutlet weak var address: UILabel!
     var prevViewController: UIViewController?
     var previousViewControllerName:String = ""
     var scheduleToTableSegueID : String = "ScheduleToTableSegue"
     var scheduleToMapSegueID : String = "ScheduleToMapSegue"
-    var scheduleId:String = ""
     var inputLabel:String = ""
-
+    
     @IBOutlet weak var anotherLabel: UILabel!
     @IBAction func backButton(sender: UIBarButtonItem) {
         performSegueWithIdentifier("ScheduleToMainSegue", sender: nil)
     }
     
-    // truck id can be used for retrieving schedule info
-    func setScheduleId(scheduleId: String) {
-        println("setting schedule id here")
-        self.scheduleId = scheduleId
-    }
     func setPrevViewController(prev: String) {
         self.previousViewControllerName = prev
     }
@@ -42,7 +36,7 @@ class ScheduleDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         println("who is my previous controller \(self.previousViewControllerName)")
-
+        
         // Do any additional setup after loading the view.
         theTitle.text = inputLabel
         println("schedule id is \(self.scheduleId)")
@@ -50,7 +44,6 @@ class ScheduleDetailsViewController: UIViewController {
     }
     
     func renderView() {
-        
         // TODO: nil checking
         var schedule:[String: AnyObject] = Schedules.schedules[self.scheduleId]!
         theTitle.text = schedule["name"] as? String
@@ -63,12 +56,12 @@ class ScheduleDetailsViewController: UIViewController {
         if let theImage: Image = Images.truckImages[truckId!] {
             image?.image =  theImage.image
         }
-
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     
 }

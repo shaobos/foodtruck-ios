@@ -15,8 +15,7 @@ class ScheduleFetcher {
     }
     
     func composeScheduleId (jsonResult: [String: AnyObject]) -> String {
-        
-        var scheduleId:String = (jsonResult["truck_id"] as String) + (jsonResult["date"] as String) + (jsonResult["start_time"] as String)
+        var scheduleId:String = (jsonResult["truck_id"] as String) + (jsonResult["date"] as String) + (jsonResult["start_time"] as String) + (jsonResult["address"] as String)
         return scheduleId
     }
     

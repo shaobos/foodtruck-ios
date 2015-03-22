@@ -35,7 +35,6 @@ struct Schedules {
     static func getSchedulesWithFilter() -> [String: [String: AnyObject]] {
         var ret = [String: [String: AnyObject]]()
         for (scheduleId, scheduleObject) in schedules {
-            
             var convert = scheduleObject as [String: AnyObject]
             if (convert["date"] as? String == "2015-03-09") {
                 ret[scheduleId] = scheduleObject

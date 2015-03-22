@@ -10,11 +10,12 @@
 		8604D8AE1A994AB4004898BE /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8604D8AC1A994AB4004898BE /* CoreDataModel.xcdatamodeld */; };
 		8604D8B01A99A691004898BE /* ImageFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8604D8AF1A99A691004898BE /* ImageFetcher.swift */; };
 		8604D8BD1A9AF7E8004898BE /* Schedules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8604D8BC1A9AF7E8004898BE /* Schedules.swift */; };
-		8604D8BF1A9AFE1F004898BE /* TruckDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8604D8BE1A9AFE1F004898BE /* TruckDetailsViewController.swift */; };
 		8604D8C11A9C2F8A004898BE /* TestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8604D8C01A9C2F8A004898BE /* TestView.xib */; };
+		860646D21AB656DF0074F29B /* ScheduleAwareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860646D11AB656DF0074F29B /* ScheduleAwareViewController.swift */; };
 		8608F36E1A95A5C3003CEE72 /* Trucks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8608F36D1A95A5C3003CEE72 /* Trucks.swift */; };
 		8608F3701A9708D8003CEE72 /* TrucksCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8608F36F1A9708D8003CEE72 /* TrucksCollectionViewController.swift */; };
 		8608F3721A97151C003CEE72 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8608F3711A97151C003CEE72 /* CollectionViewCell.swift */; };
+		8644575B1ABF46C900C1D282 /* TruckDetailsScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8644575A1ABF46C900C1D282 /* TruckDetailsScrollViewController.swift */; };
 		86C961F21AA1AD9800061880 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C961F11AA1AD9800061880 /* WebService.swift */; };
 		86C961F41AA1B00600061880 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C961F31AA1B00600061880 /* Images.swift */; };
 		86C962261AA262EB00061880 /* ScheduleFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C962251AA262EB00061880 /* ScheduleFetcher.swift */; };
@@ -39,11 +40,12 @@
 		8604D8AD1A994AB4004898BE /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		8604D8AF1A99A691004898BE /* ImageFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageFetcher.swift; sourceTree = "<group>"; };
 		8604D8BC1A9AF7E8004898BE /* Schedules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Schedules.swift; sourceTree = "<group>"; };
-		8604D8BE1A9AFE1F004898BE /* TruckDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TruckDetailsViewController.swift; sourceTree = "<group>"; };
 		8604D8C01A9C2F8A004898BE /* TestView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestView.xib; sourceTree = "<group>"; };
+		860646D11AB656DF0074F29B /* ScheduleAwareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleAwareViewController.swift; sourceTree = "<group>"; };
 		8608F36D1A95A5C3003CEE72 /* Trucks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trucks.swift; sourceTree = "<group>"; };
 		8608F36F1A9708D8003CEE72 /* TrucksCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrucksCollectionViewController.swift; sourceTree = "<group>"; };
 		8608F3711A97151C003CEE72 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		8644575A1ABF46C900C1D282 /* TruckDetailsScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TruckDetailsScrollViewController.swift; sourceTree = "<group>"; };
 		867414D41A8C710700203276 /* Dropdown-mnm-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Dropdown-mnm-Header.h"; sourceTree = "<group>"; };
 		86C961F11AA1AD9800061880 /* WebService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
 		86C961F31AA1B00600061880 /* Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				8604D8AC1A994AB4004898BE /* CoreDataModel.xcdatamodeld */,
 				867414D41A8C710700203276 /* Dropdown-mnm-Header.h */,
 				86EC6F051A884BA900940D9F /* EmptySegue.swift */,
+				86C9622B1AA3EFAA00061880 /* FoodTruckMapAnnotation.swift */,
 				8604D8AF1A99A691004898BE /* ImageFetcher.swift */,
 				86C961F31AA1B00600061880 /* Images.swift */,
 				86EC6EDE1A86C3A000940D9F /* Images.xcassets */,
@@ -142,7 +145,6 @@
 				86EC6EDB1A86C3A000940D9F /* Main.storyboard */,
 				86EC6EFD1A872FE900940D9F /* MapViewController.swift */,
 				86C962271AA286EF00061880 /* Model */,
-				8604D8BE1A9AFE1F004898BE /* TruckDetailsViewController.swift */,
 				86C962251AA262EB00061880 /* ScheduleFetcher.swift */,
 				8604D8BC1A9AF7E8004898BE /* Schedules.swift */,
 				86EC6ED51A86C3A000940D9F /* Supporting Files */,
@@ -154,7 +156,8 @@
 				86EC6ED91A86C3A000940D9F /* ViewController.swift */,
 				86C961F11AA1AD9800061880 /* WebService.swift */,
 				8604D8BB1A9AF725004898BE /* WebServices */,
-				86C9622B1AA3EFAA00061880 /* FoodTruckMapAnnotation.swift */,
+				860646D11AB656DF0074F29B /* ScheduleAwareViewController.swift */,
+				8644575A1ABF46C900C1D282 /* TruckDetailsScrollViewController.swift */,
 			);
 			path = "Food Truck Demo";
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				860646D21AB656DF0074F29B /* ScheduleAwareViewController.swift in Sources */,
 				86C962291AA2A8F300061880 /* TableCellCustomView.swift in Sources */,
 				86EC6EDA1A86C3A000940D9F /* ViewController.swift in Sources */,
 				86EC6F001A87300500940D9F /* ContainerViewController.swift in Sources */,
@@ -311,9 +315,9 @@
 				86EC6F021A8815DC00940D9F /* TableViewController.swift in Sources */,
 				8604D8B01A99A691004898BE /* ImageFetcher.swift in Sources */,
 				86EC6EFE1A872FE900940D9F /* MapViewController.swift in Sources */,
-				8604D8BF1A9AFE1F004898BE /* TruckDetailsViewController.swift in Sources */,
 				8604D8BD1A9AF7E8004898BE /* Schedules.swift in Sources */,
 				86C961F41AA1B00600061880 /* Images.swift in Sources */,
+				8644575B1ABF46C900C1D282 /* TruckDetailsScrollViewController.swift in Sources */,
 				8608F36E1A95A5C3003CEE72 /* Trucks.swift in Sources */,
 				86EC6F061A884BA900940D9F /* EmptySegue.swift in Sources */,
 				86C9622C1AA3EFAA00061880 /* FoodTruckMapAnnotation.swift in Sources */,

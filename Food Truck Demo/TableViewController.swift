@@ -22,14 +22,13 @@ class TableViewController: UIViewController, UITableViewDelegate {
         trucks.fetchTrucksInfoFromRemote {
             loadedImages in
             self.scheduleFetcher.fetchTrucksInfoFromRemote() {
-                println("Schedules are ready")
+                //println("Schedules are ready")
                 self.cellContent = self.scheduleFetcher.getSchedules()
                 self.theTableView.reloadData()
                 self.imageFetcher.fetchImages {
-                    println("imageFetch is done")
+                    //println("imageFetch is done")
                     self.theTableView.reloadData()
-                    println("refreshed table view")
-
+                    //println("refreshed table view")
                 }
             }
         }
@@ -39,8 +38,6 @@ class TableViewController: UIViewController, UITableViewDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    
     
     // dynamically define how many rows
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -66,17 +63,11 @@ class TableViewController: UIViewController, UITableViewDelegate {
         }
         return customCell
     }
-//    
-//    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
-//        return true
-//    }
-//    
+
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.currentScheduleId = Array(cellContent.keys)[indexPath.row] as String
         println("1. \(self.currentScheduleId)")
-
-        performSegueWithIdentifier("ToTruckDetailSegue", sender: nil)
-
+        performSegueWithIdentifier("tableToMapSegue", sender: nil)
     }
     
     // TODO: duplicate code in Map view
@@ -85,9 +76,10 @@ class TableViewController: UIViewController, UITableViewDelegate {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         var indexPath: NSIndexPath = self.theTableView.indexPathForSelectedRow()!//indexPathForSelectedRow
-        var destViewController : ScheduleDetailsViewController = segue.destinationViewController as ScheduleDetailsViewController
+        var destViewController = segue.destinationViewController as ScheduleAwareViewController
         println("2. \(self.currentScheduleId)")
-        destViewController.setPrevViewController("Table!")
+        //destViewController.setPrevViewController("Table!")
+        // both TruckDetailsView and MapView can implement the same interface
         destViewController.setScheduleId(self.currentScheduleId)
     }
 }
