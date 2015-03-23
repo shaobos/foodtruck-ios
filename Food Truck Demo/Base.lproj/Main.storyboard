@@ -325,56 +325,64 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                         <viewControllerLayoutGuide type="bottom" id="Iw0-r1-Cdy"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="YNU-xO-mqM">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="588"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WDh-i0-tDw">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WDh-i0-tDw">
+                                <rect key="frame" x="0.0" y="26" width="340" height="742"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gyJ-IB-lYz">
-                                        <rect key="frame" x="0.0" y="23" width="320" height="746"/>
+                                        <rect key="frame" x="0.0" y="14" width="320" height="714"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hbd-nQ-TpZ">
-                                                <rect key="frame" x="139" y="700" width="42" height="21"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Category" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="igX-iw-qWB">
+                                                <rect key="frame" x="16" y="217" width="120" height="24"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HnU-CP-kC3">
+                                                <rect key="frame" x="16" y="64" width="120" height="133"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Url" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AEQ-xq-mIZ">
+                                                <rect key="frame" x="16" y="232" width="288" height="60"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pBV-Ng-2Km">
+                                                <rect key="frame" x="0.0" y="285" width="320" height="282"/>
+                                                <connections>
+                                                    <segue destination="mcu-tK-oga" kind="embed" id="SLu-zc-m0M"/>
+                                                </connections>
+                                            </containerView>
                                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0hf-xQ-873">
                                                 <rect key="frame" x="0.0" y="8" width="320" height="44"/>
                                                 <items>
                                                     <navigationItem title="Title" id="NZg-lt-bBp"/>
                                                 </items>
                                             </navigationBar>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="igX-iw-qWB">
-                                                <rect key="frame" x="139" y="64" width="42" height="21"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3vm-gi-wu4">
-                                                <rect key="frame" x="14" y="303" width="270" height="37"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9F6-hx-Ajm">
-                                                <rect key="frame" x="14" y="348" width="134" height="21"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JjN-xx-Arl">
-                                                <rect key="frame" x="163" y="348" width="149" height="21"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HnU-CP-kC3">
-                                                <rect key="frame" x="8" y="93" width="155" height="135"/>
-                                            </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AEQ-xq-mIZ">
-                                                <rect key="frame" x="14" y="223" width="288" height="60"/>
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="sbd-0e-xpw">
+                                                <rect key="frame" x="0.0" y="568" width="320" height="164"/>
+                                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="8wh-YM-2wk">
+                                                    <size key="itemSize" width="50" height="50"/>
+                                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                </collectionViewFlowLayout>
+                                                <cells>
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="96G-W2-r9b">
+                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        </view>
+                                                    </collectionViewCell>
+                                                </cells>
+                                            </collectionView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z7Y-rx-gpk">
+                                                <rect key="frame" x="144" y="91" width="160" height="36"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
@@ -382,43 +390,37 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="320" id="3fK-A0-1ez"/>
-                                            <constraint firstAttribute="height" constant="746" id="Yao-Vj-08L"/>
+                                            <constraint firstAttribute="height" constant="714" id="5va-pc-lLz"/>
+                                            <constraint firstAttribute="width" constant="320" id="JLK-sr-LON"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="gyJ-IB-lYz" firstAttribute="leading" secondItem="WDh-i0-tDw" secondAttribute="leading" id="14J-1c-3yE"/>
-                                    <constraint firstAttribute="bottom" secondItem="gyJ-IB-lYz" secondAttribute="bottom" id="EDP-O6-6Ml"/>
-                                    <constraint firstAttribute="width" constant="320" id="THl-6H-PBq"/>
-                                    <constraint firstAttribute="height" constant="568" id="UVu-YP-HOz"/>
-                                    <constraint firstAttribute="trailing" secondItem="gyJ-IB-lYz" secondAttribute="trailing" id="af4-TC-tvU"/>
-                                    <constraint firstItem="gyJ-IB-lYz" firstAttribute="top" secondItem="WDh-i0-tDw" secondAttribute="top" id="crH-7L-qjD"/>
+                                    <constraint firstAttribute="bottom" secondItem="gyJ-IB-lYz" secondAttribute="bottom" id="4ko-mk-lHg"/>
+                                    <constraint firstAttribute="trailing" secondItem="gyJ-IB-lYz" secondAttribute="trailing" id="IxB-kM-kSl"/>
+                                    <constraint firstItem="gyJ-IB-lYz" firstAttribute="top" secondItem="WDh-i0-tDw" secondAttribute="top" id="mVD-kc-bTJ"/>
+                                    <constraint firstItem="gyJ-IB-lYz" firstAttribute="leading" secondItem="WDh-i0-tDw" secondAttribute="leading" id="mWy-UR-4f8"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Iw0-r1-Cdy" firstAttribute="top" secondItem="WDh-i0-tDw" secondAttribute="bottom" id="5tg-eF-l4Y"/>
                             <constraint firstAttribute="trailingMargin" secondItem="WDh-i0-tDw" secondAttribute="trailing" constant="-16" id="BKj-sQ-sPB"/>
-                            <constraint firstItem="WDh-i0-tDw" firstAttribute="top" secondItem="YNU-xO-mqM" secondAttribute="topMargin" id="Eym-o1-qYY"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="WDh-i0-tDw" secondAttribute="bottom" id="Rob-C2-rBp"/>
+                            <constraint firstItem="WDh-i0-tDw" firstAttribute="top" secondItem="Rzv-A6-6y2" secondAttribute="bottom" id="oa0-tk-muT"/>
                             <constraint firstItem="WDh-i0-tDw" firstAttribute="leading" secondItem="YNU-xO-mqM" secondAttribute="leadingMargin" constant="-16" id="rU7-6b-4Ve"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="568"/>
+                    <size key="freeformSize" width="320" height="588"/>
                     <connections>
-                        <outlet property="address" destination="3vm-gi-wu4" id="WzR-9U-BlY"/>
-                        <outlet property="date" destination="AEQ-xq-mIZ" id="fOo-Ta-VPK"/>
-                        <outlet property="endTime" destination="JjN-xx-Arl" id="xMB-Md-WRL"/>
                         <outlet property="image" destination="HnU-CP-kC3" id="13q-gh-Uh3"/>
-                        <outlet property="startTime" destination="9F6-hx-Ajm" id="3jY-Ie-GPa"/>
-                        <outlet property="theTitle" destination="igX-iw-qWB" id="l0A-r9-6oT"/>
+                        <outlet property="theTitle" destination="z7Y-rx-gpk" id="3h3-t2-e9Q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rkB-uC-7nK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-976" y="-1244"/>
+            <point key="canvasLocation" x="-1042" y="-1268"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="RcX-TL-Tiv">
@@ -507,6 +509,25 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xd7-ER-WSR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1116" y="246"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Uc3-YP-wBU">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="mcu-tK-oga" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="L1M-nV-psb"/>
+                        <viewControllerLayoutGuide type="bottom" id="nbs-gO-uyl"/>
+                    </layoutGuides>
+                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Dte-T7-IDf">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="282"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="De2-Qd-8HZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-616" y="-1396"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

@@ -9,9 +9,38 @@
 
 
 class ImageFetcher {
+    /*
+        First get images of one specific truck:
+        http://130.211.191.208/scripts/get_truck_img.php?truck=23
     
+        this gives a list of image paths:
+        ["\/trucks\/Taqueria_Angelicas\/logo.jpg","\/trucks\/Taqueria_Angelicas\/tagueria-angelicas-menu.jpg","\/trucks\/Taqueria_Angelicas\/taqueria-angelicas-churros.jpg","\/trucks\/Taqueria_Angelicas\/taqueria-angelicas-tacos.jpg","\/trucks\/Taqueria_Angelicas\/taqueria-angelicas.jpg"]
+    
+        then it fetches each image with this url:
+        http://130.211.191.208/trucks/Taqueria_Angelicas/logo.jpg
+    */
     func fetchImageByTruckId(truckId : String?) -> UIImage? {
         
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
+            var urlPath = WebService.baseUrl + "/scripts/get_truck_img.php?truck=" + truckId!
+            WebService.request(urlPath, callback: {
+                data -> Void in
+                
+                let jsonResults = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSArray
+                // some validations please
+                for picPath in jsonResults {
+                    
+                    var pictureUrl = WebService.baseUrl + picPath
+                    var image = fetchImage(pictureUrl)
+                    println(image)
+                }
+                
+            })
+            dispatch_sync(dispatch_get_main_queue(), {
+                
+            })
+        }
         
         // TODO: show a default picture if possible
         return nil
@@ -29,8 +58,6 @@ class ImageFetcher {
         }
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
-            println("Okie dokie, time to fetch images")
-        
             for truckInfo in TheTrucks.trucks.values {
                 var imageUrl = WebService.baseUrl + truckInfo["img"]!
                 var image:UIImage? = self.loadImage(truckInfo["name"]!)
@@ -44,7 +71,7 @@ class ImageFetcher {
             dispatch_sync(dispatch_get_main_queue(), {
                 completeHandler()
 
-            });
+            })
         }
     }
     

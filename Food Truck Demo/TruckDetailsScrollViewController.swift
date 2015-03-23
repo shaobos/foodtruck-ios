@@ -8,16 +8,11 @@
 
 class TruckDetailsScrollViewController : TruckAwareViewController {
     
-    
     @IBOutlet weak var theTitle: UILabel!
-    
     @IBOutlet weak var image: UIImageView!
     
-    @IBOutlet weak var date: UILabel!
-    
-    @IBOutlet weak var endTime: UILabel!
-    @IBOutlet weak var startTime: UILabel!
-    @IBOutlet weak var address: UILabel!
+    var imageFetcher = ImageFetcher()
+
     var prevViewController: UIViewController?
     var previousViewControllerName:String = ""
     var scheduleToTableSegueID : String = "ScheduleToTableSegue"
@@ -39,6 +34,8 @@ class TruckDetailsScrollViewController : TruckAwareViewController {
         
         // Do any additional setup after loading the view.
         theTitle.text = inputLabel
+        
+        imageFetcher.fetchImageByTruckId(self.truckId)
         renderView()
     }
     
