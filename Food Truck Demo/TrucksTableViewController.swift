@@ -7,7 +7,7 @@
 //
 
 
-class TrucksTableViewController : UIViewController, UITableViewDelegate{    
+class TrucksTableViewController : UIViewController, UITableViewDelegate{
     private let reuseIdentifier = "TruckCell"
     private var currentTruckId:String?
     override func viewDidLoad() {
@@ -38,7 +38,7 @@ class TrucksTableViewController : UIViewController, UITableViewDelegate{
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         var controller:TruckDetailsScrollViewController = segue.destinationViewController as TruckDetailsScrollViewController
-        controller.setTruckId(currentTruckId)
+        controller.setTruckId(currentTruckId!)
         // TODO: revisit shortly
     }
     

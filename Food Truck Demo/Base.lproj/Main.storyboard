@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -325,7 +325,7 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                         <viewControllerLayoutGuide type="bottom" id="Iw0-r1-Cdy"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="YNU-xO-mqM">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="588"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WDh-i0-tDw">
@@ -349,55 +349,82 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pBV-Ng-2Km">
-                                                <rect key="frame" x="0.0" y="285" width="320" height="282"/>
-                                                <connections>
-                                                    <segue destination="mcu-tK-oga" kind="embed" id="SLu-zc-m0M"/>
-                                                </connections>
-                                            </containerView>
                                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0hf-xQ-873">
                                                 <rect key="frame" x="0.0" y="8" width="320" height="44"/>
                                                 <items>
-                                                    <navigationItem title="Title" id="NZg-lt-bBp"/>
+                                                    <navigationItem title="Title" id="NZg-lt-bBp">
+                                                        <barButtonItem key="leftBarButtonItem" style="plain" id="iC9-qQ-HuD">
+                                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3vh-Ex-xz6">
+                                                                <rect key="frame" x="-23" y="-15" width="71" height="30"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <state key="normal" title="Back">
+                                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </state>
+                                                            </button>
+                                                        </barButtonItem>
+                                                    </navigationItem>
                                                 </items>
                                             </navigationBar>
-                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="sbd-0e-xpw">
-                                                <rect key="frame" x="0.0" y="568" width="320" height="164"/>
-                                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="8wh-YM-2wk">
-                                                    <size key="itemSize" width="50" height="50"/>
-                                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                </collectionViewFlowLayout>
-                                                <cells>
-                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="96G-W2-r9b">
-                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                        <autoresizingMask key="autoresizingMask"/>
-                                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                            <autoresizingMask key="autoresizingMask"/>
-                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                        </view>
-                                                    </collectionViewCell>
-                                                </cells>
-                                            </collectionView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z7Y-rx-gpk">
                                                 <rect key="frame" x="144" y="91" width="160" height="36"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="sbd-0e-xpw">
+                                                <rect key="frame" x="0.0" y="275" width="320" height="164"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="8wh-YM-2wk">
+                                                    <size key="itemSize" width="81" height="78"/>
+                                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                </collectionViewFlowLayout>
+                                                <cells>
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TruckDetailCollectionCell" id="96G-W2-r9b" customClass="CollectionViewCell" customModule="foodtruck_ios" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                            <rect key="frame" x="0.0" y="0.0" width="81" height="78"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <subviews>
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mKF-j6-JXj">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="101" height="91"/>
+                                                                </imageView>
+                                                            </subviews>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        </view>
+                                                        <connections>
+                                                            <outlet property="imageView" destination="mKF-j6-JXj" id="upr-7u-vDI"/>
+                                                        </connections>
+                                                    </collectionViewCell>
+                                                </cells>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="0JO-0b-VHK" id="Bss-If-Zb2"/>
+                                                    <outlet property="delegate" destination="0JO-0b-VHK" id="6fe-1C-1jU"/>
+                                                </connections>
+                                            </collectionView>
+                                            <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pBV-Ng-2Km">
+                                                <rect key="frame" x="0.0" y="420" width="320" height="300"/>
+                                                <connections>
+                                                    <segue destination="1mV-At-hd7" kind="embed" identifier="TruckDetailContainerToTable" id="OdQ-3H-74I"/>
+                                                </connections>
+                                            </containerView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
+                                            <constraint firstItem="sbd-0e-xpw" firstAttribute="leading" secondItem="gyJ-IB-lYz" secondAttribute="leading" id="0fG-X4-o1w"/>
                                             <constraint firstAttribute="height" constant="714" id="5va-pc-lLz"/>
                                             <constraint firstAttribute="width" constant="320" id="JLK-sr-LON"/>
+                                            <constraint firstAttribute="trailing" secondItem="sbd-0e-xpw" secondAttribute="trailing" id="LLp-f5-6ik"/>
+                                            <constraint firstItem="pBV-Ng-2Km" firstAttribute="leading" secondItem="gyJ-IB-lYz" secondAttribute="leading" id="atr-8f-8pa"/>
+                                            <constraint firstAttribute="trailing" secondItem="pBV-Ng-2Km" secondAttribute="trailing" id="m5U-rp-2xe"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="gyJ-IB-lYz" secondAttribute="bottom" id="4ko-mk-lHg"/>
-                                    <constraint firstAttribute="trailing" secondItem="gyJ-IB-lYz" secondAttribute="trailing" id="IxB-kM-kSl"/>
+                                    <constraint firstAttribute="trailing" secondItem="gyJ-IB-lYz" secondAttribute="trailing" constant="-36" id="IxB-kM-kSl"/>
                                     <constraint firstItem="gyJ-IB-lYz" firstAttribute="top" secondItem="WDh-i0-tDw" secondAttribute="top" id="mVD-kc-bTJ"/>
                                     <constraint firstItem="gyJ-IB-lYz" firstAttribute="leading" secondItem="WDh-i0-tDw" secondAttribute="leading" id="mWy-UR-4f8"/>
                                 </constraints>
@@ -405,22 +432,23 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="WDh-i0-tDw" secondAttribute="trailing" constant="-16" id="BKj-sQ-sPB"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="WDh-i0-tDw" secondAttribute="trailing" constant="-36" id="BKj-sQ-sPB"/>
                             <constraint firstAttribute="bottomMargin" secondItem="WDh-i0-tDw" secondAttribute="bottom" id="Rob-C2-rBp"/>
                             <constraint firstItem="WDh-i0-tDw" firstAttribute="top" secondItem="Rzv-A6-6y2" secondAttribute="bottom" id="oa0-tk-muT"/>
                             <constraint firstItem="WDh-i0-tDw" firstAttribute="leading" secondItem="YNU-xO-mqM" secondAttribute="leadingMargin" constant="-16" id="rU7-6b-4Ve"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="588"/>
+                    <size key="freeformSize" width="320" height="800"/>
                     <connections>
                         <outlet property="image" destination="HnU-CP-kC3" id="13q-gh-Uh3"/>
+                        <outlet property="theCollectionView" destination="sbd-0e-xpw" id="Z24-hz-r2e"/>
                         <outlet property="theTitle" destination="z7Y-rx-gpk" id="3h3-t2-e9Q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rkB-uC-7nK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1042" y="-1268"/>
+            <point key="canvasLocation" x="-1111" y="-1344"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="RcX-TL-Tiv">
@@ -508,30 +536,12 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xd7-ER-WSR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1116" y="246"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="Uc3-YP-wBU">
-            <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="mcu-tK-oga" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="L1M-nV-psb"/>
-                        <viewControllerLayoutGuide type="bottom" id="nbs-gO-uyl"/>
-                    </layoutGuides>
-                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Dte-T7-IDf">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="282"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <toolbarItems/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="De2-Qd-8HZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-616" y="-1396"/>
+            <point key="canvasLocation" x="-1124" y="122"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Oe2-jk-MZi"/>
-        <segue reference="Mtf-mb-EXS"/>
+        <segue reference="PXb-th-F6S"/>
+        <segue reference="OdQ-3H-74I"/>
+        <segue reference="mFK-Xr-MOU"/>
     </inferredMetricsTieBreakers>
 </document>

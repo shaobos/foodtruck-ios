@@ -12,6 +12,10 @@ struct Images {
     static var truckImages = [String:Image]()
 }
 
+struct TruckDetailImages {
+    static var truckImages = [String:[UIImage]]()
+}
+
 struct Image {
     var image : UIImage
     init(image : UIImage) {

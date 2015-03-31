@@ -14,13 +14,30 @@ class ScheduleFetcher {
         return Schedules.schedules
     }
     
+    func getSchedulesByTruck(targetTruckId:String) -> [String: [String: AnyObject]] {
+        var ret = [String: [String: AnyObject]]()
+        for key in Schedules.schedules.keys {
+            var scheduleObject = Schedules.schedules[key]!
+            if var truckId: AnyObject = scheduleObject["truck_id"] {
+//                println("printing")
+                if targetTruckId == truckId as NSString {
+                    println("Found target schedule!! \(scheduleObject)")
+                    ret[key] = scheduleObject
+                }
+            }
+        }
+        
+        return ret
+    }
+    
     func composeScheduleId (jsonResult: [String: AnyObject]) -> String {
         var scheduleId:String = (jsonResult["truck_id"] as String) + (jsonResult["date"] as String) + (jsonResult["start_time"] as String) + (jsonResult["address"] as String)
         return scheduleId
     }
     
     func fetchTrucksInfoFromRemote(completionHandler: () -> ())  {
-        let startDate = getStartDate()
+        //let startDate = getStartDate()
+        let startDate = "03/01"
         let endDate = getEndDate()
         let urlPath = WebService.baseUrl + "scripts/get_trucks_schedule.php?start_date=\(startDate)&end_date=\(endDate)"
         
@@ -34,14 +51,19 @@ class ScheduleFetcher {
             if (error != nil) {
                 println(error)
             } else {
-
-                let jsonResults = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSArray
-                for responseObject in jsonResults {
-                    // Attention: needs to be AnyObject here as value cannot be assumed to be String
-                    if let jsonResult = responseObject as? [String: AnyObject] {
-                        var scheduleId = self.composeScheduleId(jsonResult)
-                        Schedules.schedules[scheduleId] = jsonResult
-                    } 
+                
+                if data != nil {
+                    let jsonResults = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as? NSArray
+                    
+                    if jsonResults != nil {
+                        for responseObject in jsonResults! {
+                            // Attention: needs to be AnyObject here as value cannot be assumed to be String
+                            if let jsonResult = responseObject as? [String: AnyObject] {
+                                var scheduleId = self.composeScheduleId(jsonResult)
+                                Schedules.schedules[scheduleId] = jsonResult
+                            }
+                        }
+                    }
                 }
                 
                 dispatch_async(dispatch_get_main_queue(), {

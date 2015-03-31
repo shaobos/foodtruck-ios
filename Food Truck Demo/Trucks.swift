@@ -10,6 +10,7 @@
 /*
 
 
+original response from web service:
 {
     category = Asian;
     category_detail = "Asian Fusion";
@@ -19,19 +20,9 @@
     url = "http://www.3brotherskitchen.com";
 }
 
-
 */
 
-
-import UIKit
-import CoreData
-
-
-struct TruckInfo {
-    let name:String
-    let imageUrl:String
-}
-
+// Model
 struct TheTrucks {
     static var trucks = [String: [String: String]]()
 }

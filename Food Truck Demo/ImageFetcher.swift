@@ -18,30 +18,35 @@ class ImageFetcher {
     
         then it fetches each image with this url:
         http://130.211.191.208/trucks/Taqueria_Angelicas/logo.jpg
+    
+        it's better to use picture with reduced size:
+        http://130.211.191.208/trucks/Taqueria_Angelicas/reduced/logo.jpg
     */
-    func fetchImageByTruckId(truckId : String?) -> UIImage? {
-        
-        
+    func fetchImageByTruckId(truckId : String?, callback: () -> Void) -> UIImage? {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
             var urlPath = WebService.baseUrl + "/scripts/get_truck_img.php?truck=" + truckId!
             WebService.request(urlPath, callback: {
                 data -> Void in
                 
                 let jsonResults = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSArray
-                // some validations please
+                
+                // Parallelize it!
                 for picPath in jsonResults {
+                    var pictureUrl = WebService.baseUrl + (picPath as NSString)
+                    println("DEBUG: \(pictureUrl)")
+                    var image = self.fetchImage(pictureUrl)
                     
-                    var pictureUrl = WebService.baseUrl + picPath
-                    var image = fetchImage(pictureUrl)
-                    println(image)
+                    if TruckDetailImages.truckImages[truckId!] == nil {
+                        TruckDetailImages.truckImages[truckId!] = [UIImage]()
+                    }
+                    TruckDetailImages.truckImages[truckId!]!.insert(image, atIndex: 0)
+                    println(TruckDetailImages.truckImages[truckId!]!.count)
                 }
-                
-            })
-            dispatch_sync(dispatch_get_main_queue(), {
-                
+                dispatch_sync(dispatch_get_main_queue(), {
+                    callback()
+                })
             })
         }
-        
         // TODO: show a default picture if possible
         return nil
     }

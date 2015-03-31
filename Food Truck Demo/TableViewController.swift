@@ -15,23 +15,53 @@ class TableViewController: UIViewController, UITableViewDelegate {
     var trucks = Trucks()
     var imageFetcher = ImageFetcher()
     
+    var truckId:String? // could be called from truckd detail view
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // TODO: better to intialize data fetch in main view controller
         
-        trucks.fetchTrucksInfoFromRemote {
-            loadedImages in
-            self.scheduleFetcher.fetchTrucksInfoFromRemote() {
-                //println("Schedules are ready")
-                self.cellContent = self.scheduleFetcher.getSchedules()
+        if (truckId != nil) {
+            // Dangerous: this is not atomic.
+            println("truckId is \(truckId!)")
+            self.cellContent = self.scheduleFetcher.getSchedulesByTruck(truckId!)
+            println(self.cellContent)
+            self.theTableView.reloadData()
+
+        } else {
+            fetchSchedules()
+        }
+        
+    }
+    
+    func fetchSchedules() {
+        
+        if Schedules.schedules.count > 0 {
+            self.cellContent = self.scheduleFetcher.getSchedules()
+            if Images.truckImages.count > 0 {
                 self.theTableView.reloadData()
+            } else {
                 self.imageFetcher.fetchImages {
                     //println("imageFetch is done")
                     self.theTableView.reloadData()
-                    //println("refreshed table view")
+                }
+            }
+        } else {
+            trucks.fetchTrucksInfoFromRemote {
+                loadedImages in
+                self.scheduleFetcher.fetchTrucksInfoFromRemote() {
+                    //println("Schedules are ready")
+                    self.cellContent = self.scheduleFetcher.getSchedules()
+                    self.theTableView.reloadData()
+                    self.imageFetcher.fetchImages {
+                        //println("imageFetch is done")
+                        self.theTableView.reloadData()
+                        //println("refreshed table view")
+                    }
                 }
             }
         }
+        
     }
 
     override func didReceiveMemoryWarning() {
