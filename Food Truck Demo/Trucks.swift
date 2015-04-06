@@ -60,7 +60,6 @@ class Trucks {
                 
                 
                 for responseObject in jsonResults {
-                    println(responseObject)
                     if let jsonResult = responseObject as? Dictionary<String, String> {
                         var id = jsonResult["id"]!
                         TheTrucks.trucks[id] = jsonResult

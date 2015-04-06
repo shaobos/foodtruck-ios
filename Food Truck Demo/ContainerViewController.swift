@@ -29,7 +29,6 @@ class ContainerViewController: UIViewController {
         self.transitionInProgress = false
         self.currentSegueIdentifier = self.tableViewSegue // table goes first!
         self.performSegueWithIdentifier(self.currentSegueIdentifier, sender: nil)
-        println("I'm loaded, I am container view controller")
         // Do any additional setup after loading the view.
     }
 
@@ -49,6 +48,7 @@ class ContainerViewController: UIViewController {
         
         if (segue.identifier == mapViewSegue) {
             self.mapViewController = segue.destinationViewController as UIViewController
+
         }
         
         if (segue.identifier == aboutViewSegue) {
@@ -89,7 +89,6 @@ class ContainerViewController: UIViewController {
         } else if (segue.identifier == aboutViewSegue) {
             self.swapFromViewController(currentController!, to: aboutViewController)
         } else if (segue.identifier == trucksViewSegue) {
-            println("going to swap")
             self.swapFromViewController(currentController!, to: trucksViewController)
         } else {
             println("Unknown segue detected")
@@ -153,3 +152,4 @@ class ContainerViewController: UIViewController {
     */
 
 }
+            

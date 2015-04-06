@@ -13,13 +13,27 @@ class ScheduleFetcher {
     func getSchedules() -> [String: [String: AnyObject]] {
         return Schedules.schedules
     }
-    
+
+    func getSchedulesBydate(date:String) -> [String: [String: AnyObject]] {
+        var ret = [String: [String: AnyObject]]()
+        for key in Schedules.schedules.keys {
+            var scheduleObject = Schedules.schedules[key]!
+            if var scheduleDate: AnyObject = scheduleObject["date"] {
+                if date == scheduleDate as NSString {
+//                    println("Found target schedule!! \(scheduleObject)")
+                    ret[key] = scheduleObject
+                }
+            }
+        }
+        
+        return ret
+    }
+
     func getSchedulesByTruck(targetTruckId:String) -> [String: [String: AnyObject]] {
         var ret = [String: [String: AnyObject]]()
         for key in Schedules.schedules.keys {
             var scheduleObject = Schedules.schedules[key]!
             if var truckId: AnyObject = scheduleObject["truck_id"] {
-//                println("printing")
                 if targetTruckId == truckId as NSString {
                     println("Found target schedule!! \(scheduleObject)")
                     ret[key] = scheduleObject
@@ -36,7 +50,7 @@ class ScheduleFetcher {
     }
     
     func fetchTrucksInfoFromRemote(completionHandler: () -> ())  {
-        //let startDate = getStartDate()
+//        let startDate = getStartDate()
         let startDate = "03/01"
         let endDate = getEndDate()
         let urlPath = WebService.baseUrl + "scripts/get_trucks_schedule.php?start_date=\(startDate)&end_date=\(endDate)"
@@ -51,7 +65,6 @@ class ScheduleFetcher {
             if (error != nil) {
                 println(error)
             } else {
-                
                 if data != nil {
                     let jsonResults = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as? NSArray
                     

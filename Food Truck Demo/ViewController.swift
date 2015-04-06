@@ -22,11 +22,16 @@ class ViewController: DropdownMenuController {
     }
     @IBAction func schedulesButtonPressed(sender: AnyObject) {
         containerViewController.switchToController("tableViewSegue")
+        hideMenu()
     }
     @IBAction func dateButtonAction(sender: AnyObject) {
         
         picker.hidden = !picker.hidden
         super.view.bringSubviewToFront(picker)
+    }
+    @IBAction func mapsButtonPressed(sender: AnyObject) {
+        containerViewController.switchToController("mapViewSegue")
+        hideMenu()
     }
     
     @IBAction func categoryButtonAction(sender: AnyObject) {
@@ -44,8 +49,11 @@ class ViewController: DropdownMenuController {
     }
     
     override func viewDidLoad() {
+        println("before super.viewDidLoad()")
         super.viewDidLoad()
-        dates = scheduleFetcher.getScheduleDates()
+        println("view controller loaded")
+        //dates = scheduleFetcher.getScheduleDates()
+        dates = ["2015-03-01", "2015-03-02", "2015-03-03"]
     }
 
     // needs to override showMenu to add bringSubviewToFront
@@ -75,6 +83,10 @@ class ViewController: DropdownMenuController {
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         println("this guy selected \(dates[row])")
         Schedules.getSchedulesWithFilter()
+        
+        if let table = containerViewController.currentController as? TableViewController {
+            table.refreshByDate(dates[row])
+        }
     }
     
 }

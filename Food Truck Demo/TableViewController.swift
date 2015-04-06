@@ -23,16 +23,18 @@ class TableViewController: UIViewController, UITableViewDelegate {
         
         if (truckId != nil) {
             // Dangerous: this is not atomic.
-            println("truckId is \(truckId!)")
             self.cellContent = self.scheduleFetcher.getSchedulesByTruck(truckId!)
-            println(self.cellContent)
             self.theTableView.reloadData()
-
         } else {
             fetchSchedules()
         }
-        
     }
+    
+    func refreshByDate(date:String) {
+        self.cellContent = self.scheduleFetcher.getSchedulesBydate(date)
+        self.theTableView.reloadData()
+    }
+    
     
     func fetchSchedules() {
         
@@ -51,7 +53,7 @@ class TableViewController: UIViewController, UITableViewDelegate {
                 loadedImages in
                 self.scheduleFetcher.fetchTrucksInfoFromRemote() {
                     //println("Schedules are ready")
-                    self.cellContent = self.scheduleFetcher.getSchedules()
+                    self.cellContent = self.scheduleFetcher.getSchedulesBydate("2015-03-01")
                     self.theTableView.reloadData()
                     self.imageFetcher.fetchImages {
                         //println("imageFetch is done")

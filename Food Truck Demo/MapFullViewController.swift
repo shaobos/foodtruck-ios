@@ -1,63 +1,55 @@
 //
-//  MapViewController.swift
-//  Food Truck Demo
+//  MapFullViewController.swift
+//  foodtruck-ios
 //
-//  Created by Shaobo Sun on 2/7/15.
+//  Created by Shaobo Sun on 4/5/15.
 //  Copyright (c) 2015 Shaobo Sun. All rights reserved.
 //
+
 
 import UIKit
 import MapKit
 import CoreLocation
 
-class MapViewController: ScheduleAwareViewController, MKMapViewDelegate {
-
+class MapFullViewController: UIViewController, MKMapViewDelegate {
+    
     var scheduleFetcher = ScheduleFetcher()
     var trucks = Trucks()
     var imageFetcher = ImageFetcher()
     // TODO: a dirty solution to pass around schedule id
     var currentScheduleId : String = ""
     var previousController : String = ""
-    var toTruckDetailViewSegue = "MapToDetailSegue"
-    var toTableViewSegue = "MapToTableViewSegue"
+    var toTruckDetailViewSegue = "MapFullToDetailSegue"
     
-
     @IBOutlet weak var mapView: MKMapView!
-
-    @IBAction func BackButtonPressed(sender: AnyObject) {
-        if (previousController.isEmpty || previousController == "tableView") {
-            performSegueWithIdentifier(toTableViewSegue, sender: nil)
-        } else {
-            performSegueWithIdentifier(toTruckDetailViewSegue, sender: nil)
-        }
-    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         trucks.fetchTrucksInfoFromRemote {
             loadedImages in
             self.scheduleFetcher.fetchTrucksInfoFromRemote() {
                 println("Schedules are ready")
-                // TODO: should be able to decide the region more intelligently
-                // TODO: refactor the craps here
-//                var latitute:CLLocationDegrees = 37.393315
-//                var longitute:CLLocationDegrees = -122.061475
+                // TODO: extract some code from here and MapViewController
                 var schedules = self.scheduleFetcher.getSchedules()
-                
-               // for scheduleId in schedules.keys {
-                    var schedule:[String: AnyObject] = schedules[self.scheduleId]!
-                    self.createAnnotations(self.scheduleId, singleScheduleObject: schedule)
-               // }
+                for scheduleId in schedules.keys {
+                    var schedule:[String: AnyObject] = schedules[scheduleId]!
+                    self.createAnnotations(scheduleId, singleScheduleObject: schedule)
+                }
             }
         }
     }
     
+    
+    func refreshByDate() {
+        
+        
+    }
     
     
     func createAnnotations(scheduleId: String, singleScheduleObject schedule: [String: AnyObject]) {
@@ -76,10 +68,10 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate {
         
         println("1. \(annotation.scheduleId)")
         self.setRegion(lat, longitute: lon)
-
+        
         self.mapView.addAnnotation(annotation)
     }
-
+    
     /*
         tell schedule detail view what should be prepared for dinner today
     */
@@ -87,8 +79,8 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate {
         
         if (segue.identifier! == toTruckDetailViewSegue) {
             var destViewController: TruckDetailsScrollViewController = segue.destinationViewController as TruckDetailsScrollViewController
-            //destViewController.setPrevViewController("Map!")
-            var truckId = Schedules.getTruckIdByScheduleId(self.scheduleId)
+            destViewController.setPrevViewController("Map!")
+            var truckId = Schedules.getTruckIdByScheduleId(currentScheduleId)
             destViewController.setTruckId(truckId!)
         }
     }
@@ -122,21 +114,21 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate {
         }
         
         pinAnnotationView.leftCalloutAccessoryView = deleteButton
-
+        
         return pinAnnotationView
     }
-
+    
     /*
         this function customizes what happens when button in left callout accessory view is clicked..
     */
     func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
-
+        
         var foodTruckAnnotation = view.annotation as FoodTruckMapAnnotation
         self.currentScheduleId = foodTruckAnnotation.scheduleId
-        performSegueWithIdentifier("MapToDetailSegue", sender: nil)
+        performSegueWithIdentifier("MapFullToDetailSegue", sender: nil)
         // this is the last stop where we can still access annotation
     }
-
+    
     func setRegion(latitute:CLLocationDegrees, longitute:CLLocationDegrees) {
         // how many degrees it would zoom out by default, 1 would be a lot
         var latDelta:CLLocationDegrees = 1
@@ -148,5 +140,7 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate {
         mapView.setRegion(region, animated: false)
     }
 
-
+    
+    
+    
 }

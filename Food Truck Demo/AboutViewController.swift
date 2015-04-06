@@ -12,8 +12,6 @@ class AboutViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        println("AboutView Loaded!")
         // Do any additional setup after loading the view.
     }
 

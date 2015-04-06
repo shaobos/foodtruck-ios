@@ -18,10 +18,42 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gtu-Js-hdy">
-                                <rect key="frame" x="0.0" y="53" width="171" height="118"/>
+                                <rect key="frame" x="0.0" y="53" width="171" height="160"/>
                                 <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HDm-HW-uVY">
+                                        <rect key="frame" x="0.0" y="0.0" width="171" height="40"/>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Schedules">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="schedulesButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="djd-Bw-UF5"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9RO-Lg-O4H">
+                                        <rect key="frame" x="0.0" y="40" width="171" height="40"/>
+                                        <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Maps">
+                                            <color key="titleShadowColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="mapsButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="d8F-GO-Hzm"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WbV-Kr-eqd">
+                                        <rect key="frame" x="0.0" y="80" width="171" height="40"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Trucks">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="trucksButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="mav-Wi-0Fa"/>
+                                        </connections>
+                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gTj-4B-jU5">
-                                        <rect key="frame" x="0.0" y="79" width="171" height="45"/>
+                                        <rect key="frame" x="0.0" y="120" width="171" height="40"/>
                                         <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="About">
                                             <color key="titleColor" red="0.60000002379999995" green="0.40000000600000002" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -31,32 +63,12 @@
                                             <action selector="aboutButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="SxA-qO-cD7"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WbV-Kr-eqd">
-                                        <rect key="frame" x="0.0" y="41" width="171" height="37"/>
-                                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <state key="normal" title="Trucks">
-                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="trucksButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="mav-Wi-0Fa"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HDm-HW-uVY">
-                                        <rect key="frame" x="0.0" y="8" width="171" height="30"/>
-                                        <state key="normal" title="Schedules">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="schedulesButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="djd-Bw-UF5"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <pickerView hidden="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hAe-hH-OtK">
                                 <rect key="frame" x="0.0" y="505" width="375" height="162"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                <color key="backgroundColor" red="0.43529411764705883" green="0.44313725490196076" blue="0.47450980392156861" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="vXZ-lx-hvc" id="cOG-9v-gHf"/>
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="cqc-oY-RKG"/>
@@ -88,19 +100,6 @@
                                         <connections>
                                             <action selector="categoryButtonAction:" destination="vXZ-lx-hvc" id="VAa-7I-g5h"/>
                                         </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="A4m-hz-hEj"/>
-                                    <barButtonItem style="plain" id="wYj-YG-MrN">
-                                        <button key="customView" hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="eQD-XD-fIt">
-                                            <rect key="frame" x="299" y="-2" width="61" height="48"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="Map/List">
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="ButtonPressed:" destination="vXZ-lx-hvc" eventType="touchDown" id="dKb-sZ-3hc"/>
-                                            </connections>
-                                        </button>
                                     </barButtonItem>
                                 </items>
                             </toolbar>
@@ -148,7 +147,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="I'm container view" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HyN-9w-CeN">
                                 <rect key="frame" x="111" y="224" width="153" height="124"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -157,15 +156,46 @@
                     <toolbarItems/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <segue destination="2QD-SR-EH0" kind="custom" identifier="mapViewSegue" customClass="EmptySegue" customModule="foodtruck_ios" customModuleProvider="target" id="Oe2-jk-MZi"/>
                         <segue destination="1mV-At-hd7" kind="custom" identifier="tableViewSegue" customClass="EmptySegue" customModule="foodtruck_ios" customModuleProvider="target" id="F8S-av-vUA"/>
                         <segue destination="wag-Lw-Jkd" kind="custom" identifier="aboutViewSegue" customClass="EmptySegue" customModule="foodtruck_ios" customModuleProvider="target" id="3Kw-2h-Kf6"/>
                         <segue destination="egT-WG-00L" kind="custom" identifier="trucksViewSegue" customClass="EmptySegue" customModule="foodtruck_ios" customModuleProvider="target" id="AWU-og-rpg"/>
+                        <segue destination="axC-Ml-BMx" kind="custom" identifier="mapViewSegue" customClass="EmptySegue" customModule="foodtruck_ios" customModuleProvider="target" id="n82-dF-unX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5rX-yC-uvf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-282.5" y="-1004.5"/>
+            <point key="canvasLocation" x="43.5" y="-887.5"/>
+        </scene>
+        <!--Map Full View Controller-->
+        <scene sceneID="NYl-UP-emK">
+            <objects>
+                <viewController id="axC-Ml-BMx" customClass="MapFullViewController" customModule="foodtruck_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ovU-Wp-5Cv"/>
+                        <viewControllerLayoutGuide type="bottom" id="RdL-ic-ERV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4rm-RL-coS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Mlu-f0-y1c">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <connections>
+                                    <outlet property="delegate" destination="axC-Ml-BMx" id="9Eb-60-QGp"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="mapView" destination="Mlu-f0-y1c" id="Xwb-jN-4PL"/>
+                        <segue destination="0JO-0b-VHK" kind="show" identifier="MapFullToDetailSegue" id="Iy1-gB-lBZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fqj-yK-wYY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-124" y="469"/>
         </scene>
         <!--About View Controller-->
         <scene sceneID="1DS-9f-A36">
@@ -197,7 +227,7 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QYQ-BP-7I4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-139.5" y="24.5"/>
+            <point key="canvasLocation" x="370.5" y="120.5"/>
         </scene>
         <!--Trucks Table View Controller-->
         <scene sceneID="p0P-JE-pcl">
@@ -211,7 +241,7 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="121" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="dJZ-zZ-GNA">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="121" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="dJZ-zZ-GNA">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -226,13 +256,13 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Osd-0N-5zU">
                                                     <rect key="frame" x="144" y="21" width="168" height="36"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Yj-bm-TrX">
                                                     <rect key="frame" x="190" y="79" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -251,6 +281,10 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="dJZ-zZ-GNA" firstAttribute="leading" secondItem="2VM-cP-JSj" secondAttribute="leadingMargin" constant="-16" id="KCz-77-YfI"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="dJZ-zZ-GNA" secondAttribute="trailing" constant="-16" id="pxg-21-9Sl"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
@@ -273,14 +307,8 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="4Q2-gJ-Cuj">
-                                <rect key="frame" x="0.0" y="57" width="320" height="511"/>
-                                <connections>
-                                    <outlet property="delegate" destination="2QD-SR-EH0" id="0z4-qn-JAR"/>
-                                </connections>
-                            </mapView>
                             <navigationBar contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="11V-uc-YzN">
-                                <rect key="frame" x="-5" y="57" width="331" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="331" height="44"/>
                                 <items>
                                     <navigationItem id="0TM-M6-JEP">
                                         <barButtonItem key="leftBarButtonItem" style="plain" id="eCS-vU-wJg">
@@ -290,18 +318,27 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                                                 <state key="normal" title="Back">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="BackButtonPressed:" destination="2QD-SR-EH0" eventType="touchUpInside" id="jed-Us-gTN"/>
+                                                </connections>
                                             </button>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="4Q2-gJ-Cuj">
+                                <rect key="frame" x="0.0" y="72" width="320" height="496"/>
+                                <connections>
+                                    <outlet property="delegate" destination="2QD-SR-EH0" id="0z4-qn-JAR"/>
+                                </connections>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="11V-uc-YzN" firstAttribute="leading" secondItem="OMm-Ux-aTu" secondAttribute="leadingMargin" constant="-16" id="3oi-or-5I8"/>
                             <constraint firstAttribute="trailingMargin" secondItem="11V-uc-YzN" secondAttribute="trailing" constant="-16" id="HSm-t5-CKQ"/>
-                            <constraint firstItem="4Q2-gJ-Cuj" firstAttribute="top" secondItem="rnb-5a-j1P" secondAttribute="bottom" constant="150" id="ILg-TK-S5Q"/>
                             <constraint firstItem="RaC-F8-w22" firstAttribute="top" secondItem="4Q2-gJ-Cuj" secondAttribute="bottom" id="Yfu-yq-4S1"/>
+                            <constraint firstItem="4Q2-gJ-Cuj" firstAttribute="top" secondItem="11V-uc-YzN" secondAttribute="bottom" id="Yz5-PP-t9b"/>
                             <constraint firstItem="4Q2-gJ-Cuj" firstAttribute="leading" secondItem="OMm-Ux-aTu" secondAttribute="leadingMargin" constant="-16" id="aQB-vx-PBk"/>
                             <constraint firstAttribute="trailingMargin" secondItem="4Q2-gJ-Cuj" secondAttribute="trailing" constant="-16" id="rrS-e4-kqK"/>
                         </constraints>
@@ -310,11 +347,12 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                     <connections>
                         <outlet property="mapView" destination="4Q2-gJ-Cuj" id="1jO-Ub-bdE"/>
                         <segue destination="0JO-0b-VHK" kind="show" identifier="MapToDetailSegue" id="Mtf-mb-EXS"/>
+                        <segue destination="vXZ-lx-hvc" kind="show" identifier="MapToTableViewSegue" id="9EX-56-VCF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FAz-wF-GNi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-620" y="113"/>
+            <point key="canvasLocation" x="-600" y="491"/>
         </scene>
         <!--Truck Details Scroll View Controller-->
         <scene sceneID="gHx-fZ-Tcg">
@@ -328,16 +366,16 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                         <rect key="frame" x="0.0" y="0.0" width="320" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WDh-i0-tDw">
-                                <rect key="frame" x="0.0" y="26" width="340" height="742"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WDh-i0-tDw">
+                                <rect key="frame" x="0.0" y="29" width="320" height="742"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gyJ-IB-lYz">
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gyJ-IB-lYz">
                                         <rect key="frame" x="0.0" y="14" width="320" height="714"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Category" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="igX-iw-qWB">
                                                 <rect key="frame" x="16" y="217" width="120" height="24"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HnU-CP-kC3">
@@ -346,10 +384,10 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Url" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AEQ-xq-mIZ">
                                                 <rect key="frame" x="16" y="232" width="288" height="60"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0hf-xQ-873">
+                                            <navigationBar contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0hf-xQ-873">
                                                 <rect key="frame" x="0.0" y="8" width="320" height="44"/>
                                                 <items>
                                                     <navigationItem title="Title" id="NZg-lt-bBp">
@@ -368,14 +406,14 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z7Y-rx-gpk">
                                                 <rect key="frame" x="144" y="91" width="160" height="36"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="sbd-0e-xpw">
-                                                <rect key="frame" x="0.0" y="275" width="320" height="164"/>
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" pagingEnabled="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="sbd-0e-xpw">
+                                                <rect key="frame" x="0.0" y="324" width="320" height="93"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="8wh-YM-2wk">
-                                                    <size key="itemSize" width="81" height="78"/>
+                                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="8wh-YM-2wk">
+                                                    <size key="itemSize" width="93" height="93"/>
                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -385,11 +423,11 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                            <rect key="frame" x="0.0" y="0.0" width="81" height="78"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="93" height="93"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mKF-j6-JXj">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="101" height="91"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="93" height="93"/>
                                                                 </imageView>
                                                             </subviews>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -405,7 +443,7 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                                                 </connections>
                                             </collectionView>
                                             <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pBV-Ng-2Km">
-                                                <rect key="frame" x="0.0" y="420" width="320" height="300"/>
+                                                <rect key="frame" x="0.0" y="416" width="320" height="281"/>
                                                 <connections>
                                                     <segue destination="1mV-At-hd7" kind="embed" identifier="TruckDetailContainerToTable" id="OdQ-3H-74I"/>
                                                 </connections>
@@ -414,8 +452,9 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="sbd-0e-xpw" firstAttribute="leading" secondItem="gyJ-IB-lYz" secondAttribute="leading" id="0fG-X4-o1w"/>
+                                            <constraint firstItem="0hf-xQ-873" firstAttribute="leading" secondItem="gyJ-IB-lYz" secondAttribute="leading" id="2bi-mE-pae"/>
+                                            <constraint firstAttribute="trailing" secondItem="0hf-xQ-873" secondAttribute="trailing" id="4bL-b5-Wzh"/>
                                             <constraint firstAttribute="height" constant="714" id="5va-pc-lLz"/>
-                                            <constraint firstAttribute="width" constant="320" id="JLK-sr-LON"/>
                                             <constraint firstAttribute="trailing" secondItem="sbd-0e-xpw" secondAttribute="trailing" id="LLp-f5-6ik"/>
                                             <constraint firstItem="pBV-Ng-2Km" firstAttribute="leading" secondItem="gyJ-IB-lYz" secondAttribute="leading" id="atr-8f-8pa"/>
                                             <constraint firstAttribute="trailing" secondItem="pBV-Ng-2Km" secondAttribute="trailing" id="m5U-rp-2xe"/>
@@ -424,7 +463,7 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="gyJ-IB-lYz" secondAttribute="bottom" id="4ko-mk-lHg"/>
-                                    <constraint firstAttribute="trailing" secondItem="gyJ-IB-lYz" secondAttribute="trailing" constant="-36" id="IxB-kM-kSl"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="gyJ-IB-lYz" secondAttribute="trailing" id="IxB-kM-kSl"/>
                                     <constraint firstItem="gyJ-IB-lYz" firstAttribute="top" secondItem="WDh-i0-tDw" secondAttribute="top" id="mVD-kc-bTJ"/>
                                     <constraint firstItem="gyJ-IB-lYz" firstAttribute="leading" secondItem="WDh-i0-tDw" secondAttribute="leading" id="mWy-UR-4f8"/>
                                 </constraints>
@@ -432,7 +471,7 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="WDh-i0-tDw" secondAttribute="trailing" constant="-36" id="BKj-sQ-sPB"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="WDh-i0-tDw" secondAttribute="trailing" constant="-16" id="BKj-sQ-sPB"/>
                             <constraint firstAttribute="bottomMargin" secondItem="WDh-i0-tDw" secondAttribute="bottom" id="Rob-C2-rBp"/>
                             <constraint firstItem="WDh-i0-tDw" firstAttribute="top" secondItem="Rzv-A6-6y2" secondAttribute="bottom" id="oa0-tk-muT"/>
                             <constraint firstItem="WDh-i0-tDw" firstAttribute="leading" secondItem="YNU-xO-mqM" secondAttribute="leadingMargin" constant="-16" id="rU7-6b-4Ve"/>
@@ -448,7 +487,7 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rkB-uC-7nK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1111" y="-1344"/>
+            <point key="canvasLocation" x="-1069" y="-1305"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="RcX-TL-Tiv">
@@ -474,7 +513,7 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Truck NAme" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UBq-W8-Wl6">
                                                     <rect key="frame" x="101" y="-6" width="211" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="63k-o3-ziX">
@@ -483,25 +522,25 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uot-tQ-I6m">
                                                     <rect key="frame" x="101" y="81" width="84" height="26"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6jh-x5-VOb">
                                                     <rect key="frame" x="101" y="17" width="178" height="43"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wTb-by-WVE">
                                                     <rect key="frame" x="101" y="59" width="178" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KlB-ib-cn3">
                                                     <rect key="frame" x="183" y="82" width="73" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -536,12 +575,11 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xd7-ER-WSR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1124" y="122"/>
+            <point key="canvasLocation" x="-1255" y="332"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="PXb-th-F6S"/>
-        <segue reference="OdQ-3H-74I"/>
-        <segue reference="mFK-Xr-MOU"/>
+        <segue reference="Iy1-gB-lBZ"/>
+        <segue reference="F8S-av-vUA"/>
     </inferredMetricsTieBreakers>
 </document>
