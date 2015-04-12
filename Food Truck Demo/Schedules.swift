@@ -32,17 +32,17 @@ scheduleId consists of truckId + date + start time + address for now
 struct Schedules {
     static var schedules = [String: [String: AnyObject]]()
 
-    static func getSchedulesWithFilter() -> [String: [String: AnyObject]] {
-        var ret = [String: [String: AnyObject]]()
-        for (scheduleId, scheduleObject) in schedules {
-            var convert = scheduleObject as [String: AnyObject]
-            if (convert["date"] as? String == "2015-03-09") {
-                ret[scheduleId] = scheduleObject
-            }
-        }
-        
-        return schedules
-    }
+//    static func getSchedulesWithFilter() -> [String: [String: AnyObject]] {
+//        var ret = [String: [String: AnyObject]]()
+//        for (scheduleId, scheduleObject) in schedules {
+//            var convert = scheduleObject as [String: AnyObject]
+//            if (convert["date"] as? String == "2015-03-09") {
+//                ret[scheduleId] = scheduleObject
+//            }
+//        }
+//        
+//        return schedules
+//    }
     
     static func getTruckIdByScheduleId(scheduleId: String) -> String? {
         var truckId:String?

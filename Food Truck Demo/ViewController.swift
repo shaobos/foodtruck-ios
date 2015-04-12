@@ -11,14 +11,20 @@ import UIKit
 class ViewController: DropdownMenuController {
     
     var scheduleFetcher = ScheduleFetcher()
+    func getDates() -> [String]{
+        return dates
+    }
+    
     var dates = [String]()
     @IBOutlet var containerViewController: ContainerViewController!
     @IBOutlet weak var picker: UIPickerView!
     @IBAction func aboutButtonPressed(sender: AnyObject) {
         containerViewController.switchToController("aboutViewSegue")
+        hideMenu()
     }
     @IBAction func trucksButtonPressed(sender: AnyObject) {
         containerViewController.switchToController("trucksViewSegue")
+        hideMenu()
     }
     @IBAction func schedulesButtonPressed(sender: AnyObject) {
         containerViewController.switchToController("tableViewSegue")
@@ -52,8 +58,8 @@ class ViewController: DropdownMenuController {
         println("before super.viewDidLoad()")
         super.viewDidLoad()
         println("view controller loaded")
-        //dates = scheduleFetcher.getScheduleDates()
-        dates = ["2015-03-01", "2015-03-02", "2015-03-03"]
+        dates = scheduleFetcher.getScheduleDates()
+        //dates = ["2015-03-01", "2015-03-02", "2015-03-03"]
     }
 
     // needs to override showMenu to add bringSubviewToFront
@@ -82,11 +88,16 @@ class ViewController: DropdownMenuController {
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         println("this guy selected \(dates[row])")
-        Schedules.getSchedulesWithFilter()
+        //Schedules.getSchedulesWithFilter()
         
         if let table = containerViewController.currentController as? TableViewController {
             table.refreshByDate(dates[row])
+        } else if let map = containerViewController.currentController as? MapFullViewController {
+            // TODO: wait until "unexpectedly found nil" is fixed
+            //map.filterAnnotationByDate(dates[row])
+            
         }
+        pickerView.hidden = true
     }
     
 }

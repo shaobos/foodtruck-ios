@@ -20,12 +20,27 @@ class MapFullViewController: UIViewController, MKMapViewDelegate {
     var currentScheduleId : String = ""
     var previousController : String = ""
     var toTruckDetailViewSegue = "MapFullToDetailSegue"
+    var annotations = [FoodTruckMapAnnotation]()
     
     @IBOutlet weak var mapView: MKMapView!
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func filterAnnotationByDate(date:String) {
+        if (annotations.count > 0) {
+            for annotation in annotations {
+                // TODO: subtitle is date, but this is confusing
+                var viewForAnnotation = self.mapView.viewForAnnotation(annotation)
+                if annotation.subtitle == date {
+                    viewForAnnotation.hidden = false
+                } else {
+                    viewForAnnotation.hidden = true
+                }
+            }
+        }
     }
     
     override func viewDidLoad() {
@@ -39,26 +54,20 @@ class MapFullViewController: UIViewController, MKMapViewDelegate {
                 var schedules = self.scheduleFetcher.getSchedules()
                 for scheduleId in schedules.keys {
                     var schedule:[String: AnyObject] = schedules[scheduleId]!
-                    self.createAnnotations(scheduleId, singleScheduleObject: schedule)
+                    var annotation = self.createAnnotations(scheduleId, singleScheduleObject: schedule)
+                    self.annotations.append(annotation)
                 }
             }
         }
     }
-    
-    
-    func refreshByDate() {
-        
-        
-    }
-    
-    
-    func createAnnotations(scheduleId: String, singleScheduleObject schedule: [String: AnyObject]) {
+
+    func createAnnotations(scheduleId: String, singleScheduleObject schedule: [String: AnyObject]) -> FoodTruckMapAnnotation {
         
         println("scheduleId is \(scheduleId)")
         
-        var lat:CLLocationDegrees = (schedule["lat"] as NSString).doubleValue
-        var lon:CLLocationDegrees = (schedule["lng"] as NSString).doubleValue
-        var newCoordinate :CLLocationCoordinate2D = CLLocationCoordinate2DMake(lat, lon)
+        var latitude:CLLocationDegrees = (schedule["lat"] as NSString).doubleValue
+        var longitude:CLLocationDegrees = (schedule["lng"] as NSString).doubleValue
+        var newCoordinate :CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
         var annotation:FoodTruckMapAnnotation = FoodTruckMapAnnotation()
         annotation.coordinate = newCoordinate
         annotation.title = schedule["name"] as String
@@ -67,9 +76,15 @@ class MapFullViewController: UIViewController, MKMapViewDelegate {
         annotation.scheduleId = scheduleId
         
         println("1. \(annotation.scheduleId)")
-        self.setRegion(lat, longitute: lon)
+        if latitude > 180 || latitude < -180 || longitude > 180 || longitude < -180 {
+            println("invalid longitude/latitude \(longitude)/\(latitude)")
+        } else {
+            self.setRegion(latitude, longitude: longitude)
+            self.mapView.addAnnotation(annotation)
+        }
         
-        self.mapView.addAnnotation(annotation)
+        return annotation
+        
     }
     
     /*
@@ -79,7 +94,7 @@ class MapFullViewController: UIViewController, MKMapViewDelegate {
         
         if (segue.identifier! == toTruckDetailViewSegue) {
             var destViewController: TruckDetailsScrollViewController = segue.destinationViewController as TruckDetailsScrollViewController
-            destViewController.setPrevViewController("Map!")
+            //destViewController.setPrevViewController("Map!")
             var truckId = Schedules.getTruckIdByScheduleId(currentScheduleId)
             destViewController.setTruckId(truckId!)
         }
@@ -129,17 +144,29 @@ class MapFullViewController: UIViewController, MKMapViewDelegate {
         // this is the last stop where we can still access annotation
     }
     
-    func setRegion(latitute:CLLocationDegrees, longitute:CLLocationDegrees) {
+    func setRegion(latitude:CLLocationDegrees, longitude:CLLocationDegrees) {
         // how many degrees it would zoom out by default, 1 would be a lot
         var latDelta:CLLocationDegrees = 1
         var lonDelta:CLLocationDegrees = 1
         
         var span:MKCoordinateSpan = MKCoordinateSpanMake(latDelta, lonDelta)
-        var location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitute, longitute)
+        var location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
         var region:MKCoordinateRegion = MKCoordinateRegionMake(location, span)
-        mapView.setRegion(region, animated: false)
+
+        if latitude > 180 || latitude < -180 || longitude > 180 || longitude < -180 {
+            
+        } else {
+            mapView.setRegion(region, animated: false)
+
+        }
+        //mapView.setRegion(region, animated: true)
     }
 
+    
+//    func refreshByDate(date:String) {
+//        self.cellContent = self.scheduleFetcher.getSchedulesBydate(date)
+//        self.theTableView.reloadData()
+//    }
     
     
     

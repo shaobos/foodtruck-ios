@@ -13,7 +13,7 @@ class ScheduleFetcher {
     func getSchedules() -> [String: [String: AnyObject]] {
         return Schedules.schedules
     }
-
+    
     func getSchedulesBydate(date:String) -> [String: [String: AnyObject]] {
         var ret = [String: [String: AnyObject]]()
         for key in Schedules.schedules.keys {
@@ -50,8 +50,8 @@ class ScheduleFetcher {
     }
     
     func fetchTrucksInfoFromRemote(completionHandler: () -> ())  {
-//        let startDate = getStartDate()
-        let startDate = "03/01"
+        let startDate = getStartDate()
+        //let startDate = "03/01"
         let endDate = getEndDate()
         let urlPath = WebService.baseUrl + "scripts/get_trucks_schedule.php?start_date=\(startDate)&end_date=\(endDate)"
         
@@ -80,6 +80,7 @@ class ScheduleFetcher {
                 }
                 
                 dispatch_async(dispatch_get_main_queue(), {
+                    println("Done")
                     completionHandler()
                 })
             }
@@ -112,10 +113,9 @@ class ScheduleFetcher {
     func getScheduleDates () -> [String] {
         var today = NSDate()
         let formatter  = NSDateFormatter()
-        formatter.dateFormat = "MM/dd"
+        formatter.dateFormat = "YYYY-MM-dd"
         var dates = [String]()
-
-
+        
         // this can definitely be more efficient
         for i in 0...lengthOfSchedules {
             let currentDate = NSCalendar.currentCalendar().dateByAddingUnit(

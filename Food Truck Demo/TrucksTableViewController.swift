@@ -27,6 +27,8 @@ class TrucksTableViewController : UIViewController, UITableViewDelegate{
         if let theImage: Image = Images.truckImages[id] {
             customCell.truckImage.image =  theImage.image
         }
+        customCell.name.text = truck["name"] ?? "Truck name not found"
+        customCell.category.text = truck["category"] ?? "Category not found"
         return customCell
     }
     

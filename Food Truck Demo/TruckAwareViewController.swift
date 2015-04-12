@@ -8,7 +8,7 @@
 
 class TruckAwareViewController : UIViewController {
     
-    var truckId: String = ""
+    var truckId: String?
     
     func setTruckId(truckId:String) {
         self.truckId = truckId

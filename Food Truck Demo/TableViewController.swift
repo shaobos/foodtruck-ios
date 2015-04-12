@@ -17,16 +17,25 @@ class TableViewController: UIViewController, UITableViewDelegate {
     
     var truckId:String? // could be called from truckd detail view
     
+    func setTruckId(truckId: String) {
+        self.truckId = truckId
+        println("set \(self.truckId)")
+
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // TODO: better to intialize data fetch in main view controller
         
+        println("howdy \(self.truckId)")
         if (truckId != nil) {
             // Dangerous: this is not atomic.
             self.cellContent = self.scheduleFetcher.getSchedulesByTruck(truckId!)
             self.theTableView.reloadData()
         } else {
             fetchSchedules()
+
         }
     }
     
@@ -34,7 +43,6 @@ class TableViewController: UIViewController, UITableViewDelegate {
         self.cellContent = self.scheduleFetcher.getSchedulesBydate(date)
         self.theTableView.reloadData()
     }
-    
     
     func fetchSchedules() {
         
@@ -44,7 +52,6 @@ class TableViewController: UIViewController, UITableViewDelegate {
                 self.theTableView.reloadData()
             } else {
                 self.imageFetcher.fetchImages {
-                    //println("imageFetch is done")
                     self.theTableView.reloadData()
                 }
             }
@@ -52,13 +59,19 @@ class TableViewController: UIViewController, UITableViewDelegate {
             trucks.fetchTrucksInfoFromRemote {
                 loadedImages in
                 self.scheduleFetcher.fetchTrucksInfoFromRemote() {
-                    //println("Schedules are ready")
-                    self.cellContent = self.scheduleFetcher.getSchedulesBydate("2015-03-01")
+                    var dates:[String] = self.scheduleFetcher.getScheduleDates()
+                    // initialize schedules with the first day of 7 days
+                    if (dates.count > 0) {
+                        println("Initilize table view with date \(dates[0])")
+                        //refreshByDate(dates[0])
+                        self.cellContent = self.scheduleFetcher.getSchedulesBydate(dates[0])
+
+                    } else {
+                        println("Cannot initialize table view with the first day. Date info is not available yet")
+                    }
                     self.theTableView.reloadData()
                     self.imageFetcher.fetchImages {
-                        //println("imageFetch is done")
                         self.theTableView.reloadData()
-                        //println("refreshed table view")
                     }
                 }
             }

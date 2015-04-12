@@ -23,29 +23,40 @@ class ImageFetcher {
         http://130.211.191.208/trucks/Taqueria_Angelicas/reduced/logo.jpg
     */
     func fetchImageByTruckId(truckId : String?, callback: () -> Void) -> UIImage? {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
-            var urlPath = WebService.baseUrl + "/scripts/get_truck_img.php?truck=" + truckId!
-            WebService.request(urlPath, callback: {
-                data -> Void in
-                
-                let jsonResults = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSArray
-                
-                // Parallelize it!
-                for picPath in jsonResults {
-                    var pictureUrl = WebService.baseUrl + (picPath as NSString)
-                    println("DEBUG: \(pictureUrl)")
-                    var image = self.fetchImage(pictureUrl)
+        
+        if let theTruckId = truckId {
+            if (TruckDetailImages.truckImages[theTruckId] != nil) {
+                callback()
+            }
+            
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
+                var urlPath = WebService.baseUrl + "/scripts/get_truck_img.php?truck=" + theTruckId
+                WebService.request(urlPath, callback: {
+                    data -> Void in
                     
-                    if TruckDetailImages.truckImages[truckId!] == nil {
-                        TruckDetailImages.truckImages[truckId!] = [UIImage]()
+                    let jsonResults = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSArray
+                    
+                    // Parallelize it!
+                    for picPath in jsonResults {
+                        var pictureUrl = WebService.baseUrl + (picPath as NSString)
+                  //      println("DEBUG: \(pictureUrl)")
+                        var image = self.fetchImage(pictureUrl)
+                        
+                        if TruckDetailImages.truckImages[truckId!] == nil {
+                            TruckDetailImages.truckImages[truckId!] = [UIImage]()
+                        }
+                        TruckDetailImages.truckImages[truckId!]!.insert(image, atIndex: 0)
+                        //println(TruckDetailImages.truckImages[truckId!]!.count)
                     }
-                    TruckDetailImages.truckImages[truckId!]!.insert(image, atIndex: 0)
-                    println(TruckDetailImages.truckImages[truckId!]!.count)
-                }
-                dispatch_sync(dispatch_get_main_queue(), {
-                    callback()
+                    dispatch_sync(dispatch_get_main_queue(), {
+                        callback()
+                    })
                 })
-            })
+            }
+        } else {
+            println("ImageFetcher - truckId is nil")
+            callback()
+        
         }
         // TODO: show a default picture if possible
         return nil

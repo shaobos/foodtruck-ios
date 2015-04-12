@@ -1,4 +1,4 @@
-//
+    //
 //  TruckDetailsViewControllerWithScroll.swift
 //  foodtruck-ios
 //
@@ -8,6 +8,12 @@
 
 class TruckDetailsScrollViewController : TruckAwareViewController, UICollectionViewDelegate {
     
+    @IBAction func backButtonPressed(sender: AnyObject) {
+        println("pressed, pressed!")
+        self.dismissViewControllerAnimated(false, completion: {})
+    }
+        
+    //restore
     @IBOutlet weak var theTitle: UILabel!
     @IBOutlet weak var image: UIImageView!
     
@@ -19,18 +25,13 @@ class TruckDetailsScrollViewController : TruckAwareViewController, UICollectionV
     var scheduleToMapSegueID : String = "ScheduleToMapSegue"
     var inputLabel:String = ""
     
+    var currentImage:UIImage?
+    
     @IBOutlet weak var theCollectionView: UICollectionView!
     var collectionCellReusableId = "TruckDetailCollectionCell"
     
     @IBOutlet weak var anotherLabel: UILabel!
-    @IBAction func backButton(sender: UIBarButtonItem) {
-        performSegueWithIdentifier("ScheduleToMainSegue", sender: nil)
-    }
-    
-    func setPrevViewController(prev: String) {
-        self.previousViewControllerName = prev
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         println("who is my previous controller \(self.previousViewControllerName)")
@@ -39,29 +40,29 @@ class TruckDetailsScrollViewController : TruckAwareViewController, UICollectionV
         theTitle.text = inputLabel
         
         imageFetcher.fetchImageByTruckId(self.truckId, {
-            
             println("Done fetching. Refreshing collection view")
             self.theCollectionView.reloadData()
             
         })
         renderView()
     }
+    @IBOutlet weak var category: UILabel!
     
+    @IBOutlet weak var url: UILabel!
     func renderView() {
-        // TODO: nil checking
-        if let truck = TheTrucks.trucks[self.truckId] {
-            theTitle.text = truck["name"]
-            if let theImage: Image = Images.truckImages[self.truckId] {
-                image?.image =  theImage.image
+        if let truckId = self.truckId {
+            if let truck = TheTrucks.trucks[truckId] {
+                theTitle.text = truck["name"]
+                url.text = truck["url"]
+                category.text = truck["category"]
+                if let theImage: Image = Images.truckImages[truckId] {
+                    image?.image =  theImage.image
+                }
+                
             }
+        } else {
+            println("TruckDetailsScrollViewController - truckId is unset")
         }
-        
-//        startTime.text = schedule["start_time"] as? String
-//        endTime.text = schedule["end_time"] as? String
-//        address.text = schedule["address"] as? String
-//        date.text = schedule["date"] as? String
-//        
-
     }
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -69,35 +70,34 @@ class TruckDetailsScrollViewController : TruckAwareViewController, UICollectionV
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        println("i'm here to get number of images")
-
-        if let truckImages = TruckDetailImages.truckImages[self.truckId] {
-            println("it's \(truckImages.count)")
+        if let truckImages = TruckDetailImages.truckImages[self.truckId!] {
             return truckImages.count
         } else {
-            println("it's nil!!")
-
             return 0
         }
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        
-        println("i'm here to get cell")
-
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(collectionCellReusableId, forIndexPath: indexPath) as CollectionViewCell
         cell.imageView.image = photoForIndexPath(indexPath)
         return cell
     }
     
     func photoForIndexPath(indexPath: NSIndexPath) -> UIImage {
-        let truckImages:[UIImage] = TruckDetailImages.truckImages[self.truckId]!
-        
+        let truckImages:[UIImage] = TruckDetailImages.truckImages[self.truckId!]!
         return truckImages[indexPath.row]
     }
     
-    func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
-        println("An image was clicked!!")
+    /*
+        When an image is clicked
+    */
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+
+        println("An image was clicked!! \(indexPath.length) \(indexPath.item) \(indexPath.section) and \(indexPath.row)")
+
+        var cell = collectionView.cellForItemAtIndexPath(indexPath) as CollectionViewCell
+        currentImage = cell.imageView.image
+        performSegueWithIdentifier("TruckDetailToLargeImageSegue", sender: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -106,15 +106,22 @@ class TruckDetailsScrollViewController : TruckAwareViewController, UICollectionV
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        println("segue is happening!!")
-        var destViewController = segue.destinationViewController as TableViewController
-        destViewController.truckId = self.truckId
-        //destViewController.finalize()
+        if (segue.identifier! == "TruckDetailToLargeImageSegue") {
+            println("going to large image view")
+            var destViewController = segue.destinationViewController as LargeImageViewController
+            if let theImage = currentImage {
+                destViewController.setImage(theImage)
+                //destViewController.setShit("hi")
+            } else {
+                println("currentImage is unset")
+            }
+        }else if (segue.identifier! == "TruckDetailContainerToTable") {
+            var destViewController = segue.destinationViewController as TableViewController
+            destViewController.setTruckId(truckId!)
+
+            println("there we go")
+        } else {
+            println("Unknown segue in TruckDetialScrollViewController")
+        }
     }
-    
-    override func viewDidDisappear(animated: Bool) {
-        println("farewell, my darling true")
-    }
-    
-    
 }

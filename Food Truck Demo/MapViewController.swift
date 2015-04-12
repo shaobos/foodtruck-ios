@@ -19,17 +19,12 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate {
     var currentScheduleId : String = ""
     var previousController : String = ""
     var toTruckDetailViewSegue = "MapToDetailSegue"
-    var toTableViewSegue = "MapToTableViewSegue"
     
 
     @IBOutlet weak var mapView: MKMapView!
 
     @IBAction func BackButtonPressed(sender: AnyObject) {
-        if (previousController.isEmpty || previousController == "tableView") {
-            performSegueWithIdentifier(toTableViewSegue, sender: nil)
-        } else {
-            performSegueWithIdentifier(toTruckDetailViewSegue, sender: nil)
-        }
+        self.dismissViewControllerAnimated(false, completion: {})
     }
     
     override func didReceiveMemoryWarning() {
@@ -64,9 +59,9 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate {
         
         println("scheduleId is \(scheduleId)")
         
-        var lat:CLLocationDegrees = (schedule["lat"] as NSString).doubleValue
-        var lon:CLLocationDegrees = (schedule["lng"] as NSString).doubleValue
-        var newCoordinate :CLLocationCoordinate2D = CLLocationCoordinate2DMake(lat, lon)
+        var latitude:CLLocationDegrees = (schedule["lat"] as NSString).doubleValue
+        var longitude:CLLocationDegrees = (schedule["lng"] as NSString).doubleValue
+        var newCoordinate :CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
         var annotation:FoodTruckMapAnnotation = FoodTruckMapAnnotation()
         annotation.coordinate = newCoordinate
         annotation.title = schedule["name"] as String
@@ -74,10 +69,13 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate {
         annotation.truckId = schedule["truck_id"] as String
         annotation.scheduleId = scheduleId
         
-        println("1. \(annotation.scheduleId)")
-        self.setRegion(lat, longitute: lon)
+        if latitude > 180 || latitude < -180 || longitude > 180 || longitude < -180 {
+            println("invalid longitude/latitude \(longitude)/\(latitude)")
+        } else {
+            self.setRegion(latitude, longitude: longitude)
+            self.mapView.addAnnotation(annotation)
+        }
 
-        self.mapView.addAnnotation(annotation)
     }
 
     /*
@@ -137,13 +135,13 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate {
         // this is the last stop where we can still access annotation
     }
 
-    func setRegion(latitute:CLLocationDegrees, longitute:CLLocationDegrees) {
+    func setRegion(latitude:CLLocationDegrees, longitude:CLLocationDegrees) {
         // how many degrees it would zoom out by default, 1 would be a lot
         var latDelta:CLLocationDegrees = 1
         var lonDelta:CLLocationDegrees = 1
         
         var span:MKCoordinateSpan = MKCoordinateSpanMake(latDelta, lonDelta)
-        var location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitute, longitute)
+        var location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
         var region:MKCoordinateRegion = MKCoordinateRegionMake(location, span)
         mapView.setRegion(region, animated: false)
     }
