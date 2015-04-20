@@ -87,7 +87,6 @@ class ViewController: DropdownMenuController {
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        println("this guy selected \(dates[row])")
         //Schedules.getSchedulesWithFilter()
         
         if let table = containerViewController.currentController as? TableViewController {

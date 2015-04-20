@@ -208,7 +208,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fqj-yK-wYY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-124" y="469"/>
+            <point key="canvasLocation" x="-510" y="240"/>
         </scene>
         <!--About View Controller-->
         <scene sceneID="1DS-9f-A36">
@@ -240,7 +240,7 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QYQ-BP-7I4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="370.5" y="120.5"/>
+            <point key="canvasLocation" x="4.5" y="234.5"/>
         </scene>
         <!--Trucks Table View Controller-->
         <scene sceneID="p0P-JE-pcl">
@@ -309,64 +309,6 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vs0-81-GNd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1623" y="-13"/>
-        </scene>
-        <!--Map View Controller-->
-        <scene sceneID="pq4-s2-3Nd">
-            <objects>
-                <viewController storyboardIdentifier="Mappy" id="2QD-SR-EH0" customClass="MapViewController" customModule="foodtruck_ios" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="rnb-5a-j1P"/>
-                        <viewControllerLayoutGuide type="bottom" id="RaC-F8-w22"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="OMm-Ux-aTu">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <navigationBar contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="11V-uc-YzN">
-                                <rect key="frame" x="0.0" y="28" width="331" height="44"/>
-                                <items>
-                                    <navigationItem id="0TM-M6-JEP">
-                                        <barButtonItem key="leftBarButtonItem" style="plain" id="eCS-vU-wJg">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3I6-54-XCZ">
-                                                <rect key="frame" x="-23" y="-15" width="73" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="Back">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="BackButtonPressed:" destination="2QD-SR-EH0" eventType="touchUpInside" id="jed-Us-gTN"/>
-                                                </connections>
-                                            </button>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="4Q2-gJ-Cuj">
-                                <rect key="frame" x="0.0" y="72" width="320" height="496"/>
-                                <connections>
-                                    <outlet property="delegate" destination="2QD-SR-EH0" id="0z4-qn-JAR"/>
-                                </connections>
-                            </mapView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="11V-uc-YzN" firstAttribute="leading" secondItem="OMm-Ux-aTu" secondAttribute="leadingMargin" constant="-16" id="3oi-or-5I8"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="11V-uc-YzN" secondAttribute="trailing" constant="-16" id="HSm-t5-CKQ"/>
-                            <constraint firstItem="RaC-F8-w22" firstAttribute="top" secondItem="4Q2-gJ-Cuj" secondAttribute="bottom" id="Yfu-yq-4S1"/>
-                            <constraint firstItem="4Q2-gJ-Cuj" firstAttribute="top" secondItem="11V-uc-YzN" secondAttribute="bottom" id="Yz5-PP-t9b"/>
-                            <constraint firstItem="4Q2-gJ-Cuj" firstAttribute="leading" secondItem="OMm-Ux-aTu" secondAttribute="leadingMargin" constant="-16" id="aQB-vx-PBk"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="4Q2-gJ-Cuj" secondAttribute="trailing" constant="-16" id="rrS-e4-kqK"/>
-                        </constraints>
-                    </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-                    <connections>
-                        <outlet property="mapView" destination="4Q2-gJ-Cuj" id="1jO-Ub-bdE"/>
-                        <segue destination="0JO-0b-VHK" kind="presentation" identifier="MapToDetailSegue" id="Mtf-mb-EXS"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FAz-wF-GNi" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-600" y="491"/>
         </scene>
         <!--Large Image View Controller-->
         <scene sceneID="OVf-eP-4mS">
@@ -648,7 +590,6 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="theTableView" destination="JdM-to-yJT" id="5oP-ZO-CfU"/>
-                        <segue destination="2QD-SR-EH0" kind="presentation" identifier="tableToMapSegue" id="mFK-Xr-MOU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xd7-ER-WSR" userLabel="First Responder" sceneMemberID="firstResponder"/>

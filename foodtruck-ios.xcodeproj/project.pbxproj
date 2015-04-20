@@ -33,7 +33,6 @@
 		86EC6EDA1A86C3A000940D9F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EC6ED91A86C3A000940D9F /* ViewController.swift */; };
 		86EC6EDF1A86C3A000940D9F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86EC6EDE1A86C3A000940D9F /* Images.xcassets */; };
 		86EC6EE21A86C3A000940D9F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86EC6EE01A86C3A000940D9F /* LaunchScreen.xib */; };
-		86EC6EFE1A872FE900940D9F /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EC6EFD1A872FE900940D9F /* MapViewController.swift */; };
 		86EC6F001A87300500940D9F /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EC6EFF1A87300500940D9F /* ContainerViewController.swift */; };
 		86EC6F021A8815DC00940D9F /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EC6F011A8815DC00940D9F /* TableViewController.swift */; };
 		86EC6F041A881D6400940D9F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86EC6F031A881D6400940D9F /* MapKit.framework */; };
@@ -74,7 +73,6 @@
 		86EC6EE11A86C3A000940D9F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		86EC6EEC1A86C3A000940D9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		86EC6EED1A86C3A000940D9F /* Food_Truck_DemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food_Truck_DemoTests.swift; sourceTree = "<group>"; };
-		86EC6EFD1A872FE900940D9F /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		86EC6EFF1A87300500940D9F /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		86EC6F011A8815DC00940D9F /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		86EC6F031A881D6400940D9F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -158,7 +156,6 @@
 				86EC6EE01A86C3A000940D9F /* LaunchScreen.xib */,
 				8644575C1ABF4AB900C1D282 /* Main.storyboard */,
 				8607BAD81AD225BB006D897A /* MapFullViewController.swift */,
-				86EC6EFD1A872FE900940D9F /* MapViewController.swift */,
 				86C962271AA286EF00061880 /* Model */,
 				860646D11AB656DF0074F29B /* ScheduleAwareViewController.swift */,
 				86C962251AA262EB00061880 /* ScheduleFetcher.swift */,
@@ -334,7 +331,6 @@
 				86EC6F021A8815DC00940D9F /* TableViewController.swift in Sources */,
 				8604D8B01A99A691004898BE /* ImageFetcher.swift in Sources */,
 				8607BAD91AD225BB006D897A /* MapFullViewController.swift in Sources */,
-				86EC6EFE1A872FE900940D9F /* MapViewController.swift in Sources */,
 				8604D8BD1A9AF7E8004898BE /* Schedules.swift in Sources */,
 				869BE09F1AC88D1B0023AFA6 /* TruckDetailCollectionViewController.swift in Sources */,
 				86C961F41AA1B00600061880 /* Images.swift in Sources */,

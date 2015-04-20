@@ -10,6 +10,8 @@ import UIKit
 
 class TableViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var theTableView: UITableView!
+    
+    var containerViewController:ContainerViewController?
     var cellContent:[String: [String: AnyObject]] = [:]
     var scheduleFetcher = ScheduleFetcher()
     var trucks = Trucks()
@@ -17,13 +19,17 @@ class TableViewController: UIViewController, UITableViewDelegate {
     
     var truckId:String? // could be called from truckd detail view
     
+    override func didMoveToParentViewController(parent: UIViewController?) {
+        super.didMoveToParentViewController(parent)
+        containerViewController = parent as? ContainerViewController
+        
+        println("I did! I did!")
+    }
     func setTruckId(truckId: String) {
         self.truckId = truckId
         println("set \(self.truckId)")
 
     }
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // TODO: better to intialize data fetch in main view controller
@@ -35,7 +41,6 @@ class TableViewController: UIViewController, UITableViewDelegate {
             self.theTableView.reloadData()
         } else {
             fetchSchedules()
-
         }
     }
     
@@ -46,8 +51,10 @@ class TableViewController: UIViewController, UITableViewDelegate {
     
     func fetchSchedules() {
         
+        var dates:[String] = self.scheduleFetcher.getScheduleDates()
+
         if Schedules.schedules.count > 0 {
-            self.cellContent = self.scheduleFetcher.getSchedules()
+            self.cellContent = self.scheduleFetcher.getSchedulesBydate(dates[0])
             if Images.truckImages.count > 0 {
                 self.theTableView.reloadData()
             } else {
@@ -59,7 +66,6 @@ class TableViewController: UIViewController, UITableViewDelegate {
             trucks.fetchTrucksInfoFromRemote {
                 loadedImages in
                 self.scheduleFetcher.fetchTrucksInfoFromRemote() {
-                    var dates:[String] = self.scheduleFetcher.getScheduleDates()
                     // initialize schedules with the first day of 7 days
                     if (dates.count > 0) {
                         println("Initilize table view with date \(dates[0])")
@@ -110,7 +116,11 @@ class TableViewController: UIViewController, UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.currentScheduleId = Array(cellContent.keys)[indexPath.row] as String
         println("1. \(self.currentScheduleId)")
-        performSegueWithIdentifier("tableToMapSegue", sender: nil)
+        //performSegueWithIdentifier("tableToMapSegue", sender: nil)
+        if let c = containerViewController {
+            c.switchToController("mapViewSegue")
+            c.mapViewController.setScheduleId(self.currentScheduleId)
+        }
     }
     
     // TODO: duplicate code in Map view

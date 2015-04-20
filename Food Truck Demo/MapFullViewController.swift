@@ -11,7 +11,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class MapFullViewController: UIViewController, MKMapViewDelegate {
+class MapFullViewController: ScheduleAwareViewController, MKMapViewDelegate {
     
     var scheduleFetcher = ScheduleFetcher()
     var trucks = Trucks()
@@ -21,6 +21,7 @@ class MapFullViewController: UIViewController, MKMapViewDelegate {
     var previousController : String = ""
     var toTruckDetailViewSegue = "MapFullToDetailSegue"
     var annotations = [FoodTruckMapAnnotation]()
+    var isRendered = false
     
     @IBOutlet weak var mapView: MKMapView!
     
@@ -28,7 +29,7 @@ class MapFullViewController: UIViewController, MKMapViewDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
     func filterAnnotationByDate(date:String) {
         if (annotations.count > 0) {
             for annotation in annotations {
@@ -46,11 +47,13 @@ class MapFullViewController: UIViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if isRendered {
+            return
+        }
+        isRendered = true
         trucks.fetchTrucksInfoFromRemote {
             loadedImages in
             self.scheduleFetcher.fetchTrucksInfoFromRemote() {
-                println("Schedules are ready")
-                // TODO: extract some code from here and MapViewController
                 var schedules = self.scheduleFetcher.getSchedules()
                 for scheduleId in schedules.keys {
                     var schedule:[String: AnyObject] = schedules[scheduleId]!
@@ -59,6 +62,8 @@ class MapFullViewController: UIViewController, MKMapViewDelegate {
                 }
             }
         }
+        
+        //setRegion(, longitude: <#CLLocationDegrees#>)
     }
 
     func createAnnotations(scheduleId: String, singleScheduleObject schedule: [String: AnyObject]) -> FoodTruckMapAnnotation {
@@ -71,20 +76,34 @@ class MapFullViewController: UIViewController, MKMapViewDelegate {
         var annotation:FoodTruckMapAnnotation = FoodTruckMapAnnotation()
         annotation.coordinate = newCoordinate
         annotation.title = schedule["name"] as String
-        annotation.subtitle = schedule["date"] as String
+        annotation.subtitle = schedule["date"] as String + " " + (schedule["start_time"] as String) + " - " + (schedule["end_time"] as String)
         annotation.truckId = schedule["truck_id"] as String
         annotation.scheduleId = scheduleId
+        
+        
         
         println("1. \(annotation.scheduleId)")
         if latitude > 180 || latitude < -180 || longitude > 180 || longitude < -180 {
             println("invalid longitude/latitude \(longitude)/\(latitude)")
         } else {
-            self.setRegion(latitude, longitude: longitude)
+            println("scheduleId \(scheduleId)")
+            println("currentScheduleId \(self.scheduleId)")
+            if (scheduleId == self.scheduleId) {
+                self.setRegion(latitude, longitude: longitude)
+            }
             self.mapView.addAnnotation(annotation)
         }
         
-        return annotation
+        if (scheduleId == self.scheduleId) {
+            // this is how selected pin view is displayed programmatically
+            // http://stackoverflow.com/a/2339556/677596
+            println("Going to set \(scheduleId)")
+         //   pinAnnotationView.selected = true
+         //   pinAnnotationView.setSelected(true, animated: false)
+            mapView.selectAnnotation(annotation, animated: false)
+        }
         
+        return annotation
     }
     
     /*
@@ -110,6 +129,8 @@ class MapFullViewController: UIViewController, MKMapViewDelegate {
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
         
         var foodTruckAnnotation = annotation as FoodTruckMapAnnotation
+        var truckId: String  = foodTruckAnnotation.truckId
+        var scheduleId: String  = foodTruckAnnotation.scheduleId
         
         let pinAnnotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "myPin")
         
@@ -117,13 +138,13 @@ class MapFullViewController: UIViewController, MKMapViewDelegate {
         pinAnnotationView.draggable = true
         pinAnnotationView.canShowCallout = true
         pinAnnotationView.animatesDrop = false
+
         
         let deleteButton:UIButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton
         deleteButton.frame.size.width = 44
         deleteButton.frame.size.height = 44
-        var scheduleId: String  = foodTruckAnnotation.truckId
         
-        if let theImage: Image = Images.truckImages[scheduleId] {
+        if let theImage: Image = Images.truckImages[truckId] {
             println("image retrieved: \(theImage.image)")
             deleteButton.setBackgroundImage(theImage.image, forState: UIControlState.Normal)
         }
@@ -137,7 +158,6 @@ class MapFullViewController: UIViewController, MKMapViewDelegate {
         this function customizes what happens when button in left callout accessory view is clicked..
     */
     func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
-        
         var foodTruckAnnotation = view.annotation as FoodTruckMapAnnotation
         self.currentScheduleId = foodTruckAnnotation.scheduleId
         performSegueWithIdentifier("MapFullToDetailSegue", sender: nil)
@@ -157,9 +177,7 @@ class MapFullViewController: UIViewController, MKMapViewDelegate {
             
         } else {
             mapView.setRegion(region, animated: false)
-
         }
-        //mapView.setRegion(region, animated: true)
     }
 
     

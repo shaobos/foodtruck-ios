@@ -10,7 +10,7 @@ import UIKit
 
 class ContainerViewController: UIViewController {
 
-    @IBOutlet weak var mapViewController: UIViewController!
+    @IBOutlet weak var mapViewController: MapFullViewController!
     @IBOutlet weak var tableViewController: UIViewController!
     @IBOutlet weak var aboutViewController: UIViewController!
     @IBOutlet weak var trucksViewController: UIViewController!
@@ -47,7 +47,7 @@ class ContainerViewController: UIViewController {
         }
         
         if (segue.identifier == mapViewSegue) {
-            self.mapViewController = segue.destinationViewController as UIViewController
+            self.mapViewController = segue.destinationViewController as MapFullViewController
 
         }
         
@@ -79,6 +79,7 @@ class ContainerViewController: UIViewController {
         initializeControllers(segue)
         // tableView is set to the default view in viewDidLoad() so all init code go here
         if (segue.identifier == tableViewSegue) {
+            
             if (self.childViewControllers.count > 0) {
                 self.swapFromViewController(currentController!, to: tableViewController)
             } else {
