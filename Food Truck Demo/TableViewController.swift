@@ -135,4 +135,5 @@ class TableViewController: UIViewController, UITableViewDelegate {
         // both TruckDetailsView and MapView can implement the same interface
         destViewController.setScheduleId(self.currentScheduleId)
     }
+    
 }

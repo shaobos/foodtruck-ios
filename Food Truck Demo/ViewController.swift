@@ -93,7 +93,7 @@ class ViewController: DropdownMenuController {
             table.refreshByDate(dates[row])
         } else if let map = containerViewController.currentController as? MapFullViewController {
             // TODO: wait until "unexpectedly found nil" is fixed
-            //map.filterAnnotationByDate(dates[row])
+            map.refreshByDate(dates[row])
             
         }
         pickerView.hidden = true

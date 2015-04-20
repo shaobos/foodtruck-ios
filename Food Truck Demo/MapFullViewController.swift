@@ -23,6 +23,7 @@ class MapFullViewController: ScheduleAwareViewController, MKMapViewDelegate {
     var annotations = [FoodTruckMapAnnotation]()
     var isRendered = false
     
+    
     @IBOutlet weak var mapView: MKMapView!
     
     override func didReceiveMemoryWarning() {
@@ -55,15 +56,56 @@ class MapFullViewController: ScheduleAwareViewController, MKMapViewDelegate {
             loadedImages in
             self.scheduleFetcher.fetchTrucksInfoFromRemote() {
                 var schedules = self.scheduleFetcher.getSchedules()
+                var count:Double = Double(schedules.count)
+                var latitudeSum:Double = 0
+                var longitudeSum:Double = 0
+                
                 for scheduleId in schedules.keys {
                     var schedule:[String: AnyObject] = schedules[scheduleId]!
+                    var latitude:CLLocationDegrees = (schedule["lat"] as NSString).doubleValue
+                    var longitude:CLLocationDegrees = (schedule["lng"] as NSString).doubleValue
+                    
+                    latitudeSum += latitude
+                    longitudeSum += longitude
+                    
+                    
                     var annotation = self.createAnnotations(scheduleId, singleScheduleObject: schedule)
                     self.annotations.append(annotation)
                 }
+                
+                
+                // TODO: refactor this shit
+                println("****** \(self.scheduleId)")
+                if (self.scheduleId == "") {
+                    var centralLatitude:Double = latitudeSum / count
+                    var centralLongitude:Double = longitudeSum / count
+                    println("centralLatitude \(centralLatitude)")
+                    println("centralLongitude \(centralLongitude)")
+                    self.setRegion(centralLatitude, longitude: centralLongitude)
+                } else {
+                    
+                    println("Set region here")
+                    var schedule:[String: AnyObject] = schedules[self.scheduleId]!
+                    
+                    var latitude:CLLocationDegrees = (schedule["lat"] as NSString).doubleValue
+                    var longitude:CLLocationDegrees = (schedule["lng"] as NSString).doubleValue
+                    self.setRegion(latitude, longitude: longitude, delta: 0.5)
+
+                }
             }
         }
-        
-        //setRegion(, longitude: <#CLLocationDegrees#>)
+
+    }
+    
+    func setRegionProgramtically(schedule:[String: [String: AnyObject]] ) {
+//        
+//        for scheduleId in schedules.keys {
+//            var schedule:[String: AnyObject] = schedules[scheduleId]!
+//
+//        if (scheduleId == self.scheduleId) {
+//            self.setRegion(latitude, longitude: longitude)
+//        }
+//        }
     }
 
     func createAnnotations(scheduleId: String, singleScheduleObject schedule: [String: AnyObject]) -> FoodTruckMapAnnotation {
@@ -79,6 +121,7 @@ class MapFullViewController: ScheduleAwareViewController, MKMapViewDelegate {
         annotation.subtitle = schedule["date"] as String + " " + (schedule["start_time"] as String) + " - " + (schedule["end_time"] as String)
         annotation.truckId = schedule["truck_id"] as String
         annotation.scheduleId = scheduleId
+        annotation.date = schedule["date"] as String
         
         
         
@@ -88,18 +131,13 @@ class MapFullViewController: ScheduleAwareViewController, MKMapViewDelegate {
         } else {
             println("scheduleId \(scheduleId)")
             println("currentScheduleId \(self.scheduleId)")
-            if (scheduleId == self.scheduleId) {
-                self.setRegion(latitude, longitude: longitude)
-            }
             self.mapView.addAnnotation(annotation)
         }
         
         if (scheduleId == self.scheduleId) {
             // this is how selected pin view is displayed programmatically
+            println("Are they the same???")
             // http://stackoverflow.com/a/2339556/677596
-            println("Going to set \(scheduleId)")
-         //   pinAnnotationView.selected = true
-         //   pinAnnotationView.setSelected(true, animated: false)
             mapView.selectAnnotation(annotation, animated: false)
         }
         
@@ -154,8 +192,9 @@ class MapFullViewController: ScheduleAwareViewController, MKMapViewDelegate {
         return pinAnnotationView
     }
     
+    
     /*
-        this function customizes what happens when button in left callout accessory view is clicked..
+        this function customizes what happens when button in left callout accessory view is clicked
     */
     func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
         var foodTruckAnnotation = view.annotation as FoodTruckMapAnnotation
@@ -164,10 +203,10 @@ class MapFullViewController: ScheduleAwareViewController, MKMapViewDelegate {
         // this is the last stop where we can still access annotation
     }
     
-    func setRegion(latitude:CLLocationDegrees, longitude:CLLocationDegrees) {
+    func setRegion(latitude:CLLocationDegrees, longitude:CLLocationDegrees, delta:CLLocationDegrees = 1) {
         // how many degrees it would zoom out by default, 1 would be a lot
-        var latDelta:CLLocationDegrees = 1
-        var lonDelta:CLLocationDegrees = 1
+        var latDelta:CLLocationDegrees = delta
+        var lonDelta:CLLocationDegrees = delta
         
         var span:MKCoordinateSpan = MKCoordinateSpanMake(latDelta, lonDelta)
         var location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
@@ -181,10 +220,17 @@ class MapFullViewController: ScheduleAwareViewController, MKMapViewDelegate {
     }
 
     
-//    func refreshByDate(date:String) {
-//        self.cellContent = self.scheduleFetcher.getSchedulesBydate(date)
-//        self.theTableView.reloadData()
-//    }
+    func refreshByDate(date:String) {
+        for annotation in self.annotations {
+            println("date \(date)")
+            println("annotation.date \(annotation.date)")
+            if annotation.date == date {
+                mapView.viewForAnnotation(annotation).hidden = false
+            } else {
+                mapView.viewForAnnotation(annotation).hidden = true
+            }
+        }
+    }
     
     
     
