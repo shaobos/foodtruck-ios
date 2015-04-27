@@ -10,7 +10,7 @@ import UIKit
 
 class ContainerViewController: UIViewController {
 
-    @IBOutlet weak var mapViewController: MapFullViewController!
+    @IBOutlet weak var mapViewController: MapViewController!
     @IBOutlet weak var tableViewController: UIViewController!
     @IBOutlet weak var aboutViewController: UIViewController!
     @IBOutlet weak var trucksViewController: UIViewController!
@@ -23,6 +23,8 @@ class ContainerViewController: UIViewController {
     var trucksViewSegue: String = "trucksViewSegue"
     var currentController: UIViewController?
     var currentSegueIdentifier: String = ""
+    var renderedViews = [String:UIViewController]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,9 +48,10 @@ class ContainerViewController: UIViewController {
             self.tableViewController = segue.destinationViewController as UIViewController
         }
         
-        if (segue.identifier == mapViewSegue) {
-            self.mapViewController = segue.destinationViewController as MapFullViewController
-
+        // this will prevent the map view from being rendered every time!
+        if (segue.identifier == mapViewSegue && mapViewController == nil) {
+            println("***** only set it intially*****")
+            self.mapViewController = segue.destinationViewController as MapViewController
         }
         
         if (segue.identifier == aboutViewSegue) {
@@ -86,7 +89,18 @@ class ContainerViewController: UIViewController {
                 initializeViewDrawing(segue)
             }
         } else if (segue.identifier == mapViewSegue) {
-            self.swapFromViewController(currentController!, to:mapViewController)
+            
+//            if let val = renderedViews["mapView"] {
+//                println("### reuse")
+//                self.swapFromViewController(currentController!, to: val)
+                // now val is not nil and the Optional has been unwrapped, so use it
+//            } else {
+//                println("### new")
+                self.swapFromViewController(currentController!, to: mapViewController)
+//                renderedViews["mapView"] = mapViewController
+
+                
+            
         } else if (segue.identifier == aboutViewSegue) {
             self.swapFromViewController(currentController!, to: aboutViewController)
         } else if (segue.identifier == trucksViewSegue) {
@@ -97,15 +111,32 @@ class ContainerViewController: UIViewController {
     }
     
     func swapFromViewController(from:UIViewController, to:UIViewController) {
-        to.view.frame =  CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)
+//        if let nibName = to.nibName {
+//            if (contains(renderedViews, nibName)) {
+//                println("\(to) has already been rendered")
+//            } else {
+//                println("** adding \(to.nibName)")
+//                println("** adding \(to.restorationIdentifier)")
+//                println("** adding \(to.title)")
+//
+//                // two consecutive calls of swapFromViewController would end up with different instances of "to" controller
+//                // adding <foodtruck_ios.MapViewController: 0x7feefa5782d0>
+//                // adding <foodtruck_ios.MapViewController: 0x7feeff50e210>
+//                
+//                // ** adding Optional("axC-Ml-BMx-view-4rm-RL-coS")
+//                // ** adding Optional("axC-Ml-BMx-view-4rm-RL-coS")
+//
+//                to.view.frame =  CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)
+//                renderedViews.append(nibName)
+//            }
+//        }
         from.willMoveToParentViewController(nil)
         self.addChildViewController(to)
         currentController = to
-
+        
         self.transitionFromViewController(from, toViewController: to, duration: 1.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: {
             (finished:Bool) -> Void in
-            to.didMoveToParentViewController(self)
-            self.transitionInProgress = false
+                self.transitionInProgress = false
         })
     }
     

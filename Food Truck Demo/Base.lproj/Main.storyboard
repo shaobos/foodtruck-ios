@@ -173,10 +173,10 @@
             </objects>
             <point key="canvasLocation" x="43.5" y="-887.5"/>
         </scene>
-        <!--Map Full View Controller-->
+        <!--Map View Controller-->
         <scene sceneID="NYl-UP-emK">
             <objects>
-                <viewController id="axC-Ml-BMx" customClass="MapFullViewController" customModule="foodtruck_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="axC-Ml-BMx" customClass="MapViewController" customModule="foodtruck_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ovU-Wp-5Cv"/>
                         <viewControllerLayoutGuide type="bottom" id="RdL-ic-ERV"/>
@@ -363,10 +363,10 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
             </objects>
             <point key="canvasLocation" x="-1468" y="-976"/>
         </scene>
-        <!--Truck Details Scroll View Controller-->
+        <!--Truck Detail View Controller-->
         <scene sceneID="gHx-fZ-Tcg">
             <objects>
-                <viewController id="0JO-0b-VHK" customClass="TruckDetailsScrollViewController" customModule="foodtruck_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="0JO-0b-VHK" customClass="TruckDetailViewController" customModule="foodtruck_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Rzv-A6-6y2"/>
                         <viewControllerLayoutGuide type="bottom" id="Iw0-r1-Cdy"/>

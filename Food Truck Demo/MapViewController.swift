@@ -11,7 +11,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class MapFullViewController: ScheduleAwareViewController, MKMapViewDelegate {
+class MapViewController: ScheduleAwareViewController, MKMapViewDelegate {
     
     var scheduleFetcher = ScheduleFetcher()
     var trucks = Trucks()
@@ -54,7 +54,7 @@ class MapFullViewController: ScheduleAwareViewController, MKMapViewDelegate {
         isRendered = true
         trucks.fetchTrucksInfoFromRemote {
             loadedImages in
-            self.scheduleFetcher.fetchTrucksInfoFromRemote() {
+            self.scheduleFetcher.fetchSchedules() {
                 var schedules = self.scheduleFetcher.getSchedules()
                 var count:Double = Double(schedules.count)
                 var latitudeSum:Double = 0
@@ -78,10 +78,10 @@ class MapFullViewController: ScheduleAwareViewController, MKMapViewDelegate {
                 println("****** \(self.scheduleId)")
                 if (self.scheduleId == "") {
                     var centralLatitude:Double = latitudeSum / count
-                    var centralLongitude:Double = longitudeSum / count
+                    var centralLongwitude:Double = longitudeSum / count
                     println("centralLatitude \(centralLatitude)")
-                    println("centralLongitude \(centralLongitude)")
-                    self.setRegion(centralLatitude, longitude: centralLongitude)
+//                    println("centralLongitude \(centralLongitude)")
+                    self.setRegion(centralLatitude, longitude: centralLongwitude)
                 } else {
                     
                     println("Set region here")
@@ -150,7 +150,7 @@ class MapFullViewController: ScheduleAwareViewController, MKMapViewDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if (segue.identifier! == toTruckDetailViewSegue) {
-            var destViewController: TruckDetailsScrollViewController = segue.destinationViewController as TruckDetailsScrollViewController
+            var destViewController: TruckDetailViewController = segue.destinationViewController as TruckDetailViewController
             //destViewController.setPrevViewController("Map!")
             var truckId = Schedules.getTruckIdByScheduleId(currentScheduleId)
             destViewController.setTruckId(truckId!)
@@ -213,17 +213,23 @@ class MapFullViewController: ScheduleAwareViewController, MKMapViewDelegate {
         var region:MKCoordinateRegion = MKCoordinateRegionMake(location, span)
 
         if latitude > 180 || latitude < -180 || longitude > 180 || longitude < -180 {
-            
         } else {
             mapView.setRegion(region, animated: false)
         }
     }
-
+    
+    func filterByTruckId(truckId: String) {
+        
+        
+    }
+    
+    func refreshByCategory(category:String) {
+        
+        
+    }
     
     func refreshByDate(date:String) {
         for annotation in self.annotations {
-            println("date \(date)")
-            println("annotation.date \(annotation.date)")
             if annotation.date == date {
                 mapView.viewForAnnotation(annotation).hidden = false
             } else {
@@ -231,7 +237,4 @@ class MapFullViewController: ScheduleAwareViewController, MKMapViewDelegate {
             }
         }
     }
-    
-    
-    
 }

@@ -91,7 +91,7 @@ class ViewController: DropdownMenuController {
         
         if let table = containerViewController.currentController as? TableViewController {
             table.refreshByDate(dates[row])
-        } else if let map = containerViewController.currentController as? MapFullViewController {
+        } else if let map = containerViewController.currentController as? MapViewController {
             // TODO: wait until "unexpectedly found nil" is fixed
             map.refreshByDate(dates[row])
             

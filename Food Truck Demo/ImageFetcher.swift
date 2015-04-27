@@ -22,12 +22,17 @@ class ImageFetcher {
         it's better to use picture with reduced size:
         http://130.211.191.208/trucks/Taqueria_Angelicas/reduced/logo.jpg
     */
-    func fetchImageByTruckId(truckId : String?, callback: () -> Void) -> UIImage? {
+    func fetchImageByTruckId(truckId : String?, callback: () -> Void) {
+        
         
         if let theTruckId = truckId {
             if (TruckDetailImages.truckImages[theTruckId] != nil) {
+                println("Truck picture already found. do not fetch again")
                 callback()
+                return
             }
+            
+            println("Going to fetch truck images...")
             
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
                 var urlPath = WebService.baseUrl + "/scripts/get_truck_img.php?truck=" + theTruckId
@@ -39,7 +44,6 @@ class ImageFetcher {
                     // Parallelize it!
                     for picPath in jsonResults {
                         var pictureUrl = WebService.baseUrl + (picPath as NSString)
-                  //      println("DEBUG: \(pictureUrl)")
                         var image = self.fetchImage(pictureUrl)
                         
                         if TruckDetailImages.truckImages[truckId!] == nil {
@@ -56,10 +60,7 @@ class ImageFetcher {
         } else {
             println("ImageFetcher - truckId is nil")
             callback()
-        
         }
-        // TODO: show a default picture if possible
-        return nil
     }
     
     // always check sum first, download if it doesn't match

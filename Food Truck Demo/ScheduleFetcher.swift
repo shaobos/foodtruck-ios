@@ -20,7 +20,6 @@ class ScheduleFetcher {
             var scheduleObject = Schedules.schedules[key]!
             if var scheduleDate: AnyObject = scheduleObject["date"] {
                 if date == scheduleDate as NSString {
-//                    println("Found target schedule!! \(scheduleObject)")
                     ret[key] = scheduleObject
                 }
             }
@@ -49,7 +48,7 @@ class ScheduleFetcher {
         return scheduleId
     }
     
-    func fetchTrucksInfoFromRemote(completionHandler: () -> ())  {
+    func fetchSchedules(completionHandler: () -> ())  {
         let startDate = getStartDate()
         //let startDate = "03/01"
         let endDate = getEndDate()
@@ -130,6 +129,4 @@ class ScheduleFetcher {
         
         return dates
     }
-    
-    
 }

@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Shaobo Sun. All rights reserved.
 //
 
-class TruckDetailsScrollViewController : TruckAwareViewController, UICollectionViewDelegate {
+class TruckDetailViewController : UIViewController, UICollectionViewDelegate {
     
     @IBAction func backButtonPressed(sender: AnyObject) {
         println("pressed, pressed!")
@@ -16,15 +16,22 @@ class TruckDetailsScrollViewController : TruckAwareViewController, UICollectionV
     //restore
     @IBOutlet weak var theTitle: UILabel!
     @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var category: UILabel!
+    @IBOutlet weak var url: UILabel!
+    
+    
+    var truckId: String?
+    
+    func setTruckId(truckId:String) {
+        self.truckId = truckId
+    }
     
     var imageFetcher = ImageFetcher()
-
     var prevViewController: UIViewController?
     var previousViewControllerName:String = ""
     var scheduleToTableSegueID : String = "ScheduleToTableSegue"
     var scheduleToMapSegueID : String = "ScheduleToMapSegue"
     var inputLabel:String = ""
-    
     var currentImage:UIImage?
     
     @IBOutlet weak var theCollectionView: UICollectionView!
@@ -40,15 +47,10 @@ class TruckDetailsScrollViewController : TruckAwareViewController, UICollectionV
         theTitle.text = inputLabel
         
         imageFetcher.fetchImageByTruckId(self.truckId, {
-            println("Done fetching. Refreshing collection view")
             self.theCollectionView.reloadData()
-            
         })
         renderView()
     }
-    @IBOutlet weak var category: UILabel!
-    
-    @IBOutlet weak var url: UILabel!
     func renderView() {
         if let truckId = self.truckId {
             if let truck = TheTrucks.trucks[truckId] {
@@ -58,13 +60,15 @@ class TruckDetailsScrollViewController : TruckAwareViewController, UICollectionV
                 if let theImage: Image = Images.truckImages[truckId] {
                     image?.image =  theImage.image
                 }
-                
             }
         } else {
             println("TruckDetailsScrollViewController - truckId is unset")
         }
     }
     
+    /*
+    
+    */
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -92,7 +96,6 @@ class TruckDetailsScrollViewController : TruckAwareViewController, UICollectionV
         When an image is clicked
     */
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-
         println("An image was clicked!! \(indexPath.length) \(indexPath.item) \(indexPath.section) and \(indexPath.row)")
 
         var cell = collectionView.cellForItemAtIndexPath(indexPath) as CollectionViewCell
@@ -102,7 +105,6 @@ class TruckDetailsScrollViewController : TruckAwareViewController, UICollectionV
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -118,8 +120,6 @@ class TruckDetailsScrollViewController : TruckAwareViewController, UICollectionV
         }else if (segue.identifier! == "TruckDetailContainerToTable") {
             var destViewController = segue.destinationViewController as TableViewController
             destViewController.setTruckId(truckId!)
-
-            println("there we go")
         } else {
             println("Unknown segue in TruckDetialScrollViewController")
         }

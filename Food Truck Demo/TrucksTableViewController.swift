@@ -39,7 +39,7 @@ class TrucksTableViewController : UIViewController, UITableViewDelegate{
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        var controller:TruckDetailsScrollViewController = segue.destinationViewController as TruckDetailsScrollViewController
+        var controller:TruckDetailViewController = segue.destinationViewController as TruckDetailViewController
         controller.setTruckId(currentTruckId!)
         // TODO: revisit shortly
     }

@@ -65,7 +65,7 @@ class TableViewController: UIViewController, UITableViewDelegate {
         } else {
             trucks.fetchTrucksInfoFromRemote {
                 loadedImages in
-                self.scheduleFetcher.fetchTrucksInfoFromRemote() {
+                self.scheduleFetcher.fetchSchedules() {
                     // initialize schedules with the first day of 7 days
                     if (dates.count > 0) {
                         println("Initilize table view with date \(dates[0])")
