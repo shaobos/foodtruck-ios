@@ -65,11 +65,6 @@ class ViewController: DropdownMenuController {
         super.showMenu()
         super.view.bringSubviewToFront(super.menu)
     }
-    
-    @IBAction func ButtonPressed(sender: AnyObject) {
-        println("Button pressed. Swapping child view..")
-        containerViewController.swapViewControllers()
-    }
 
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1

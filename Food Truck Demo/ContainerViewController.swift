@@ -111,45 +111,5 @@ class ContainerViewController: UIViewController {
     func switchToController(targetSegue:String) {
         self.performSegueWithIdentifier(targetSegue, sender: nil)
     }
-    
-    // this function is only used to switch between schedule table view and single schedule map view
-    // should only be accessible in shedule view
-    func swapViewControllers() {
-        var from:UIViewController
-        var to:UIViewController
-        
-        if (self.transitionInProgress) {
-            return;
-        }
-
-        self.transitionInProgress = true
-        self.currentSegueIdentifier = self.currentSegueIdentifier == self.tableViewSegue ? self.mapViewSegue : self.tableViewSegue
-        
-        if (self.currentSegueIdentifier == self.mapViewSegue && self.mapViewController != nil) {
-            from = self.tableViewController
-            to = self.mapViewController
-            self.swapFromViewController(from, to: to)
-        } else if (self.currentSegueIdentifier == self.tableViewSegue && self.tableViewController != nil)   {
-            from = mapViewController
-            to = tableViewController
-            self.swapFromViewController(from, to: to)
-        } else {
-            println("Cannot perform segue changes")
-        }
-        self.performSegueWithIdentifier(self.currentSegueIdentifier, sender: nil)
-    }
-    
-
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
             
