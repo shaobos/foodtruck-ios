@@ -22,19 +22,14 @@ class TableViewController: UIViewController, UITableViewDelegate {
     override func didMoveToParentViewController(parent: UIViewController?) {
         super.didMoveToParentViewController(parent)
         containerViewController = parent as? ContainerViewController
-        
-        println("I did! I did!")
     }
     func setTruckId(truckId: String) {
         self.truckId = truckId
-        println("set \(self.truckId)")
-
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         // TODO: better to intialize data fetch in main view controller
         
-        println("howdy \(self.truckId)")
         if (truckId != nil) {
             // Dangerous: this is not atomic.
             self.cellContent = self.scheduleFetcher.getSchedulesByTruck(truckId!)

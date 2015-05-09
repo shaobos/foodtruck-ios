@@ -34,7 +34,6 @@ class ScheduleFetcher {
             var scheduleObject = Schedules.schedules[key]!
             if var truckId: AnyObject = scheduleObject["truck_id"] {
                 if targetTruckId == truckId as NSString {
-                    println("Found target schedule!! \(scheduleObject)")
                     ret[key] = scheduleObject
                 }
             }
@@ -79,7 +78,6 @@ class ScheduleFetcher {
                 }
                 
                 dispatch_async(dispatch_get_main_queue(), {
-                    println("Done")
                     completionHandler()
                 })
             }
@@ -123,7 +121,6 @@ class ScheduleFetcher {
                 toDate: today,
                 options: NSCalendarOptions(0))
             var currentDateInString = formatter.stringFromDate(currentDate!)
-            println(currentDateInString)
             dates.insert(currentDateInString, atIndex: dates.endIndex)
         }
         

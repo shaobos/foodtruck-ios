@@ -55,11 +55,8 @@ class ViewController: DropdownMenuController {
     }
     
     override func viewDidLoad() {
-        println("before super.viewDidLoad()")
         super.viewDidLoad()
-        println("view controller loaded")
         dates = scheduleFetcher.getScheduleDates()
-        //dates = ["2015-03-01", "2015-03-02", "2015-03-03"]
     }
 
     // needs to override showMenu to add bringSubviewToFront

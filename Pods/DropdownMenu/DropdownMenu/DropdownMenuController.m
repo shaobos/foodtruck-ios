@@ -54,8 +54,6 @@ CAShapeLayer *closedMenuShape;
 }
 
 - (IBAction) menuButtonAction: (UIButton *) sender {
-    
-    NSLog(@"%s", "menuButtonAction!!!");
     [self toggleMenu];
 }
 
@@ -72,9 +70,6 @@ CAShapeLayer *closedMenuShape;
 }
 
 - (void) showMenu {
-    
-    NSLog(@"%s", "show menu!!!");
-
     self.menu.hidden = NO;
     
     [closedMenuShape removeFromSuperlayer];

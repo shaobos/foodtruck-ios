@@ -45,9 +45,16 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate {
         }
     }
     
+    /*
+        Since we're going to only instantiate map view once, we need to tell when the view is loaded again in container view. luckily, we can use didMoveToParentViewController()
+    */
+    override func didMoveToParentViewController(parent: UIViewController?) {
+        println("** didMoveToParentViewController")
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         if isRendered {
             return
         }
@@ -68,29 +75,21 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate {
                     latitudeSum += latitude
                     longitudeSum += longitude
                     
-                    
                     var annotation = self.createAnnotations(scheduleId, singleScheduleObject: schedule)
                     self.annotations.append(annotation)
                 }
                 
                 
                 // TODO: refactor this shit
-                println("****** \(self.scheduleId)")
                 if (self.scheduleId == "") {
                     var centralLatitude:Double = latitudeSum / count
                     var centralLongwitude:Double = longitudeSum / count
-                    println("centralLatitude \(centralLatitude)")
-//                    println("centralLongitude \(centralLongitude)")
                     self.setRegion(centralLatitude, longitude: centralLongwitude)
                 } else {
-                    
-                    println("Set region here")
                     var schedule:[String: AnyObject] = schedules[self.scheduleId]!
-                    
                     var latitude:CLLocationDegrees = (schedule["lat"] as NSString).doubleValue
                     var longitude:CLLocationDegrees = (schedule["lng"] as NSString).doubleValue
                     self.setRegion(latitude, longitude: longitude, delta: 0.5)
-
                 }
             }
         }
@@ -98,19 +97,9 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate {
     }
     
     func setRegionProgramtically(schedule:[String: [String: AnyObject]] ) {
-//        
-//        for scheduleId in schedules.keys {
-//            var schedule:[String: AnyObject] = schedules[scheduleId]!
-//
-//        if (scheduleId == self.scheduleId) {
-//            self.setRegion(latitude, longitude: longitude)
-//        }
-//        }
     }
 
     func createAnnotations(scheduleId: String, singleScheduleObject schedule: [String: AnyObject]) -> FoodTruckMapAnnotation {
-        
-        println("scheduleId is \(scheduleId)")
         
         var latitude:CLLocationDegrees = (schedule["lat"] as NSString).doubleValue
         var longitude:CLLocationDegrees = (schedule["lng"] as NSString).doubleValue
@@ -125,18 +114,14 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate {
         
         
         
-        println("1. \(annotation.scheduleId)")
         if latitude > 180 || latitude < -180 || longitude > 180 || longitude < -180 {
             println("invalid longitude/latitude \(longitude)/\(latitude)")
         } else {
-            println("scheduleId \(scheduleId)")
-            println("currentScheduleId \(self.scheduleId)")
             self.mapView.addAnnotation(annotation)
         }
         
         if (scheduleId == self.scheduleId) {
             // this is how selected pin view is displayed programmatically
-            println("Are they the same???")
             // http://stackoverflow.com/a/2339556/677596
             mapView.selectAnnotation(annotation, animated: false)
         }
@@ -183,7 +168,6 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate {
         deleteButton.frame.size.height = 44
         
         if let theImage: Image = Images.truckImages[truckId] {
-            println("image retrieved: \(theImage.image)")
             deleteButton.setBackgroundImage(theImage.image, forState: UIControlState.Normal)
         }
         
