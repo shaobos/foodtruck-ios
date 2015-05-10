@@ -14,7 +14,7 @@ class TableViewController: UIViewController, UITableViewDelegate {
     var containerViewController:ContainerViewController?
     var cellContent:[String: [String: AnyObject]] = [:]
     var scheduleFetcher = ScheduleFetcher()
-    var trucks = Trucks()
+    var trucks = TruckFetcher()
     var imageFetcher = ImageFetcher()
     
     var truckId:String? // could be called from truckd detail view
@@ -132,5 +132,4 @@ class TableViewController: UIViewController, UITableViewDelegate {
         // both TruckDetailsView and MapView can implement the same interface
         destViewController.setScheduleId(self.currentScheduleId)
     }
-    
 }

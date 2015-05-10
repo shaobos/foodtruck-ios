@@ -14,7 +14,7 @@ import CoreLocation
 class MapViewController: ScheduleAwareViewController, MKMapViewDelegate {
     
     var scheduleFetcher = ScheduleFetcher()
-    var trucks = Trucks()
+    var trucks = TruckFetcher()
     var imageFetcher = ImageFetcher()
     // TODO: a dirty solution to pass around schedule id
     var currentScheduleId : String = ""

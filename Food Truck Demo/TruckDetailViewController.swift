@@ -53,7 +53,7 @@ class TruckDetailViewController : UIViewController, UICollectionViewDelegate {
     }
     func renderView() {
         if let truckId = self.truckId {
-            if let truck = TheTrucks.trucks[truckId] {
+            if let truck = Trucks.trucks[truckId] {
                 theTitle.text = truck["name"]
                 url.text = truck["url"]
                 category.text = truck["category"]
