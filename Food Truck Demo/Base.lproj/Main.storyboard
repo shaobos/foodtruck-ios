@@ -254,11 +254,11 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="121" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="dJZ-zZ-GNA">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="127" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="dJZ-zZ-GNA">
+                                <rect key="frame" x="0.0" y="0.0" width="304" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TruckCell" rowHeight="121" id="c8x-Zw-QoY" customClass="TruckTableCellCustomView" customModule="foodtruck_ios" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TruckCell" rowHeight="127" id="c8x-Zw-QoY" customClass="TruckTableCellCustomView" customModule="foodtruck_ios" customModuleProvider="target">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="c8x-Zw-QoY" id="yYP-lx-0ch">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -266,14 +266,14 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rW5-JH-W4A">
                                                     <rect key="frame" x="0.0" y="0.0" width="136" height="121"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Osd-0N-5zU">
-                                                    <rect key="frame" x="144" y="9" width="168" height="48"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Yj-bm-TrX">
+                                                    <rect key="frame" x="144" y="65" width="163" height="42"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Yj-bm-TrX">
-                                                    <rect key="frame" x="144" y="65" width="163" height="42"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Osd-0N-5zU">
+                                                    <rect key="frame" x="144" y="9" width="168" height="48"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -288,7 +288,7 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="egT-WG-00L" id="NgO-ZK-pJw"/>
+                                    <outlet property="dataSource" destination="egT-WG-00L" id="fzX-El-q5X"/>
                                     <outlet property="delegate" destination="egT-WG-00L" id="V4R-CF-h3h"/>
                                 </connections>
                             </tableView>
@@ -298,7 +298,7 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                             <constraint firstItem="Te0-lP-Uo2" firstAttribute="top" secondItem="dJZ-zZ-GNA" secondAttribute="bottom" id="2vY-0B-wbu"/>
                             <constraint firstItem="dJZ-zZ-GNA" firstAttribute="leading" secondItem="2VM-cP-JSj" secondAttribute="leadingMargin" constant="-16" id="KCz-77-YfI"/>
                             <constraint firstItem="dJZ-zZ-GNA" firstAttribute="top" secondItem="a8E-hd-vEk" secondAttribute="bottom" id="dVd-XA-ohY"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="dJZ-zZ-GNA" secondAttribute="trailing" constant="-16" id="pxg-21-9Sl"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="dJZ-zZ-GNA" secondAttribute="trailing" id="pxg-21-9Sl"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
@@ -598,7 +598,7 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Iy1-gB-lBZ"/>
+        <segue reference="PXb-th-F6S"/>
         <segue reference="OdQ-3H-74I"/>
     </inferredMetricsTieBreakers>
 </document>
