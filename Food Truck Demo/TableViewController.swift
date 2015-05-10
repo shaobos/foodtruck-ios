@@ -21,7 +21,9 @@ class TableViewController: UIViewController, UITableViewDelegate {
     
     override func didMoveToParentViewController(parent: UIViewController?) {
         super.didMoveToParentViewController(parent)
-        containerViewController = parent as? ContainerViewController
+        if containerViewController == nil {
+            containerViewController = parent as? ContainerViewController
+        }
     }
     func setTruckId(truckId: String) {
         self.truckId = truckId
@@ -108,11 +110,13 @@ class TableViewController: UIViewController, UITableViewDelegate {
         return customCell
     }
 
+    /*
+        what happens when table row is selected
+    */
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.currentScheduleId = Array(cellContent.keys)[indexPath.row] as String
-        println("1. \(self.currentScheduleId)")
-        //performSegueWithIdentifier("tableToMapSegue", sender: nil)
         if let c = containerViewController {
+            println("** boom")
             c.switchToController("mapViewSegue")
             c.mapViewController.setScheduleId(self.currentScheduleId)
         }
@@ -125,8 +129,6 @@ class TableViewController: UIViewController, UITableViewDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         var indexPath: NSIndexPath = self.theTableView.indexPathForSelectedRow()!//indexPathForSelectedRow
         var destViewController = segue.destinationViewController as ScheduleAwareViewController
-        println("2. \(self.currentScheduleId)")
-        //destViewController.setPrevViewController("Table!")
         // both TruckDetailsView and MapView can implement the same interface
         destViewController.setScheduleId(self.currentScheduleId)
     }

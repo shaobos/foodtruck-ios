@@ -15,8 +15,6 @@ class ContainerViewController: UIViewController {
     @IBOutlet weak var aboutViewController: UIViewController!
     @IBOutlet weak var trucksViewController: UIViewController!
 
-
-    var transitionInProgress: Bool = false
     var mapViewSegue: String = "mapViewSegue"
     var tableViewSegue: String = "tableViewSegue"
     var aboutViewSegue: String = "aboutViewSegue"
@@ -28,7 +26,6 @@ class ContainerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.transitionInProgress = false
         self.currentSegueIdentifier = self.tableViewSegue // table goes first!
         self.performSegueWithIdentifier(self.currentSegueIdentifier, sender: nil)
         // Do any additional setup after loading the view.
@@ -44,7 +41,7 @@ class ContainerViewController: UIViewController {
     }
     
     func initializeControllers(segue: UIStoryboardSegue) {
-        if (segue.identifier == tableViewSegue) {
+        if (segue.identifier == tableViewSegue && tableViewController == nil) {
             self.tableViewController = segue.destinationViewController as UIViewController
         }
         
@@ -53,11 +50,11 @@ class ContainerViewController: UIViewController {
             self.mapViewController = segue.destinationViewController as MapViewController
         }
         
-        if (segue.identifier == aboutViewSegue) {
+        if (segue.identifier == aboutViewSegue && aboutViewController == nil) {
             self.aboutViewController = segue.destinationViewController as UIViewController
         }
         
-        if (segue.identifier == trucksViewSegue) {
+        if (segue.identifier == trucksViewSegue && trucksViewController == nil) {
             self.trucksViewController = segue.destinationViewController as UIViewController
         }
     }
@@ -80,12 +77,13 @@ class ContainerViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         initializeControllers(segue)
         // tableView is set to the default view in viewDidLoad() so all init code go here
+        if (self.childViewControllers.count == 0) {
+            initializeViewDrawing(segue)
+            return
+        }
+
         if (segue.identifier == tableViewSegue) {
-            if (self.childViewControllers.count > 0) {
-                self.swapFromViewController(currentController!, to: tableViewController)
-            } else {
-                initializeViewDrawing(segue)
-            }
+            self.swapFromViewController(currentController!, to: tableViewController)
         } else if (segue.identifier == mapViewSegue) {
             self.swapFromViewController(currentController!, to: mapViewController)
         } else if (segue.identifier == aboutViewSegue) {
@@ -98,13 +96,18 @@ class ContainerViewController: UIViewController {
     }
     
     func swapFromViewController(from:UIViewController, to:UIViewController) {
+        if (from == to) {
+            println("Same controller. do not switch")
+            return
+        }
+        
         from.willMoveToParentViewController(nil)
         self.addChildViewController(to)
         currentController = to
         
         self.transitionFromViewController(from, toViewController: to, duration: 1.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: {
             (finished:Bool) -> Void in
-                self.transitionInProgress = false
+            println("Finish transition between view controllers")
         })
     }
     

@@ -21,7 +21,6 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate {
     var previousController : String = ""
     var toTruckDetailViewSegue = "MapFullToDetailSegue"
     var annotations = [FoodTruckMapAnnotation]()
-    var isRendered = false
     
     
     @IBOutlet weak var mapView: MKMapView!
@@ -49,16 +48,17 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate {
         Since we're going to only instantiate map view once, we need to tell when the view is loaded again in container view. luckily, we can use didMoveToParentViewController()
     */
     override func didMoveToParentViewController(parent: UIViewController?) {
-        println("** didMoveToParentViewController")
+        super.didMoveToParentViewController(parent)
+        println("** didMoveToParentViewController \(parent)")
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if isRendered {
-            return
-        }
-        isRendered = true
+        fetchSchedules()
+    }
+    
+    func fetchSchedules() {
         trucks.fetchTrucksInfoFromRemote {
             loadedImages in
             self.scheduleFetcher.fetchSchedules() {
@@ -93,7 +93,6 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate {
                 }
             }
         }
-
     }
     
     func setRegionProgramtically(schedule:[String: [String: AnyObject]] ) {
@@ -133,7 +132,6 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate {
         tell schedule detail view what should be prepared for dinner today
     */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
         if (segue.identifier! == toTruckDetailViewSegue) {
             var destViewController: TruckDetailViewController = segue.destinationViewController as TruckDetailViewController
             //destViewController.setPrevViewController("Map!")
