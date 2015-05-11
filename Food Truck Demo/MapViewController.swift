@@ -13,6 +13,7 @@ import CoreLocation
 
 class MapViewController: ScheduleAwareViewController, MKMapViewDelegate {
     
+    var schedules = [String: [String: AnyObject]]()
     var scheduleFetcher = ScheduleFetcher()
     var trucks = TruckFetcher()
     var imageFetcher = ImageFetcher()
@@ -20,7 +21,7 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate {
     var currentScheduleId : String = ""
     var previousController : String = ""
     var toTruckDetailViewSegue = "MapFullToDetailSegue"
-    var annotations = [FoodTruckMapAnnotation]()
+    var annotationsBySchedule = [String: FoodTruckMapAnnotation]()
     
     
     @IBOutlet weak var mapView: MKMapView!
@@ -30,26 +31,13 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate {
         // Dispose of any resources that can be recreated.
     }
 
-    func filterAnnotationByDate(date:String) {
-        if (annotations.count > 0) {
-            for annotation in annotations {
-                // TODO: subtitle is date, but this is confusing
-                var viewForAnnotation = self.mapView.viewForAnnotation(annotation)
-                if annotation.subtitle == date {
-                    viewForAnnotation.hidden = false
-                } else {
-                    viewForAnnotation.hidden = true
-                }
-            }
-        }
-    }
-    
     /*
         Since we're going to only instantiate map view once, we need to tell when the view is loaded again in container view. luckily, we can use didMoveToParentViewController()
     */
     override func didMoveToParentViewController(parent: UIViewController?) {
         super.didMoveToParentViewController(parent)
-        println("** didMoveToParentViewController \(parent)")
+        highlightAnnotation(self.scheduleId)
+        setRegionBySchedule(self.scheduleId)
     }
     
     
@@ -62,13 +50,13 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate {
         trucks.fetchTrucksInfoFromRemote {
             loadedImages in
             self.scheduleFetcher.fetchSchedules() {
-                var schedules = self.scheduleFetcher.getSchedules()
-                var count:Double = Double(schedules.count)
+                self.schedules = self.scheduleFetcher.getSchedules()
+                var count:Double = Double(self.schedules.count)
                 var latitudeSum:Double = 0
                 var longitudeSum:Double = 0
                 
-                for scheduleId in schedules.keys {
-                    var schedule:[String: AnyObject] = schedules[scheduleId]!
+                for scheduleId in self.schedules.keys {
+                    var schedule:[String: AnyObject] = self.schedules[scheduleId]!
                     var latitude:CLLocationDegrees = (schedule["lat"] as NSString).doubleValue
                     var longitude:CLLocationDegrees = (schedule["lng"] as NSString).doubleValue
                     
@@ -76,7 +64,7 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate {
                     longitudeSum += longitude
                     
                     var annotation = self.createAnnotations(scheduleId, singleScheduleObject: schedule)
-                    self.annotations.append(annotation)
+                    self.annotationsBySchedule[scheduleId] = annotation
                 }
                 
                 
@@ -86,16 +74,22 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate {
                     var centralLongwitude:Double = longitudeSum / count
                     self.setRegion(centralLatitude, longitude: centralLongwitude)
                 } else {
-                    var schedule:[String: AnyObject] = schedules[self.scheduleId]!
-                    var latitude:CLLocationDegrees = (schedule["lat"] as NSString).doubleValue
-                    var longitude:CLLocationDegrees = (schedule["lng"] as NSString).doubleValue
-                    self.setRegion(latitude, longitude: longitude, delta: 0.5)
+                    self.setRegionBySchedule(self.scheduleId)
+                    self.highlightAnnotation(self.scheduleId)
+
                 }
             }
         }
     }
     
-    func setRegionProgramtically(schedule:[String: [String: AnyObject]] ) {
+    /*
+        set the region when user clicks on a schedule from table view and then switch to the map
+    */
+    func setRegionBySchedule(scheduleId:String) {
+        var schedule:[String: AnyObject] = self.schedules[scheduleId]!
+        var latitude:CLLocationDegrees = (schedule["lat"] as NSString).doubleValue
+        var longitude:CLLocationDegrees = (schedule["lng"] as NSString).doubleValue
+        self.setRegion(latitude, longitude: longitude, delta: 0.5)
     }
 
     func createAnnotations(scheduleId: String, singleScheduleObject schedule: [String: AnyObject]) -> FoodTruckMapAnnotation {
@@ -114,32 +108,38 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate {
         
         
         if latitude > 180 || latitude < -180 || longitude > 180 || longitude < -180 {
-            println("invalid longitude/latitude \(longitude)/\(latitude)")
+            println("invalsid longitude/latitude \(longitude)/\(latitude)")
         } else {
             self.mapView.addAnnotation(annotation)
-        }
-        
-        if (scheduleId == self.scheduleId) {
-            // this is how selected pin view is displayed programmatically
-            // http://stackoverflow.com/a/2339556/677596
-            mapView.selectAnnotation(annotation, animated: false)
         }
         
         return annotation
     }
     
     /*
-        tell schedule detail view what should be prepared for dinner today
+        show annotation view
+    */
+    func highlightAnnotation(scheduleId:String) {
+        if (scheduleId == "") {
+            return
+        }
+        
+        var annotation = annotationsBySchedule[self.scheduleId]
+        // this is how selected pin view is displayed programmatically
+        // http://stackoverflow.com/a/2339556/677596
+        mapView.selectAnnotation(annotation, animated: false)
+    }
+    
+    /*
+        tell truck detail view what should be prepared for dinner today
     */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier! == toTruckDetailViewSegue) {
             var destViewController: TruckDetailViewController = segue.destinationViewController as TruckDetailViewController
-            //destViewController.setPrevViewController("Map!")
             var truckId = Schedules.getTruckIdByScheduleId(currentScheduleId)
             destViewController.setTruckId(truckId!)
         }
     }
-    
     
     
     /*
@@ -199,23 +199,19 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate {
             mapView.setRegion(region, animated: false)
         }
     }
-    
-    func filterByTruckId(truckId: String) {
-        
-        
-    }
-    
+
     func refreshByCategory(category:String) {
         
         
     }
     
     func refreshByDate(date:String) {
-        for annotation in self.annotations {
+        for annotation in self.annotationsBySchedule.values {
+            var viewForAnnotation = self.mapView.viewForAnnotation(annotation)
             if annotation.date == date {
-                mapView.viewForAnnotation(annotation).hidden = false
+                viewForAnnotation.hidden = false
             } else {
-                mapView.viewForAnnotation(annotation).hidden = true
+                viewForAnnotation.hidden = true
             }
         }
     }

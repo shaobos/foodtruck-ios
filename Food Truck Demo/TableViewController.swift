@@ -47,7 +47,6 @@ class TableViewController: UIViewController, UITableViewDelegate {
     }
     
     func fetchSchedules() {
-        
         var dates:[String] = self.scheduleFetcher.getScheduleDates()
 
         if Schedules.schedules.count > 0 {
@@ -116,9 +115,14 @@ class TableViewController: UIViewController, UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.currentScheduleId = Array(cellContent.keys)[indexPath.row] as String
         if let c = containerViewController {
-            println("** boom")
-            c.switchToController("mapViewSegue")
-            c.mapViewController.setScheduleId(self.currentScheduleId)
+            if (c.mapViewController == nil) {
+                c.switchToController("mapViewSegue")
+                c.mapViewController.setScheduleId(self.currentScheduleId)
+            } else {
+                c.mapViewController.setScheduleId(self.currentScheduleId)
+                c.switchToController("mapViewSegue")
+            }
+
         }
     }
     
@@ -130,6 +134,7 @@ class TableViewController: UIViewController, UITableViewDelegate {
         var indexPath: NSIndexPath = self.theTableView.indexPathForSelectedRow()!//indexPathForSelectedRow
         var destViewController = segue.destinationViewController as ScheduleAwareViewController
         // both TruckDetailsView and MapView can implement the same interface
+        println("** set here")
         destViewController.setScheduleId(self.currentScheduleId)
     }
 }
