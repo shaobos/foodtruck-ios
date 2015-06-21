@@ -22,7 +22,7 @@ class TruckDetailViewController : UIViewController, UICollectionViewDelegate {
     
     var truckId: String?
     
-    func setTruckId(truckId:String) {
+    func truckId(truckId:String) {
         self.truckId = truckId
     }
     
@@ -46,7 +46,7 @@ class TruckDetailViewController : UIViewController, UICollectionViewDelegate {
         // Do any additional setup after loading the view.
         theTitle.text = inputLabel
         
-        imageFetcher.fetchImageByTruckId(self.truckId, {
+        imageFetcher.fetchImageByTruckId(self.truckId, callback: {
             self.theCollectionView.reloadData()
         })
         renderView()
@@ -82,7 +82,7 @@ class TruckDetailViewController : UIViewController, UICollectionViewDelegate {
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(collectionCellReusableId, forIndexPath: indexPath) as CollectionViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(collectionCellReusableId, forIndexPath: indexPath) as! CollectionViewCell
         cell.imageView.image = photoForIndexPath(indexPath)
         return cell
     }
@@ -98,7 +98,7 @@ class TruckDetailViewController : UIViewController, UICollectionViewDelegate {
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         println("An image was clicked!! \(indexPath.length) \(indexPath.item) \(indexPath.section) and \(indexPath.row)")
 
-        var cell = collectionView.cellForItemAtIndexPath(indexPath) as CollectionViewCell
+        var cell = collectionView.cellForItemAtIndexPath(indexPath) as! CollectionViewCell
         currentImage = cell.imageView.image
         performSegueWithIdentifier("TruckDetailToLargeImageSegue", sender: nil)
     }
@@ -110,7 +110,7 @@ class TruckDetailViewController : UIViewController, UICollectionViewDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier! == "TruckDetailToLargeImageSegue") {
             println("going to large image view")
-            var destViewController = segue.destinationViewController as LargeImageViewController
+            var destViewController = segue.destinationViewController as! LargeImageViewController
             if let theImage = currentImage {
                 destViewController.setImage(theImage)
                 //destViewController.setShit("hi")
@@ -118,8 +118,8 @@ class TruckDetailViewController : UIViewController, UICollectionViewDelegate {
                 println("currentImage is unset")
             }
         }else if (segue.identifier! == "TruckDetailContainerToTable") {
-            var destViewController = segue.destinationViewController as TableViewController
-            destViewController.setTruckId(truckId!)
+            var destViewController = segue.destinationViewController as! TableViewController
+            destViewController.truckId(truckId!)
         } else {
             println("Unknown segue in TruckDetialScrollViewController")
         }

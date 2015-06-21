@@ -57,8 +57,8 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate {
                 
                 for scheduleId in self.schedules.keys {
                     var schedule:[String: AnyObject] = self.schedules[scheduleId]!
-                    var latitude:CLLocationDegrees = (schedule["lat"] as NSString).doubleValue
-                    var longitude:CLLocationDegrees = (schedule["lng"] as NSString).doubleValue
+                    var latitude:CLLocationDegrees = (schedule["lat"] as! NSString).doubleValue
+                    var longitude:CLLocationDegrees = (schedule["lng"] as! NSString).doubleValue
                     
                     latitudeSum += latitude
                     longitudeSum += longitude
@@ -87,23 +87,23 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate {
     */
     func setRegionBySchedule(scheduleId:String) {
         var schedule:[String: AnyObject] = self.schedules[scheduleId]!
-        var latitude:CLLocationDegrees = (schedule["lat"] as NSString).doubleValue
-        var longitude:CLLocationDegrees = (schedule["lng"] as NSString).doubleValue
+        var latitude:CLLocationDegrees = (schedule["lat"] as! NSString).doubleValue
+        var longitude:CLLocationDegrees = (schedule["lng"] as! NSString).doubleValue
         self.setRegion(latitude, longitude: longitude, delta: 0.5)
     }
 
     func createAnnotations(scheduleId: String, singleScheduleObject schedule: [String: AnyObject]) -> FoodTruckMapAnnotation {
         
-        var latitude:CLLocationDegrees = (schedule["lat"] as NSString).doubleValue
-        var longitude:CLLocationDegrees = (schedule["lng"] as NSString).doubleValue
+        var latitude:CLLocationDegrees = (schedule["lat"] as! NSString).doubleValue
+        var longitude:CLLocationDegrees = (schedule["lng"] as! NSString).doubleValue
         var newCoordinate :CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
         var annotation:FoodTruckMapAnnotation = FoodTruckMapAnnotation()
         annotation.coordinate = newCoordinate
-        annotation.title = schedule["name"] as String
-        annotation.subtitle = schedule["date"] as String + " " + (schedule["start_time"] as String) + " - " + (schedule["end_time"] as String)
-        annotation.truckId = schedule["truck_id"] as String
+        annotation.title = schedule["name"] as! String
+        annotation.subtitle = schedule["date"] as! String + " " + (schedule["start_time"] as! String) + " - " + (schedule["end_time"] as! String)
+        annotation.truckId = schedule["truck_id"] as! String
         annotation.scheduleId = scheduleId
-        annotation.date = schedule["date"] as String
+        annotation.date = schedule["date"] as! String
         
         
         
@@ -135,9 +135,9 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate {
     */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier! == toTruckDetailViewSegue) {
-            var destViewController: TruckDetailViewController = segue.destinationViewController as TruckDetailViewController
+            var destViewController: TruckDetailViewController = segue.destinationViewController as! TruckDetailViewController
             var truckId = Schedules.getTruckIdByScheduleId(currentScheduleId)
-            destViewController.setTruckId(truckId!)
+            destViewController.truckId(truckId!)
         }
     }
     
@@ -149,7 +149,7 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate {
     */
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
         
-        var foodTruckAnnotation = annotation as FoodTruckMapAnnotation
+        var foodTruckAnnotation = annotation as! FoodTruckMapAnnotation
         var truckId: String  = foodTruckAnnotation.truckId
         var scheduleId: String  = foodTruckAnnotation.scheduleId
         
@@ -161,7 +161,7 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate {
         pinAnnotationView.animatesDrop = false
 
         
-        let deleteButton:UIButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton
+        let deleteButton:UIButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
         deleteButton.frame.size.width = 44
         deleteButton.frame.size.height = 44
         
@@ -179,7 +179,7 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate {
         this function customizes what happens when button in left callout accessory view is clicked
     */
     func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
-        var foodTruckAnnotation = view.annotation as FoodTruckMapAnnotation
+        var foodTruckAnnotation = view.annotation as! FoodTruckMapAnnotation
         self.currentScheduleId = foodTruckAnnotation.scheduleId
         performSegueWithIdentifier("MapFullToDetailSegue", sender: nil)
         // this is the last stop where we can still access annotation

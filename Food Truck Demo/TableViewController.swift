@@ -25,7 +25,7 @@ class TableViewController: UIViewController, UITableViewDelegate {
             containerViewController = parent as? ContainerViewController
         }
     }
-    func setTruckId(truckId: String) {
+    func truckId(truckId: String) {
         self.truckId = truckId
     }
     override func viewDidLoad() {
@@ -93,7 +93,7 @@ class TableViewController: UIViewController, UITableViewDelegate {
     
     // define the content of each individual cell
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var customCell : TableCellCustomView = tableView.dequeueReusableCellWithIdentifier("TableCellCustomView") as TableCellCustomView
+        var customCell : TableCellCustomView = tableView.dequeueReusableCellWithIdentifier("TableCellCustomView") as! TableCellCustomView
         var schedule = Array(cellContent.values)[indexPath.row] as [String: AnyObject]
         
         customCell.truckName.text = schedule["name"] as? String
@@ -117,9 +117,9 @@ class TableViewController: UIViewController, UITableViewDelegate {
         if let c = containerViewController {
             if (c.mapViewController == nil) {
                 c.switchToController("mapViewSegue")
-                c.mapViewController.setScheduleId(self.currentScheduleId)
+                c.mapViewController.scheduleId(self.currentScheduleId)
             } else {
-                c.mapViewController.setScheduleId(self.currentScheduleId)
+                c.mapViewController.scheduleId(self.currentScheduleId)
                 c.switchToController("mapViewSegue")
             }
 
@@ -132,9 +132,9 @@ class TableViewController: UIViewController, UITableViewDelegate {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         var indexPath: NSIndexPath = self.theTableView.indexPathForSelectedRow()!//indexPathForSelectedRow
-        var destViewController = segue.destinationViewController as ScheduleAwareViewController
+        var destViewController = segue.destinationViewController as! ScheduleAwareViewController
         // both TruckDetailsView and MapView can implement the same interface
         println("** set here")
-        destViewController.setScheduleId(self.currentScheduleId)
+        destViewController.scheduleId(self.currentScheduleId)
     }
 }

@@ -50,7 +50,7 @@ class ViewController: DropdownMenuController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "embedSegue") {
-            containerViewController = segue.destinationViewController as ContainerViewController
+            containerViewController = segue.destinationViewController as! ContainerViewController
         }
     }
     

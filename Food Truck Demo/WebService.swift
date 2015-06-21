@@ -8,7 +8,6 @@
 
 
 struct WebService {
-    
     static let baseUrl: String = "http://130.211.191.208/"
 
     static func request(url:String, callback completeHandler: (data: NSData) -> Void) {

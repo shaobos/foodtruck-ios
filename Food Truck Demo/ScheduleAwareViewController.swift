@@ -9,7 +9,8 @@
 class ScheduleAwareViewController : UIViewController {
     var scheduleId: String = ""
     
-    func setScheduleId(scheduleId: String) {
+    func scheduleId(scheduleId: String) {
+        println("** Set schedule ID happens")
         self.scheduleId = scheduleId
     }
 }

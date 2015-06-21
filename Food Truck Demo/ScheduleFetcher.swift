@@ -19,7 +19,7 @@ class ScheduleFetcher {
         for key in Schedules.schedules.keys {
             var scheduleObject = Schedules.schedules[key]!
             if var scheduleDate: AnyObject = scheduleObject["date"] {
-                if date == scheduleDate as NSString {
+                if date == scheduleDate as! NSString {
                     ret[key] = scheduleObject
                 }
             }
@@ -33,7 +33,7 @@ class ScheduleFetcher {
         for key in Schedules.schedules.keys {
             var scheduleObject = Schedules.schedules[key]!
             if var truckId: AnyObject = scheduleObject["truck_id"] {
-                if targetTruckId == truckId as NSString {
+                if targetTruckId == truckId as! NSString {
                     ret[key] = scheduleObject
                 }
             }
@@ -43,7 +43,7 @@ class ScheduleFetcher {
     }
     
     func composeScheduleId (jsonResult: [String: AnyObject]) -> String {
-        var scheduleId:String = (jsonResult["truck_id"] as String) + (jsonResult["date"] as String) + (jsonResult["start_time"] as String) + (jsonResult["address"] as String)
+        var scheduleId:String = (jsonResult["truck_id"] as! String) + (jsonResult["date"] as! String) + (jsonResult["start_time"] as! String) + (jsonResult["address"] as! String)
         return scheduleId
     }
     

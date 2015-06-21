@@ -54,7 +54,7 @@ class TrucksTableViewController : UIViewController, UITableViewDelegate, UITable
         how does each cell look like
     */
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var customCell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier) as TruckTableCellCustomView
+        var customCell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier) as! TruckTableCellCustomView
         var header = trucksSectionHeader[indexPath.section]
         var trucks = trucksIndexedByInitial[header]
         var id = trucks![indexPath.row]
@@ -77,8 +77,8 @@ class TrucksTableViewController : UIViewController, UITableViewDelegate, UITable
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        var controller:TruckDetailViewController = segue.destinationViewController as TruckDetailViewController
-        controller.setTruckId(currentTruckId!)
+        var controller:TruckDetailViewController = segue.destinationViewController as! TruckDetailViewController
+        controller.truckId(currentTruckId!)
         // TODO: revisit shortly
     }
 

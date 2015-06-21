@@ -39,11 +39,11 @@ class ImageFetcher {
                 WebService.request(urlPath, callback: {
                     data -> Void in
                     
-                    let jsonResults = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSArray
+                    let jsonResults = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as! NSArray
                     
                     // Parallelize it!
                     for picPath in jsonResults {
-                        var pictureUrl = WebService.baseUrl + (picPath as NSString)
+                        var pictureUrl = WebService.baseUrl + ((picPath as! NSString) as String)
                         var image = self.fetchImage(pictureUrl)
                         
                         if TruckDetailImages.truckImages[truckId!] == nil {
@@ -95,7 +95,7 @@ class ImageFetcher {
 
     func loadImage(id: String ) -> UIImage? {
         
-        var paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
+        var paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
         var dirPath = paths.stringByAppendingPathComponent("images/\(id)" )
         var imagePath = paths.stringByAppendingPathComponent("images/\(id)/logo.jpg" )
         var checkImage = NSFileManager.defaultManager()
@@ -109,7 +109,7 @@ class ImageFetcher {
     }
     
     func storeImage(id: String, image getImage : UIImage) {
-        var paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
+        var paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
         var dirPath = paths.stringByAppendingPathComponent("images/\(id)" )
         var imagePath = paths.stringByAppendingPathComponent("images/\(id)/logo.jpg" )
         var checkImage = NSFileManager.defaultManager()

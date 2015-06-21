@@ -42,27 +42,27 @@ class ContainerViewController: UIViewController {
     
     func initializeControllers(segue: UIStoryboardSegue) {
         if (segue.identifier == tableViewSegue && tableViewController == nil) {
-            self.tableViewController = segue.destinationViewController as UIViewController
+            self.tableViewController = segue.destinationViewController as! UIViewController
         }
         
         // this will prevent the map view from being rendered every time!
         if (segue.identifier == mapViewSegue && mapViewController == nil) {
-            self.mapViewController = segue.destinationViewController as MapViewController
+            self.mapViewController = segue.destinationViewController as! MapViewController
         }
         
         if (segue.identifier == aboutViewSegue && aboutViewController == nil) {
-            self.aboutViewController = segue.destinationViewController as UIViewController
+            self.aboutViewController = segue.destinationViewController as! UIViewController
         }
         
         if (segue.identifier == trucksViewSegue && trucksViewController == nil) {
-            self.trucksViewController = segue.destinationViewController as UIViewController
+            self.trucksViewController = segue.destinationViewController as! UIViewController
         }
     }
     
     func initializeViewDrawing(segue: UIStoryboardSegue) {
         println("no child view controller was loaded before. loading..")
         
-        var defaultViewController:UIViewController = segue.destinationViewController as UIViewController
+        var defaultViewController:UIViewController = segue.destinationViewController as! UIViewController
         currentController = defaultViewController
         self.addChildViewController(defaultViewController)
         var destView:UIView = defaultViewController.view

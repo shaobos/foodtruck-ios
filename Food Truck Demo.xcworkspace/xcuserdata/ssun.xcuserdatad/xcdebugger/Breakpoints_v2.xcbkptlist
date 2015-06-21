@@ -9,22 +9,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Food Truck Demo/Trucks.swift"
-            timestampString = "449353030.758368"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
-            landmarkName = "Trucks"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Food Truck Demo/TableViewController.swift"
             timestampString = "446867372.488125"
             startingColumnNumber = "9223372036854775807"
@@ -40,6 +24,7 @@
                   continueAfterRunningActions = "No"
                   symbolName = "foodtruck_ios.TableViewController.__deallocating_deinit"
                   moduleName = "foodtruck-ios"
+                  usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ssun/ssun_workspace/ios/Food%20Truck%20Demo/Food%20Truck%20Demo/TableViewController.swift"
                   timestampString = "446363489.090845"
                   startingColumnNumber = "9223372036854775807"
@@ -54,6 +39,7 @@
                   continueAfterRunningActions = "No"
                   symbolName = "@objc foodtruck_ios.TableViewController.__ivar_destroyer"
                   moduleName = "foodtruck-ios"
+                  usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ssun/ssun_workspace/ios/Food%20Truck%20Demo/Food%20Truck%20Demo/TableViewController.swift"
                   timestampString = "446363489.091119"
                   startingColumnNumber = "9223372036854775807"
@@ -72,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Food Truck Demo/TableViewController.swift"
-            timestampString = "451177740.63807"
+            timestampString = "452994501.55064"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "115"
-            endingLineNumber = "115"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
             landmarkName = "TableViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -88,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Food Truck Demo/ScheduleFetcher.swift"
-            timestampString = "451793117.676829"
+            timestampString = "452844317.53269"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "127"
-            endingLineNumber = "127"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
             landmarkName = "getScheduleDates()"
             landmarkType = "5">
          </BreakpointContent>
@@ -104,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Food Truck Demo/ViewController.swift"
-            timestampString = "451177117.2845"
+            timestampString = "452881374.158714"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
             landmarkName = "ViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -136,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Food Truck Demo/ViewController.swift"
-            timestampString = "451177117.2845"
+            timestampString = "452881374.158714"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
             landmarkName = "pickerView(_:didSelectRow:inComponent:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -182,6 +168,7 @@
                   continueAfterRunningActions = "No"
                   symbolName = "foodtruck_ios.LargeImageViewController.imageView.getter : weak Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.UIImageView&gt;"
                   moduleName = "foodtruck-ios"
+                  usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ssun/ssun_workspace/ios/Food%20Truck%20Demo/Food%20Truck%20Demo/LargeImageViewController.swift"
                   timestampString = "451804642.948289"
                   startingColumnNumber = "9223372036854775807"
@@ -196,6 +183,7 @@
                   continueAfterRunningActions = "No"
                   symbolName = "foodtruck_ios.LargeImageViewController.imageView.setter : weak Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.UIImageView&gt;"
                   moduleName = "foodtruck-ios"
+                  usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ssun/ssun_workspace/ios/Food%20Truck%20Demo/Food%20Truck%20Demo/LargeImageViewController.swift"
                   timestampString = "451804642.948476"
                   startingColumnNumber = "9223372036854775807"
@@ -210,6 +198,7 @@
                   continueAfterRunningActions = "No"
                   symbolName = "foodtruck_ios.LargeImageViewController.imageView.materializeForSet : weak Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.UIImageView&gt;"
                   moduleName = "foodtruck-ios"
+                  usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ssun/ssun_workspace/ios/Food%20Truck%20Demo/Food%20Truck%20Demo/LargeImageViewController.swift"
                   timestampString = "451804642.948596"
                   startingColumnNumber = "9223372036854775807"
@@ -224,6 +213,7 @@
                   continueAfterRunningActions = "No"
                   symbolName = "foodtruck_ios.LargeImageViewController.init (foodtruck_ios.LargeImageViewController.Type)(nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;ObjectiveC.NSBundle&gt;) -&gt; foodtruck_ios.LargeImageViewController"
                   moduleName = "foodtruck-ios"
+                  usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ssun/ssun_workspace/ios/Food%20Truck%20Demo/Food%20Truck%20Demo/LargeImageViewController.swift"
                   timestampString = "451804642.948701"
                   startingColumnNumber = "9223372036854775807"
@@ -238,6 +228,7 @@
                   continueAfterRunningActions = "No"
                   symbolName = "foodtruck_ios.LargeImageViewController.init (foodtruck_ios.LargeImageViewController.Type)() -&gt; foodtruck_ios.LargeImageViewController"
                   moduleName = "foodtruck-ios"
+                  usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ssun/ssun_workspace/ios/Food%20Truck%20Demo/Food%20Truck%20Demo/LargeImageViewController.swift"
                   timestampString = "451804642.948803"
                   startingColumnNumber = "9223372036854775807"
@@ -252,6 +243,7 @@
                   continueAfterRunningActions = "No"
                   symbolName = "foodtruck_ios.LargeImageViewController.init (foodtruck_ios.LargeImageViewController.Type)(coder : ObjectiveC.NSCoder) -&gt; foodtruck_ios.LargeImageViewController"
                   moduleName = "foodtruck-ios"
+                  usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ssun/ssun_workspace/ios/Food%20Truck%20Demo/Food%20Truck%20Demo/LargeImageViewController.swift"
                   timestampString = "451804642.948905"
                   startingColumnNumber = "9223372036854775807"
@@ -261,6 +253,36 @@
                   offsetFromSymbolStart = "27">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Food Truck Demo/MapViewController.swift"
+            timestampString = "453967675.115957"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "8"
+            endingLineNumber = "8">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Food Truck Demo/ScheduleAwareViewController.swift"
+            timestampString = "456551319.848346"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "ScheduleAwareViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

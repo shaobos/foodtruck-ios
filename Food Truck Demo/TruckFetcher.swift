@@ -36,7 +36,7 @@ class TruckFetcher {
                 println(error)
             } else {
                 
-                let jsonResults = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSArray
+                let jsonResults = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as! NSArray
                 
                 
                 for responseObject in jsonResults {
