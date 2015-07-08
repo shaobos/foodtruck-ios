@@ -15,6 +15,9 @@
 		8608F36E1A95A5C3003CEE72 /* Trucks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8608F36D1A95A5C3003CEE72 /* Trucks.swift */; };
 		8608F3721A97151C003CEE72 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8608F3711A97151C003CEE72 /* CollectionViewCell.swift */; };
 		861DCECD1B36778C00AD593B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DCECC1B36778C00AD593B /* AppDelegate.swift */; };
+		861DCECF1B37149000AD593B /* CustomAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DCECE1B37149000AD593B /* CustomAnnotationView.swift */; };
+		861DCED11B3719A700AD593B /* CustomAnnotationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 861DCED01B3719A700AD593B /* CustomAnnotationView.xib */; };
+		861DCED31B3798B600AD593B /* CustomAnnotationViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 861DCED21B3798B600AD593B /* CustomAnnotationViewCell.xib */; };
 		86251F791AEDE4990007BA6F /* TruckFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86251F781AEDE4990007BA6F /* TruckFetcher.swift */; };
 		8644575B1ABF46C900C1D282 /* TruckDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8644575A1ABF46C900C1D282 /* TruckDetailViewController.swift */; };
 		8644575E1ABF4AB900C1D282 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8644575C1ABF4AB900C1D282 /* Main.storyboard */; };
@@ -47,6 +50,9 @@
 		8608F36D1A95A5C3003CEE72 /* Trucks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trucks.swift; sourceTree = "<group>"; };
 		8608F3711A97151C003CEE72 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		861DCECC1B36778C00AD593B /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		861DCECE1B37149000AD593B /* CustomAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAnnotationView.swift; sourceTree = "<group>"; };
+		861DCED01B3719A700AD593B /* CustomAnnotationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomAnnotationView.xib; sourceTree = "<group>"; };
+		861DCED21B3798B600AD593B /* CustomAnnotationViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomAnnotationViewCell.xib; sourceTree = "<group>"; };
 		86251F781AEDE4990007BA6F /* TruckFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TruckFetcher.swift; sourceTree = "<group>"; };
 		8644575A1ABF46C900C1D282 /* TruckDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TruckDetailViewController.swift; sourceTree = "<group>"; };
 		8644575D1ABF4AB900C1D282 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Food Truck Demo/Base.lproj/Main.storyboard"; sourceTree = "<group>"; };
@@ -156,6 +162,7 @@
 		86EC6EC91A86C3A000940D9F = {
 			isa = PBXGroup;
 			children = (
+				861DCED21B3798B600AD593B /* CustomAnnotationViewCell.xib */,
 				86EC6F031A881D6400940D9F /* MapKit.framework */,
 				86EC6ED41A86C3A000940D9F /* Food Truck Demo */,
 				86EC6EEA1A86C3A000940D9F /* Food Truck DemoTests */,
@@ -184,6 +191,8 @@
 				86251F741AEDCF230007BA6F /* Image */,
 				86EC6EE01A86C3A000940D9F /* LaunchScreen.xib */,
 				8644575C1ABF4AB900C1D282 /* Main.storyboard */,
+				861DCED01B3719A700AD593B /* CustomAnnotationView.xib */,
+				861DCECE1B37149000AD593B /* CustomAnnotationView.swift */,
 				86C962271AA286EF00061880 /* Model */,
 				86EC6ED51A86C3A000940D9F /* Supporting Files */,
 				86251F751AEDCF470007BA6F /* ViewControllers */,
@@ -288,6 +297,8 @@
 			files = (
 				86EC6EE21A86C3A000940D9F /* LaunchScreen.xib in Resources */,
 				86EC6EDF1A86C3A000940D9F /* Images.xcassets in Resources */,
+				861DCED31B3798B600AD593B /* CustomAnnotationViewCell.xib in Resources */,
+				861DCED11B3719A700AD593B /* CustomAnnotationView.xib in Resources */,
 				8644575E1ABF4AB900C1D282 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -354,6 +365,7 @@
 				86251F791AEDE4990007BA6F /* TruckFetcher.swift in Sources */,
 				86C9622C1AA3EFAA00061880 /* FoodTruckMapAnnotation.swift in Sources */,
 				8608F3721A97151C003CEE72 /* CollectionViewCell.swift in Sources */,
+				861DCECF1B37149000AD593B /* CustomAnnotationView.swift in Sources */,
 				861DCECD1B36778C00AD593B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

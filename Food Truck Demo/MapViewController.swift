@@ -55,18 +55,33 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate {
                 var latitudeSum:Double = 0
                 var longitudeSum:Double = 0
                 
+                var groupByAddress = [String: [[String: AnyObject]]]()
                 for scheduleId in self.schedules.keys {
                     var schedule:[String: AnyObject] = self.schedules[scheduleId]!
                     var latitude:CLLocationDegrees = (schedule["lat"] as! NSString).doubleValue
                     var longitude:CLLocationDegrees = (schedule["lng"] as! NSString).doubleValue
                     
+                    if let address = schedule["address"] as? String {
+                        if groupByAddress[address] == nil {
+                            groupByAddress[address] = [[String: AnyObject]]()
+                        }
+                        
+                        groupByAddress[address]?.append(schedule)
+                    }
                     latitudeSum += latitude
                     longitudeSum += longitude
                     
-                    var annotation = self.createAnnotations(scheduleId, singleScheduleObject: schedule)
-                    self.annotationsBySchedule[scheduleId] = annotation
+                    //var annotation = self.createAnnotations(scheduleId, singleScheduleObject: schedule)
+                    //self.annotationsBySchedule[scheduleId] = annotation
                 }
                 
+                for groupId in groupByAddress.keys {
+                    println(groupId)
+                    self.createAnnotationsByGroup("blah", schedulesOnSameAddress: groupByAddress[groupId]!)
+                    for singleSchedule in groupByAddress[groupId]! {
+                        println(singleSchedule["name"])
+                    }
+                }
                 
                 // TODO: refactor this shit
                 if (self.scheduleId == "") {
@@ -76,7 +91,6 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate {
                 } else {
                     self.setRegionBySchedule(self.scheduleId)
                     self.highlightAnnotation(self.scheduleId)
-
                 }
             }
         }
@@ -86,12 +100,52 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate {
         set the region when user clicks on a schedule from table view and then switch to the map
     */
     func setRegionBySchedule(scheduleId:String) {
+        if (scheduleId == "") {
+            return
+        }
+        
         var schedule:[String: AnyObject] = self.schedules[scheduleId]!
         var latitude:CLLocationDegrees = (schedule["lat"] as! NSString).doubleValue
         var longitude:CLLocationDegrees = (schedule["lng"] as! NSString).doubleValue
         self.setRegion(latitude, longitude: longitude, delta: 0.5)
     }
 
+    func groupAnnotationBySameAddress() {
+        
+    }
+    
+    func createAnnotationsByGroup(address: String, schedulesOnSameAddress schedules: [[String: AnyObject]]) -> FoodTruckMapAnnotation {
+
+        
+        var temp:String = ""
+        for singleSchedule in schedules {
+            temp += singleSchedule["name"] as! String
+        }
+        
+        var schedule = schedules.first!
+        var latitude:CLLocationDegrees = (schedule["lat"] as! NSString).doubleValue
+        var longitude:CLLocationDegrees = (schedule["lng"] as! NSString).doubleValue
+        var newCoordinate :CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
+        var annotation:FoodTruckMapAnnotation = FoodTruckMapAnnotation()
+        annotation.coordinate = newCoordinate
+        annotation.title = temp
+        annotation.subtitle = schedule["date"] as! String + " " + (schedule["start_time"] as! String) + " - " + (schedule["end_time"] as! String)
+        
+        annotation.truckId = schedule["truck_id"] as! String
+        annotation.scheduleId = scheduleId
+        annotation.date = schedule["date"] as! String
+        
+        
+        
+        if latitude > 180 || latitude < -180 || longitude > 180 || longitude < -180 {
+            println("invalid longitude/latitude \(longitude)/\(latitude)")
+        } else {
+            self.mapView.addAnnotation(annotation)
+        }
+        
+        return annotation
+    }
+    
     func createAnnotations(scheduleId: String, singleScheduleObject schedule: [String: AnyObject]) -> FoodTruckMapAnnotation {
         
         var latitude:CLLocationDegrees = (schedule["lat"] as! NSString).doubleValue
@@ -105,10 +159,8 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate {
         annotation.scheduleId = scheduleId
         annotation.date = schedule["date"] as! String
         
-        
-        
         if latitude > 180 || latitude < -180 || longitude > 180 || longitude < -180 {
-            println("invalsid longitude/latitude \(longitude)/\(latitude)")
+            println("invalid longitude/latitude \(longitude)/\(latitude)")
         } else {
             self.mapView.addAnnotation(annotation)
         }
@@ -131,7 +183,7 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate {
     }
     
     /*
-        tell truck detail view what should be prepared for dinner today
+        tell truck detail view
     */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier! == toTruckDetailViewSegue) {
@@ -141,6 +193,27 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate {
         }
     }
     
+    // how to add custom annotation callout(awesome!)
+    // http://stackoverflow.com/a/19404994/677596
+    func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!) {
+        // how to load from a nib file
+        // http://stackoverflow.com/a/25513605
+        var customView = UINib(nibName: "CustomAnnotationView", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! UIView
+
+        // to make customView appear just above the pin
+        customView.center = CGPointMake(view.bounds.size.width*0.5, -customView.bounds.size.height*0.5)
+        view.addSubview(customView)
+    }
+    
+    func mapView(mapView: MKMapView!, didDeselectAnnotationView view: MKAnnotationView!) {
+        // how to remove subview
+        // http://stackoverflow.com/a/24666052/677596
+        for someView in view.subviews {
+            if someView.isKindOfClass(CustomAnnotationView) {
+                someView.removeFromSuperview()
+            }
+        }
+    }
     
     /*
         customize annotation view
@@ -208,6 +281,12 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate {
     func refreshByDate(date:String) {
         for annotation in self.annotationsBySchedule.values {
             var viewForAnnotation = self.mapView.viewForAnnotation(annotation)
+            
+            //TODO: debugging here
+            if viewForAnnotation == nil {
+                println(annotation.scheduleId)
+                continue
+            }
             if annotation.date == date {
                 viewForAnnotation.hidden = false
             } else {
