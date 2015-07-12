@@ -81,13 +81,12 @@ class ViewController: DropdownMenuController {
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         //Schedules.getSchedulesWithFilter()
         
-        if let table = containerViewController.currentController as? TableViewController {
-            table.refreshByDate(dates[row])
-        } else if let map = containerViewController.currentController as? MapViewController {
-            // TODO: wait until "unexpectedly found nil" is fixed
-            map.refreshByDate(dates[row])
-            
+        if let filterViewController = containerViewController.currentController as? FilterProtocol {
+            filterViewController.refreshByDate(dates[row])
+        } else {
+            println("\(containerViewController.currentController) does not conform to FilterProtocol")
         }
+
         pickerView.hidden = true
     }
     

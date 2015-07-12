@@ -11,7 +11,26 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class MapViewController: ScheduleAwareViewController, MKMapViewDelegate {
+
+
+/**
+
+A group contains:
+    [
+        schedule: [
+
+        ],
+        schedule : [
+
+        ],
+        ....
+
+    ]
+
+
+*/
+
+class MapViewController: ScheduleAwareViewController, MKMapViewDelegate, UICollectionViewDelegate, FilterProtocol {
     
     var schedules = [String: [String: AnyObject]]()
     var scheduleFetcher = ScheduleFetcher()
@@ -21,9 +40,21 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate {
     var currentScheduleId : String = ""
     var previousController : String = ""
     var toTruckDetailViewSegue = "MapFullToDetailSegue"
-    var annotationsBySchedule = [String: FoodTruckMapAnnotation]()
     
+    // store all annotations created during map view initialization, for use case like date filtering
+    var annotations = [FoodTruckMapAnnotation]()
     
+    // selected annotation group
+    var selectedGroupId : String = ""
+    
+    // selected truck id, which comes from two sources:
+    // 1. a group annotation with single schedule, where truck id is set when users click on the image in callout window
+    // 2. a group annotation with multiple schedules, where truck id is set when users click on image in galley at the bottom
+    //
+    // truck id will be used for performing segue, so that truck detail view controller will be aware of which truck to displays
+    var selectedTruckId : String = ""
+    
+    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var mapView: MKMapView!
     
     override func didReceiveMemoryWarning() {
@@ -39,6 +70,9 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate {
         highlightAnnotation(self.scheduleId)
         setRegionBySchedule(self.scheduleId)
     }
+    //
+    var groupByAddress = [String: [[String: AnyObject]]]()
+
     
     
     override func viewDidLoad() {
@@ -55,32 +89,39 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate {
                 var latitudeSum:Double = 0
                 var longitudeSum:Double = 0
                 
-                var groupByAddress = [String: [[String: AnyObject]]]()
                 for scheduleId in self.schedules.keys {
                     var schedule:[String: AnyObject] = self.schedules[scheduleId]!
                     var latitude:CLLocationDegrees = (schedule["lat"] as! NSString).doubleValue
                     var longitude:CLLocationDegrees = (schedule["lng"] as! NSString).doubleValue
                     
-                    if let address = schedule["address"] as? String {
-                        if groupByAddress[address] == nil {
-                            groupByAddress[address] = [[String: AnyObject]]()
-                        }
-                        
-                        groupByAddress[address]?.append(schedule)
+                    
+                    var address = schedule["address"] as! String
+                    var date = schedule["date"] as! String
+                    var state_time = schedule["start_time"] as! String
+                    var end_time = schedule["end_time"] as! String
+                    var key = date + address + state_time + end_time
+                    if self.groupByAddress[key] == nil {
+                        self.groupByAddress[key] = [[String: AnyObject]]()
                     }
+                    
+                    
+                    schedule["id"] = scheduleId
+                    self.groupByAddress[key]?.append(schedule)
                     latitudeSum += latitude
                     longitudeSum += longitude
-                    
-                    //var annotation = self.createAnnotations(scheduleId, singleScheduleObject: schedule)
-                    //self.annotationsBySchedule[scheduleId] = annotation
                 }
                 
-                for groupId in groupByAddress.keys {
-                    println(groupId)
-                    self.createAnnotationsByGroup("blah", schedulesOnSameAddress: groupByAddress[groupId]!)
-                    for singleSchedule in groupByAddress[groupId]! {
-                        println(singleSchedule["name"])
+                // create annotation differently
+                for groupId in self.groupByAddress.keys {
+                    var groupModel:[[String: AnyObject]] = self.groupByAddress[groupId]!
+                    var annotation:FoodTruckMapAnnotation
+                    if (groupModel.count > 1) {
+                        annotation = self.createAnnotationsByGroup(groupId, schedulesOnSameAddress: self.groupByAddress[groupId]!)
+                    } else {
+                        var onlySchedule = groupModel.first!
+                        annotation = self.createAnnotation(onlySchedule["id"] as! String, singleScheduleObject: onlySchedule)
                     }
+                    self.annotations.append(annotation)
                 }
                 
                 // TODO: refactor this shit
@@ -114,9 +155,7 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate {
         
     }
     
-    func createAnnotationsByGroup(address: String, schedulesOnSameAddress schedules: [[String: AnyObject]]) -> FoodTruckMapAnnotation {
-
-        
+    func createAnnotationsByGroup(groupId: String, schedulesOnSameAddress schedules: [[String: AnyObject]]) -> FoodTruckMapAnnotation {
         var temp:String = ""
         for singleSchedule in schedules {
             temp += singleSchedule["name"] as! String
@@ -127,15 +166,15 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate {
         var longitude:CLLocationDegrees = (schedule["lng"] as! NSString).doubleValue
         var newCoordinate :CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
         var annotation:FoodTruckMapAnnotation = FoodTruckMapAnnotation()
+        var address:String = schedule["address"] as! String
         annotation.coordinate = newCoordinate
-        annotation.title = temp
+        annotation.title = "\(schedules.count) food trucks: \(address)"
         annotation.subtitle = schedule["date"] as! String + " " + (schedule["start_time"] as! String) + " - " + (schedule["end_time"] as! String)
         
         annotation.truckId = schedule["truck_id"] as! String
+        annotation.groupId = groupId
         annotation.scheduleId = scheduleId
         annotation.date = schedule["date"] as! String
-        
-        
         
         if latitude > 180 || latitude < -180 || longitude > 180 || longitude < -180 {
             println("invalid longitude/latitude \(longitude)/\(latitude)")
@@ -146,8 +185,8 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate {
         return annotation
     }
     
-    func createAnnotations(scheduleId: String, singleScheduleObject schedule: [String: AnyObject]) -> FoodTruckMapAnnotation {
-        
+func createAnnotation(scheduleId: String, singleScheduleObject schedule: [String: AnyObject]) -> FoodTruckMapAnnotation {
+    
         var latitude:CLLocationDegrees = (schedule["lat"] as! NSString).doubleValue
         var longitude:CLLocationDegrees = (schedule["lng"] as! NSString).doubleValue
         var newCoordinate :CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
@@ -176,43 +215,75 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate {
             return
         }
         
-        var annotation = annotationsBySchedule[self.scheduleId]
-        // this is how selected pin view is displayed programmatically
-        // http://stackoverflow.com/a/2339556/677596
-        mapView.selectAnnotation(annotation, animated: false)
+//        var annotation = annotations[self.scheduleId]
+//        // this is how selected pin view is displayed programmatically
+//        // http://stackoverflow.com/a/2339556/677596
+//        mapView.selectAnnotation(annotation, animated: false)
     }
     
     /*
         tell truck detail view
     */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if (segue.identifier! == toTruckDetailViewSegue) {
-            var destViewController: TruckDetailViewController = segue.destinationViewController as! TruckDetailViewController
-            var truckId = Schedules.getTruckIdByScheduleId(currentScheduleId)
-            destViewController.truckId(truckId!)
+        
+        var destViewController: TruckDetailViewController = segue.destinationViewController as! TruckDetailViewController
+
+        if (selectedTruckId != "") {
+            destViewController.truckId(selectedTruckId)
+
+        } else {
+        
+            if (segue.identifier! == toTruckDetailViewSegue) {
+                var truckId = Schedules.getTruckIdByScheduleId(currentScheduleId)
+                destViewController.truckId(truckId!)
+            }
         }
     }
     
     // how to add custom annotation callout(awesome!)
     // http://stackoverflow.com/a/19404994/677596
     func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!) {
+        
+        
+        var foodTruckAnnotation = view.annotation as! FoodTruckMapAnnotation
+        
+        if (foodTruckAnnotation.groupId != "") {
+            self.selectedGroupId = foodTruckAnnotation.groupId
+
+            collectionView.reloadData()
+
+            collectionView.hidden = false
+        } else {
+             self.selectedGroupId = ""
+            collectionView.hidden = true
+        }
         // how to load from a nib file
         // http://stackoverflow.com/a/25513605
-        var customView = UINib(nibName: "CustomAnnotationView", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! UIView
-
-        // to make customView appear just above the pin
-        customView.center = CGPointMake(view.bounds.size.width*0.5, -customView.bounds.size.height*0.5)
-        view.addSubview(customView)
+//        var customView = UINib(nibName: "CustomAnnotationView", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! CustomAnnotationView
+//
+//        // to make customView appear just above the pin
+//        //if customView.bounds.size.width > mapView.boun
+//        customView.center = CGPointMake(view.bounds.size.width*0.5, -customView.bounds.size.height*0.5)
+//        customView.time.text = "123"
+//        view.addSubview(customView)
     }
     
     func mapView(mapView: MKMapView!, didDeselectAnnotationView view: MKAnnotationView!) {
-        // how to remove subview
-        // http://stackoverflow.com/a/24666052/677596
-        for someView in view.subviews {
-            if someView.isKindOfClass(CustomAnnotationView) {
-                someView.removeFromSuperview()
-            }
+        
+        var foodTruckAnnotation = view.annotation as! FoodTruckMapAnnotation
+
+        if (foodTruckAnnotation.groupId != "") {
+            self.selectedGroupId = ""
+
+            collectionView.hidden = true
         }
+//        // how to remove subview
+//        // http://stackoverflow.com/a/24666052/677596
+//        for someView in view.subviews {
+//            if someView.isKindOfClass(CustomAnnotationView) {
+//                someView.removeFromSuperview()
+//            }
+//        }
     }
     
     /*
@@ -238,12 +309,17 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate {
         deleteButton.frame.size.width = 44
         deleteButton.frame.size.height = 44
         
-        if let theImage: Image = Images.truckImages[truckId] {
-            deleteButton.setBackgroundImage(theImage.image, forState: UIControlState.Normal)
+        
+        if (foodTruckAnnotation.groupId == "") {
+            selectedGroupId = ""
+            if let theImage: Image = Images.truckImages[truckId] {
+                deleteButton.setBackgroundImage(theImage.image, forState: UIControlState.Normal)
+            }
+        
+            pinAnnotationView.leftCalloutAccessoryView = deleteButton
+        } else {
+            selectedGroupId = foodTruckAnnotation.groupId
         }
-        
-        pinAnnotationView.leftCalloutAccessoryView = deleteButton
-        
         return pinAnnotationView
     }
     
@@ -275,16 +351,13 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate {
 
     func refreshByCategory(category:String) {
         
-        
     }
     
     func refreshByDate(date:String) {
-        for annotation in self.annotationsBySchedule.values {
+        for annotation in self.annotations {
             var viewForAnnotation = self.mapView.viewForAnnotation(annotation)
             
-            //TODO: debugging here
             if viewForAnnotation == nil {
-                println(annotation.scheduleId)
                 continue
             }
             if annotation.date == date {
@@ -293,5 +366,50 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate {
                 viewForAnnotation.hidden = true
             }
         }
+    }
+    
+    
+    /****** collection view ******/
+    
+    
+    
+    
+    var collectionCellReusableId = "EventPictureCell"
+
+    /*
+    
+    */
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if (self.selectedGroupId != "") {
+            return groupByAddress[self.selectedGroupId]!.count
+        }
+        return 0
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(collectionCellReusableId, forIndexPath: indexPath) as! MapCollectionViewCell
+        
+        // at the point, a group annotation must be selected(otherwise, users won't see this collection view)
+        var selectedSchedule = groupByAddress[self.selectedGroupId]![indexPath.row]
+        var truckId = selectedSchedule["truck_id"] as! String
+        
+        cell.truckId = truckId
+        if let theImage: Image = Images.truckImages[truckId] {
+            cell.imageView.image = theImage.image
+        }
+        return cell
+    }
+    
+    /*
+        When an image is clicked
+    */
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        var cell = collectionView.cellForItemAtIndexPath(indexPath) as! MapCollectionViewCell
+        self.selectedTruckId = cell.truckId
+        performSegueWithIdentifier("MapFullToDetailSegue", sender: nil)
     }
 }

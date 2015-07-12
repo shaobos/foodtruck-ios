@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TableViewController: UIViewController, UITableViewDelegate {
+class TableViewController: UIViewController, UITableViewDelegate, FilterProtocol {
     @IBOutlet weak var theTableView: UITableView!
     
     var containerViewController:ContainerViewController?
@@ -45,6 +45,12 @@ class TableViewController: UIViewController, UITableViewDelegate {
         self.cellContent = self.scheduleFetcher.getSchedulesBydate(date)
         self.theTableView.reloadData()
     }
+    
+    func refreshByCategory(category:String) {
+        self.cellContent = self.scheduleFetcher.getSchedulesBydate(category)
+        self.theTableView.reloadData()
+    }
+
     
     func fetchSchedules() {
         var dates:[String] = self.scheduleFetcher.getScheduleDates()

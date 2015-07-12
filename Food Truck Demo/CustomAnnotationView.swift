@@ -8,7 +8,7 @@
 
 import MapKit
 
-class CustomAnnotationView : UIView {
+class CustomAnnotationView : MKPinAnnotationView {
 
     @IBOutlet weak var time: UILabel!
     @IBOutlet weak var address: UILabel!

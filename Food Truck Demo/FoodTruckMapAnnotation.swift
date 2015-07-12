@@ -12,6 +12,7 @@ import MapKit
 class FoodTruckMapAnnotation : MKPointAnnotation {
     
     // for image
+    var groupId:String = ""
     var truckId: String = ""
     // for schedule details view
     var scheduleId: String = ""

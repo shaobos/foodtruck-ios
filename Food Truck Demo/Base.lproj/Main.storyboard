@@ -191,17 +191,62 @@
                                     <outlet property="delegate" destination="axC-Ml-BMx" id="9Eb-60-QGp"/>
                                 </connections>
                             </mapView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WWL-bS-hK2">
+                                <rect key="frame" x="126" y="511" width="183" height="57"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="FnL-cR-WWk">
+                                <rect key="frame" x="0.0" y="468" width="320" height="100"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="03p-to-PHO">
+                                    <size key="itemSize" width="89" height="86"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="EventPictureCell" id="Hb8-Gz-SMi" customClass="MapCollectionViewCell" customModule="foodtruck_ios" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="89" height="86"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8L7-Fk-wgZ">
+                                                    <rect key="frame" x="0.0" y="0.0" width="89" height="86"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <connections>
+                                            <outlet property="imageView" destination="8L7-Fk-wgZ" id="tEe-wR-y53"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="axC-Ml-BMx" id="zfe-zD-gH7"/>
+                                    <outlet property="delegate" destination="axC-Ml-BMx" id="78h-M3-mWr"/>
+                                </connections>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="Mlu-f0-y1c" secondAttribute="trailing" constant="-16" id="NiD-Kd-q4d"/>
-                            <constraint firstItem="RdL-ic-ERV" firstAttribute="top" secondItem="Mlu-f0-y1c" secondAttribute="bottom" id="UCg-MG-uw8"/>
+                            <constraint firstItem="RdL-ic-ERV" firstAttribute="top" secondItem="Mlu-f0-y1c" secondAttribute="bottom" priority="800" id="UCg-MG-uw8"/>
                             <constraint firstItem="Mlu-f0-y1c" firstAttribute="top" secondItem="ovU-Wp-5Cv" secondAttribute="bottom" id="cWh-fp-iap"/>
                             <constraint firstItem="Mlu-f0-y1c" firstAttribute="leading" secondItem="4rm-RL-coS" secondAttribute="leadingMargin" constant="-16" id="fDb-WK-FaC"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="WWL-bS-hK2"/>
+                            </mask>
+                        </variation>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="collectionView" destination="FnL-cR-WWk" id="yd8-kU-r5Q"/>
                         <outlet property="mapView" destination="Mlu-f0-y1c" id="Xwb-jN-4PL"/>
                         <segue destination="0JO-0b-VHK" kind="presentation" identifier="MapFullToDetailSegue" id="Iy1-gB-lBZ"/>
                     </connections>
@@ -598,7 +643,7 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="PXb-th-F6S"/>
+        <segue reference="Iy1-gB-lBZ"/>
         <segue reference="OdQ-3H-74I"/>
     </inferredMetricsTieBreakers>
 </document>

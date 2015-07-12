@@ -22,6 +22,8 @@
 		8644575B1ABF46C900C1D282 /* TruckDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8644575A1ABF46C900C1D282 /* TruckDetailViewController.swift */; };
 		8644575E1ABF4AB900C1D282 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8644575C1ABF4AB900C1D282 /* Main.storyboard */; };
 		864457601ABF4B1800C1D282 /* TrucksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8644575F1ABF4B1800C1D282 /* TrucksTableViewController.swift */; };
+		866D43961B51E84000B34DC5 /* MapCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866D43951B51E84000B34DC5 /* MapCollectionViewCell.swift */; };
+		866D43981B52DACF00B34DC5 /* FilterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866D43971B52DACF00B34DC5 /* FilterProtocol.swift */; };
 		86730DBC1AD9D5DE000F3236 /* LargeImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86730DBB1AD9D5DE000F3236 /* LargeImageViewController.swift */; };
 		86C961F21AA1AD9800061880 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C961F11AA1AD9800061880 /* WebService.swift */; };
 		86C961F41AA1B00600061880 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C961F31AA1B00600061880 /* Images.swift */; };
@@ -57,6 +59,8 @@
 		8644575A1ABF46C900C1D282 /* TruckDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TruckDetailViewController.swift; sourceTree = "<group>"; };
 		8644575D1ABF4AB900C1D282 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Food Truck Demo/Base.lproj/Main.storyboard"; sourceTree = "<group>"; };
 		8644575F1ABF4B1800C1D282 /* TrucksTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrucksTableViewController.swift; sourceTree = "<group>"; };
+		866D43951B51E84000B34DC5 /* MapCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapCollectionViewCell.swift; sourceTree = "<group>"; };
+		866D43971B52DACF00B34DC5 /* FilterProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterProtocol.swift; sourceTree = "<group>"; };
 		86730DBB1AD9D5DE000F3236 /* LargeImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LargeImageViewController.swift; sourceTree = "<group>"; };
 		867414D41A8C710700203276 /* Dropdown-mnm-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Dropdown-mnm-Header.h"; sourceTree = "<group>"; };
 		86C961F11AA1AD9800061880 /* WebService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
@@ -143,6 +147,7 @@
 				8608F3711A97151C003CEE72 /* CollectionViewCell.swift */,
 				86C962281AA2A8F300061880 /* TableCellCustomView.swift */,
 				86C9723F1ABF4ECB0010E931 /* TruckTableCellCustomView.swift */,
+				866D43951B51E84000B34DC5 /* MapCollectionViewCell.swift */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -197,6 +202,7 @@
 				86EC6ED51A86C3A000940D9F /* Supporting Files */,
 				86251F751AEDCF470007BA6F /* ViewControllers */,
 				8604D8BB1A9AF725004898BE /* WebServices */,
+				866D43971B52DACF00B34DC5 /* FilterProtocol.swift */,
 			);
 			path = "Food Truck Demo";
 			sourceTree = "<group>";
@@ -356,8 +362,10 @@
 				8604D8B01A99A691004898BE /* ImageFetcher.swift in Sources */,
 				8607BAD91AD225BB006D897A /* MapViewController.swift in Sources */,
 				8604D8BD1A9AF7E8004898BE /* Schedules.swift in Sources */,
+				866D43981B52DACF00B34DC5 /* FilterProtocol.swift in Sources */,
 				86C961F41AA1B00600061880 /* Images.swift in Sources */,
 				8644575B1ABF46C900C1D282 /* TruckDetailViewController.swift in Sources */,
+				866D43961B51E84000B34DC5 /* MapCollectionViewCell.swift in Sources */,
 				8608F36E1A95A5C3003CEE72 /* Trucks.swift in Sources */,
 				86C972401ABF4ECB0010E931 /* TruckTableCellCustomView.swift in Sources */,
 				86730DBC1AD9D5DE000F3236 /* LargeImageViewController.swift in Sources */,
