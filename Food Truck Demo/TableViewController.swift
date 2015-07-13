@@ -8,10 +8,19 @@
 
 import UIKit
 
+
+/**
+    Table view needs to support two use cases:
+    1. when it displays schdules from all available trucks, and embedded into main view controller
+    1. when it displays schdules from a specific truck, and embedded into truck detail view controller
+*/
 class TableViewController: UIViewController, UITableViewDelegate, FilterProtocol {
     @IBOutlet weak var theTableView: UITableView!
     
+    // TableViewController will be embedded into the following controllers
+    var truckDetailViewController:TruckDetailViewController?
     var containerViewController:ContainerViewController?
+    
     var cellContent:[String: [String: AnyObject]] = [:]
     var scheduleFetcher = ScheduleFetcher()
     var trucks = TruckFetcher()
@@ -20,14 +29,25 @@ class TableViewController: UIViewController, UITableViewDelegate, FilterProtocol
     var truckId:String? // could be called from truckd detail view
     
     override func didMoveToParentViewController(parent: UIViewController?) {
+        
         super.didMoveToParentViewController(parent)
-        if containerViewController == nil {
-            containerViewController = parent as? ContainerViewController
+        // only needs to initialize once. once you know your parent, you know!!
+        
+        if parent is ContainerViewController {
+            if containerViewController == nil {
+                containerViewController = parent as? ContainerViewController
+            }
+        } else if parent is TruckDetailViewController {
+            truckDetailViewController = parent as? TruckDetailViewController
+        } else {
+            println("Unrecognized parent from TableViewController: \(parent)")
         }
     }
+    
     func truckId(truckId: String) {
         self.truckId = truckId
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // TODO: better to intialize data fetch in main view controller
@@ -47,7 +67,9 @@ class TableViewController: UIViewController, UITableViewDelegate, FilterProtocol
     }
     
     func refreshByCategory(category:String) {
-        self.cellContent = self.scheduleFetcher.getSchedulesBydate(category)
+        // get schedule, then get its truck
+//        self.cellContent = self.scheduleFetcher.getSchedulesBydate(category)
+        self.cellContent = self.scheduleFetcher.getSchedulesByCategory(category)
         self.theTableView.reloadData()
     }
 
@@ -120,16 +142,25 @@ class TableViewController: UIViewController, UITableViewDelegate, FilterProtocol
     */
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.currentScheduleId = Array(cellContent.keys)[indexPath.row] as String
-        if let c = containerViewController {
-            if (c.mapViewController == nil) {
-                c.switchToController("mapViewSegue")
-                c.mapViewController.scheduleId(self.currentScheduleId)
-            } else {
-                c.mapViewController.scheduleId(self.currentScheduleId)
-                c.switchToController("mapViewSegue")
+        
+//        if self.parentViewController is ContainerViewController {
+            println("-> container ")
+        println(containerViewController)
+//            containerViewController!.switchToController("mapViewSegue")
+            if let c = containerViewController {
+                println("Yes!!")
+                if (c.mapViewController == nil) {
+                    c.switchToController("mapViewSegue")
+                    c.mapViewController.scheduleId(self.currentScheduleId)
+                } else {
+                    c.mapViewController.scheduleId(self.currentScheduleId)
+                    c.switchToController("mapViewSegue")
+                }
             }
-
-        }
+//        } else if self.parentViewController is TruckDetailViewController {
+//            println("-> truck detail  ")
+            //performSegueWithIdentifier("TableToMapModallySegue", sender: nil)
+//        }
     }
     
     // TODO: duplicate code in Map view
@@ -140,7 +171,6 @@ class TableViewController: UIViewController, UITableViewDelegate, FilterProtocol
         var indexPath: NSIndexPath = self.theTableView.indexPathForSelectedRow()!//indexPathForSelectedRow
         var destViewController = segue.destinationViewController as! ScheduleAwareViewController
         // both TruckDetailsView and MapView can implement the same interface
-        println("** set here")
         destViewController.scheduleId(self.currentScheduleId)
     }
 }

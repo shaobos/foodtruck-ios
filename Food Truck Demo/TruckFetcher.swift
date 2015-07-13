@@ -12,19 +12,6 @@ class TruckFetcher {
     var results:NSArray = []
     let baseUrl = "http://130.211.191.208/"
     
-    func getTruckNames() -> [String] {
-        var ret = [String]()
-        if (Trucks.trucks.count == 0) {
-            println("No truck found")
-        }
-        
-        for truckInfo in Trucks.trucks.values {
-            ret.insert(truckInfo["name"]!, atIndex: 0)
-        }
-        
-        return ret
-    }
-    
     func fetchTrucksInfoFromRemote(completionHandler: (images: [UIImage]) -> ())  {
         let urlPath = baseUrl + "scripts/get_trucks.php"
         
@@ -35,7 +22,6 @@ class TruckFetcher {
             if (error != nil) {
                 println(error)
             } else {
-                
                 let jsonResults = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as! NSArray
                 
                 
@@ -43,6 +29,7 @@ class TruckFetcher {
                     if let jsonResult = responseObject as? Dictionary<String, String> {
                         var id = jsonResult["id"]!
                         Trucks.trucks[id] = jsonResult
+                        self.extractCategory(jsonResult)
                     }
                 }
                 
@@ -53,5 +40,11 @@ class TruckFetcher {
             
         })
         task.resume()
+    }
+    
+    private func extractCategory(jsonResult:Dictionary<String, String>) -> Void {
+        if let category:String = jsonResult["category"] {
+            Trucks.categories.insert(category)
+        }
     }
 }

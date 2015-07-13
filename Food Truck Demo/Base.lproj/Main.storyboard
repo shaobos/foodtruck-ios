@@ -253,7 +253,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fqj-yK-wYY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-510" y="240"/>
+            <point key="canvasLocation" x="-596" y="476"/>
         </scene>
         <!--About View Controller-->
         <scene sceneID="1DS-9f-A36">
@@ -550,7 +550,7 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rkB-uC-7nK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-680" y="-1058"/>
+            <point key="canvasLocation" x="-596" y="-1170"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="RcX-TL-Tiv">
@@ -635,15 +635,17 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="theTableView" destination="JdM-to-yJT" id="5oP-ZO-CfU"/>
+                        <segue destination="axC-Ml-BMx" kind="presentation" identifier="TableToMapModallySegue" id="Tnj-wy-Ywp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xd7-ER-WSR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1035" y="222"/>
+            <point key="canvasLocation" x="-1195" y="494"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Iy1-gB-lBZ"/>
+        <segue reference="Tnj-wy-Ywp"/>
         <segue reference="OdQ-3H-74I"/>
+        <segue reference="Iy1-gB-lBZ"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -10,12 +10,15 @@ import UIKit
 
 class ViewController: DropdownMenuController {
     
+    var lastFilter:String = ""
     var scheduleFetcher = ScheduleFetcher()
     func getDates() -> [String]{
         return dates
     }
     
     var dates = [String]()
+    // convert set to array http://stackoverflow.com/a/29046827/677596
+    var categories:[String] = []
     @IBOutlet var containerViewController: ContainerViewController!
     @IBOutlet weak var picker: UIPickerView!
     @IBAction func aboutButtonPressed(sender: AnyObject) {
@@ -30,18 +33,27 @@ class ViewController: DropdownMenuController {
         containerViewController.switchToController("tableViewSegue")
         hideMenu()
     }
-    @IBAction func dateButtonAction(sender: AnyObject) {
-        
-        picker.hidden = !picker.hidden
-        super.view.bringSubviewToFront(picker)
-    }
+
     @IBAction func mapsButtonPressed(sender: AnyObject) {
         containerViewController.switchToController("mapViewSegue")
         hideMenu()
     }
     
     @IBAction func categoryButtonAction(sender: AnyObject) {
+        println("category button boom!")
+        lastFilter = "category"
+        categories = Array(Trucks.categories)
+        println(categories)
         picker.hidden = !picker.hidden
+        picker.reloadAllComponents()
+        super.view.bringSubviewToFront(picker)
+    }
+    
+    @IBAction func dateButtonAction(sender: AnyObject) {
+        lastFilter = "date"
+        picker.hidden = !picker.hidden
+        picker.reloadAllComponents()
+        super.view.bringSubviewToFront(picker)
     }
     
     override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
@@ -57,6 +69,7 @@ class ViewController: DropdownMenuController {
     override func viewDidLoad() {
         super.viewDidLoad()
         dates = scheduleFetcher.getScheduleDates()
+        categories = Array(Trucks.categories)
     }
 
     // needs to override showMenu to add bringSubviewToFront
@@ -71,18 +84,40 @@ class ViewController: DropdownMenuController {
     }
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return dates.count
+        if (lastFilter == "date") {
+            return dates.count
+        } else if (lastFilter == "category") {
+            return categories.count
+        } else {
+            println("\(lastFilter) is not a valid filter type")
+            return 0
+        }
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
-        return dates[row]
+        println("lastFilter \(lastFilter)")
+        println("categories \(categories)")
+        if (lastFilter == "date") {
+            return dates[row]
+        } else if (lastFilter == "category") {
+            return categories[row]
+        } else {
+            println("\(lastFilter) is not a valid filter type")
+            return "Invalid"
+        }
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         //Schedules.getSchedulesWithFilter()
         
         if let filterViewController = containerViewController.currentController as? FilterProtocol {
-            filterViewController.refreshByDate(dates[row])
+            if (lastFilter == "date") {
+                filterViewController.refreshByDate(dates[row])
+            } else if (lastFilter == "category") {
+                filterViewController.refreshByCategory(categories[row])
+            } else {
+                println("\(lastFilter) is not a valid filter type")
+            }
         } else {
             println("\(containerViewController.currentController) does not conform to FilterProtocol")
         }

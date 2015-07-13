@@ -14,6 +14,24 @@ class ScheduleFetcher {
         return Schedules.schedules
     }
     
+    
+    func getSchedulesByCategory(category:String) -> [String: [String: AnyObject]] {
+        var ret = [String: [String: AnyObject]]()
+        for key in Schedules.schedules.keys {
+            var scheduleObject = Schedules.schedules[key]!
+            if let truckId: AnyObject = scheduleObject["truck_id"] {
+                if let truckModel = Trucks.trucks[truckId as! String] {
+                    if (truckModel["category"] == category) {
+                        println("Find \(truckId)!!")
+                        ret[key] = scheduleObject
+                    }
+                }
+            }
+        }
+        
+        return ret
+    }
+    
     func getSchedulesBydate(date:String) -> [String: [String: AnyObject]] {
         var ret = [String: [String: AnyObject]]()
         for key in Schedules.schedules.keys {

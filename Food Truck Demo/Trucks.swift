@@ -34,5 +34,6 @@ after processing:
 
 // Model
 struct Trucks {
+    static var categories = Set<String>()
     static var trucks = [String: [String: String]]()
 }
