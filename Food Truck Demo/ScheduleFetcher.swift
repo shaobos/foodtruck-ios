@@ -8,12 +8,11 @@
 
 class ScheduleFetcher {
     
-    let lengthOfSchedules:Int = 6 // days
+    let lengthOfSchedules:Int = 6 // days, since it's 0-based
     
     func getSchedules() -> [String: [String: AnyObject]] {
         return Schedules.schedules
     }
-    
     
     func getSchedulesByCategory(category:String) -> [String: [String: AnyObject]] {
         var ret = [String: [String: AnyObject]]()
@@ -67,7 +66,7 @@ class ScheduleFetcher {
     
     func fetchSchedules(completionHandler: () -> ())  {
         let startDate = getStartDate()
-        //let startDate = "03/01"
+        //let startDate = "07/13"
         let endDate = getEndDate()
         let urlPath = WebService.baseUrl + "scripts/get_trucks_schedule.php?start_date=\(startDate)&end_date=\(endDate)"
         
@@ -106,14 +105,18 @@ class ScheduleFetcher {
     
     
     func getStartDate() -> String {
-        var today = NSDate()
+        var today = getToday()
         let formatter  = NSDateFormatter()
         formatter.dateFormat = "MM/dd"
         return formatter.stringFromDate(today)
     }
     
+    func getToday() -> NSDate {
+        return NSDate()
+    }
+    
     func getEndDate() -> String {
-        var today = NSDate()
+        var today = getToday()
         let formatter  = NSDateFormatter()
         formatter.dateFormat = "MM/dd"
         let tomorrow = NSCalendar.currentCalendar().dateByAddingUnit(
@@ -126,7 +129,7 @@ class ScheduleFetcher {
     }
     
     func getScheduleDates () -> [String] {
-        var today = NSDate()
+        var today = getToday()
         let formatter  = NSDateFormatter()
         formatter.dateFormat = "YYYY-MM-dd"
         var dates = [String]()
@@ -141,6 +144,7 @@ class ScheduleFetcher {
             var currentDateInString = formatter.stringFromDate(currentDate!)
             dates.insert(currentDateInString, atIndex: dates.endIndex)
         }
+        
         
         return dates
     }

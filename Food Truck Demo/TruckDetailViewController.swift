@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Shaobo Sun. All rights reserved.
 //
 
-class TruckDetailViewController : UIViewController, UICollectionViewDelegate {
+class TruckDetailViewController : UIViewController, UICollectionViewDelegate, MWPhotoBrowserDelegate {
     
     @IBAction func backButtonPressed(sender: AnyObject) {
         println("pressed, pressed!")
@@ -33,6 +33,7 @@ class TruckDetailViewController : UIViewController, UICollectionViewDelegate {
     var scheduleToMapSegueID : String = "ScheduleToMapSegue"
     var inputLabel:String = ""
     var currentImage:UIImage?
+    var photos = [UIImage]()
     
     @IBOutlet weak var theCollectionView: UICollectionView!
     var collectionCellReusableId = "TruckDetailCollectionCell"
@@ -42,6 +43,7 @@ class TruckDetailViewController : UIViewController, UICollectionViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         println("who is my previous controller \(self.previousViewControllerName)")
+
         
         // Do any additional setup after loading the view.
         theTitle.text = inputLabel
@@ -100,7 +102,44 @@ class TruckDetailViewController : UIViewController, UICollectionViewDelegate {
 
         var cell = collectionView.cellForItemAtIndexPath(indexPath) as! CollectionViewCell
         currentImage = cell.imageView.image
-        performSegueWithIdentifier("TruckDetailToLargeImageSegue", sender: nil)
+//        performSegueWithIdentifier("TruckDetailToLargeImageSegue", sender: nil)
+        
+        
+        
+        //let photo:MWPhoto = MWPhoto(image:image)
+        
+        self.photos = TruckDetailImages.truckImages[self.truckId!]!
+        
+        let browser:MWPhotoBrowser = MWPhotoBrowser(delegate: self)
+        
+        browser.displayActionButton = true
+        browser.displayNavArrows = false
+        browser.displaySelectionButtons = false
+        browser.zoomPhotosToFill = true
+        browser.alwaysShowControls = false
+        browser.enableGrid = false
+        browser.startOnGrid = false
+        browser.enableSwipeToDismiss = true
+        
+//        var index:Int = 3
+        browser.setCurrentPhotoIndex(CUnsignedLong(indexPath.row    ))
+        
+//        println("my navigation here \(self.navigationController!)")
+        var nav = UINavigationController(rootViewController: browser)
+        nav.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
+        self.presentViewController(nav, animated: true, completion: nil)
+       // self.navigationController?.pushViewController(browser, animated: true)
+    }
+    
+    func numberOfPhotosInPhotoBrowser(photoBrowser: MWPhotoBrowser!) -> UInt {
+        return UInt(self.photos.count)
+    }
+    
+    func photoBrowser(photoBrowser: MWPhotoBrowser!, photoAtIndex index: UInt) -> MWPhotoProtocol! {
+        var image = self.photos[Int(index)]
+        var mwPhoto:MWPhoto = MWPhoto(image: image)
+        
+        return mwPhoto
     }
     
     override func didReceiveMemoryWarning() {
@@ -113,6 +152,7 @@ class TruckDetailViewController : UIViewController, UICollectionViewDelegate {
             var destViewController = segue.destinationViewController as! LargeImageViewController
             if let theImage = currentImage {
                 destViewController.setImage(theImage)
+                destViewController.setImageList(TruckDetailImages.truckImages[self.truckId!]!)
                 //destViewController.setShit("hi")
             } else {
                 println("currentImage is unset")
@@ -124,4 +164,6 @@ class TruckDetailViewController : UIViewController, UICollectionViewDelegate {
             println("Unknown segue in TruckDetialScrollViewController")
         }
     }
+    
+
 }

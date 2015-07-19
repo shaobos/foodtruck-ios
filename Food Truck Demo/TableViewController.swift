@@ -143,9 +143,7 @@ class TableViewController: UIViewController, UITableViewDelegate, FilterProtocol
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.currentScheduleId = Array(cellContent.keys)[indexPath.row] as String
         
-//        if self.parentViewController is ContainerViewController {
-            println("-> container ")
-        println(containerViewController)
+//        if self.parentViewController is ContainerViewController         println(containerViewController)
 //            containerViewController!.switchToController("mapViewSegue")
             if let c = containerViewController {
                 println("Yes!!")

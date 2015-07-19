@@ -4,27 +4,62 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>MWPhotoBrowser.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-DACircularProgress.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-DropdownMenu.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-Food Truck Demo-DropdownMenu.xcscheme</key>
+		<key>Pods-MBProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-Food Truck Demo.xcscheme</key>
+		<key>Pods-MWPhotoBrowser.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-Food Truck DemoTests-DropdownMenu.xcscheme</key>
+		<key>Pods-SDWebImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-Food Truck DemoTests.xcscheme</key>
+		<key>Pods-foodtruck-ios-DACircularProgress.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-foodtruck-ios-DropdownMenu.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-foodtruck-ios-MBProgressHUD.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-foodtruck-ios-MWPhotoBrowser.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-foodtruck-ios-SDWebImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-foodtruck-ios.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -37,32 +72,67 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0052FEC6149C30E6D98AE403</key>
+		<key>4DD23CEE25669F6C2E3727EA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>23A0513ABDB778299FADD6F8</key>
+		<key>57C13ACC4C85F2DFAD025355</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>894F917DB0D4B94A739DB193</key>
+		<key>5CC1A47428E73EAF2EC05AF6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A52797B4E5EDBD4D2C173A15</key>
+		<key>603152C8DFC62A956174E411</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B19DC8C349294361FDBDCC52</key>
+		<key>712DD8254EC0510532806D6B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FD4BD3B65FB1E0A50146D384</key>
+		<key>838FA144D907F70084662BD8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8595501FD73C294BC88A4137</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8AAD9F85364F02EAD8F3EB02</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8C8A8ED70E3CED0022CFF357</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9154A0AE6E75A65AC16D08E7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AB6694754CD8F6FE44F6FAD1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B6DCF6DA91B8B1E02E3AE48C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F0AC34C2803287EF3CAD944F</key>
 		<dict>
 			<key>primary</key>
 			<true/>

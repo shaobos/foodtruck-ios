@@ -408,6 +408,23 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
             </objects>
             <point key="canvasLocation" x="-1468" y="-976"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="y3i-nd-ogh">
+            <objects>
+                <navigationController id="wuy-ku-01q" sceneMemberID="viewController">
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="K52-zd-CO7">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="0JO-0b-VHK" kind="relationship" relationship="rootViewController" id="TiD-32-1ov"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2cT-fj-dOP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1072" y="-1535"/>
+        </scene>
         <!--Truck Detail View Controller-->
         <scene sceneID="gHx-fZ-Tcg">
             <objects>
@@ -538,6 +555,7 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                             <constraint firstAttribute="trailing" secondItem="gyJ-IB-lYz" secondAttribute="trailing" id="vB4-xO-25E"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="KVt-7v-dKS"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="category" destination="igX-iw-qWB" id="gwn-VH-J5T"/>
@@ -644,8 +662,8 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Tnj-wy-Ywp"/>
+        <segue reference="TiD-32-1ov"/>
         <segue reference="OdQ-3H-74I"/>
-        <segue reference="Iy1-gB-lBZ"/>
+        <segue reference="Tnj-wy-Ywp"/>
     </inferredMetricsTieBreakers>
 </document>

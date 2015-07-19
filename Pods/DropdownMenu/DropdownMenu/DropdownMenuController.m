@@ -94,8 +94,6 @@ CAShapeLayer *closedMenuShape;
                      completion:^(BOOL finished){
                      }];
     [UIView commitAnimations];
-    
-    
 
 }
 
@@ -111,23 +109,19 @@ CAShapeLayer *closedMenuShape;
     // Set new alpha of Container View (to get fade effect)
     float containerAlpha = 1.0f;
     
-    self.menu.hidden = YES;
-    self.menu.frame = menuFrame;
-    [self.container setAlpha: containerAlpha];
-//    [self.container setAlpha: containerAlpha]
-//    [UIView animateWithDuration:0.3f
-//                          delay:0.05f
-//         usingSpringWithDamping:1.0
-//          initialSpringVelocity:4.0
-//                        options: UIViewAnimationOptionCurveEaseInOut
-//                     animations:^{
-//                         self.menu.frame = menuFrame;
-//                         [self.container setAlpha: containerAlpha];
-//                     }
-//                     completion:^(BOOL finished){
-//                         self.menu.hidden = YES;
-//                     }];
-    //[UIView commitAnimations];
+    [UIView animateWithDuration:0.3f
+                          delay:0.05f
+         usingSpringWithDamping:1.0
+          initialSpringVelocity:4.0
+                        options: UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         self.menu.frame = menuFrame;
+                         [self.container setAlpha: containerAlpha];
+                     }
+                     completion:^(BOOL finished){
+                         self.menu.hidden = YES;
+                     }];
+    [UIView commitAnimations];
     
 }
 

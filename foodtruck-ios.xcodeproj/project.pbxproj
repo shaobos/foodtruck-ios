@@ -507,7 +507,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "foodtruck-ios";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "Food Truck Demo/Dropdown-mnm-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/ssun/ssun_workspace/ios/Food Truck Demo/Food Truck Demo/Dropdown-mnm-Header.h";
 			};
 			name = Debug;
 		};
@@ -522,7 +522,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "foodtruck-ios";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "Food Truck Demo/Dropdown-mnm-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/ssun/ssun_workspace/ios/Food Truck Demo/Food Truck Demo/Dropdown-mnm-Header.h";
 			};
 			name = Release;
 		};

@@ -2,12 +2,9 @@
 # platform :ios, '6.0'
 
 pod 'DropdownMenu'
+pod 'MWPhotoBrowser'
 
-target 'Food Truck Demo' do
 
-end
-
-target 'Food Truck DemoTests' do
+target 'foodtruck-ios' do
 
 end
-

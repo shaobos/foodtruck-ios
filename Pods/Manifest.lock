@@ -1,10 +1,24 @@
 PODS:
+  - DACircularProgress (2.3.1)
   - DropdownMenu (1.0.0)
+  - MBProgressHUD (0.9.1)
+  - MWPhotoBrowser (2.1.1):
+    - DACircularProgress (~> 2.3)
+    - MBProgressHUD (~> 0.9)
+    - SDWebImage (!= 3.7.2, ~> 3.7)
+  - SDWebImage (3.7.3):
+    - SDWebImage/Core (= 3.7.3)
+  - SDWebImage/Core (3.7.3)
 
 DEPENDENCIES:
   - DropdownMenu
+  - MWPhotoBrowser
 
 SPEC CHECKSUMS:
-  DropdownMenu: ad71a2fcb932cc04a4f7c29aadaf2e8ed0c08e42
+  DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
+  DropdownMenu: 5777e17ac6ddbc69b151719b83a838da81440786
+  MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
+  MWPhotoBrowser: ba0d0c09ffda3a7ea10093518738c502c1c7141c
+  SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
 
 COCOAPODS: 0.35.0
