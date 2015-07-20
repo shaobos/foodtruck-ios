@@ -67,8 +67,6 @@ class TableViewController: UIViewController, UITableViewDelegate, FilterProtocol
     }
     
     func refreshByCategory(category:String) {
-        // get schedule, then get its truck
-//        self.cellContent = self.scheduleFetcher.getSchedulesBydate(category)
         self.cellContent = self.scheduleFetcher.getSchedulesByCategory(category)
         self.theTableView.reloadData()
     }

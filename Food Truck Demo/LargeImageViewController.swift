@@ -26,18 +26,12 @@ class LargeImageViewController : MWPhotoBrowser, MWPhotoBrowserDelegate {
         return mwPhoto
     }
     
-//    func photoBrowser(photoBrowser: MWPhotoBrowser!, captionViewForPhotoAtIndex index: UInt) -> MWCaptionView! {
-//        return nil
-//    }
-//    
-//    
     @IBOutlet weak var imageView: UIImageView!
     
     @IBAction func backButtonPressed(sender: AnyObject) {
         self.dismissViewControllerAnimated(false, completion: {
             println("trying to dismiss itself")
         })
-       // performSegueWithIdentifier("LargeImageToTruckDetail", sender: nil)
     }
 
     // TODO: allow user to switch between multiple images in this view
@@ -64,44 +58,4 @@ class LargeImageViewController : MWPhotoBrowser, MWPhotoBrowserDelegate {
     func setImageList(images: [UIImage]) {
         self.images = images
     }
-    
-    /*
-    
-    func showFullScreenImage(image:UIImage) {
-    let photo:MWPhoto = MWPhoto(image:image)
-    
-    self.photos = [photo]
-    
-    let browser:MWPhotoBrowser = MWPhotoBrowser(delegate: self)
-    
-    browser.displayActionButton = true
-    browser.displayNavArrows = false
-    browser.displaySelectionButtons = false
-    browser.zoomPhotosToFill = true
-    browser.alwaysShowControls = false
-    browser.enableGrid = false
-    browser.startOnGrid = false
-    browser.enableSwipeToDismiss = true
-    
-    browser.setCurrentPhotoIndex(0)
-    
-    self.navigationController?.pushViewController(browser, animated: true)
-    }
-    
-    func numberOfPhotosInPhotoBrowser(photoBrowser: MWPhotoBrowser!) -> UInt {
-        return UInt(self.photos.count)
-    }
-    
-    func photoBrowser(photoBrowser: MWPhotoBrowser!, photoAtIndex index: UInt) -> MWPhotoProtocol! {
-    if Int(index) < self.photos.count {
-    return photos.objectAtIndex(Int(index)) as! MWPhoto
-    }
-    return nil
-    }
-    
-    func photoBrowserDidFinishModalPresentation(photoBrowser:MWPhotoBrowser) {
-        self.dismissViewControllerAnimated(true, completion:nil)
-    }
-
-*/
 }

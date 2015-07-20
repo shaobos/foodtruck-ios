@@ -18,6 +18,9 @@ class AboutViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBOutlet weak var comment: UITextField!
+    @IBOutlet weak var email: UITextField!
+    @IBOutlet weak var name: UITextField!
     /*
     // MARK: - Navigation
 
