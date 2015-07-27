@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:foodtruck-ios.xcodeproj">
+      location = "group:/Users/ssb/workspace/github/foodtruck-ios/thebitemap.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

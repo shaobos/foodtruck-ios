@@ -89,7 +89,6 @@ class ViewController: DropdownMenuController {
         } else if (lastFilter == "category") {
             return categories.count
         } else {
-            println("\(lastFilter) is not a valid filter type")
             return 0
         }
     }
@@ -102,7 +101,6 @@ class ViewController: DropdownMenuController {
         } else if (lastFilter == "category") {
             return categories[row]
         } else {
-            println("\(lastFilter) is not a valid filter type")
             return "Invalid"
         }
     }
@@ -115,8 +113,6 @@ class ViewController: DropdownMenuController {
                 filterViewController.refreshByDate(dates[row])
             } else if (lastFilter == "category") {
                 filterViewController.refreshByCategory(categories[row])
-            } else {
-                println("\(lastFilter) is not a valid filter type")
             }
         } else {
             println("\(containerViewController.currentController) does not conform to FilterProtocol")

@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5470F0541B63591E00587FBE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5470F0521B63591E00587FBE /* Main.storyboard */; };
+		5470F05E1B6362C200587FBE /* app_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 5470F05D1B6362C200587FBE /* app_logo.png */; };
+		5470F0601B63EC4500587FBE /* Icon-60@x2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5470F05F1B63EC4500587FBE /* Icon-60@x2.png */; };
+		5470F0631B63F0DD00587FBE /* Icon-76.png in Resources */ = {isa = PBXBuildFile; fileRef = 5470F0611B63F0DD00587FBE /* Icon-76.png */; };
+		5470F0641B63F0DD00587FBE /* Icon-76@x2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5470F0621B63F0DD00587FBE /* Icon-76@x2.png */; };
+		5470F0661B63F58300587FBE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5470F0651B63F58300587FBE /* Images.xcassets */; };
+		5470F0681B63F6EE00587FBE /* Icon-40.png in Resources */ = {isa = PBXBuildFile; fileRef = 5470F0671B63F6EE00587FBE /* Icon-40.png */; };
+		5470F06A1B63F72300587FBE /* Icon-40@x2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5470F0691B63F72300587FBE /* Icon-40@x2.png */; };
 		8604D8AE1A994AB4004898BE /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8604D8AC1A994AB4004898BE /* CoreDataModel.xcdatamodeld */; };
 		8604D8B01A99A691004898BE /* ImageFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8604D8AF1A99A691004898BE /* ImageFetcher.swift */; };
 		8604D8BD1A9AF7E8004898BE /* Schedules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8604D8BC1A9AF7E8004898BE /* Schedules.swift */; };
@@ -20,7 +28,6 @@
 		861DCED31B3798B600AD593B /* CustomAnnotationViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 861DCED21B3798B600AD593B /* CustomAnnotationViewCell.xib */; };
 		86251F791AEDE4990007BA6F /* TruckFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86251F781AEDE4990007BA6F /* TruckFetcher.swift */; };
 		8644575B1ABF46C900C1D282 /* TruckDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8644575A1ABF46C900C1D282 /* TruckDetailViewController.swift */; };
-		8644575E1ABF4AB900C1D282 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8644575C1ABF4AB900C1D282 /* Main.storyboard */; };
 		864457601ABF4B1800C1D282 /* TrucksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8644575F1ABF4B1800C1D282 /* TrucksTableViewController.swift */; };
 		866D43961B51E84000B34DC5 /* MapCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866D43951B51E84000B34DC5 /* MapCollectionViewCell.swift */; };
 		866D43981B52DACF00B34DC5 /* FilterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866D43971B52DACF00B34DC5 /* FilterProtocol.swift */; };
@@ -46,6 +53,14 @@
 
 /* Begin PBXFileReference section */
 		5057F38A62ADB66B4FF16F86 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		5470F0531B63591E00587FBE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		5470F05D1B6362C200587FBE /* app_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_logo.png; sourceTree = "<group>"; };
+		5470F05F1B63EC4500587FBE /* Icon-60@x2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-60@x2.png"; sourceTree = "<group>"; };
+		5470F0611B63F0DD00587FBE /* Icon-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-76.png"; sourceTree = "<group>"; };
+		5470F0621B63F0DD00587FBE /* Icon-76@x2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-76@x2.png"; sourceTree = "<group>"; };
+		5470F0651B63F58300587FBE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		5470F0671B63F6EE00587FBE /* Icon-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40.png"; sourceTree = "<group>"; };
+		5470F0691B63F72300587FBE /* Icon-40@x2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40@x2.png"; sourceTree = "<group>"; };
 		8604D8AD1A994AB4004898BE /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		8604D8AF1A99A691004898BE /* ImageFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageFetcher.swift; sourceTree = "<group>"; };
 		8604D8BC1A9AF7E8004898BE /* Schedules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Schedules.swift; sourceTree = "<group>"; };
@@ -59,7 +74,6 @@
 		861DCED21B3798B600AD593B /* CustomAnnotationViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomAnnotationViewCell.xib; sourceTree = "<group>"; };
 		86251F781AEDE4990007BA6F /* TruckFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TruckFetcher.swift; sourceTree = "<group>"; };
 		8644575A1ABF46C900C1D282 /* TruckDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TruckDetailViewController.swift; sourceTree = "<group>"; };
-		8644575D1ABF4AB900C1D282 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Food Truck Demo/Base.lproj/Main.storyboard"; sourceTree = "<group>"; };
 		8644575F1ABF4B1800C1D282 /* TrucksTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrucksTableViewController.swift; sourceTree = "<group>"; };
 		866D43951B51E84000B34DC5 /* MapCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapCollectionViewCell.swift; sourceTree = "<group>"; };
 		866D43971B52DACF00B34DC5 /* FilterProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterProtocol.swift; sourceTree = "<group>"; };
@@ -74,7 +88,7 @@
 		86C9622B1AA3EFAA00061880 /* FoodTruckMapAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodTruckMapAnnotation.swift; sourceTree = "<group>"; };
 		86C9723F1ABF4ECB0010E931 /* TruckTableCellCustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TruckTableCellCustomView.swift; sourceTree = "<group>"; };
 		86CD22131A9324E60029C2C0 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
-		86EC6ED21A86C3A000940D9F /* foodtruck-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "foodtruck-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		86EC6ED21A86C3A000940D9F /* thebitemap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = thebitemap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86EC6ED61A86C3A000940D9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		86EC6ED91A86C3A000940D9F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		86EC6EDE1A86C3A000940D9F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -181,10 +195,11 @@
 		86EC6EC91A86C3A000940D9F = {
 			isa = PBXGroup;
 			children = (
+				5470F0651B63F58300587FBE /* Images.xcassets */,
 				861DCED21B3798B600AD593B /* CustomAnnotationViewCell.xib */,
 				86EC6F031A881D6400940D9F /* MapKit.framework */,
-				86EC6ED41A86C3A000940D9F /* Food Truck Demo */,
-				86EC6EEA1A86C3A000940D9F /* Food Truck DemoTests */,
+				86EC6ED41A86C3A000940D9F /* TheBiteMap */,
+				86EC6EEA1A86C3A000940D9F /* TheBiteMapTests */,
 				86EC6ED31A86C3A000940D9F /* Products */,
 				2A6B5286A3361B52CF43DD15 /* Pods */,
 				FD382980F2B97091ABA7F36D /* Frameworks */,
@@ -194,14 +209,15 @@
 		86EC6ED31A86C3A000940D9F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				86EC6ED21A86C3A000940D9F /* foodtruck-ios.app */,
+				86EC6ED21A86C3A000940D9F /* thebitemap.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		86EC6ED41A86C3A000940D9F /* Food Truck Demo */ = {
+		86EC6ED41A86C3A000940D9F /* TheBiteMap */ = {
 			isa = PBXGroup;
 			children = (
+				5470F0521B63591E00587FBE /* Main.storyboard */,
 				861DCECC1B36778C00AD593B /* AppDelegate.swift */,
 				867414D41A8C710700203276 /* Dropdown-mnm-Header.h */,
 				86EC6F051A884BA900940D9F /* EmptySegue.swift */,
@@ -209,7 +225,6 @@
 				8604D8AC1A994AB4004898BE /* CoreDataModel.xcdatamodeld */,
 				86251F741AEDCF230007BA6F /* Image */,
 				86EC6EE01A86C3A000940D9F /* LaunchScreen.xib */,
-				8644575C1ABF4AB900C1D282 /* Main.storyboard */,
 				861DCED01B3719A700AD593B /* CustomAnnotationView.xib */,
 				861DCECE1B37149000AD593B /* CustomAnnotationView.swift */,
 				86C962271AA286EF00061880 /* Model */,
@@ -218,24 +233,30 @@
 				8604D8BB1A9AF725004898BE /* WebServices */,
 				866D43971B52DACF00B34DC5 /* FilterProtocol.swift */,
 			);
-			path = "Food Truck Demo";
+			path = TheBiteMap;
 			sourceTree = "<group>";
 		};
 		86EC6ED51A86C3A000940D9F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5470F0691B63F72300587FBE /* Icon-40@x2.png */,
+				5470F0671B63F6EE00587FBE /* Icon-40.png */,
+				5470F0611B63F0DD00587FBE /* Icon-76.png */,
+				5470F0621B63F0DD00587FBE /* Icon-76@x2.png */,
+				5470F05F1B63EC4500587FBE /* Icon-60@x2.png */,
+				5470F05D1B6362C200587FBE /* app_logo.png */,
 				86EC6ED61A86C3A000940D9F /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		86EC6EEA1A86C3A000940D9F /* Food Truck DemoTests */ = {
+		86EC6EEA1A86C3A000940D9F /* TheBiteMapTests */ = {
 			isa = PBXGroup;
 			children = (
 				86EC6EED1A86C3A000940D9F /* Food_Truck_DemoTests.swift */,
 				86EC6EEB1A86C3A000940D9F /* Supporting Files */,
 			);
-			path = "Food Truck DemoTests";
+			path = TheBiteMapTests;
 			sourceTree = "<group>";
 		};
 		86EC6EEB1A86C3A000940D9F /* Supporting Files */ = {
@@ -257,9 +278,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		86EC6ED11A86C3A000940D9F /* foodtruck-ios */ = {
+		86EC6ED11A86C3A000940D9F /* thebitemap */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 86EC6EF11A86C3A000940D9F /* Build configuration list for PBXNativeTarget "foodtruck-ios" */;
+			buildConfigurationList = 86EC6EF11A86C3A000940D9F /* Build configuration list for PBXNativeTarget "thebitemap" */;
 			buildPhases = (
 				974BA1DDBEC62A9983549224 /* Check Pods Manifest.lock */,
 				86EC6ECE1A86C3A000940D9F /* Sources */,
@@ -271,9 +292,9 @@
 			);
 			dependencies = (
 			);
-			name = "foodtruck-ios";
+			name = thebitemap;
 			productName = "Food Truck Demo";
-			productReference = 86EC6ED21A86C3A000940D9F /* foodtruck-ios.app */;
+			productReference = 86EC6ED21A86C3A000940D9F /* thebitemap.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -292,7 +313,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 86EC6ECD1A86C3A000940D9F /* Build configuration list for PBXProject "foodtruck-ios" */;
+			buildConfigurationList = 86EC6ECD1A86C3A000940D9F /* Build configuration list for PBXProject "thebitemap" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -305,7 +326,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				86EC6ED11A86C3A000940D9F /* foodtruck-ios */,
+				86EC6ED11A86C3A000940D9F /* thebitemap */,
 			);
 		};
 /* End PBXProject section */
@@ -315,11 +336,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5470F0601B63EC4500587FBE /* Icon-60@x2.png in Resources */,
+				5470F0661B63F58300587FBE /* Images.xcassets in Resources */,
 				86EC6EE21A86C3A000940D9F /* LaunchScreen.xib in Resources */,
+				5470F0541B63591E00587FBE /* Main.storyboard in Resources */,
 				86EC6EDF1A86C3A000940D9F /* Images.xcassets in Resources */,
+				5470F06A1B63F72300587FBE /* Icon-40@x2.png in Resources */,
 				861DCED31B3798B600AD593B /* CustomAnnotationViewCell.xib in Resources */,
 				861DCED11B3719A700AD593B /* CustomAnnotationView.xib in Resources */,
-				8644575E1ABF4AB900C1D282 /* Main.storyboard in Resources */,
+				5470F05E1B6362C200587FBE /* app_logo.png in Resources */,
+				5470F0641B63F0DD00587FBE /* Icon-76@x2.png in Resources */,
+				5470F0681B63F6EE00587FBE /* Icon-40.png in Resources */,
+				5470F0631B63F0DD00587FBE /* Icon-76.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,13 +425,12 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		8644575C1ABF4AB900C1D282 /* Main.storyboard */ = {
+		5470F0521B63591E00587FBE /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				8644575D1ABF4AB900C1D282 /* Base */,
+				5470F0531B63591E00587FBE /* Base */,
 			);
 			name = Main.storyboard;
-			path = ..;
 			sourceTree = "<group>";
 		};
 		86EC6EE01A86C3A000940D9F /* LaunchScreen.xib */ = {
@@ -500,14 +527,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FAF23B6146A4CC5007D63A69 /* Pods.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = TheBiteMapAppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				INFOPLIST_FILE = "Food Truck Demo/Info.plist";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
+				INFOPLIST_FILE = "$(SRCROOT)/TheBiteMap/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "foodtruck-ios";
+				PRODUCT_NAME = thebitemap;
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/ssun/ssun_workspace/ios/Food Truck Demo/Food Truck Demo/Dropdown-mnm-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "TheBiteMap/Dropdown-mnm-Header.h";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -515,21 +543,22 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5057F38A62ADB66B4FF16F86 /* Pods.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = TheBiteMapAppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				INFOPLIST_FILE = "Food Truck Demo/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/TheBiteMap/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "foodtruck-ios";
+				PRODUCT_NAME = thebitemap;
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/ssun/ssun_workspace/ios/Food Truck Demo/Food Truck Demo/Dropdown-mnm-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "TheBiteMap/Dropdown-mnm-Header.h";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		86EC6ECD1A86C3A000940D9F /* Build configuration list for PBXProject "foodtruck-ios" */ = {
+		86EC6ECD1A86C3A000940D9F /* Build configuration list for PBXProject "thebitemap" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				86EC6EEF1A86C3A000940D9F /* Debug */,
@@ -538,7 +567,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		86EC6EF11A86C3A000940D9F /* Build configuration list for PBXNativeTarget "foodtruck-ios" */ = {
+		86EC6EF11A86C3A000940D9F /* Build configuration list for PBXNativeTarget "thebitemap" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				86EC6EF21A86C3A000940D9F /* Debug */,
