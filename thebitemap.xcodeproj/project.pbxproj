@@ -3,10 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 47;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		540C91B61B67425800B72CDA /* app_list_sq.png in Resources */ = {isa = PBXBuildFile; fileRef = 540C91B31B67425800B72CDA /* app_list_sq.png */; };
+		540C91B71B67425800B72CDA /* app_logo_truck.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 540C91B41B67425800B72CDA /* app_logo_truck.jpg */; };
+		540C91B81B67425800B72CDA /* app_map_sq.png in Resources */ = {isa = PBXBuildFile; fileRef = 540C91B51B67425800B72CDA /* app_map_sq.png */; };
+		540C91BA1B67458700B72CDA /* rsz_app_map_sq.png in Resources */ = {isa = PBXBuildFile; fileRef = 540C91B91B67458700B72CDA /* rsz_app_map_sq.png */; };
+		540C91BC1B67483500B72CDA /* rsz_app_list_sq.png in Resources */ = {isa = PBXBuildFile; fileRef = 540C91BB1B67483500B72CDA /* rsz_app_list_sq.png */; };
 		5470F0541B63591E00587FBE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5470F0521B63591E00587FBE /* Main.storyboard */; };
 		5470F05E1B6362C200587FBE /* app_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 5470F05D1B6362C200587FBE /* app_logo.png */; };
 		5470F0601B63EC4500587FBE /* Icon-60@x2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5470F05F1B63EC4500587FBE /* Icon-60@x2.png */; };
@@ -53,6 +58,11 @@
 
 /* Begin PBXFileReference section */
 		5057F38A62ADB66B4FF16F86 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		540C91B31B67425800B72CDA /* app_list_sq.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_list_sq.png; sourceTree = "<group>"; };
+		540C91B41B67425800B72CDA /* app_logo_truck.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = app_logo_truck.jpg; sourceTree = "<group>"; };
+		540C91B51B67425800B72CDA /* app_map_sq.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_map_sq.png; sourceTree = "<group>"; };
+		540C91B91B67458700B72CDA /* rsz_app_map_sq.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rsz_app_map_sq.png; sourceTree = "<group>"; };
+		540C91BB1B67483500B72CDA /* rsz_app_list_sq.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rsz_app_list_sq.png; sourceTree = "<group>"; };
 		5470F0531B63591E00587FBE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5470F05D1B6362C200587FBE /* app_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_logo.png; sourceTree = "<group>"; };
 		5470F05F1B63EC4500587FBE /* Icon-60@x2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-60@x2.png"; sourceTree = "<group>"; };
@@ -239,6 +249,11 @@
 		86EC6ED51A86C3A000940D9F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				540C91BB1B67483500B72CDA /* rsz_app_list_sq.png */,
+				540C91B91B67458700B72CDA /* rsz_app_map_sq.png */,
+				540C91B31B67425800B72CDA /* app_list_sq.png */,
+				540C91B41B67425800B72CDA /* app_logo_truck.jpg */,
+				540C91B51B67425800B72CDA /* app_map_sq.png */,
 				5470F0691B63F72300587FBE /* Icon-40@x2.png */,
 				5470F0671B63F6EE00587FBE /* Icon-40.png */,
 				5470F0611B63F0DD00587FBE /* Icon-76.png */,
@@ -314,7 +329,7 @@
 				};
 			};
 			buildConfigurationList = 86EC6ECD1A86C3A000940D9F /* Build configuration list for PBXProject "thebitemap" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 6.3";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -336,8 +351,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				540C91B71B67425800B72CDA /* app_logo_truck.jpg in Resources */,
 				5470F0601B63EC4500587FBE /* Icon-60@x2.png in Resources */,
+				540C91B81B67425800B72CDA /* app_map_sq.png in Resources */,
 				5470F0661B63F58300587FBE /* Images.xcassets in Resources */,
+				540C91BA1B67458700B72CDA /* rsz_app_map_sq.png in Resources */,
 				86EC6EE21A86C3A000940D9F /* LaunchScreen.xib in Resources */,
 				5470F0541B63591E00587FBE /* Main.storyboard in Resources */,
 				86EC6EDF1A86C3A000940D9F /* Images.xcassets in Resources */,
@@ -347,7 +365,9 @@
 				5470F05E1B6362C200587FBE /* app_logo.png in Resources */,
 				5470F0641B63F0DD00587FBE /* Icon-76@x2.png in Resources */,
 				5470F0681B63F6EE00587FBE /* Icon-40.png in Resources */,
+				540C91B61B67425800B72CDA /* app_list_sq.png in Resources */,
 				5470F0631B63F0DD00587FBE /* Icon-76.png in Resources */,
+				540C91BC1B67483500B72CDA /* rsz_app_list_sq.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

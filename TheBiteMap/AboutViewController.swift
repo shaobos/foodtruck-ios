@@ -11,15 +11,28 @@ import UIKit
 class AboutViewController: UIViewController {
     override func viewDidLoad() {
     
-        scrollView.contentSize = ContentView.frame.size
-        scrollView.scrollEnabled = true
-        scrollView.addSubview(ContentView)
 
-        ContentView.frame.size = self.view.frame.size
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
+        
+        var tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
+        view.addGestureRecognizer(tap)
+
+        
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
     }
+    
+    override func viewDidLayoutSubviews() {
+        ContentView.frame.size = CGSizeMake(self.view.frame.width, ContentView.frame.height)
+        scrollView.contentSize = ContentView.frame.size
+        scrollView.scrollEnabled = true
+        scrollView.addSubview(ContentView)
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -76,4 +89,19 @@ class AboutViewController: UIViewController {
         }
         task.resume()
     }
+    
+    func keyboardWillShow(sender: NSNotification) {
+        self.view.frame.origin.y -= 150
+    }
+    
+    func keyboardWillHide(sender: NSNotification) {
+        self.view.frame.origin.y += 150
+    }
+    
+    //Calls this function when the tap is recognized.
+    func DismissKeyboard(){
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
+    }
+    
 }

@@ -20,6 +20,8 @@ class TruckDetailViewController : UIViewController, UICollectionViewDelegate, MW
     @IBOutlet weak var url: UILabel!
     
     
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var contentView: UIView!
     var truckId: String?
     
     func truckId(truckId:String) {
@@ -44,14 +46,22 @@ class TruckDetailViewController : UIViewController, UICollectionViewDelegate, MW
         super.viewDidLoad()
         println("who is my previous controller \(self.previousViewControllerName)")
 
-        
-        // Do any additional setup after loading the view.
         theTitle.text = inputLabel
-        
+
+
         imageFetcher.fetchImageByTruckId(self.truckId, callback: {
             self.theCollectionView.reloadData()
         })
         renderView()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        // Do any additional setup after loading the view.
+        contentView.frame.size = CGSizeMake(self.view.frame.width, self.contentView.frame.height)
+        scrollView.contentSize = contentView.frame.size
+        scrollView.scrollEnabled = true
+        scrollView.addSubview(contentView)
+        
     }
     func renderView() {
         if let truckId = self.truckId {

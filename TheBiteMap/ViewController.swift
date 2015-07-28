@@ -21,24 +21,25 @@ class ViewController: DropdownMenuController {
     var categories:[String] = []
     @IBOutlet var containerViewController: ContainerViewController!
     @IBOutlet weak var picker: UIPickerView!
-    @IBAction func aboutButtonPressed(sender: AnyObject) {
+
+
+    @IBAction func aboutBarButtonPressed(sender: AnyObject) {
         containerViewController.switchToController("aboutViewSegue")
-        hideMenu()
+
     }
-    @IBAction func trucksButtonPressed(sender: AnyObject) {
+    @IBAction func truckBarButtonPressed(sender: AnyObject) {
         containerViewController.switchToController("trucksViewSegue")
-        hideMenu()
-    }
-    @IBAction func schedulesButtonPressed(sender: AnyObject) {
-        containerViewController.switchToController("tableViewSegue")
-        hideMenu()
+
     }
 
-    @IBAction func mapsButtonPressed(sender: AnyObject) {
-        containerViewController.switchToController("mapViewSegue")
-        hideMenu()
+    @IBAction func scheduleIconButtonPressed(sender: AnyObject) {
+        containerViewController.switchToController("tableViewSegue")
+
     }
-    
+
+    @IBAction func mapIconButtonPressed(sender: AnyObject) {
+        containerViewController.switchToController("mapViewSegue")
+    }
     @IBAction func categoryButtonAction(sender: AnyObject) {
         println("category button boom!")
         lastFilter = "category"
@@ -60,6 +61,7 @@ class ViewController: DropdownMenuController {
         return true
     }
     
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "embedSegue") {
             containerViewController = segue.destinationViewController as! ContainerViewController

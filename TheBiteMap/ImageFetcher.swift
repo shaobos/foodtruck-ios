@@ -50,7 +50,7 @@ class ImageFetcher {
                             TruckDetailImages.truckImages[truckId!] = [UIImage]()
                         }
                         TruckDetailImages.truckImages[truckId!]!.insert(image, atIndex: 0)
-                        //println(TruckDetailImages.truckImages[truckId!]!.count)
+                        println(TruckDetailImages.truckImages[truckId!]!.count)
                     }
                     dispatch_sync(dispatch_get_main_queue(), {
                         callback()
