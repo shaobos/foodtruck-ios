@@ -10,6 +10,8 @@ import UIKit
 
 class ViewController: DropdownMenuController {
     
+    var currentDateFilter = ""
+    var currentCategoryFilter = ""
     var lastFilter:String = ""
     var scheduleFetcher = ScheduleFetcher()
     func getDates() -> [String]{
@@ -41,20 +43,15 @@ class ViewController: DropdownMenuController {
         containerViewController.switchToController("mapViewSegue")
     }
     @IBAction func categoryButtonAction(sender: AnyObject) {
-        println("category button boom!")
         lastFilter = "category"
         categories = Array(Trucks.categories)
-        println(categories)
-        picker.hidden = !picker.hidden
+        filterView.hidden = !filterView.hidden
         picker.reloadAllComponents()
         super.view.bringSubviewToFront(picker)
     }
     
     @IBAction func dateButtonAction(sender: AnyObject) {
-        lastFilter = "date"
-        picker.hidden = !picker.hidden
-        picker.reloadAllComponents()
-        super.view.bringSubviewToFront(picker)
+        filterView.hidden = !filterView.hidden
     }
     
     override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
@@ -65,20 +62,25 @@ class ViewController: DropdownMenuController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "embedSegue") {
             containerViewController = segue.destinationViewController as! ContainerViewController
+            
+            
         }
+//        
+//        println(segue.destinationViewController)
+//        if let filterViewController = segue.destinationViewController as? FilterProtocol {
+//            println("It really happens!!!!!!")
+//            filterViewController.refreshByDate(currentDateFilter)
+//            filterViewController.refreshByCategory(currentCategoryFilter)
+//
+//        }
+
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         dates = scheduleFetcher.getScheduleDates()
         categories = Array(Trucks.categories)
-    }
 
-    // needs to override showMenu to add bringSubviewToFront
-    // otherwise container view will appear above menu view
-    override func showMenu() {
-        super.showMenu()
-        super.view.bringSubviewToFront(super.menu)
     }
 
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
@@ -96,8 +98,6 @@ class ViewController: DropdownMenuController {
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
-        println("lastFilter \(lastFilter)")
-        println("categories \(categories)")
         if (lastFilter == "date") {
             return dates[row]
         } else if (lastFilter == "category") {
@@ -108,20 +108,89 @@ class ViewController: DropdownMenuController {
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        //Schedules.getSchedulesWithFilter()
-        
         if let filterViewController = containerViewController.currentController as? FilterProtocol {
             if (lastFilter == "date") {
+                setStatusOn(dateStatusButton)
+                dateFilterState = true
                 filterViewController.refreshByDate(dates[row])
+                currentDateFilter = dates[row]
+                
             } else if (lastFilter == "category") {
+                categoryFilterState = true
+                setStatusOn(categoryStatusButton)
                 filterViewController.refreshByCategory(categories[row])
+                currentCategoryFilter = categories[row]
+
             }
         } else {
             println("\(containerViewController.currentController) does not conform to FilterProtocol")
         }
-
-        pickerView.hidden = true
     }
     
+    @IBOutlet weak var dateStatusButton: UIButton!
+    
+    @IBOutlet weak var categoryStatusButton: UIButton!
+    
+    @IBOutlet weak var filterView: UIView!
+    
+    var categoryFilterState = false
+    var dateFilterState = false
+
+    
+    @IBAction func DateSwitchButtonPressed(sender: AnyObject) {
+        lastFilter = "date"
+        picker.reloadAllComponents()
+        super.view.bringSubviewToFront(picker)
+    }
+    
+    @IBAction func CategorySwitchButtonPressed(sender: AnyObject) {
+        lastFilter = "category"
+        categories = Array(Trucks.categories)
+        picker.reloadAllComponents()
+        super.view.bringSubviewToFront(picker)
+    }
+    
+    func clearFilter(targetFilter:String) {
+        if let filterViewController = containerViewController.currentController as? FilterProtocol {
+            if (targetFilter == "date") {
+                println("Going to clear date filter...")
+                dateFilterState = false
+                filterViewController.clearDateFilter()
+                currentDateFilter = ""
+            } else if (targetFilter == "category") {
+                categoryFilterState = false
+                filterViewController.clearCategoryFilter()
+                currentCategoryFilter = ""
+            }
+        }
+    }
+    
+    @IBAction func DateStatusButtonPressed(sender: AnyObject) {
+        if (dateFilterState) {
+            setStatusOff(dateStatusButton)
+            clearFilter("date")
+        }
+        
+        dateFilterState = !dateFilterState
+    }
+    @IBAction func CategoryStatusButtonPressed(sender: AnyObject) {
+        if (categoryFilterState) {
+            // Turn it off
+            setStatusOff(categoryStatusButton)
+            clearFilter("category")
+        }
+        
+        categoryFilterState = !categoryFilterState
+    }
+    
+    func setStatusOff(button:UIButton) {
+        let image = UIImage(named: "ImageSelectedSmallOff.png")
+        button.setImage(image, forState: UIControlState.Normal)
+    }
+    
+    func setStatusOn(button:UIButton) {
+        let image = UIImage(named: "ImageSelectedSmallOn.png")
+        button.setImage(image, forState: UIControlState.Normal)
+    }
 }
 

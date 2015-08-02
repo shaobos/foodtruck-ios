@@ -91,11 +91,11 @@ class AboutViewController: UIViewController {
     }
     
     func keyboardWillShow(sender: NSNotification) {
-        self.view.frame.origin.y -= 150
+        self.view.frame.origin.y -= 50
     }
     
     func keyboardWillHide(sender: NSNotification) {
-        self.view.frame.origin.y += 150
+        self.view.frame.origin.y += 50
     }
     
     //Calls this function when the tap is recognized.

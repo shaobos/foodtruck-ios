@@ -12,6 +12,9 @@
 		540C91B81B67425800B72CDA /* app_map_sq.png in Resources */ = {isa = PBXBuildFile; fileRef = 540C91B51B67425800B72CDA /* app_map_sq.png */; };
 		540C91BA1B67458700B72CDA /* rsz_app_map_sq.png in Resources */ = {isa = PBXBuildFile; fileRef = 540C91B91B67458700B72CDA /* rsz_app_map_sq.png */; };
 		540C91BC1B67483500B72CDA /* rsz_app_list_sq.png in Resources */ = {isa = PBXBuildFile; fileRef = 540C91BB1B67483500B72CDA /* rsz_app_list_sq.png */; };
+		540C91BE1B688D4000B72CDA /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540C91BD1B688D4000B72CDA /* FilterViewController.swift */; };
+		540C91C11B6895F800B72CDA /* ImageSelectedSmallOff.png in Resources */ = {isa = PBXBuildFile; fileRef = 540C91BF1B6895F800B72CDA /* ImageSelectedSmallOff.png */; };
+		540C91C21B6895F800B72CDA /* ImageSelectedSmallOn.png in Resources */ = {isa = PBXBuildFile; fileRef = 540C91C01B6895F800B72CDA /* ImageSelectedSmallOn.png */; };
 		5470F0541B63591E00587FBE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5470F0521B63591E00587FBE /* Main.storyboard */; };
 		5470F05E1B6362C200587FBE /* app_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 5470F05D1B6362C200587FBE /* app_logo.png */; };
 		5470F0601B63EC4500587FBE /* Icon-60@x2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5470F05F1B63EC4500587FBE /* Icon-60@x2.png */; };
@@ -63,6 +66,9 @@
 		540C91B51B67425800B72CDA /* app_map_sq.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_map_sq.png; sourceTree = "<group>"; };
 		540C91B91B67458700B72CDA /* rsz_app_map_sq.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rsz_app_map_sq.png; sourceTree = "<group>"; };
 		540C91BB1B67483500B72CDA /* rsz_app_list_sq.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rsz_app_list_sq.png; sourceTree = "<group>"; };
+		540C91BD1B688D4000B72CDA /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
+		540C91BF1B6895F800B72CDA /* ImageSelectedSmallOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ImageSelectedSmallOff.png; sourceTree = "<group>"; };
+		540C91C01B6895F800B72CDA /* ImageSelectedSmallOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ImageSelectedSmallOn.png; sourceTree = "<group>"; };
 		5470F0531B63591E00587FBE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5470F05D1B6362C200587FBE /* app_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_logo.png; sourceTree = "<group>"; };
 		5470F05F1B63EC4500587FBE /* Icon-60@x2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-60@x2.png"; sourceTree = "<group>"; };
@@ -165,6 +171,7 @@
 				8644575A1ABF46C900C1D282 /* TruckDetailViewController.swift */,
 				8644575F1ABF4B1800C1D282 /* TrucksTableViewController.swift */,
 				86EC6ED91A86C3A000940D9F /* ViewController.swift */,
+				540C91BD1B688D4000B72CDA /* FilterViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -249,6 +256,8 @@
 		86EC6ED51A86C3A000940D9F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				540C91BF1B6895F800B72CDA /* ImageSelectedSmallOff.png */,
+				540C91C01B6895F800B72CDA /* ImageSelectedSmallOn.png */,
 				540C91BB1B67483500B72CDA /* rsz_app_list_sq.png */,
 				540C91B91B67458700B72CDA /* rsz_app_map_sq.png */,
 				540C91B31B67425800B72CDA /* app_list_sq.png */,
@@ -354,6 +363,7 @@
 				540C91B71B67425800B72CDA /* app_logo_truck.jpg in Resources */,
 				5470F0601B63EC4500587FBE /* Icon-60@x2.png in Resources */,
 				540C91B81B67425800B72CDA /* app_map_sq.png in Resources */,
+				540C91C21B6895F800B72CDA /* ImageSelectedSmallOn.png in Resources */,
 				5470F0661B63F58300587FBE /* Images.xcassets in Resources */,
 				540C91BA1B67458700B72CDA /* rsz_app_map_sq.png in Resources */,
 				86EC6EE21A86C3A000940D9F /* LaunchScreen.xib in Resources */,
@@ -363,6 +373,7 @@
 				861DCED31B3798B600AD593B /* CustomAnnotationViewCell.xib in Resources */,
 				861DCED11B3719A700AD593B /* CustomAnnotationView.xib in Resources */,
 				5470F05E1B6362C200587FBE /* app_logo.png in Resources */,
+				540C91C11B6895F800B72CDA /* ImageSelectedSmallOff.png in Resources */,
 				5470F0641B63F0DD00587FBE /* Icon-76@x2.png in Resources */,
 				5470F0681B63F6EE00587FBE /* Icon-40.png in Resources */,
 				540C91B61B67425800B72CDA /* app_list_sq.png in Resources */,
@@ -427,6 +438,7 @@
 				8604D8BD1A9AF7E8004898BE /* Schedules.swift in Sources */,
 				866D43981B52DACF00B34DC5 /* FilterProtocol.swift in Sources */,
 				86C961F41AA1B00600061880 /* Images.swift in Sources */,
+				540C91BE1B688D4000B72CDA /* FilterViewController.swift in Sources */,
 				8644575B1ABF46C900C1D282 /* TruckDetailViewController.swift in Sources */,
 				866D439B1B53077D00B34DC5 /* AnnotationCreator.swift in Sources */,
 				866D43961B51E84000B34DC5 /* MapCollectionViewCell.swift in Sources */,

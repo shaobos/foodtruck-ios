@@ -14,35 +14,44 @@ class ScheduleFetcher {
         return Schedules.schedules
     }
     
-    func getSchedulesByCategory(category:String) -> [String: [String: AnyObject]] {
+    func getSchedulesByCategoryAndDate(categoryInput:String, dateInput:String) -> [String: [String: AnyObject]] {
         var ret = [String: [String: AnyObject]]()
         for key in Schedules.schedules.keys {
             var scheduleObject = Schedules.schedules[key]!
-            if let truckId: AnyObject = scheduleObject["truck_id"] {
-                if let truckModel = Trucks.trucks[truckId as! String] {
-                    if (truckModel["category"] == category) {
-                        println("Find \(truckId)!!")
-                        ret[key] = scheduleObject
+            
+            var satisfied = true
+            if categoryInput != "" {
+                if let truckId: AnyObject = scheduleObject["truck_id"] {
+                    if let truckModel = Trucks.trucks[truckId as! String] {
+                        if (truckModel["category"] != categoryInput) {
+                            satisfied = false
+                        }
                     }
                 }
             }
+            
+            if dateInput != "" {
+                if var scheduleDate: AnyObject = scheduleObject["date"] {
+                    if dateInput != scheduleDate as! NSString {
+                        satisfied = false
+                    }
+                }
+            }
+            
+            
+            if (satisfied) {
+                ret[key] = scheduleObject
+            }
         }
-        
         return ret
     }
     
+    func getSchedulesByCategory(category:String) -> [String: [String: AnyObject]] {
+        return getSchedulesByCategoryAndDate(category, dateInput: "")
+    }
+    
     func getSchedulesBydate(date:String) -> [String: [String: AnyObject]] {
-        var ret = [String: [String: AnyObject]]()
-        for key in Schedules.schedules.keys {
-            var scheduleObject = Schedules.schedules[key]!
-            if var scheduleDate: AnyObject = scheduleObject["date"] {
-                if date == scheduleDate as! NSString {
-                    ret[key] = scheduleObject
-                }
-            }
-        }
-        
-        return ret
+        return getSchedulesByCategoryAndDate("", dateInput: date)
     }
 
     func getSchedulesByTruck(targetTruckId:String) -> [String: [String: AnyObject]] {

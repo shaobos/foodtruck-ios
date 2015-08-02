@@ -7,6 +7,10 @@
 //
 
 protocol FilterProtocol {
+    func setDateFilter(date:String)
+    func setCategoryFilter(category:String)
     func refreshByDate(date:String)
     func refreshByCategory(category:String)
+    func clearDateFilter()
+    func clearCategoryFilter()
 }

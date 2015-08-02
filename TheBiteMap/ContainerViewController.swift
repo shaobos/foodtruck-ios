@@ -10,7 +10,7 @@ import UIKit
 
 class ContainerViewController: UIViewController {
 
-    @IBOutlet weak var mapViewController: MapViewController!
+    @IBOutlet weak var mapViewController: UIViewController!
     @IBOutlet weak var tableViewController: UIViewController!
     @IBOutlet weak var aboutViewController: UIViewController!
     @IBOutlet weak var trucksViewController: UIViewController!
@@ -39,24 +39,43 @@ class ContainerViewController: UIViewController {
     override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
         return true
     }
+
     
-    func initializeControllers(segue: UIStoryboardSegue) {
-        if (segue.identifier == tableViewSegue && tableViewController == nil) {
-            self.tableViewController = segue.destinationViewController as! UIViewController
+    func initializeControllers(segue: UIStoryboardSegue) -> UIViewController {
+        if segue.identifier == tableViewSegue {
+            if tableViewController == nil {
+                self.tableViewController = segue.destinationViewController as! UIViewController
+            }
+            
+            return tableViewController
         }
         
         // this will prevent the map view from being rendered every time!
-        if (segue.identifier == mapViewSegue && mapViewController == nil) {
-            self.mapViewController = segue.destinationViewController as! MapViewController
+        if segue.identifier == mapViewSegue {
+            if mapViewController == nil {
+                self.mapViewController = segue.destinationViewController as! UIViewController
+            }
+            
+            return mapViewController
         }
         
-        if (segue.identifier == aboutViewSegue && aboutViewController == nil) {
-            self.aboutViewController = segue.destinationViewController as! UIViewController
+        if segue.identifier == aboutViewSegue {
+            
+            if aboutViewController == nil {
+                self.aboutViewController = segue.destinationViewController as! UIViewController
+            }
+            return aboutViewController
         }
         
-        if (segue.identifier == trucksViewSegue && trucksViewController == nil) {
-            self.trucksViewController = segue.destinationViewController as! UIViewController
+        if segue.identifier == trucksViewSegue {
+            if trucksViewController == nil {
+                self.trucksViewController = segue.destinationViewController as! UIViewController
+            }
+            
+            return trucksViewController
         }
+        
+        return trucksViewController
     }
     
     func initializeViewDrawing(segue: UIStoryboardSegue) {
@@ -75,24 +94,21 @@ class ContainerViewController: UIViewController {
     // prepareForSegue goes before viewDidLoad()
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        initializeControllers(segue)
+        var destViewController = initializeControllers(segue)
         // tableView is set to the default view in viewDidLoad() so all init code go here
         if (self.childViewControllers.count == 0) {
             initializeViewDrawing(segue)
             return
         }
-
-        if (segue.identifier == tableViewSegue) {
-            self.swapFromViewController(currentController!, to: tableViewController)
-        } else if (segue.identifier == mapViewSegue) {
-            self.swapFromViewController(currentController!, to: mapViewController)
-        } else if (segue.identifier == aboutViewSegue) {
-            self.swapFromViewController(currentController!, to: aboutViewController)
-        } else if (segue.identifier == trucksViewSegue) {
-            self.swapFromViewController(currentController!, to: trucksViewController)
-        } else {
-            println("Unknown segue detected")
+        
+        var parent = self.parentViewController as! ViewController
+        
+        if let filterViewController = destViewController as? FilterProtocol {
+            filterViewController.setCategoryFilter(parent.currentCategoryFilter)
+            filterViewController.setDateFilter(parent.currentDateFilter)
         }
+
+        self.swapFromViewController(currentController!, to: destViewController)
     }
     
     func swapFromViewController(from:UIViewController, to:UIViewController) {

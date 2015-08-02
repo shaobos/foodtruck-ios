@@ -66,14 +66,23 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate, UIColle
         Since we're going to only instantiate map view once, we need to tell when the view is loaded again in container view. luckily, we can use didMoveToParentViewController()
     */
     override func didMoveToParentViewController(parent: UIViewController?) {
+        
         super.didMoveToParentViewController(parent)
+        println("map moved to parent \(currentDateFilter) \(currentCategoryFilter)")
+        
         highlightAnnotation(self.scheduleId)
         setRegionBySchedule(self.scheduleId)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        println("*** Map view did appear!!! \(currentDateFilter) \(currentCategoryFilter)")
+        refreshMap()
     }
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        refreshMap()
         fetchSchedules()
     }
     
@@ -256,37 +265,63 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate, UIColle
             mapView.setRegion(region, animated: false)
         }
     }
+    
+    var currentDateFilter:String = ""
+    var currentCategoryFilter:String = ""
 
-    func refreshByCategory(category:String) {
+    func setDateFilter(date:String) {
+        currentDateFilter = date
+    }
+    func setCategoryFilter(category:String) {
+        currentCategoryFilter = category
+    }
+    
+    func refreshMap() {
+        println(self)
+        println("Map-refreshMap() current filter state \(currentDateFilter) \(currentCategoryFilter)")
         for annotation in self.annotations {
             var viewForAnnotation = self.mapView.viewForAnnotation(annotation)
             
             if viewForAnnotation == nil {
                 continue
             }
-//            if annotation.categories.contain(category) {
-//                viewForAnnotation.hidden = false
-//            } else {
-//                viewForAnnotation.hidden = true
-//            }
+            
+            
+            if currentDateFilter != "" && annotation.date != currentDateFilter {
+                viewForAnnotation.hidden = true
+                continue
+            }
+            
+            if currentCategoryFilter != "" && !contains(annotation.categories, currentCategoryFilter) {
+                viewForAnnotation.hidden = true
+                continue
+            }
+            
+            viewForAnnotation.hidden = false
+            
         }
+    }
+    
+    func refreshByCategory(category:String) {
+        currentCategoryFilter = category
+        refreshMap()
     }
     
     func refreshByDate(date:String) {
-        for annotation in self.annotations {
-            var viewForAnnotation = self.mapView.viewForAnnotation(annotation)
-            
-            if viewForAnnotation == nil {
-                continue
-            }
-            if annotation.date == date {
-                viewForAnnotation.hidden = false
-            } else {
-                viewForAnnotation.hidden = true
-            }
-        }
+        currentDateFilter = date
+        refreshMap()
     }
     
+    func clearCategoryFilter() {
+        currentCategoryFilter = ""
+        refreshMap()
+    }
+    
+    func clearDateFilter() {
+        println("Map clearDateFilter is called")
+        currentDateFilter = ""
+        refreshMap()
+    }
     
     /****** collection view ******/
     var collectionCellReusableId = "EventPictureCell"

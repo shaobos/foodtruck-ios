@@ -25,11 +25,11 @@ class TableViewController: UIViewController, UITableViewDelegate, FilterProtocol
     var scheduleFetcher = ScheduleFetcher()
     var trucks = TruckFetcher()
     var imageFetcher = ImageFetcher()
-    
+    var currentDateFilter = ""
+    var currentCategoryFilter = ""
     var truckId:String? // could be called from truckd detail view
     
     override func didMoveToParentViewController(parent: UIViewController?) {
-        
         super.didMoveToParentViewController(parent)
         // only needs to initialize once. once you know your parent, you know!!
         
@@ -42,6 +42,11 @@ class TableViewController: UIViewController, UITableViewDelegate, FilterProtocol
         } else {
             println("Unrecognized parent from TableViewController: \(parent)")
         }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        println("\(currentDateFilter) \(currentCategoryFilter)")
+        refreshTable()
     }
     
     func truckId(truckId: String) {
@@ -61,16 +66,40 @@ class TableViewController: UIViewController, UITableViewDelegate, FilterProtocol
         }
     }
     
+    func setDateFilter(date:String) {
+        currentDateFilter = date
+    }
+    func setCategoryFilter(category:String) {
+        currentCategoryFilter = category
+    }
+    
+    func refreshTable() {
+        println(self)
+        println("Table-refreshMap() current filter state \(currentDateFilter) \(currentCategoryFilter)")
+
+        cellContent = self.scheduleFetcher.getSchedulesByCategoryAndDate(currentCategoryFilter, dateInput: currentDateFilter)
+        theTableView.reloadData()
+    }
+    
     func refreshByDate(date:String) {
-        self.cellContent = self.scheduleFetcher.getSchedulesBydate(date)
-        self.theTableView.reloadData()
+        currentDateFilter = date
+        refreshTable()
     }
     
     func refreshByCategory(category:String) {
-        self.cellContent = self.scheduleFetcher.getSchedulesByCategory(category)
-        self.theTableView.reloadData()
+        currentCategoryFilter = category
+        refreshTable()
     }
 
+    func clearDateFilter() {
+        currentDateFilter = ""
+        refreshTable()
+    }
+    
+    func clearCategoryFilter() {
+        currentCategoryFilter = ""
+        refreshTable()
+    }
     
     func fetchSchedules() {
         var dates:[String] = self.scheduleFetcher.getScheduleDates()
@@ -145,11 +174,12 @@ class TableViewController: UIViewController, UITableViewDelegate, FilterProtocol
 //            containerViewController!.switchToController("mapViewSegue")
             if let c = containerViewController {
                 println("Yes!!")
+                var mapViewcontroller = c.mapViewController as! MapViewController
                 if (c.mapViewController == nil) {
                     c.switchToController("mapViewSegue")
-                    c.mapViewController.scheduleId(self.currentScheduleId)
+                    mapViewcontroller.scheduleId(self.currentScheduleId)
                 } else {
-                    c.mapViewController.scheduleId(self.currentScheduleId)
+                    mapViewcontroller.scheduleId(self.currentScheduleId)
                     c.switchToController("mapViewSegue")
                 }
             }
@@ -169,4 +199,6 @@ class TableViewController: UIViewController, UITableViewDelegate, FilterProtocol
         // both TruckDetailsView and MapView can implement the same interface
         destViewController.scheduleId(self.currentScheduleId)
     }
+    
+
 }
