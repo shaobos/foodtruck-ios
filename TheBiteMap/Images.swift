@@ -14,6 +14,7 @@ struct Images {
 
 struct TruckDetailImages {
     static var truckImages = [String:[UIImage]]()
+    static var reducedUrlList = [String:[String]]()
 }
 
 struct Image {

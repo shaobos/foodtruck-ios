@@ -39,7 +39,7 @@ class AboutViewController: UIViewController {
     }
 
     @IBAction func submitComment(sender: AnyObject) {
-        
+        thankyouLabel.hidden = false
         post()
     }
     @IBOutlet weak var ContentView: UIView!
@@ -56,6 +56,12 @@ class AboutViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    override func didMoveToParentViewController(parent: UIViewController?) {
+        thankyouLabel.hidden = true
+    }
+    
+    @IBOutlet weak var thankyouLabel: UILabel!
     
     func post() {
         var url = WebService.baseUrl + "scripts/submit_comment.php"
@@ -91,11 +97,11 @@ class AboutViewController: UIViewController {
     }
     
     func keyboardWillShow(sender: NSNotification) {
-        self.view.frame.origin.y -= 50
+//        self.view.frame.origin.y -= 50
     }
     
     func keyboardWillHide(sender: NSNotification) {
-        self.view.frame.origin.y += 50
+//        self.view.frame.origin.y += 50
     }
     
     //Calls this function when the tap is recognized.

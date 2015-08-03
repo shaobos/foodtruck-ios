@@ -22,45 +22,64 @@ class ImageFetcher {
         it's better to use picture with reduced size:
         http://130.211.191.208/trucks/Taqueria_Angelicas/reduced/logo.jpg
     */
-    func fetchImageByTruckId(truckId : String?, callback: () -> Void) {
+    func fetchImageByTruckId(truckId : String?, outerCallback: () -> Void) {
         
+        if (TruckDetailImages.truckImages[truckId!] != nil) {
+            println("Truck picture already found. do not fetch again")
+            outerCallback()
+            return
+        }
         
+        fetchImageUrlsByTruckId(truckId, callback: { (jsonResults:NSArray) in
+            self.fetchPic(jsonResults, truckId: truckId!)
+            dispatch_sync(dispatch_get_main_queue(), {
+                outerCallback()
+            })
+        })
+    }
+    
+    func fetchImageUrlsByTruckId(truckId : String?, callback: (NSArray) -> Void) {
+        var ret = []
         if let theTruckId = truckId {
-            if (TruckDetailImages.truckImages[theTruckId] != nil) {
-                println("Truck picture already found. do not fetch again")
-                callback()
-                return
-            }
-            
-            println("Going to fetch truck images...")
-            
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
-                var urlPath = WebService.baseUrl + "/scripts/get_truck_img.php?truck=" + theTruckId
+                var urlPath = "\(WebService.baseUrl)/scripts/get_truck_img.php?truck=\(theTruckId)"
                 WebService.request(urlPath, callback: {
                     data -> Void in
                     
                     let jsonResults = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as! NSArray
-                    
-                    // Parallelize it!
-                    for picPath in jsonResults {
-                        var pictureUrl = WebService.baseUrl + ((picPath as! NSString) as String)
-                        var image = self.fetchImage(pictureUrl)
-                        
-                        if TruckDetailImages.truckImages[truckId!] == nil {
-                            TruckDetailImages.truckImages[truckId!] = [UIImage]()
-                        }
-                        TruckDetailImages.truckImages[truckId!]!.insert(image, atIndex: 0)
-                        println(TruckDetailImages.truckImages[truckId!]!.count)
-                    }
-                    dispatch_sync(dispatch_get_main_queue(), {
-                        callback()
-                    })
+
+                    callback(jsonResults)
                 })
             }
         } else {
             println("ImageFetcher - truckId is nil")
-            callback()
+            callback(ret)
         }
+    }
+    
+    // fetch pic of given urls
+    func fetchPic(jsonResults:NSArray, truckId: String) {
+        // TODO: Parallelize it!
+        for picPath in jsonResults {
+            var pictureUrl = WebService.baseUrl + ((picPath as! NSString) as String)
+            let newString = pictureUrl.stringByReplacingOccurrencesOfString("/thumb/", withString: "/reduced/")
+            println(newString)
+
+            // we need to make sure image url and image are inserted with the same ordering
+            var image = self.fetchImage(pictureUrl)
+            
+            if TruckDetailImages.truckImages[truckId] == nil {
+                TruckDetailImages.truckImages[truckId] = [UIImage]()
+            }
+            TruckDetailImages.truckImages[truckId]!.append(image)
+            
+            if TruckDetailImages.reducedUrlList[truckId] == nil {
+                TruckDetailImages.reducedUrlList[truckId] = [String]()
+            }
+            
+            TruckDetailImages.reducedUrlList[truckId]?.append(newString)
+        }
+
     }
     
     // always check sum first, download if it doesn't match

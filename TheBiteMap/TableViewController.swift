@@ -29,34 +29,14 @@ class TableViewController: UIViewController, UITableViewDelegate, FilterProtocol
     var currentCategoryFilter = ""
     var truckId:String? // could be called from truckd detail view
     
-    override func didMoveToParentViewController(parent: UIViewController?) {
-        super.didMoveToParentViewController(parent)
-        // only needs to initialize once. once you know your parent, you know!!
-        
-        if parent is ContainerViewController {
-            if containerViewController == nil {
-                containerViewController = parent as? ContainerViewController
-            }
-        } else if parent is TruckDetailViewController {
-            truckDetailViewController = parent as? TruckDetailViewController
-        } else {
-            println("Unrecognized parent from TableViewController: \(parent)")
-        }
-    }
+    var shouldRefresh = false
     
-    override func viewDidAppear(animated: Bool) {
-        println("\(currentDateFilter) \(currentCategoryFilter)")
-        refreshTable()
-    }
-    
-    func truckId(truckId: String) {
-        self.truckId = truckId
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // TODO: better to intialize data fetch in main view controller
         
+        println(" ** viewDidload")
         if (truckId != nil) {
             // Dangerous: this is not atomic.
             self.cellContent = self.scheduleFetcher.getSchedulesByTruck(truckId!)
@@ -65,6 +45,50 @@ class TableViewController: UIViewController, UITableViewDelegate, FilterProtocol
             fetchSchedules()
         }
     }
+    
+    override func didMoveToParentViewController(parent: UIViewController?) {
+        println(" ** didMoveToParentViewController")
+
+        super.didMoveToParentViewController(parent)
+        // only needs to initialize once. once you know your parent, you know!!
+        
+        println(parent)
+        if parent is ContainerViewController {
+            if containerViewController == nil {
+                println("Initilizing..")
+                containerViewController = parent as? ContainerViewController
+                println(containerViewController)
+            }
+            shouldRefresh = true
+            println("Table moved to container")
+        } else if parent is TruckDetailViewController {
+            truckDetailViewController = parent as? TruckDetailViewController
+            println("Table moved to truck details")
+
+        } else {
+            shouldRefresh = true
+            println("Unrecognized parent from TableViewController: \(parent)")
+        }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        println(" ** viewDidAppear")
+
+        println("\(currentDateFilter) \(currentCategoryFilter)")
+        // it should only refresh when the table view is moved into container view
+        if (shouldRefresh) {
+            refreshTable()
+            shouldRefresh = false
+        } else {
+            println("Do not refresh table view as it's shown in truck detail view")
+        }
+    }
+    
+    func truckId(truckId: String) {
+        self.truckId = truckId
+    }
+    
+
     
     func setDateFilter(date:String) {
         currentDateFilter = date
@@ -170,23 +194,22 @@ class TableViewController: UIViewController, UITableViewDelegate, FilterProtocol
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.currentScheduleId = Array(cellContent.keys)[indexPath.row] as String
         
-//        if self.parentViewController is ContainerViewController         println(containerViewController)
-//            containerViewController!.switchToController("mapViewSegue")
-            if let c = containerViewController {
-                println("Yes!!")
-                var mapViewcontroller = c.mapViewController as! MapViewController
-                if (c.mapViewController == nil) {
-                    c.switchToController("mapViewSegue")
-                    mapViewcontroller.scheduleId(self.currentScheduleId)
-                } else {
-                    mapViewcontroller.scheduleId(self.currentScheduleId)
-                    c.switchToController("mapViewSegue")
-                }
+        if let c = containerViewController {
+
+            if (c.mapViewController == nil) {
+
+                c.switchToController("mapViewSegue")
+                var mapViewController = c.mapViewController as! MapViewController
+
+                mapViewController.scheduleId(self.currentScheduleId)
+            } else {
+                var mapViewController = c.mapViewController as! MapViewController
+
+                mapViewController.scheduleId(self.currentScheduleId)
+                c.switchToController("mapViewSegue")
             }
-//        } else if self.parentViewController is TruckDetailViewController {
-//            println("-> truck detail  ")
-            //performSegueWithIdentifier("TableToMapModallySegue", sender: nil)
-//        }
+        }
+
     }
     
     // TODO: duplicate code in Map view

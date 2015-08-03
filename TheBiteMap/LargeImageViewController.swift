@@ -11,6 +11,7 @@
 
 class LargeImageViewController : MWPhotoBrowser, MWPhotoBrowserDelegate {
     
+    var imageUrls = [String]()
     var images = [UIImage]()
     var imageShown:UIImage?
     var shit:String?
@@ -21,7 +22,10 @@ class LargeImageViewController : MWPhotoBrowser, MWPhotoBrowserDelegate {
     
     func photoBrowser(photoBrowser: MWPhotoBrowser!, photoAtIndex index: UInt) -> MWPhotoProtocol! {
         var image = self.images[Int(index)]
-        var mwPhoto:MWPhoto = MWPhoto(image: image)
+        var imageUrl = self.imageUrls[Int(index)]
+       // var mwPhoto:MWPhoto = MWPhoto(image: image)
+        var mwPhoto:MWPhoto = MWPhoto(URL: NSURL(string: imageUrl))
+//        println(imageUrls)
         
         return mwPhoto
     }

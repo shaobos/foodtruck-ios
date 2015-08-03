@@ -10,14 +10,13 @@
 import MapKit
 
 class AnnotationViewCreator {
-    
-    
     static func create(annotation: MKAnnotation) -> MKPinAnnotationView {
         var foodTruckAnnotation = annotation as! FoodTruckMapAnnotation
         var truckId: String  = foodTruckAnnotation.truckId
         
         let pinAnnotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "myPin")
-        
+        var tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "PerformSegue")
+        pinAnnotationView.addGestureRecognizer(tap)
         pinAnnotationView.pinColor = .Purple
         pinAnnotationView.draggable = true
         pinAnnotationView.canShowCallout = true
@@ -33,9 +32,12 @@ class AnnotationViewCreator {
             deleteButton.setBackgroundImage(theImage.image, forState: UIControlState.Normal)
         }
         pinAnnotationView.leftCalloutAccessoryView = deleteButton
-        
-        
         return pinAnnotationView
+    }
+    
+    func PerformSegue() {
+        // performSegueWithIdentifier("MapFullToDetailSegue", sender: nil)
         
+        println("pin annotation is wrong???")
     }
 }

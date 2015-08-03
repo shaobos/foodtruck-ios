@@ -36,6 +36,9 @@ class TruckDetailViewController : UIViewController, UICollectionViewDelegate, MW
     var inputLabel:String = ""
     var currentImage:UIImage?
     var photos = [UIImage]()
+    var imageUrls = [String]()
+    @IBOutlet weak var urlTextLabel: UILabel!
+
     
     @IBOutlet weak var theCollectionView: UICollectionView!
     var collectionCellReusableId = "TruckDetailCollectionCell"
@@ -44,12 +47,14 @@ class TruckDetailViewController : UIViewController, UICollectionViewDelegate, MW
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         println("who is my previous controller \(self.previousViewControllerName)")
 
         theTitle.text = inputLabel
 
 
-        imageFetcher.fetchImageByTruckId(self.truckId, callback: {
+        imageFetcher.fetchImageByTruckId(self.truckId, outerCallback: {
+            println("*** REached here!!")
             self.theCollectionView.reloadData()
         })
         renderView()
@@ -119,6 +124,8 @@ class TruckDetailViewController : UIViewController, UICollectionViewDelegate, MW
         //let photo:MWPhoto = MWPhoto(image:image)
         
         self.photos = TruckDetailImages.truckImages[self.truckId!]!
+        self.imageUrls = TruckDetailImages.reducedUrlList[self.truckId!]!
+
         
         let browser:MWPhotoBrowser = MWPhotoBrowser(delegate: self)
         
@@ -131,10 +138,7 @@ class TruckDetailViewController : UIViewController, UICollectionViewDelegate, MW
         browser.startOnGrid = false
         browser.enableSwipeToDismiss = true
         
-//        var index:Int = 3
         browser.setCurrentPhotoIndex(CUnsignedLong(indexPath.row    ))
-        
-//        println("my navigation here \(self.navigationController!)")
         var nav = UINavigationController(rootViewController: browser)
         nav.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
         self.presentViewController(nav, animated: true, completion: nil)
@@ -146,8 +150,11 @@ class TruckDetailViewController : UIViewController, UICollectionViewDelegate, MW
     }
     
     func photoBrowser(photoBrowser: MWPhotoBrowser!, photoAtIndex index: UInt) -> MWPhotoProtocol! {
-        var image = self.photos[Int(index)]
-        var mwPhoto:MWPhoto = MWPhoto(image: image)
+//        var image = self.photos[Int(index)]
+//        var mwPhoto:MWPhoto = MWPhoto(image: image)
+        var imageUrl = self.imageUrls[Int(index)]
+        // var mwPhoto:MWPhoto = MWPhoto(image: image)
+        var mwPhoto:MWPhoto = MWPhoto(URL: NSURL(string: imageUrl))
         
         return mwPhoto
     }
@@ -163,7 +170,7 @@ class TruckDetailViewController : UIViewController, UICollectionViewDelegate, MW
             if let theImage = currentImage {
                 destViewController.setImage(theImage)
                 destViewController.setImageList(TruckDetailImages.truckImages[self.truckId!]!)
-                //destViewController.setShit("hi")
+                destViewController.imageUrls = TruckDetailImages.reducedUrlList[self.truckId!]!
             } else {
                 println("currentImage is unset")
             }

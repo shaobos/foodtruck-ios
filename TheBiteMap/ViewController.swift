@@ -10,6 +10,8 @@ import UIKit
 
 class ViewController: DropdownMenuController {
     
+    var categoryFilterState = false
+    var dateFilterState = false
     var currentDateFilter = ""
     var currentCategoryFilter = ""
     var lastFilter:String = ""
@@ -17,12 +19,18 @@ class ViewController: DropdownMenuController {
     func getDates() -> [String]{
         return dates
     }
-    
+    @IBOutlet var containerViewController: ContainerViewController!
+    @IBOutlet weak var picker: UIPickerView!
+    @IBOutlet weak var dateStatusButton: UIButton!
+    @IBOutlet weak var categoryStatusButton: UIButton!
+    @IBOutlet weak var filterView: UIView!
+
+    @IBAction func filterDoneButtonPressed(sender: AnyObject) {
+        filterView.hidden = true
+    }
     var dates = [String]()
     // convert set to array http://stackoverflow.com/a/29046827/677596
     var categories:[String] = []
-    @IBOutlet var containerViewController: ContainerViewController!
-    @IBOutlet weak var picker: UIPickerView!
 
 
     @IBAction func aboutBarButtonPressed(sender: AnyObject) {
@@ -42,8 +50,8 @@ class ViewController: DropdownMenuController {
     @IBAction func mapIconButtonPressed(sender: AnyObject) {
         containerViewController.switchToController("mapViewSegue")
     }
-    @IBAction func categoryButtonAction(sender: AnyObject) {
-        lastFilter = "category"
+    @IBAction func searchButtonAction(sender: AnyObject) {
+        lastFilter = "date"
         categories = Array(Trucks.categories)
         filterView.hidden = !filterView.hidden
         picker.reloadAllComponents()
@@ -58,22 +66,11 @@ class ViewController: DropdownMenuController {
         return true
     }
     
-
+    // initialize container view controllers
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "embedSegue") {
             containerViewController = segue.destinationViewController as! ContainerViewController
-            
-            
         }
-//        
-//        println(segue.destinationViewController)
-//        if let filterViewController = segue.destinationViewController as? FilterProtocol {
-//            println("It really happens!!!!!!")
-//            filterViewController.refreshByDate(currentDateFilter)
-//            filterViewController.refreshByCategory(currentCategoryFilter)
-//
-//        }
-
     }
     
     override func viewDidLoad() {
@@ -126,15 +123,8 @@ class ViewController: DropdownMenuController {
             println("\(containerViewController.currentController) does not conform to FilterProtocol")
         }
     }
+
     
-    @IBOutlet weak var dateStatusButton: UIButton!
-    
-    @IBOutlet weak var categoryStatusButton: UIButton!
-    
-    @IBOutlet weak var filterView: UIView!
-    
-    var categoryFilterState = false
-    var dateFilterState = false
 
     
     @IBAction func DateSwitchButtonPressed(sender: AnyObject) {

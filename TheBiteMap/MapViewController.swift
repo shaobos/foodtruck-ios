@@ -130,6 +130,7 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate, UIColle
                     scheduleIdToAnnotation[schedule["id"] as! String] = annotation
                 }
             }
+            var tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "PerformSegue")
             mapView.addAnnotation(annotation)
             annotations.append(annotation)
         }
@@ -211,7 +212,11 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate, UIColle
     // how to add custom annotation callout(awesome!)
     // http://stackoverflow.com/a/19404994/677596
     func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!) {
+        
         var foodTruckAnnotation = view.annotation as! FoodTruckMapAnnotation
+        self.selectedTruckId = foodTruckAnnotation.truckId
+
+        println("Set selectedTruckId \(self.selectedTruckId)")
         if (foodTruckAnnotation.groupId != "") {
             self.selectedGroupId = foodTruckAnnotation.groupId
             collectionView.reloadData()
@@ -237,10 +242,19 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate, UIColle
         By this point, all data should be available in memory so we can read directly
     */
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
-        return AnnotationViewCreator.create(annotation)
+        var tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "PerformSegue")
+        
+        var annotationView:MKAnnotationView =  AnnotationViewCreator.create(annotation)
+        annotationView.addGestureRecognizer(tap)
+        return annotationView
     }
     
-    
+    func PerformSegue() {
+       // performSegueWithIdentifier("MapFullToDetailSegue", sender: nil)
+
+        println("what's wrong???")
+    }
+
     /*
         this function implements what happens when button in left callout accessory view is clicked
     */
@@ -250,6 +264,8 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate, UIColle
         performSegueWithIdentifier("MapFullToDetailSegue", sender: nil)
         // this is the last stop where we can still access annotation
     }
+    
+    
     
     func setRegion(latitude:CLLocationDegrees, longitude:CLLocationDegrees, delta:CLLocationDegrees = 1) {
         // how many degrees it would zoom out by default, 1 would be a lot
