@@ -4,7 +4,6 @@
 pod 'DropdownMenu'
 pod 'MWPhotoBrowser'
 
-
-target 'foodtruck-ios' do
-
-end
+#target 'TheBiteMapTests', :exclusive => true do
+#  pod 'KIF', '~> 3.0', :configurations => ['Debug']
+#end

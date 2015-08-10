@@ -62,98 +62,10 @@
                                     <segue destination="ccm-6F-9BE" kind="embed" identifier="embedSegue" id="k3v-ml-8LA"/>
                                 </connections>
                             </containerView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ttz-3o-tnN">
-                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
-                                <items>
-                                    <barButtonItem image="rsz_app_map_sq.png" style="plain" id="TcF-OF-DpE">
-                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="goM-zg-wnh">
-                                            <rect key="frame" x="18" y="3" width="38" height="38"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" image="rsz_app_list_sq.png">
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="scheduleIconButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ZkJ-Im-v5p"/>
-                                            </connections>
-                                        </button>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="0PN-Lg-I6o"/>
-                                    <barButtonItem title="Map" style="plain" id="DwW-cV-F8r">
-                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="OGr-ai-MaT">
-                                            <rect key="frame" x="82" y="2" width="40" height="40"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" image="rsz_app_map_sq.png">
-                                                <attributedString key="attributedTitle">
-                                                    <fragment content="Map">
-                                                        <attributes>
-                                                            <font key="NSFont" size="12" name="Helvetica"/>
-                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                                        </attributes>
-                                                    </fragment>
-                                                </attributedString>
-                                            </state>
-                                            <connections>
-                                                <action selector="mapIconButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="13c-y4-6XA"/>
-                                            </connections>
-                                        </button>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="wRa-sw-HZx"/>
-                                    <barButtonItem systemItem="search" id="CrK-wm-DFF">
-                                        <color key="tintColor" red="0.77254901960784317" green="0.13333333333333333" blue="0.2627450980392157" alpha="1" colorSpace="calibratedRGB"/>
-                                        <connections>
-                                            <action selector="searchButtonAction:" destination="vXZ-lx-hvc" id="FP0-gK-R7I"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="UVe-Qc-Vyv"/>
-                                    <barButtonItem title="Truck" id="SJk-X8-eFn">
-                                        <color key="tintColor" red="0.58431372549019611" green="0.10980392156862745" blue="0.20392156862745098" alpha="1" colorSpace="calibratedRGB"/>
-                                        <connections>
-                                            <action selector="truckBarButtonPressed:" destination="vXZ-lx-hvc" id="hcm-Pj-0i2"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="LWg-Xh-fFx"/>
-                                    <barButtonItem title="About" id="Jjm-bo-2sH">
-                                        <color key="tintColor" red="0.58431372549019611" green="0.10980392156862745" blue="0.20392156862745098" alpha="1" colorSpace="calibratedRGB"/>
-                                        <connections>
-                                            <action selector="aboutBarButtonPressed:" destination="vXZ-lx-hvc" id="sq0-ZS-2ar"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="barTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            </toolbar>
-                            <view hidden="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IGK-nx-Vij">
+                            <view hidden="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IGK-nx-Vij">
                                 <rect key="frame" x="0.0" y="168" width="320" height="215"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5g0-an-FWb">
-                                        <rect key="frame" x="130" y="10" width="35" height="40"/>
-                                        <state key="normal" image="ImageSelectedSmallOff.png">
-                                            <attributedString key="attributedTitle"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="CategoryStatusButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="2bk-RT-fhC"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d7o-3Q-PZ5">
-                                        <rect key="frame" x="0.0" y="8" width="46" height="43"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                        <state key="normal" image="ImageSelectedSmallOff.png">
-                                            <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="DateStatusButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Dfs-uA-RDd"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0tj-pN-Rvs">
-                                        <rect key="frame" x="165" y="15" width="77" height="30"/>
-                                        <state key="normal" title="Category">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="CategorySwitchButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="u4y-uR-1hY"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="goh-hb-9ax">
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="goh-hb-9ax">
                                         <rect key="frame" x="44" y="15" width="46" height="30"/>
                                         <state key="normal" title="Date">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -162,7 +74,7 @@
                                             <action selector="DateSwitchButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="M1o-Bh-vg3"/>
                                         </connections>
                                     </button>
-                                    <pickerView contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hAe-hH-OtK">
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hAe-hH-OtK">
                                         <rect key="frame" x="0.0" y="58" width="320" height="162"/>
                                         <color key="backgroundColor" red="0.92635337752525249" green="0.92635337752525249" blue="0.92635337752525249" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
@@ -179,14 +91,98 @@
                                             <action selector="filterDoneButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="hek-wS-xhh"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0tj-pN-Rvs">
+                                        <rect key="frame" x="122" y="15" width="77" height="30"/>
+                                        <state key="normal" title="Category">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="CategorySwitchButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="u4y-uR-1hY"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.90588235294117647" green="0.90588235294117647" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="MTR-7Q-J8p" secondAttribute="trailing" constant="24" id="0ez-MO-h9l"/>
+                                    <constraint firstItem="hAe-hH-OtK" firstAttribute="top" secondItem="goh-hb-9ax" secondAttribute="bottom" constant="13" id="Ahk-ij-sfP"/>
                                     <constraint firstItem="hAe-hH-OtK" firstAttribute="leading" secondItem="IGK-nx-Vij" secondAttribute="leading" id="Ala-3Z-YAF"/>
+                                    <constraint firstAttribute="bottom" secondItem="hAe-hH-OtK" secondAttribute="bottom" constant="20" symbolic="YES" id="R9H-gw-5Bj"/>
+                                    <constraint firstItem="0tj-pN-Rvs" firstAttribute="top" secondItem="IGK-nx-Vij" secondAttribute="top" constant="15" id="Vqf-No-x3d"/>
+                                    <constraint firstItem="goh-hb-9ax" firstAttribute="top" secondItem="IGK-nx-Vij" secondAttribute="top" constant="15" id="jzm-Ki-sAf"/>
                                     <constraint firstAttribute="trailing" secondItem="hAe-hH-OtK" secondAttribute="trailing" id="skF-bq-x3c"/>
+                                    <constraint firstItem="hAe-hH-OtK" firstAttribute="top" secondItem="0tj-pN-Rvs" secondAttribute="bottom" constant="13" id="zfd-zK-XpD"/>
                                 </constraints>
                             </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ibd-0O-9oG">
+                                <rect key="frame" x="0.0" y="440" width="95" height="84"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GbS-Zz-4Gx">
+                                        <rect key="frame" x="-16" y="8" width="111" height="36"/>
+                                        <state key="normal" title="List" image="rsz_app_list_sq.png">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="listButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="GIk-Ad-5pu"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WuG-2N-T5N">
+                                        <rect key="frame" x="-16" y="44" width="127" height="40"/>
+                                        <state key="normal" title="Map" image="rsz_app_map_sq.png">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="mapButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ZSE-gH-ijw"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="GbS-Zz-4Gx" secondAttribute="trailing" id="7RW-Uo-cAe"/>
+                                    <constraint firstAttribute="width" constant="95" id="ATf-HQ-zxF"/>
+                                    <constraint firstAttribute="height" constant="84" id="FeE-PF-4cS"/>
+                                    <constraint firstItem="WuG-2N-T5N" firstAttribute="leading" secondItem="Ibd-0O-9oG" secondAttribute="leading" id="GlN-A9-BPH"/>
+                                    <constraint firstItem="GbS-Zz-4Gx" firstAttribute="leading" secondItem="Ibd-0O-9oG" secondAttribute="leading" id="SHT-q7-mBc"/>
+                                    <constraint firstItem="WuG-2N-T5N" firstAttribute="top" secondItem="GbS-Zz-4Gx" secondAttribute="bottom" id="fTL-di-dEq"/>
+                                    <constraint firstItem="GbS-Zz-4Gx" firstAttribute="top" secondItem="Ibd-0O-9oG" secondAttribute="top" id="phM-VW-Gma"/>
+                                    <constraint firstAttribute="trailing" secondItem="WuG-2N-T5N" secondAttribute="trailing" id="r9g-0p-vTj"/>
+                                    <constraint firstAttribute="bottom" secondItem="WuG-2N-T5N" secondAttribute="bottom" id="re6-vd-aXs"/>
+                                </constraints>
+                            </view>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ttz-3o-tnN">
+                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <items>
+                                    <barButtonItem title="Schedule" id="sZl-uO-Duk">
+                                        <color key="tintColor" red="0.68627450980392157" green="0.11764705882352941" blue="0.23529411764705882" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="scheduleButtonPressed:" destination="vXZ-lx-hvc" id="L5J-Fi-TX2"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="0PN-Lg-I6o"/>
+                                    <barButtonItem title="Truck" id="SJk-X8-eFn">
+                                        <color key="tintColor" red="0.58431372549019611" green="0.10980392156862745" blue="0.20392156862745098" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="truckBarButtonPressed:" destination="vXZ-lx-hvc" id="hcm-Pj-0i2"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="LWg-Xh-fFx"/>
+                                    <barButtonItem title="About" id="Jjm-bo-2sH">
+                                        <color key="tintColor" red="0.58431372549019611" green="0.10980392156862745" blue="0.20392156862745098" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="aboutBarButtonPressed:" destination="vXZ-lx-hvc" id="sq0-ZS-2ar"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="wRa-sw-HZx"/>
+                                    <barButtonItem systemItem="search" id="CrK-wm-DFF">
+                                        <color key="tintColor" red="0.77254901960784317" green="0.13333333333333333" blue="0.2627450980392157" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="searchButtonAction:" destination="vXZ-lx-hvc" id="FP0-gK-R7I"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="barTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -197,20 +193,24 @@
                             <constraint firstAttribute="trailing" secondItem="IGK-nx-Vij" secondAttribute="trailing" id="VIB-PD-DR0"/>
                             <constraint firstItem="c5R-0i-6qz" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="hi7-R9-yHF"/>
                             <constraint firstAttribute="trailing" secondItem="c5R-0i-6qz" secondAttribute="trailing" id="lCP-5B-IDR"/>
+                            <constraint firstItem="Ibd-0O-9oG" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="lqZ-Rn-uef"/>
                             <constraint firstItem="IGK-nx-Vij" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="oAP-Jt-IGX"/>
                             <constraint firstAttribute="bottomMargin" secondItem="Ttz-3o-tnN" secondAttribute="bottom" id="s6H-0e-e5e"/>
+                            <constraint firstItem="Ttz-3o-tnN" firstAttribute="top" secondItem="Ibd-0O-9oG" secondAttribute="bottom" id="sIF-Fu-MdM"/>
                             <constraint firstItem="IGK-nx-Vij" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="148" id="vYt-YK-iVk"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="categoryStatusButton" destination="5g0-an-FWb" id="e0K-TX-VtH"/>
+                        <outlet property="categoryFilterButton" destination="0tj-pN-Rvs" id="4Uj-dK-LJY"/>
                         <outlet property="container" destination="c5R-0i-6qz" id="1kx-W8-AIq"/>
-                        <outlet property="dateStatusButton" destination="d7o-3Q-PZ5" id="f4u-W0-KGb"/>
+                        <outlet property="dateFilterButton" destination="goh-hb-9ax" id="nWz-7r-WbE"/>
                         <outlet property="filterView" destination="IGK-nx-Vij" id="80G-19-Lqm"/>
+                        <outlet property="menuView" destination="Ibd-0O-9oG" id="y2g-Gw-JSg"/>
                         <outlet property="menubar" destination="Ttz-3o-tnN" id="YRc-PW-FTr"/>
                         <outlet property="picker" destination="hAe-hH-OtK" id="OFJ-XO-SWa"/>
+                        <outlet property="searchButton" destination="CrK-wm-DFF" id="DJR-02-jaK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -344,10 +344,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="FnL-cR-WWk">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="86"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="86" id="7NC-mH-aAE"/>
+                                    <constraint firstAttribute="height" constant="80" id="7NC-mH-aAE"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="03p-to-PHO">
                                     <size key="itemSize" width="89" height="86"/>
@@ -364,7 +364,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8L7-Fk-wgZ">
-                                                    <rect key="frame" x="0.0" y="0.0" width="89" height="86"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -379,6 +379,13 @@
                                     <outlet property="delegate" destination="axC-Ml-BMx" id="78h-M3-mWr"/>
                                 </connections>
                             </collectionView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s4F-hi-xCM">
+                                <rect key="frame" x="0.0" y="94" width="320" height="42"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -390,7 +397,10 @@
                             <constraint firstItem="FnL-cR-WWk" firstAttribute="centerX" secondItem="Mlu-f0-y1c" secondAttribute="centerX" id="QR2-DC-YRy"/>
                             <constraint firstItem="Mlu-f0-y1c" firstAttribute="top" secondItem="ovU-Wp-5Cv" secondAttribute="bottom" id="cWh-fp-iap"/>
                             <constraint firstItem="Mlu-f0-y1c" firstAttribute="leading" secondItem="4rm-RL-coS" secondAttribute="leading" id="fDb-WK-FaC"/>
+                            <constraint firstAttribute="trailing" secondItem="s4F-hi-xCM" secondAttribute="trailing" id="jnM-di-Is7"/>
+                            <constraint firstItem="s4F-hi-xCM" firstAttribute="leading" secondItem="4rm-RL-coS" secondAttribute="leading" id="mYK-Je-f7e"/>
                             <constraint firstAttribute="bottom" secondItem="FnL-cR-WWk" secondAttribute="bottom" id="pSw-1k-zCt"/>
+                            <constraint firstItem="s4F-hi-xCM" firstAttribute="top" secondItem="FnL-cR-WWk" secondAttribute="bottom" id="vt3-WI-yr8"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
@@ -403,6 +413,7 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="addressLabel" destination="s4F-hi-xCM" id="xo9-Iz-P2e"/>
                         <outlet property="collectionView" destination="FnL-cR-WWk" id="yd8-kU-r5Q"/>
                         <outlet property="mapView" destination="Mlu-f0-y1c" id="Xwb-jN-4PL"/>
                         <segue destination="0JO-0b-VHK" kind="presentation" identifier="MapFullToDetailSegue" id="Iy1-gB-lBZ"/>
@@ -591,6 +602,7 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="tableView" destination="dJZ-zZ-GNA" id="b49-a6-5ZI"/>
                         <segue destination="0JO-0b-VHK" kind="presentation" identifier="TruckTableToDetail" id="PXb-th-F6S"/>
                     </connections>
                 </viewController>
@@ -686,44 +698,44 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <navigationBar contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0hf-xQ-873">
+                                <rect key="frame" x="0.0" y="0.0" width="376" height="44"/>
+                                <items>
+                                    <navigationItem id="NZg-lt-bBp">
+                                        <barButtonItem key="leftBarButtonItem" style="plain" id="iC9-qQ-HuD">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3vh-Ex-xz6">
+                                                <rect key="frame" x="-23" y="-15" width="71" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Back">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="backButtonPressed:" destination="0JO-0b-VHK" eventType="touchUpInside" id="QGm-1i-W3P"/>
+                                                </connections>
+                                            </button>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zuk-ph-iF8">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gyJ-IB-lYz" userLabel="View in Scroll View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="640"/>
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gyJ-IB-lYz" userLabel="View in Scroll View">
+                                        <rect key="frame" x="0.0" y="-45" width="375" height="640"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Category" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="igX-iw-qWB">
-                                                <rect key="frame" x="172" y="150" width="120" height="24"/>
+                                                <rect key="frame" x="172" y="117" width="120" height="24"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HnU-CP-kC3">
-                                                <rect key="frame" x="35" y="95" width="120" height="133"/>
+                                                <rect key="frame" x="27" y="58" width="120" height="133"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="125" id="iTp-zw-q9H"/>
                                                     <constraint firstAttribute="width" constant="125" id="kOO-pe-Bqf"/>
                                                 </constraints>
                                             </imageView>
-                                            <navigationBar contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0hf-xQ-873">
-                                                <rect key="frame" x="27" y="40" width="376" height="44"/>
-                                                <items>
-                                                    <navigationItem id="NZg-lt-bBp">
-                                                        <barButtonItem key="leftBarButtonItem" style="plain" id="iC9-qQ-HuD">
-                                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3vh-Ex-xz6">
-                                                                <rect key="frame" x="-23" y="-15" width="71" height="30"/>
-                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                <state key="normal" title="Back">
-                                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                                </state>
-                                                                <connections>
-                                                                    <action selector="backButtonPressed:" destination="0JO-0b-VHK" eventType="touchUpInside" id="QGm-1i-W3P"/>
-                                                                </connections>
-                                                            </button>
-                                                        </barButtonItem>
-                                                    </navigationItem>
-                                                </items>
-                                            </navigationBar>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" pagingEnabled="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="sbd-0e-xpw">
                                                 <rect key="frame" x="35" y="308" width="316" height="93"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -772,12 +784,6 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z7Y-rx-gpk">
-                                                <rect key="frame" x="172" y="101" width="160" height="36"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pBV-Ng-2Km">
                                                 <rect key="frame" x="0.0" y="437" width="375" height="195"/>
                                                 <constraints>
@@ -801,15 +807,19 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z7Y-rx-gpk">
+                                                <rect key="frame" x="172" y="73" width="160" height="36"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="sbd-0e-xpw" firstAttribute="leading" secondItem="gyJ-IB-lYz" secondAttribute="leading" id="0fG-X4-o1w"/>
                                             <constraint firstItem="QV3-24-dq0" firstAttribute="top" secondItem="AEQ-xq-mIZ" secondAttribute="bottom" constant="5" id="22X-Ml-AZ6"/>
-                                            <constraint firstItem="0hf-xQ-873" firstAttribute="leading" secondItem="gyJ-IB-lYz" secondAttribute="leading" id="2bi-mE-pae"/>
                                             <constraint firstAttribute="bottom" secondItem="pBV-Ng-2Km" secondAttribute="bottom" id="3Sj-8b-v7k"/>
                                             <constraint firstAttribute="trailing" secondItem="pBV-Ng-2Km" secondAttribute="trailing" id="49n-La-Ct7"/>
                                             <constraint firstItem="sbd-0e-xpw" firstAttribute="top" secondItem="AEQ-xq-mIZ" secondAttribute="bottom" constant="8" symbolic="YES" id="4Gq-XX-she"/>
-                                            <constraint firstAttribute="trailing" secondItem="0hf-xQ-873" secondAttribute="trailing" constant="-56" id="4bL-b5-Wzh"/>
                                             <constraint firstItem="sbd-0e-xpw" firstAttribute="top" secondItem="QV3-24-dq0" secondAttribute="bottom" id="9Mf-bn-o61"/>
                                             <constraint firstItem="z7Y-rx-gpk" firstAttribute="leading" secondItem="HnU-CP-kC3" secondAttribute="trailing" id="BZd-NI-JSA"/>
                                             <constraint firstItem="igX-iw-qWB" firstAttribute="top" secondItem="z7Y-rx-gpk" secondAttribute="bottom" id="ESL-TE-Oam"/>
@@ -817,15 +827,14 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                                             <constraint firstAttribute="trailing" secondItem="sbd-0e-xpw" secondAttribute="trailing" id="LLp-f5-6ik"/>
                                             <constraint firstAttribute="height" constant="640" id="Mf7-VQ-r0d"/>
                                             <constraint firstItem="FsA-yO-Xmn" firstAttribute="top" secondItem="sbd-0e-xpw" secondAttribute="bottom" id="S27-of-Gms"/>
-                                            <constraint firstItem="0hf-xQ-873" firstAttribute="top" secondItem="gyJ-IB-lYz" secondAttribute="top" id="Tbf-9r-5Bp"/>
                                             <constraint firstItem="FsA-yO-Xmn" firstAttribute="bottom" secondItem="sbd-0e-xpw" secondAttribute="bottom" id="XbL-A1-bzh"/>
                                             <constraint firstItem="pBV-Ng-2Km" firstAttribute="leading" secondItem="gyJ-IB-lYz" secondAttribute="leading" id="atr-8f-8pa"/>
                                             <constraint firstItem="AEQ-xq-mIZ" firstAttribute="top" secondItem="HnU-CP-kC3" secondAttribute="bottom" constant="5" id="axN-bN-sbQ"/>
-                                            <constraint firstItem="HnU-CP-kC3" firstAttribute="top" secondItem="0hf-xQ-873" secondAttribute="bottom" symbolic="YES" id="cBF-Bc-R3u"/>
+                                            <constraint firstItem="HnU-CP-kC3" firstAttribute="top" secondItem="gyJ-IB-lYz" secondAttribute="top" constant="10" id="gr2-V1-o2y"/>
                                             <constraint firstAttribute="trailing" secondItem="pBV-Ng-2Km" secondAttribute="trailing" id="m5U-rp-2xe"/>
                                             <constraint firstItem="igX-iw-qWB" firstAttribute="leading" secondItem="HnU-CP-kC3" secondAttribute="trailing" id="nmY-dB-rJT"/>
+                                            <constraint firstItem="z7Y-rx-gpk" firstAttribute="top" secondItem="gyJ-IB-lYz" secondAttribute="top" constant="15" id="q7h-XW-KY9"/>
                                             <constraint firstItem="QV3-24-dq0" firstAttribute="leading" secondItem="sbd-0e-xpw" secondAttribute="leading" id="qcM-QB-rmh"/>
-                                            <constraint firstItem="z7Y-rx-gpk" firstAttribute="top" secondItem="0hf-xQ-873" secondAttribute="bottom" id="qov-QY-jRk"/>
                                             <constraint firstItem="FsA-yO-Xmn" firstAttribute="leading" secondItem="pBV-Ng-2Km" secondAttribute="leading" id="rFu-GS-qv1"/>
                                             <constraint firstAttribute="width" constant="375" id="sgd-ig-PyU"/>
                                             <constraint firstAttribute="bottom" secondItem="sbd-0e-xpw" secondAttribute="bottom" constant="297" id="vkK-Eo-yAh"/>
@@ -863,9 +872,12 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="0hf-xQ-873" firstAttribute="leading" secondItem="YNU-xO-mqM" secondAttribute="leading" id="6gW-qE-qn0"/>
+                            <constraint firstAttribute="trailing" secondItem="0hf-xQ-873" secondAttribute="trailing" id="LnW-Y9-EHY"/>
                             <constraint firstItem="Iw0-r1-Cdy" firstAttribute="top" secondItem="Zuk-ph-iF8" secondAttribute="bottom" id="XRJ-zy-XCS"/>
+                            <constraint firstItem="Zuk-ph-iF8" firstAttribute="top" secondItem="0hf-xQ-873" secondAttribute="bottom" id="bLc-MX-ECJ"/>
                             <constraint firstAttribute="trailing" secondItem="Zuk-ph-iF8" secondAttribute="trailing" id="jbt-NU-fuQ"/>
-                            <constraint firstItem="Zuk-ph-iF8" firstAttribute="top" secondItem="Rzv-A6-6y2" secondAttribute="bottom" id="t77-bY-b5M"/>
+                            <constraint firstItem="0hf-xQ-873" firstAttribute="top" secondItem="Rzv-A6-6y2" secondAttribute="bottom" id="opJ-YH-VdQ"/>
                             <constraint firstItem="Zuk-ph-iF8" firstAttribute="leading" secondItem="YNU-xO-mqM" secondAttribute="leading" id="zQj-iM-byO"/>
                         </constraints>
                     </view>
@@ -979,7 +991,6 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
         </scene>
     </scenes>
     <resources>
-        <image name="ImageSelectedSmallOff.png" width="31" height="31"/>
         <image name="rsz_app_list_sq.png" width="40" height="40"/>
         <image name="rsz_app_map_sq.png" width="40" height="40"/>
     </resources>

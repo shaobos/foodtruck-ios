@@ -26,12 +26,12 @@ class AnnotationViewCreator {
         let deleteButton:UIButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
         deleteButton.frame.size.width = 44
         deleteButton.frame.size.height = 44
-        
-        // Add image to callout view
-        if let theImage: Image = Images.truckImages[truckId] {
-            deleteButton.setBackgroundImage(theImage.image, forState: UIControlState.Normal)
-        }
-        pinAnnotationView.leftCalloutAccessoryView = deleteButton
+//        
+//        // Add image to callout view
+//        if let theImage: Image = Images.truckImages[truckId] {
+//            deleteButton.setBackgroundImage(theImage.image, forState: UIControlState.Normal)
+//        }
+//        pinAnnotationView.rightCalloutAccessoryView = deleteButton
         return pinAnnotationView
     }
     

@@ -34,17 +34,29 @@ class TruckFetcher {
                 }
                 
                 dispatch_async(dispatch_get_main_queue(), {
+
+                    // Add All here
+                    Trucks.categories.insert("All")
+                    
                     completionHandler(images: self.truckPhotos)
                 })
             }
             
         })
+        
+        
         task.resume()
     }
     
     private func extractCategory(jsonResult:Dictionary<String, String>) -> Void {
+        
+        // The category returns is a string of multiple categories splited by ","
+        // For example: Chinese, Other, Mexican
         if let category:String = jsonResult["category"] {
-            Trucks.categories.insert(category)
+            var categories = split(category) {$0 == ","}
+            for it in categories {
+                Trucks.categories.insert(it)
+            }
         }
     }
 }

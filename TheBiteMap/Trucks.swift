@@ -36,4 +36,29 @@ after processing:
 struct Trucks {
     static var categories = Set<String>()
     static var trucks = [String: [String: String]]()
+    
+    static func getTrucksByCategory(categoryInput:String) -> [String: [String: String]]{
+        
+        var filtered = [String: [String: String]]()
+        
+        for truck_key in Trucks.trucks.keys {
+            if categoryInput != "" {
+                if categoryInput == "All" {
+                    return Trucks.trucks
+                } else {
+//                    satisfied = true
+                    if let truck = Trucks.trucks[truck_key] {
+                        var truckCategory:String = truck["category"]!
+                        var categories = split(truckCategory) { $0 == ","}
+                        if (contains(categories, categoryInput)) {
+                            filtered[truck_key] = truck
+                        }
+                    }
+                
+                }
+            }
+        }
+        
+        return filtered
+    }
 }

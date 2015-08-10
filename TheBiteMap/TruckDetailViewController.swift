@@ -54,7 +54,6 @@ class TruckDetailViewController : UIViewController, UICollectionViewDelegate, MW
 
 
         imageFetcher.fetchImageByTruckId(self.truckId, outerCallback: {
-            println("*** REached here!!")
             self.theCollectionView.reloadData()
         })
         renderView()

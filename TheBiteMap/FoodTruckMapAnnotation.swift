@@ -18,4 +18,5 @@ class FoodTruckMapAnnotation : MKPointAnnotation {
     var scheduleId: String = ""
     var date: String = ""
     var categories = [String]()
+    var address: String = ""
 }

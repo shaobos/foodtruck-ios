@@ -54,6 +54,6 @@
         </view>
     </objects>
     <resources>
-        <image name="app_logo.png" width="512" height="512"/>
+        <image name="app_logo.png" width="682" height="658"/>
     </resources>
 </document>

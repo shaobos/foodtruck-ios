@@ -11,7 +11,7 @@
 // http://stackoverflow.com/q/26245645/677596
 import Foundation
 
-class TrucksTableViewController : UIViewController, UITableViewDelegate, UITableViewDataSource {
+class TrucksTableViewController : UIViewController, UITableViewDelegate, UITableViewDataSource, FilterProtocol {
     
     
 //    private let titlesBySection = ["A" : ["Ac", "Ad"], "B": ["bc"], "C": ["cc"]]
@@ -20,6 +20,7 @@ class TrucksTableViewController : UIViewController, UITableViewDelegate, UITable
     private var trucksIndexedByInitial = [String: [String]]()
     private var trucksSectionHeader = [String]()
 
+    @IBOutlet weak var tableView: UITableView!
     
     private var currentTruckId:String?
     override func viewDidLoad() {
@@ -33,6 +34,8 @@ class TrucksTableViewController : UIViewController, UITableViewDelegate, UITable
     }
     
     func convertTruckData(input: [String:[String: String]]) {
+        trucksIndexedByInitial = [String: [String]]()
+        trucksSectionHeader = [String]()
         for truck in input.values {
             var name:String = truck["name"]!
             var truckId:String = truck["id"]!
@@ -45,7 +48,6 @@ class TrucksTableViewController : UIViewController, UITableViewDelegate, UITable
         }
         
         for character in Array(trucksIndexedByInitial.keys).sorted(<) {
-            
             trucksSectionHeader.append(String(character))
         }
     }
@@ -92,10 +94,8 @@ class TrucksTableViewController : UIViewController, UITableViewDelegate, UITable
     
     func tableView(tableView: UITableView, sectionForSectionIndexTitle title: String, atIndex index: Int) -> Int {
         var i:Int = 0
-        println(index)
         for head in trucksSectionHeader {
             if head == title {
-                println("Found the title!")
                 return i
             }
             i++
@@ -118,5 +118,28 @@ class TrucksTableViewController : UIViewController, UITableViewDelegate, UITable
         return trucksSectionHeader[section]
     }
     
+    func refreshTable() {
+        
+    }
     
+    func setDateFilter(date:String) {
+        println("setDateFilter in Truck Table view -- no-op")
+    }
+    func setCategoryFilter(category:String) {
+        println("setCategoryFilter in Truck Table view -- no-op")
+        
+    }
+    func refreshByDate(date:String) {
+        println("refreshByDate in Truck Table view -- no-op")
+
+        
+    }
+    func refreshByCategory(category:String) {
+        println("Oeah yeah! oeahy!!")
+        var ret = Trucks.getTrucksByCategory(category)
+        println(ret)
+        convertTruckData(ret)
+        tableView.reloadData()
+        
+    }
 }

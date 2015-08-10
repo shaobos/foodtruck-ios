@@ -11,6 +11,4 @@ protocol FilterProtocol {
     func setCategoryFilter(category:String)
     func refreshByDate(date:String)
     func refreshByCategory(category:String)
-    func clearDateFilter()
-    func clearCategoryFilter()
 }

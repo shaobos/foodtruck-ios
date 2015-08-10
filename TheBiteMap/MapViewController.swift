@@ -57,6 +57,11 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate, UIColle
     var schedules = [String: [String: AnyObject]]()
     var schedulesGroupByEvent = [String: [[String: AnyObject]]]()
     
+    
+    var currentDateFilter:String = ""
+    var currentCategoryFilter:String = ""
+    
+    @IBOutlet weak var addressLabel: UILabel!
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -221,9 +226,12 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate, UIColle
             self.selectedGroupId = foodTruckAnnotation.groupId
             collectionView.reloadData()
             collectionView.hidden = false
+            addressLabel.hidden = false
+            addressLabel.text = foodTruckAnnotation.address
         } else {
              self.selectedGroupId = ""
             collectionView.hidden = true
+            addressLabel.hidden = true
         }
     }
     
@@ -234,6 +242,7 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate, UIColle
         if (foodTruckAnnotation.groupId != "") {
             self.selectedGroupId = ""
             collectionView.hidden = true
+            addressLabel.hidden = true
         }
     }
     
@@ -281,9 +290,7 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate, UIColle
             mapView.setRegion(region, animated: false)
         }
     }
-    
-    var currentDateFilter:String = ""
-    var currentCategoryFilter:String = ""
+
 
     func setDateFilter(date:String) {
         currentDateFilter = date
@@ -293,7 +300,6 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate, UIColle
     }
     
     func refreshMap() {
-        println(self)
         println("Map-refreshMap() current filter state \(currentDateFilter) \(currentCategoryFilter)")
         for annotation in self.annotations {
             var viewForAnnotation = self.mapView.viewForAnnotation(annotation)
@@ -303,14 +309,34 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate, UIColle
             }
             
             
-            if currentDateFilter != "" && annotation.date != currentDateFilter {
-                viewForAnnotation.hidden = true
-                continue
+            if currentDateFilter != "" {
+                if currentDateFilter == "All" {
+                    viewForAnnotation.hidden = false
+                } else if annotation.date != currentDateFilter {
+                    viewForAnnotation.hidden = true
+                    continue
+                }
             }
             
-            if currentCategoryFilter != "" && !contains(annotation.categories, currentCategoryFilter) {
-                viewForAnnotation.hidden = true
-                continue
+            if currentCategoryFilter != "" {
+                // return true if any trucks in this pin has the target category
+                // this might produce false positive since some trucks with the same pin 
+                // might not be that type of food
+                if currentCategoryFilter == "All" {
+                    viewForAnnotation.hidden = false                
+                } else {
+                    var includeCategory = false
+                    for category:String in annotation.categories {
+                        if (category.rangeOfString(currentCategoryFilter) != nil) {
+                            includeCategory = true
+                        }
+                    }
+                    if (!includeCategory) {
+                        viewForAnnotation.hidden = true
+                        continue
+                    }
+                }
+                
             }
             
             viewForAnnotation.hidden = false
@@ -325,17 +351,6 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate, UIColle
     
     func refreshByDate(date:String) {
         currentDateFilter = date
-        refreshMap()
-    }
-    
-    func clearCategoryFilter() {
-        currentCategoryFilter = ""
-        refreshMap()
-    }
-    
-    func clearDateFilter() {
-        println("Map clearDateFilter is called")
-        currentDateFilter = ""
         refreshMap()
     }
     

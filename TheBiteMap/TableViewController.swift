@@ -31,6 +31,10 @@ class TableViewController: UIViewController, UITableViewDelegate, FilterProtocol
     
     var shouldRefresh = false
     
+    // TODO: duplicate code in Map view
+    // TODO: empty checking upon using
+    var currentScheduleId : String = ""
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +56,6 @@ class TableViewController: UIViewController, UITableViewDelegate, FilterProtocol
         super.didMoveToParentViewController(parent)
         // only needs to initialize once. once you know your parent, you know!!
         
-        println(parent)
         if parent is ContainerViewController {
             if containerViewController == nil {
                 println("Initilizing..")
@@ -64,6 +67,7 @@ class TableViewController: UIViewController, UITableViewDelegate, FilterProtocol
         } else if parent is TruckDetailViewController {
             truckDetailViewController = parent as? TruckDetailViewController
             println("Table moved to truck details")
+            
 
         } else {
             shouldRefresh = true
@@ -98,10 +102,9 @@ class TableViewController: UIViewController, UITableViewDelegate, FilterProtocol
     }
     
     func refreshTable() {
-        println(self)
         println("Table-refreshMap() current filter state \(currentDateFilter) \(currentCategoryFilter)")
 
-        cellContent = self.scheduleFetcher.getSchedulesByCategoryAndDate(currentCategoryFilter, dateInput: currentDateFilter)
+        cellContent = FilterImpl.filterSchedulesByCategoryAndDate(currentCategoryFilter, dateInput: currentDateFilter)
         theTableView.reloadData()
     }
     
@@ -114,19 +117,9 @@ class TableViewController: UIViewController, UITableViewDelegate, FilterProtocol
         currentCategoryFilter = category
         refreshTable()
     }
-
-    func clearDateFilter() {
-        currentDateFilter = ""
-        refreshTable()
-    }
-    
-    func clearCategoryFilter() {
-        currentCategoryFilter = ""
-        refreshTable()
-    }
     
     func fetchSchedules() {
-        var dates:[String] = self.scheduleFetcher.getScheduleDates()
+        var dates:[String] = Date.getScheduleDates()
 
         if Schedules.schedules.count > 0 {
             self.cellContent = self.scheduleFetcher.getSchedulesBydate(dates[0])
@@ -159,7 +152,7 @@ class TableViewController: UIViewController, UITableViewDelegate, FilterProtocol
         }
         
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -211,10 +204,7 @@ class TableViewController: UIViewController, UITableViewDelegate, FilterProtocol
         }
 
     }
-    
-    // TODO: duplicate code in Map view
-    // TODO: empty checking upon using
-    var currentScheduleId : String = ""
+
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         var indexPath: NSIndexPath = self.theTableView.indexPathForSelectedRow()!//indexPathForSelectedRow

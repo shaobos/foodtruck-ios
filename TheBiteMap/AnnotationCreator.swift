@@ -36,11 +36,18 @@ class AnnotationCreator {
         var newCoordinate :CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
         var address:String = schedule["address"] as! String
         annotation.coordinate = newCoordinate
-        annotation.title = "\(schedules.count) food trucks: \(address)"
-        annotation.subtitle = schedule["date"] as! String + " " + (schedule["start_time"] as! String) + " - " + (schedule["end_time"] as! String)
+        annotation.title = "\(schedules.count) food trucks at this location"
+        
+        var start_times = split(schedule["start_time"] as! String) { $0 == ":"}
+        var short_start_time = "\(start_times[0]):\(start_times[1])"
+        
+        var end_times = split(schedule["end_time"] as! String) { $0 == ":"}
+        var short_end_time = "\(end_times[0]):\(end_times[1])"
+        annotation.subtitle = schedule["date"] as! String + " " + short_start_time + " - " + short_end_time
         annotation.truckId = schedule["truck_id"] as! String
         annotation.groupId = groupId
         annotation.date = schedule["date"] as! String
+        annotation.address = schedule["address"] as! String
         
         
         

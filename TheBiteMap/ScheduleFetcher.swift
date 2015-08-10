@@ -7,43 +7,13 @@
 //
 
 class ScheduleFetcher {
-    
-    let lengthOfSchedules:Int = 6 // days, since it's 0-based
-    
+        
     func getSchedules() -> [String: [String: AnyObject]] {
         return Schedules.schedules
     }
     
     func getSchedulesByCategoryAndDate(categoryInput:String, dateInput:String) -> [String: [String: AnyObject]] {
-        var ret = [String: [String: AnyObject]]()
-        for key in Schedules.schedules.keys {
-            var scheduleObject = Schedules.schedules[key]!
-            
-            var satisfied = true
-            if categoryInput != "" {
-                if let truckId: AnyObject = scheduleObject["truck_id"] {
-                    if let truckModel = Trucks.trucks[truckId as! String] {
-                        if (truckModel["category"] != categoryInput) {
-                            satisfied = false
-                        }
-                    }
-                }
-            }
-            
-            if dateInput != "" {
-                if var scheduleDate: AnyObject = scheduleObject["date"] {
-                    if dateInput != scheduleDate as! NSString {
-                        satisfied = false
-                    }
-                }
-            }
-            
-            
-            if (satisfied) {
-                ret[key] = scheduleObject
-            }
-        }
-        return ret
+        return FilterImpl.filterSchedulesByCategoryAndDate(categoryInput, dateInput: dateInput)
     }
     
     func getSchedulesByCategory(category:String) -> [String: [String: AnyObject]] {
@@ -74,9 +44,9 @@ class ScheduleFetcher {
     }
     
     func fetchSchedules(completionHandler: () -> ())  {
-        let startDate = getStartDate()
+        let startDate = Date.getStartDate()
         //let startDate = "07/13"
-        let endDate = getEndDate()
+        let endDate = Date.getEndDate()
         let urlPath = WebService.baseUrl + "scripts/get_trucks_schedule.php?start_date=\(startDate)&end_date=\(endDate)"
         
         println("DEBUG: \(urlPath)")
@@ -97,7 +67,12 @@ class ScheduleFetcher {
                             // Attention: needs to be AnyObject here as value cannot be assumed to be String
                             if let jsonResult = responseObject as? [String: AnyObject] {
                                 var scheduleId = self.composeScheduleId(jsonResult)
+
+                                
+                                
+
                                 Schedules.schedules[scheduleId] = jsonResult
+
                             }
                         }
                     }
@@ -110,51 +85,5 @@ class ScheduleFetcher {
             
         })
         task.resume()
-    }
-    
-    
-    func getStartDate() -> String {
-        var today = getToday()
-        let formatter  = NSDateFormatter()
-        formatter.dateFormat = "MM/dd"
-        return formatter.stringFromDate(today)
-    }
-    
-    func getToday() -> NSDate {
-        return NSDate()
-    }
-    
-    func getEndDate() -> String {
-        var today = getToday()
-        let formatter  = NSDateFormatter()
-        formatter.dateFormat = "MM/dd"
-        let tomorrow = NSCalendar.currentCalendar().dateByAddingUnit(
-            .CalendarUnitDay,
-            value: lengthOfSchedules,
-            toDate: today,
-            options: NSCalendarOptions(0))
-        
-        return formatter.stringFromDate(tomorrow!)
-    }
-    
-    func getScheduleDates () -> [String] {
-        var today = getToday()
-        let formatter  = NSDateFormatter()
-        formatter.dateFormat = "YYYY-MM-dd"
-        var dates = [String]()
-        
-        // this can definitely be more efficient
-        for i in 0...lengthOfSchedules {
-            let currentDate = NSCalendar.currentCalendar().dateByAddingUnit(
-                .CalendarUnitDay,
-                value: i,
-                toDate: today,
-                options: NSCalendarOptions(0))
-            var currentDateInString = formatter.stringFromDate(currentDate!)
-            dates.insert(currentDateInString, atIndex: dates.endIndex)
-        }
-        
-        
-        return dates
     }
 }
