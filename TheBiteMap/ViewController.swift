@@ -61,20 +61,15 @@ class ViewController: DropdownMenuController {
 
     @IBAction func aboutBarButtonPressed(sender: AnyObject) {
         searchButton.enabled = false
-
         containerViewController.switchToController("aboutViewSegue")
-        
-
     }
+    
     @IBAction func truckBarButtonPressed(sender: AnyObject) {
         dateFilterButton.hidden = true
         searchButton.enabled = true
-
         loadCategoryPicker()
         containerViewController.switchToController("trucksViewSegue")
         // it only has category
-
-
     }
 
     @IBAction func scheduleIconButtonPressed(sender: AnyObject) {
@@ -110,6 +105,18 @@ class ViewController: DropdownMenuController {
         super.viewDidLoad()
         dates = Date.getScheduleDates()
         categories = sorted(Array(Trucks.categories))
+//        var tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissMenuView")
+//        tap.cancelsTouchesInView = false
+//        tap.numberOfTapsRequired = 1
+//        view.addGestureRecognizer(tap)
+
+    }
+    
+    func dismissMenuView(sender: UITapGestureRecognizer) {
+//        if (sender.state == UIGestureRecognizerStateEnded) {
+//            menuView.hidden = true
+
+//        }
     }
 
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
@@ -147,7 +154,6 @@ class ViewController: DropdownMenuController {
                 categoryFilterState = true
                 filterViewController.refreshByCategory(categories[row])
                 currentCategoryFilter = categories[row]
-
             }
         } else {
             println("\(containerViewController.currentController) does not conform to FilterProtocol")

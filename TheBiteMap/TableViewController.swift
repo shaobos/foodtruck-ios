@@ -27,9 +27,10 @@ class TableViewController: UIViewController, UITableViewDelegate, FilterProtocol
     var imageFetcher = ImageFetcher()
     var currentDateFilter = ""
     var currentCategoryFilter = ""
-    var truckId:String? // could be called from truckd detail view
+    var truckId:String? // used when called from truckd detail view
     
     var shouldRefresh = false
+    var parentController:UIViewController? // indicate where the table view controller is embedded
     
     // TODO: duplicate code in Map view
     // TODO: empty checking upon using
@@ -62,12 +63,14 @@ class TableViewController: UIViewController, UITableViewDelegate, FilterProtocol
                 containerViewController = parent as? ContainerViewController
                 println(containerViewController)
             }
+            parentController = containerViewController
             shouldRefresh = true
             println("Table moved to container")
         } else if parent is TruckDetailViewController {
             truckDetailViewController = parent as? TruckDetailViewController
             println("Table moved to truck details")
-            
+            parentController = truckDetailViewController
+
 
         } else {
             shouldRefresh = true
@@ -187,21 +190,32 @@ class TableViewController: UIViewController, UITableViewDelegate, FilterProtocol
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.currentScheduleId = Array(cellContent.keys)[indexPath.row] as String
         
-        if let c = containerViewController {
+        if let p = parentController {
+            if p is ContainerViewController {
+                if let c = containerViewController {
+                    if (c.mapViewController == nil) {
 
-            if (c.mapViewController == nil) {
+                        c.switchToController("mapViewSegue")
+                        var mapViewController = c.mapViewController as! MapViewController
 
-                c.switchToController("mapViewSegue")
-                var mapViewController = c.mapViewController as! MapViewController
+                        mapViewController.scheduleId(self.currentScheduleId)
+                    } else {
+                        var mapViewController = c.mapViewController as! MapViewController
 
-                mapViewController.scheduleId(self.currentScheduleId)
-            } else {
-                var mapViewController = c.mapViewController as! MapViewController
-
-                mapViewController.scheduleId(self.currentScheduleId)
-                c.switchToController("mapViewSegue")
+                        mapViewController.scheduleId(self.currentScheduleId)
+                        c.switchToController("mapViewSegue")
+                    }
+                }
+            } else if p is TruckDetailViewController {
+            
+                println("no this is not working so far")
+                
+                
             }
+        } else {
+            println("WARN: parent controller of table view controller has not been detected")
         }
+
 
     }
 

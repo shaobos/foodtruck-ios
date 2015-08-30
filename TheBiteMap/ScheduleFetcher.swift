@@ -68,9 +68,6 @@ class ScheduleFetcher {
                             if let jsonResult = responseObject as? [String: AnyObject] {
                                 var scheduleId = self.composeScheduleId(jsonResult)
 
-                                
-                                
-
                                 Schedules.schedules[scheduleId] = jsonResult
 
                             }

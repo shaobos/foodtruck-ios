@@ -95,6 +95,7 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate, UIColle
         truckFetcher.fetchTrucksInfoFromRemote {
             loadedImages in
             self.scheduleFetcher.fetchSchedules() {
+                println("Reached here?")
                 self.schedules = self.scheduleFetcher.getSchedules()
                 self.initialize()
             }
@@ -168,9 +169,14 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate, UIColle
             latitudeSum += latitude
             longitudeSum += longitude
         }
-        var centralLatitude:Double = latitudeSum / count
-        var centralLongwitude:Double = longitudeSum / count
-        setRegion(centralLatitude, longitude: centralLongwitude)
+        
+        
+        if count > 0 {
+            var centralLatitude:Double = latitudeSum / count
+            var centralLongwitude:Double = longitudeSum / count
+            setRegion(centralLatitude, longitude: centralLongwitude)
+        }
+
     }
     
     /*

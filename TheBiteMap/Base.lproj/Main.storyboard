@@ -217,75 +217,6 @@
             </objects>
             <point key="canvasLocation" x="-360" y="-1835"/>
         </scene>
-        <!--Filter View Controller-->
-        <scene sceneID="e4f-Ql-q4j">
-            <objects>
-                <viewController id="fdU-PJ-Rjs" customClass="FilterViewController" customModule="thebitemap" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Hq7-y5-gT8"/>
-                        <viewControllerLayoutGuide type="bottom" id="uR3-A6-GA6"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="CNn-U3-Cvt">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HSH-4i-6Dw">
-                                <rect key="frame" x="0.0" y="310" width="320" height="162"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="fdU-PJ-Rjs" id="UkS-Qj-QCW"/>
-                                    <outlet property="delegate" destination="fdU-PJ-Rjs" id="Avo-d8-5Uq"/>
-                                </connections>
-                            </pickerView>
-                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oX3-UY-hzN">
-                                <rect key="frame" x="0.0" y="93" width="320" height="162"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="fdU-PJ-Rjs" id="oAi-wy-DY9"/>
-                                    <outlet property="delegate" destination="fdU-PJ-Rjs" id="DQB-DG-SnB"/>
-                                </connections>
-                            </pickerView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0hd-hO-o7P">
-                                <rect key="frame" x="220" y="279" width="54" height="30"/>
-                                <state key="normal" title="Clear">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="CategoryClearButtonPressed:" destination="fdU-PJ-Rjs" eventType="touchUpInside" id="2Mm-vS-dkB"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Food Category" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i5N-zE-K90">
-                                <rect key="frame" x="21" y="283" width="136" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iCn-hO-8bp">
-                                <rect key="frame" x="21" y="59" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5hd-sB-CKo">
-                                <rect key="frame" x="224" y="55" width="46" height="30"/>
-                                <state key="normal" title="Clear">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="DateClearButtonPressed:" destination="fdU-PJ-Rjs" eventType="touchUpInside" id="T15-Ne-edY"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
-                    <connections>
-                        <outlet property="CategoryPicker" destination="HSH-4i-6Dw" id="syW-9V-lU9"/>
-                        <outlet property="DatePicker" destination="oX3-UY-hzN" id="Jax-ZR-Tyn"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="plr-kf-8RJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="153" y="-1989"/>
-        </scene>
         <!--Container View Controller-->
         <scene sceneID="zQw-PS-ROh">
             <objects>
@@ -995,8 +926,8 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
         <image name="rsz_app_map_sq.png" width="40" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Tnj-wy-Ywp"/>
-        <segue reference="OdQ-3H-74I"/>
+        <segue reference="n82-dF-unX"/>
         <segue reference="Iy1-gB-lBZ"/>
+        <segue reference="OdQ-3H-74I"/>
     </inferredMetricsTieBreakers>
 </document>

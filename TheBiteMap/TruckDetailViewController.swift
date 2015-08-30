@@ -9,7 +9,6 @@
 class TruckDetailViewController : UIViewController, UICollectionViewDelegate, MWPhotoBrowserDelegate {
     
     @IBAction func backButtonPressed(sender: AnyObject) {
-        println("pressed, pressed!")
         self.dismissViewControllerAnimated(false, completion: {})
     }
         
@@ -116,12 +115,6 @@ class TruckDetailViewController : UIViewController, UICollectionViewDelegate, MW
 
         var cell = collectionView.cellForItemAtIndexPath(indexPath) as! CollectionViewCell
         currentImage = cell.imageView.image
-//        performSegueWithIdentifier("TruckDetailToLargeImageSegue", sender: nil)
-        
-        
-        
-        //let photo:MWPhoto = MWPhoto(image:image)
-        
         self.photos = TruckDetailImages.truckImages[self.truckId!]!
         self.imageUrls = TruckDetailImages.reducedUrlList[self.truckId!]!
 
@@ -141,7 +134,6 @@ class TruckDetailViewController : UIViewController, UICollectionViewDelegate, MW
         var nav = UINavigationController(rootViewController: browser)
         nav.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
         self.presentViewController(nav, animated: true, completion: nil)
-       // self.navigationController?.pushViewController(browser, animated: true)
     }
     
     func numberOfPhotosInPhotoBrowser(photoBrowser: MWPhotoBrowser!) -> UInt {
@@ -149,10 +141,7 @@ class TruckDetailViewController : UIViewController, UICollectionViewDelegate, MW
     }
     
     func photoBrowser(photoBrowser: MWPhotoBrowser!, photoAtIndex index: UInt) -> MWPhotoProtocol! {
-//        var image = self.photos[Int(index)]
-//        var mwPhoto:MWPhoto = MWPhoto(image: image)
         var imageUrl = self.imageUrls[Int(index)]
-        // var mwPhoto:MWPhoto = MWPhoto(image: image)
         var mwPhoto:MWPhoto = MWPhoto(URL: NSURL(string: imageUrl))
         
         return mwPhoto
@@ -173,7 +162,7 @@ class TruckDetailViewController : UIViewController, UICollectionViewDelegate, MW
             } else {
                 println("currentImage is unset")
             }
-        }else if (segue.identifier! == "TruckDetailContainerToTable") {
+        } else if (segue.identifier! == "TruckDetailContainerToTable") {
             var destViewController = segue.destinationViewController as! TableViewController
             destViewController.truckId(truckId!)
         } else {
