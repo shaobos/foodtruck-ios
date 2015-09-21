@@ -27,17 +27,24 @@ class TruckDetailViewController : UIViewController, UICollectionViewDelegate, MW
         self.truckId = truckId
     }
     
+    @IBOutlet weak var tableContainerView: UIView!
+    @IBOutlet weak var mapContainerView: UIView!
+    var mapViewController:MapViewController? // hightlight pin from truck detail view
     var imageFetcher = ImageFetcher()
     var prevViewController: UIViewController?
     var previousViewControllerName:String = ""
-    var scheduleToTableSegueID : String = "ScheduleToTableSegue"
-    var scheduleToMapSegueID : String = "ScheduleToMapSegue"
     var inputLabel:String = ""
     var currentImage:UIImage?
     var photos = [UIImage]()
     var imageUrls = [String]()
     @IBOutlet weak var urlTextLabel: UILabel!
 
+    @IBOutlet weak var showListButton: UIButton!
+    @IBAction func showScheduleListButtonPressed(sender: AnyObject) {
+        tableContainerView.hidden = false
+        mapContainerView.hidden = true
+        showListButton.hidden = true
+    }
     
     @IBOutlet weak var theCollectionView: UICollectionView!
     var collectionCellReusableId = "TruckDetailCollectionCell"
@@ -163,8 +170,15 @@ class TruckDetailViewController : UIViewController, UICollectionViewDelegate, MW
                 println("currentImage is unset")
             }
         } else if (segue.identifier! == "TruckDetailContainerToTable") {
+            println("  ** It works - TruckDetailContainerToTable!!")
+
             var destViewController = segue.destinationViewController as! TableViewController
             destViewController.truckId(truckId!)
+        } else if (segue.identifier! == "TruckDetailContainerToMap") {
+            println("  ** It works - TruckDetailContainerToMap!!")
+            mapViewController = segue.destinationViewController as! MapViewController
+            
+        
         } else {
             println("Unknown segue in TruckDetialScrollViewController")
         }

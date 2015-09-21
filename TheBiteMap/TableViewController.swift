@@ -28,6 +28,7 @@ class TableViewController: UIViewController, UITableViewDelegate, FilterProtocol
     var currentDateFilter = ""
     var currentCategoryFilter = ""
     var truckId:String? // used when called from truckd detail view
+    var mapViewController:MapViewController?
     
     var shouldRefresh = false
     var parentController:UIViewController? // indicate where the table view controller is embedded
@@ -196,21 +197,22 @@ class TableViewController: UIViewController, UITableViewDelegate, FilterProtocol
                     if (c.mapViewController == nil) {
 
                         c.switchToController("mapViewSegue")
-                        var mapViewController = c.mapViewController as! MapViewController
+                        mapViewController = c.mapViewController as! MapViewController
 
-                        mapViewController.scheduleId(self.currentScheduleId)
+                        mapViewController!.scheduleId(self.currentScheduleId)
                     } else {
-                        var mapViewController = c.mapViewController as! MapViewController
+                        mapViewController = c.mapViewController as! MapViewController
 
-                        mapViewController.scheduleId(self.currentScheduleId)
+                        mapViewController!.scheduleId(self.currentScheduleId)
                         c.switchToController("mapViewSegue")
                     }
                 }
             } else if p is TruckDetailViewController {
-            
-                println("no this is not working so far")
-                
-                
+                var truckDetailViewController = p as! TruckDetailViewController
+                truckDetailViewController.mapContainerView.hidden = false
+                truckDetailViewController.tableContainerView.hidden = true
+                truckDetailViewController.showListButton.hidden = false
+                truckDetailViewController.mapViewController!.highlightAndSetRegion(self.currentScheduleId)
             }
         } else {
             println("WARN: parent controller of table view controller has not been detected")

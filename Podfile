@@ -4,6 +4,6 @@
 pod 'DropdownMenu'
 pod 'MWPhotoBrowser'
 
-#target 'TheBiteMapTests', :exclusive => true do
-#  pod 'KIF', '~> 3.0', :configurations => ['Debug']
-#end
+target 'TheBiteMapTests', :exclusive => true do
+  pod 'KIF', '~> 3.0', :configurations => ['Debug']
+end

@@ -480,8 +480,8 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="127" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="dJZ-zZ-GNA">
-                                <rect key="frame" x="0.0" y="0.0" width="304" height="568"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="127" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="dJZ-zZ-GNA">
+                                <rect key="frame" x="16" y="0.0" width="304" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TruckCell" rowHeight="127" id="c8x-Zw-QoY" customClass="TruckTableCellCustomView" customModule="thebitemap" customModuleProvider="target">
@@ -703,12 +703,6 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                                                     <outlet property="delegate" destination="0JO-0b-VHK" id="6fe-1C-1jU"/>
                                                 </connections>
                                             </collectionView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Schedules" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FsA-yO-Xmn">
-                                                <rect key="frame" x="35" y="409" width="272" height="32"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Pictures" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QV3-24-dq0">
                                                 <rect key="frame" x="35" y="269" width="263" height="38"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -716,7 +710,7 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pBV-Ng-2Km">
-                                                <rect key="frame" x="0.0" y="437" width="375" height="195"/>
+                                                <rect key="frame" x="0.0" y="464" width="375" height="195"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="250" id="EOO-wy-TTq"/>
                                                 </constraints>
@@ -727,6 +721,20 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                                                 </variation>
                                                 <connections>
                                                     <segue destination="1mV-At-hd7" kind="embed" identifier="TruckDetailContainerToTable" id="OdQ-3H-74I"/>
+                                                </connections>
+                                            </containerView>
+                                            <containerView hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zf0-HR-CbR" userLabel="Map Container View">
+                                                <rect key="frame" x="0.0" y="464" width="375" height="195"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="250" id="qLR-RY-DdU"/>
+                                                </constraints>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="qLR-RY-DdU"/>
+                                                    </mask>
+                                                </variation>
+                                                <connections>
+                                                    <segue destination="axC-Ml-BMx" kind="embed" identifier="TruckDetailContainerToMap" id="oed-iL-rAU"/>
                                                 </connections>
                                             </containerView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Url" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AEQ-xq-mIZ">
@@ -744,6 +752,21 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2I6-bq-lHg">
+                                                <rect key="frame" x="143" y="410" width="46" height="30"/>
+                                                <state key="normal" title="List">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="showScheduleListButtonPressed:" destination="0JO-0b-VHK" eventType="touchUpInside" id="tFu-EF-oBN"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Schedules" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FsA-yO-Xmn">
+                                                <rect key="frame" x="35" y="409" width="100" height="32"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="sbd-0e-xpw" firstAttribute="leading" secondItem="gyJ-IB-lYz" secondAttribute="leading" id="0fG-X4-o1w"/>
@@ -751,17 +774,26 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                                             <constraint firstAttribute="bottom" secondItem="pBV-Ng-2Km" secondAttribute="bottom" id="3Sj-8b-v7k"/>
                                             <constraint firstAttribute="trailing" secondItem="pBV-Ng-2Km" secondAttribute="trailing" id="49n-La-Ct7"/>
                                             <constraint firstItem="sbd-0e-xpw" firstAttribute="top" secondItem="AEQ-xq-mIZ" secondAttribute="bottom" constant="8" symbolic="YES" id="4Gq-XX-she"/>
+                                            <constraint firstAttribute="bottom" secondItem="zf0-HR-CbR" secondAttribute="bottom" id="4dV-K4-jeB"/>
+                                            <constraint firstItem="zf0-HR-CbR" firstAttribute="top" secondItem="sbd-0e-xpw" secondAttribute="bottom" constant="5" id="5iR-Ve-u6p"/>
                                             <constraint firstItem="sbd-0e-xpw" firstAttribute="top" secondItem="QV3-24-dq0" secondAttribute="bottom" id="9Mf-bn-o61"/>
+                                            <constraint firstItem="zf0-HR-CbR" firstAttribute="top" secondItem="2I6-bq-lHg" secondAttribute="bottom" constant="5" id="B2V-wl-gXl"/>
                                             <constraint firstItem="z7Y-rx-gpk" firstAttribute="leading" secondItem="HnU-CP-kC3" secondAttribute="trailing" id="BZd-NI-JSA"/>
+                                            <constraint firstAttribute="trailing" secondItem="2I6-bq-lHg" secondAttribute="trailing" constant="186" id="Bho-DP-d0O"/>
                                             <constraint firstItem="igX-iw-qWB" firstAttribute="top" secondItem="z7Y-rx-gpk" secondAttribute="bottom" id="ESL-TE-Oam"/>
-                                            <constraint firstItem="pBV-Ng-2Km" firstAttribute="top" secondItem="FsA-yO-Xmn" secondAttribute="bottom" constant="3" id="JdW-d7-Nze"/>
+                                            <constraint firstItem="pBV-Ng-2Km" firstAttribute="top" secondItem="FsA-yO-Xmn" secondAttribute="bottom" constant="5" id="JdW-d7-Nze"/>
                                             <constraint firstAttribute="trailing" secondItem="sbd-0e-xpw" secondAttribute="trailing" id="LLp-f5-6ik"/>
                                             <constraint firstAttribute="height" constant="640" id="Mf7-VQ-r0d"/>
+                                            <constraint firstItem="FsA-yO-Xmn" firstAttribute="leading" secondItem="2I6-bq-lHg" secondAttribute="trailing" constant="5" id="RPg-rA-tKi"/>
                                             <constraint firstItem="FsA-yO-Xmn" firstAttribute="top" secondItem="sbd-0e-xpw" secondAttribute="bottom" id="S27-of-Gms"/>
                                             <constraint firstItem="FsA-yO-Xmn" firstAttribute="bottom" secondItem="sbd-0e-xpw" secondAttribute="bottom" id="XbL-A1-bzh"/>
                                             <constraint firstItem="pBV-Ng-2Km" firstAttribute="leading" secondItem="gyJ-IB-lYz" secondAttribute="leading" id="atr-8f-8pa"/>
                                             <constraint firstItem="AEQ-xq-mIZ" firstAttribute="top" secondItem="HnU-CP-kC3" secondAttribute="bottom" constant="5" id="axN-bN-sbQ"/>
+                                            <constraint firstItem="zf0-HR-CbR" firstAttribute="top" secondItem="FsA-yO-Xmn" secondAttribute="bottom" constant="5" id="bhb-Y7-Ezd"/>
+                                            <constraint firstItem="zf0-HR-CbR" firstAttribute="leading" secondItem="gyJ-IB-lYz" secondAttribute="leading" id="dXJ-G7-LMy"/>
+                                            <constraint firstItem="2I6-bq-lHg" firstAttribute="top" secondItem="sbd-0e-xpw" secondAttribute="bottom" id="ewd-a3-y8q"/>
                                             <constraint firstItem="HnU-CP-kC3" firstAttribute="top" secondItem="gyJ-IB-lYz" secondAttribute="top" constant="10" id="gr2-V1-o2y"/>
+                                            <constraint firstAttribute="trailing" secondItem="zf0-HR-CbR" secondAttribute="trailing" id="kvJ-nb-fn4"/>
                                             <constraint firstAttribute="trailing" secondItem="pBV-Ng-2Km" secondAttribute="trailing" id="m5U-rp-2xe"/>
                                             <constraint firstItem="igX-iw-qWB" firstAttribute="leading" secondItem="HnU-CP-kC3" secondAttribute="trailing" id="nmY-dB-rJT"/>
                                             <constraint firstItem="z7Y-rx-gpk" firstAttribute="top" secondItem="gyJ-IB-lYz" secondAttribute="top" constant="15" id="q7h-XW-KY9"/>
@@ -777,6 +809,7 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                                                 <exclude reference="vkK-Eo-yAh"/>
                                                 <exclude reference="XbL-A1-bzh"/>
                                                 <exclude reference="49n-La-Ct7"/>
+                                                <exclude reference="5iR-Ve-u6p"/>
                                             </mask>
                                         </variation>
                                     </view>
@@ -787,6 +820,7 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                                     <constraint firstItem="gyJ-IB-lYz" firstAttribute="leading" secondItem="Zuk-ph-iF8" secondAttribute="leading" id="L7b-mi-gxz"/>
                                     <constraint firstAttribute="bottom" secondItem="gyJ-IB-lYz" secondAttribute="bottom" id="elM-qj-qye"/>
                                     <constraint firstItem="gyJ-IB-lYz" firstAttribute="top" secondItem="Zuk-ph-iF8" secondAttribute="top" id="jeO-xZ-pGN"/>
+                                    <constraint firstAttribute="trailing" secondItem="gyJ-IB-lYz" secondAttribute="trailing" id="kpm-gv-58p"/>
                                     <constraint firstAttribute="trailing" secondItem="gyJ-IB-lYz" secondAttribute="trailing" id="pEo-BW-Say"/>
                                     <constraint firstAttribute="bottom" secondItem="gyJ-IB-lYz" secondAttribute="bottom" id="tSC-I2-Ix3"/>
                                     <constraint firstItem="gyJ-IB-lYz" firstAttribute="leading" secondItem="Zuk-ph-iF8" secondAttribute="leading" id="yvc-nK-Zqq"/>
@@ -818,7 +852,10 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                         <outlet property="category" destination="igX-iw-qWB" id="gwn-VH-J5T"/>
                         <outlet property="contentView" destination="gyJ-IB-lYz" id="bJm-S2-FZ5"/>
                         <outlet property="image" destination="HnU-CP-kC3" id="13q-gh-Uh3"/>
+                        <outlet property="mapContainerView" destination="zf0-HR-CbR" id="Jif-CQ-4Gm"/>
                         <outlet property="scrollView" destination="Zuk-ph-iF8" id="3ws-OO-jGe"/>
+                        <outlet property="showListButton" destination="2I6-bq-lHg" id="6AR-ff-R81"/>
+                        <outlet property="tableContainerView" destination="pBV-Ng-2Km" id="kn7-Sc-uHQ"/>
                         <outlet property="theCollectionView" destination="sbd-0e-xpw" id="Z24-hz-r2e"/>
                         <outlet property="theTitle" destination="z7Y-rx-gpk" id="3h3-t2-e9Q"/>
                         <outlet property="url" destination="AEQ-xq-mIZ" id="UVa-xH-TlY"/>
@@ -913,7 +950,6 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="theTableView" destination="JdM-to-yJT" id="5oP-ZO-CfU"/>
-                        <segue destination="axC-Ml-BMx" kind="presentation" identifier="TableToMapModallySegue" id="Tnj-wy-Ywp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xd7-ER-WSR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -926,8 +962,8 @@ The Food Trucks schedules are collected by both our automatic food truck radar s
         <image name="rsz_app_map_sq.png" width="40" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="n82-dF-unX"/>
-        <segue reference="Iy1-gB-lBZ"/>
         <segue reference="OdQ-3H-74I"/>
+        <segue reference="Iy1-gB-lBZ"/>
+        <segue reference="oed-iL-rAU"/>
     </inferredMetricsTieBreakers>
 </document>

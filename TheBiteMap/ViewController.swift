@@ -104,7 +104,7 @@ class ViewController: DropdownMenuController {
     override func viewDidLoad() {
         super.viewDidLoad()
         dates = Date.getScheduleDates()
-        categories = sorted(Array(Trucks.categories))
+        categories = sort(Array(Trucks.categories))
 //        var tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissMenuView")
 //        tap.cancelsTouchesInView = false
 //        tap.numberOfTapsRequired = 1
@@ -156,7 +156,7 @@ class ViewController: DropdownMenuController {
                 currentCategoryFilter = categories[row]
             }
         } else {
-            println("\(containerViewController.currentController) does not conform to FilterProtocol")
+            print("\(containerViewController.currentController) does not conform to FilterProtocol")
         }
     }
 

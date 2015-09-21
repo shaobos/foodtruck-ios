@@ -79,7 +79,7 @@ class ContainerViewController: UIViewController {
     }
     
     func initializeViewDrawing(segue: UIStoryboardSegue) {
-        println("no child view controller was loaded before. loading..")
+        print("no child view controller was loaded before. loading..")
         
         var defaultViewController:UIViewController = segue.destinationViewController as! UIViewController
         currentController = defaultViewController
@@ -113,7 +113,7 @@ class ContainerViewController: UIViewController {
     
     func swapFromViewController(from:UIViewController, to:UIViewController) {
         if (from == to) {
-            println("Same controller. do not switch")
+            print("Same controller. do not switch")
             return
         }
         
@@ -123,7 +123,7 @@ class ContainerViewController: UIViewController {
         
         self.transitionFromViewController(from, toViewController: to, duration: 1.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: nil, completion: {
             (finished:Bool) -> Void in
-            println("Finish transition between view controllers")
+            print("Finish transition between view controllers")
         })
     }
     

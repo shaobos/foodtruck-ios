@@ -123,21 +123,20 @@ class TrucksTableViewController : UIViewController, UITableViewDelegate, UITable
     }
     
     func setDateFilter(date:String) {
-        println("setDateFilter in Truck Table view -- no-op")
+        print("setDateFilter in Truck Table view -- no-op")
     }
     func setCategoryFilter(category:String) {
-        println("setCategoryFilter in Truck Table view -- no-op")
+        print("setCategoryFilter in Truck Table view -- no-op")
         
     }
     func refreshByDate(date:String) {
-        println("refreshByDate in Truck Table view -- no-op")
+        print("refreshByDate in Truck Table view -- no-op")
 
         
     }
     func refreshByCategory(category:String) {
-        println("Oeah yeah! oeahy!!")
         var ret = Trucks.getTrucksByCategory(category)
-        println(ret)
+        print(ret)
         convertTruckData(ret)
         tableView.reloadData()
         

@@ -60,6 +60,7 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate, UIColle
     
     var currentDateFilter:String = ""
     var currentCategoryFilter:String = ""
+    var requestFromTruckDetailView = false
     
     @IBOutlet weak var addressLabel: UILabel!
     override func didReceiveMemoryWarning() {
@@ -76,7 +77,7 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate, UIColle
         println("map moved to parent \(currentDateFilter) \(currentCategoryFilter)")
         
         highlightAnnotation(self.scheduleId)
-        setRegionBySchedule(self.scheduleId)
+        setRegionBySchedule(self.scheduleId, delta: 0.5)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -151,7 +152,7 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate, UIColle
         if (scheduleId == "") {
             setRegionToIncludeAllSchedules()
         } else {
-            setRegionBySchedule(self.scheduleId)
+            setRegionBySchedule(self.scheduleId, delta: 0.5)
             highlightAnnotation(self.scheduleId)
         }
     }
@@ -182,15 +183,29 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate, UIColle
     /*
         set the region when user clicks on a schedule from table view and then switch to the map
     */
-    func setRegionBySchedule(scheduleId:String) {
+    func setRegionBySchedule(scheduleId:String, delta:Double) {
         if (scheduleId == "") {
             return
         }
         
-        var schedule:[String: AnyObject] = self.schedules[scheduleId]!
-        var latitude:CLLocationDegrees = (schedule["lat"] as! NSString).doubleValue
-        var longitude:CLLocationDegrees = (schedule["lng"] as! NSString).doubleValue
-        self.setRegion(latitude, longitude: longitude, delta: 0.5)
+        
+        if self.schedules.count > 0 {
+            var schedule:[String: AnyObject] = self.schedules[scheduleId]!
+            var latitude:CLLocationDegrees = (schedule["lat"] as! NSString).doubleValue
+            var longitude:CLLocationDegrees = (schedule["lng"] as! NSString).doubleValue
+            self.setRegion(latitude, longitude: longitude, delta: delta)
+        }
+    }
+    
+    /*
+
+    */
+    func highlightAndSetRegion(scheduleId:String) {
+        // use requestFromTruckDetailView to not display collection view in when embedded in truck detail view
+        requestFromTruckDetailView = true
+        highlightAnnotation(scheduleId)
+        setRegionBySchedule(scheduleId, delta: 0.05)
+        requestFromTruckDetailView = false
     }
     
     /*
@@ -201,9 +216,10 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate, UIColle
             return
         }
         
-        var annotation = scheduleIdToAnnotation[self.scheduleId]
+        var annotation = scheduleIdToAnnotation[scheduleId]
 //        // this is how selected pin view is displayed programmatically
 //        // http://stackoverflow.com/a/2339556/677596
+
         mapView.selectAnnotation(annotation, animated: false)
     }
     
@@ -226,9 +242,11 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate, UIColle
         
         var foodTruckAnnotation = view.annotation as! FoodTruckMapAnnotation
         self.selectedTruckId = foodTruckAnnotation.truckId
+        
 
         println("Set selectedTruckId \(self.selectedTruckId)")
-        if (foodTruckAnnotation.groupId != "") {
+
+        if (foodTruckAnnotation.groupId != "" && !requestFromTruckDetailView) {
             self.selectedGroupId = foodTruckAnnotation.groupId
             collectionView.reloadData()
             collectionView.hidden = false
@@ -284,6 +302,7 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate, UIColle
     
     func setRegion(latitude:CLLocationDegrees, longitude:CLLocationDegrees, delta:CLLocationDegrees = 1) {
         // how many degrees it would zoom out by default, 1 would be a lot
+        println("delta here: \(delta)")
         var latDelta:CLLocationDegrees = delta
         var lonDelta:CLLocationDegrees = delta
         
