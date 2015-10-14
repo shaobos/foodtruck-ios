@@ -52,14 +52,14 @@ class AnnotationCreator {
         
         
         if latitude > 180 || latitude < -180 || longitude > 180 || longitude < -180 {
-            println("invalid longitude/latitude \(longitude)/\(latitude)")
+            print("invalid longitude/latitude \(longitude)/\(latitude)")
         }
     
         return annotation
     }
     
     
-    func createSingleAnnotation(scheduleId: String, singleScheduleObject schedule: [String: AnyObject]) -> FoodTruckMapAnnotation {
+    func createSingleAnnotation(groupId: String, scheduleId: String, singleScheduleObject schedule: [String: AnyObject]) -> FoodTruckMapAnnotation {
         
         var latitude:CLLocationDegrees = (schedule["lat"] as! NSString).doubleValue
         var longitude:CLLocationDegrees = (schedule["lng"] as! NSString).doubleValue
@@ -71,11 +71,13 @@ class AnnotationCreator {
         annotation.title = schedule["name"] as! String
         annotation.subtitle = schedule["date"] as! String + " " + (schedule["start_time"] as! String) + " - " + (schedule["end_time"] as! String)
         annotation.truckId = schedule["truck_id"] as! String
+        annotation.groupId = groupId
         annotation.scheduleId = scheduleId
+        annotation.address = schedule["address"] as! String
         annotation.date = schedule["date"] as! String
         
         if latitude > 180 || latitude < -180 || longitude > 180 || longitude < -180 {
-            println("invalid longitude/latitude \(longitude)/\(latitude)")
+            print("invalid longitude/latitude \(longitude)/\(latitude)")
         }
         
         return annotation

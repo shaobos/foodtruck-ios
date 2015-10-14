@@ -25,7 +25,7 @@ class ImageFetcher {
     func fetchImageByTruckId(truckId : String?, outerCallback: () -> Void) {
         
         if (TruckDetailImages.truckImages[truckId!] != nil) {
-            println("Truck picture already found. do not fetch again")
+            print("Truck picture already found. do not fetch again")
             outerCallback()
             return
         }
@@ -52,7 +52,7 @@ class ImageFetcher {
                 })
             }
         } else {
-            println("ImageFetcher - truckId is nil")
+            print("ImageFetcher - truckId is nil")
             callback(ret)
         }
     }
@@ -63,7 +63,7 @@ class ImageFetcher {
         for picPath in jsonResults {
             var pictureUrl = WebService.baseUrl + ((picPath as! NSString) as String)
             let newString = pictureUrl.stringByReplacingOccurrencesOfString("/thumb/", withString: "/reduced/")
-            println(newString)
+            print(newString)
 
             // we need to make sure image url and image are inserted with the same ordering
             var image = self.fetchImage(pictureUrl)
@@ -88,7 +88,7 @@ class ImageFetcher {
         // TODO: add update local feature here
         // TODO: handle if fetching is in transition
         if (Images.truckImages.count > 0) {
-            println("use local photos for now")
+            print("use local photos for now")
             completeHandler()
             return
         }
@@ -146,7 +146,7 @@ class ImageFetcher {
         
         let image = UIImage(data: imageData)
         if (image == nil) {
-            println(imageUrl + " is nil!!")
+            print(imageUrl + " is nil!!")
         }
         
         return image!

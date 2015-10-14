@@ -42,7 +42,9 @@ class TableViewController: UIViewController, UITableViewDelegate, FilterProtocol
         super.viewDidLoad()
         // TODO: better to intialize data fetch in main view controller
         
-        println(" ** viewDidload")
+        print(" ** viewDidload")
+    
+        
         if (truckId != nil) {
             // Dangerous: this is not atomic.
             self.cellContent = self.scheduleFetcher.getSchedulesByTruck(truckId!)
@@ -53,42 +55,42 @@ class TableViewController: UIViewController, UITableViewDelegate, FilterProtocol
     }
     
     override func didMoveToParentViewController(parent: UIViewController?) {
-        println(" ** didMoveToParentViewController")
+        print(" ** didMoveToParentViewController")
 
         super.didMoveToParentViewController(parent)
         // only needs to initialize once. once you know your parent, you know!!
         
         if parent is ContainerViewController {
             if containerViewController == nil {
-                println("Initilizing..")
+                print("Initilizing..")
                 containerViewController = parent as? ContainerViewController
-                println(containerViewController)
+                print(containerViewController)
             }
             parentController = containerViewController
             shouldRefresh = true
-            println("Table moved to container")
+            print("Table moved to container")
         } else if parent is TruckDetailViewController {
             truckDetailViewController = parent as? TruckDetailViewController
-            println("Table moved to truck details")
+            print("Table moved to truck details")
             parentController = truckDetailViewController
 
 
         } else {
             shouldRefresh = true
-            println("Unrecognized parent from TableViewController: \(parent)")
+            print("Unrecognized parent from TableViewController: \(parent)")
         }
     }
     
     override func viewDidAppear(animated: Bool) {
-        println(" ** viewDidAppear")
+        print(" ** viewDidAppear")
 
-        println("\(currentDateFilter) \(currentCategoryFilter)")
+        print("\(currentDateFilter) \(currentCategoryFilter)")
         // it should only refresh when the table view is moved into container view
         if (shouldRefresh) {
             refreshTable()
             shouldRefresh = false
         } else {
-            println("Do not refresh table view as it's shown in truck detail view")
+            print("Do not refresh table view as it's shown in truck detail view")
         }
     }
     
@@ -106,7 +108,7 @@ class TableViewController: UIViewController, UITableViewDelegate, FilterProtocol
     }
     
     func refreshTable() {
-        println("Table-refreshMap() current filter state \(currentDateFilter) \(currentCategoryFilter)")
+        print("Table-refreshMap() current filter state \(currentDateFilter) \(currentCategoryFilter)")
 
         cellContent = FilterImpl.filterSchedulesByCategoryAndDate(currentCategoryFilter, dateInput: currentDateFilter)
         theTableView.reloadData()
@@ -140,12 +142,12 @@ class TableViewController: UIViewController, UITableViewDelegate, FilterProtocol
                 self.scheduleFetcher.fetchSchedules() {
                     // initialize schedules with the first day of 7 days
                     if (dates.count > 0) {
-                        println("Initilize table view with date \(dates[0])")
+                        print("Initilize table view with date \(dates[0])")
                         //refreshByDate(dates[0])
                         self.cellContent = self.scheduleFetcher.getSchedulesBydate(dates[0])
 
                     } else {
-                        println("Cannot initialize table view with the first day. Date info is not available yet")
+                        print("Cannot initialize table view with the first day. Date info is not available yet")
                     }
                     self.theTableView.reloadData()
                     self.imageFetcher.fetchImages {
@@ -215,7 +217,7 @@ class TableViewController: UIViewController, UITableViewDelegate, FilterProtocol
                 truckDetailViewController.mapViewController!.highlightAndSetRegion(self.currentScheduleId)
             }
         } else {
-            println("WARN: parent controller of table view controller has not been detected")
+            print("WARN: parent controller of table view controller has not been detected")
         }
 
 

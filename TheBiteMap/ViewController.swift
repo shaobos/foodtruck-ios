@@ -37,19 +37,13 @@ class ViewController: DropdownMenuController {
     @IBAction func scheduleButtonPressed(sender: AnyObject) {
         menuView.hidden = !menuView.hidden
         searchButton.enabled = true
-
-
     }
 
     @IBAction func mapButtonPressed(sender: AnyObject) {
-        
         containerViewController.switchToController("mapViewSegue")
         dateFilterButton.hidden = false
-
         menuView.hidden = true
         searchButton.enabled = true
-
-
     }
     @IBAction func listButtonPressed(sender: AnyObject) {
         containerViewController.switchToController("tableViewSegue")
@@ -83,6 +77,9 @@ class ViewController: DropdownMenuController {
     @IBAction func searchButtonAction(sender: AnyObject) {
         filterView.hidden = !filterView.hidden
         picker.reloadAllComponents()
+        
+
+
         super.view.bringSubviewToFront(picker)
     }
     
@@ -104,19 +101,16 @@ class ViewController: DropdownMenuController {
     override func viewDidLoad() {
         super.viewDidLoad()
         dates = Date.getScheduleDates()
-        categories = sort(Array(Trucks.categories))
-//        var tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissMenuView")
-//        tap.cancelsTouchesInView = false
-//        tap.numberOfTapsRequired = 1
-//        view.addGestureRecognizer(tap)
-
+        categories = sorted(Array(Trucks.categories))
+        
+        // the code which changes the appearance based on the filter is in table view controller
+        // here it just makes it selected for consistency
+        picker.selectRow(0, inComponent: 0, animated: false)
     }
+
     
     func dismissMenuView(sender: UITapGestureRecognizer) {
-//        if (sender.state == UIGestureRecognizerStateEnded) {
-//            menuView.hidden = true
 
-//        }
     }
 
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
@@ -144,6 +138,10 @@ class ViewController: DropdownMenuController {
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        refreshViewByFilter(row)
+    }
+    
+    func refreshViewByFilter(row: Int) {
         if let filterViewController = containerViewController.currentController as? FilterProtocol {
             if (lastFilter == "date") {
                 dateFilterState = true

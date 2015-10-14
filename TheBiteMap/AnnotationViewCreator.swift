@@ -38,6 +38,6 @@ class AnnotationViewCreator {
     func PerformSegue() {
         // performSegueWithIdentifier("MapFullToDetailSegue", sender: nil)
         
-        println("pin annotation is wrong???")
+        print("pin annotation is wrong???")
     }
 }

@@ -54,7 +54,7 @@ class TruckDetailViewController : UIViewController, UICollectionViewDelegate, MW
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        println("who is my previous controller \(self.previousViewControllerName)")
+        print("who is my previous controller \(self.previousViewControllerName)")
 
         theTitle.text = inputLabel
 
@@ -84,7 +84,7 @@ class TruckDetailViewController : UIViewController, UICollectionViewDelegate, MW
                 }
             }
         } else {
-            println("TruckDetailsScrollViewController - truckId is unset")
+            print("TruckDetailsScrollViewController - truckId is unset")
         }
     }
     
@@ -118,7 +118,7 @@ class TruckDetailViewController : UIViewController, UICollectionViewDelegate, MW
         When an image is clicked
     */
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        println("An image was clicked!! \(indexPath.length) \(indexPath.item) \(indexPath.section) and \(indexPath.row)")
+        print("An image was clicked!! \(indexPath.length) \(indexPath.item) \(indexPath.section) and \(indexPath.row)")
 
         var cell = collectionView.cellForItemAtIndexPath(indexPath) as! CollectionViewCell
         currentImage = cell.imageView.image
@@ -160,27 +160,27 @@ class TruckDetailViewController : UIViewController, UICollectionViewDelegate, MW
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier! == "TruckDetailToLargeImageSegue") {
-            println("going to large image view")
+            print("going to large image view")
             var destViewController = segue.destinationViewController as! LargeImageViewController
             if let theImage = currentImage {
                 destViewController.setImage(theImage)
                 destViewController.setImageList(TruckDetailImages.truckImages[self.truckId!]!)
                 destViewController.imageUrls = TruckDetailImages.reducedUrlList[self.truckId!]!
             } else {
-                println("currentImage is unset")
+                print("currentImage is unset")
             }
         } else if (segue.identifier! == "TruckDetailContainerToTable") {
-            println("  ** It works - TruckDetailContainerToTable!!")
+            print("  ** It works - TruckDetailContainerToTable!!")
 
             var destViewController = segue.destinationViewController as! TableViewController
             destViewController.truckId(truckId!)
         } else if (segue.identifier! == "TruckDetailContainerToMap") {
-            println("  ** It works - TruckDetailContainerToMap!!")
+            print("  ** It works - TruckDetailContainerToMap!!")
             mapViewController = segue.destinationViewController as! MapViewController
             
         
         } else {
-            println("Unknown segue in TruckDetialScrollViewController")
+            print("Unknown segue in TruckDetialScrollViewController")
         }
     }
     

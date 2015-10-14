@@ -74,14 +74,14 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate, UIColle
     override func didMoveToParentViewController(parent: UIViewController?) {
         
         super.didMoveToParentViewController(parent)
-        println("map moved to parent \(currentDateFilter) \(currentCategoryFilter)")
+        print("map moved to parent \(currentDateFilter) \(currentCategoryFilter)")
         
         highlightAnnotation(self.scheduleId)
         setRegionBySchedule(self.scheduleId, delta: 0.5)
     }
     
     override func viewDidAppear(animated: Bool) {
-        println("*** Map view did appear!!! \(currentDateFilter) \(currentCategoryFilter)")
+        print("*** Map view did appear!!! \(currentDateFilter) \(currentCategoryFilter)")
         refreshMap()
     }
 
@@ -96,7 +96,7 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate, UIColle
         truckFetcher.fetchTrucksInfoFromRemote {
             loadedImages in
             self.scheduleFetcher.fetchSchedules() {
-                println("Reached here?")
+                print("Reached here?")
                 self.schedules = self.scheduleFetcher.getSchedules()
                 self.initialize()
             }
@@ -132,7 +132,7 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate, UIColle
                 }
             } else {
                 var onlySchedule = scheduleGroup.first!
-                annotation = annotationCreator.createSingleAnnotation(onlySchedule["id"] as! String, singleScheduleObject: onlySchedule)
+                annotation = annotationCreator.createSingleAnnotation(groupId, scheduleId: onlySchedule["id"] as! String, singleScheduleObject: onlySchedule)
                 for schedule in scheduleGroup {
                     scheduleIdToAnnotation[schedule["id"] as! String] = annotation
                 }
@@ -220,7 +220,7 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate, UIColle
 //        // this is how selected pin view is displayed programmatically
 //        // http://stackoverflow.com/a/2339556/677596
 
-        mapView.selectAnnotation(annotation, animated: false)
+        mapView.selectAnnotation(annotation!, animated: false)
     }
     
     /*
@@ -244,7 +244,7 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate, UIColle
         self.selectedTruckId = foodTruckAnnotation.truckId
         
 
-        println("Set selectedTruckId \(self.selectedTruckId)")
+        print("Set selectedTruckId \(self.selectedTruckId)")
 
         if (foodTruckAnnotation.groupId != "" && !requestFromTruckDetailView) {
             self.selectedGroupId = foodTruckAnnotation.groupId
@@ -285,7 +285,7 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate, UIColle
     func PerformSegue() {
        // performSegueWithIdentifier("MapFullToDetailSegue", sender: nil)
 
-        println("what's wrong???")
+        print("what's wrong???")
     }
 
     /*
@@ -302,7 +302,7 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate, UIColle
     
     func setRegion(latitude:CLLocationDegrees, longitude:CLLocationDegrees, delta:CLLocationDegrees = 1) {
         // how many degrees it would zoom out by default, 1 would be a lot
-        println("delta here: \(delta)")
+        print("delta here: \(delta)")
         var latDelta:CLLocationDegrees = delta
         var lonDelta:CLLocationDegrees = delta
         
@@ -325,7 +325,7 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate, UIColle
     }
     
     func refreshMap() {
-        println("Map-refreshMap() current filter state \(currentDateFilter) \(currentCategoryFilter)")
+        print("Map-refreshMap() current filter state \(currentDateFilter) \(currentCategoryFilter)")
         for annotation in self.annotations {
             var viewForAnnotation = self.mapView.viewForAnnotation(annotation)
             
@@ -336,9 +336,9 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate, UIColle
             
             if currentDateFilter != "" {
                 if currentDateFilter == "All" {
-                    viewForAnnotation.hidden = false
+                    viewForAnnotation!.hidden = false
                 } else if annotation.date != currentDateFilter {
-                    viewForAnnotation.hidden = true
+                    viewForAnnotation!.hidden = true
                     continue
                 }
             }
@@ -348,7 +348,7 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate, UIColle
                 // this might produce false positive since some trucks with the same pin 
                 // might not be that type of food
                 if currentCategoryFilter == "All" {
-                    viewForAnnotation.hidden = false                
+                    viewForAnnotation!.hidden = false                
                 } else {
                     var includeCategory = false
                     for category:String in annotation.categories {
@@ -357,14 +357,14 @@ class MapViewController: ScheduleAwareViewController, MKMapViewDelegate, UIColle
                         }
                     }
                     if (!includeCategory) {
-                        viewForAnnotation.hidden = true
+                        viewForAnnotation!.hidden = true
                         continue
                     }
                 }
                 
             }
             
-            viewForAnnotation.hidden = false
+            viewForAnnotation!.hidden = false
             
         }
     }

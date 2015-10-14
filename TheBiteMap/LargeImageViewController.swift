@@ -25,7 +25,7 @@ class LargeImageViewController : MWPhotoBrowser, MWPhotoBrowserDelegate {
         var imageUrl = self.imageUrls[Int(index)]
        // var mwPhoto:MWPhoto = MWPhoto(image: image)
         var mwPhoto:MWPhoto = MWPhoto(URL: NSURL(string: imageUrl))
-//        println(imageUrls)
+//        print(imageUrls)
         
         return mwPhoto
     }
@@ -34,7 +34,7 @@ class LargeImageViewController : MWPhotoBrowser, MWPhotoBrowserDelegate {
     
     @IBAction func backButtonPressed(sender: AnyObject) {
         self.dismissViewControllerAnimated(false, completion: {
-            println("trying to dismiss itself")
+            print("trying to dismiss itself")
         })
     }
 

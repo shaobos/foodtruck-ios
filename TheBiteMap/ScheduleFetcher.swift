@@ -49,7 +49,7 @@ class ScheduleFetcher {
         let endDate = Date.getEndDate()
         let urlPath = WebService.baseUrl + "scripts/get_trucks_schedule.php?start_date=\(startDate)&end_date=\(endDate)"
         
-        println("DEBUG: \(urlPath)")
+        print("DEBUG: \(urlPath)")
         
         let url = NSURL(string: urlPath)
         let session = NSURLSession.sharedSession()
@@ -57,7 +57,7 @@ class ScheduleFetcher {
             data, response, error -> Void in
             
             if (error != nil) {
-                println(error)
+                print(error)
             } else {
                 if data != nil {
                     let jsonResults = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as? NSArray

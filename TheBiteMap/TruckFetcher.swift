@@ -20,7 +20,7 @@ class TruckFetcher {
         
         let task = session.dataTaskWithURL(url!, completionHandler: {data, response, error -> Void in
             if (error != nil) {
-                println(error)
+                print(error)
             } else {
                 let jsonResults = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as! NSArray
                 

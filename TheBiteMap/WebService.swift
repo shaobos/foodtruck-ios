@@ -15,9 +15,9 @@ struct WebService {
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithURL(NSUrl!, completionHandler: { data, response, error -> Void in
             if (error != nil) {
-                println(error)
+                print(error)
             } else {
-                completeHandler(data: data)
+                completeHandler(data: data!)
             }
         })
         
@@ -43,14 +43,14 @@ struct WebService {
             data, response, error in
             
             if error != nil {
-                println("error=\(error)")
+                print("error=\(error)")
                 return
             }
             
-            println("response = \(response)")
+            print("response = \(response)")
             
-            let responseString = NSString(data: data, encoding: NSUTF8StringEncoding)
-            println("responseString = \(responseString)")
+            let responseString = NSString(data: data!, encoding: NSUTF8StringEncoding)
+            print("responseString = \(responseString)")
         }
         task.resume()
     }
