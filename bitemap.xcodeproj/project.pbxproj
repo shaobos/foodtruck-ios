@@ -110,7 +110,7 @@
 		86C9622B1AA3EFAA00061880 /* FoodTruckMapAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodTruckMapAnnotation.swift; sourceTree = "<group>"; };
 		86C9723F1ABF4ECB0010E931 /* TruckTableCellCustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TruckTableCellCustomView.swift; sourceTree = "<group>"; };
 		86CD22131A9324E60029C2C0 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
-		86EC6ED21A86C3A000940D9F /* thebitemap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = thebitemap.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		86EC6ED21A86C3A000940D9F /* bitemap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bitemap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86EC6ED61A86C3A000940D9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		86EC6ED91A86C3A000940D9F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		86EC6EDE1A86C3A000940D9F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -234,7 +234,7 @@
 		86EC6ED31A86C3A000940D9F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				86EC6ED21A86C3A000940D9F /* thebitemap.app */,
+				86EC6ED21A86C3A000940D9F /* bitemap.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -311,9 +311,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		86EC6ED11A86C3A000940D9F /* thebitemap */ = {
+		86EC6ED11A86C3A000940D9F /* bitemap */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 86EC6EF11A86C3A000940D9F /* Build configuration list for PBXNativeTarget "thebitemap" */;
+			buildConfigurationList = 86EC6EF11A86C3A000940D9F /* Build configuration list for PBXNativeTarget "bitemap" */;
 			buildPhases = (
 				974BA1DDBEC62A9983549224 /* Check Pods Manifest.lock */,
 				86EC6ECE1A86C3A000940D9F /* Sources */,
@@ -325,9 +325,9 @@
 			);
 			dependencies = (
 			);
-			name = thebitemap;
+			name = bitemap;
 			productName = "Food Truck Demo";
-			productReference = 86EC6ED21A86C3A000940D9F /* thebitemap.app */;
+			productReference = 86EC6ED21A86C3A000940D9F /* bitemap.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -342,11 +342,11 @@
 				TargetAttributes = {
 					86EC6ED11A86C3A000940D9F = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = JGMSX62R9P;
+						DevelopmentTeam = ZMW96CAGCX;
 					};
 				};
 			};
-			buildConfigurationList = 86EC6ECD1A86C3A000940D9F /* Build configuration list for PBXProject "thebitemap" */;
+			buildConfigurationList = 86EC6ECD1A86C3A000940D9F /* Build configuration list for PBXProject "bitemap" */;
 			compatibilityVersion = "Xcode 6.3";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -359,7 +359,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				86EC6ED11A86C3A000940D9F /* thebitemap */,
+				86EC6ED11A86C3A000940D9F /* bitemap */,
 			);
 		};
 /* End PBXProject section */
@@ -574,10 +574,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = TheBiteMapAppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Shaobo Sun (YNWY265QV3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "$(SRCROOT)/TheBiteMap/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = thebitemap;
+				PRODUCT_NAME = bitemap;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "TheBiteMap/Dropdown-mnm-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -593,7 +594,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "$(SRCROOT)/TheBiteMap/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = thebitemap;
+				PRODUCT_NAME = bitemap;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "TheBiteMap/Dropdown-mnm-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -603,7 +604,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		86EC6ECD1A86C3A000940D9F /* Build configuration list for PBXProject "thebitemap" */ = {
+		86EC6ECD1A86C3A000940D9F /* Build configuration list for PBXProject "bitemap" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				86EC6EEF1A86C3A000940D9F /* Debug */,
@@ -612,7 +613,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		86EC6EF11A86C3A000940D9F /* Build configuration list for PBXNativeTarget "thebitemap" */ = {
+		86EC6EF11A86C3A000940D9F /* Build configuration list for PBXNativeTarget "bitemap" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				86EC6EF21A86C3A000940D9F /* Debug */,
